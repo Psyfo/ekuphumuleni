@@ -45,7 +45,6 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   { label: 'Donors', href: '/donors' },
-  { label: 'Contact Us', href: '/contact' },
 ];
 
 export default function Navigation() {
@@ -127,7 +126,7 @@ export default function Navigation() {
             )}
             <Link
               href='/contact'
-              className='ml-2 px-4 py-2 rounded font-bold bg-[var(--color-muted-terracotta)] text-white shadow hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)]'
+              className='ml-2 px-4 py-2 rounded font-bold bg-[var(--color-muted-terracotta)] !text-white hover:!text-white focus-visible:!text-white shadow hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)]'
             >
               Get in Touch
             </Link>
@@ -239,7 +238,7 @@ export default function Navigation() {
                 <li className='pt-2'>
                   <Link
                     href='/contact'
-                    className='block text-center w-full px-4 py-3 rounded font-bold bg-[var(--color-muted-terracotta)] text-white shadow hover:opacity-90'
+                    className='block text-center w-full px-4 py-3 rounded font-bold bg-[var(--color-muted-terracotta)] !text-white hover:!text-white focus-visible:!text-white shadow hover:opacity-90'
                   >
                     Get in Touch
                   </Link>
