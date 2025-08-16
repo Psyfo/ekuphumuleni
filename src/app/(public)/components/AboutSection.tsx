@@ -32,7 +32,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.8 }}
-            src='/images/establishment.jpg'
+            src='/images/building/building_01.webp'
             alt='Historic exterior of Ekuphumuleni nursing home'
             className='w-full h-64 object-cover rounded-lg shadow bg-[var(--color-soft-sand)]'
           />
