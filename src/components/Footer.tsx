@@ -177,13 +177,14 @@ export default function Footer() {
                   href='tel:+27000000000'
                   className='hover:text-[var(--color-muted-terracotta)] transition-colors'
                 >
-                  +27 00 000 0000
+                  +263 9 216 877
                 </a>
               </li>
               <li className='flex items-start gap-2'>
                 <MapPinIcon className='h-5 w-5 mt-0.5 text-[var(--color-warm-beige)]' />
                 <address className='not-italic'>
-                  123 Peaceful Lane, Bulawayo
+                  Ekuphumuleni Geriatric Nursing Home, VHCG+86V, Old Falls Rd,
+                  Bulawayo
                 </address>
               </li>
             </ul>
