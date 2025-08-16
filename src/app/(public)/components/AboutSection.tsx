@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function AboutSection() {
   return (
@@ -27,15 +28,22 @@ export default function AboutSection() {
 
         {/* Establishment */}
         <div className='grid gap-8 md:grid-cols-2 items-start mb-12'>
-          <motion.img
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.8 }}
-            src='/images/building/building_01.webp'
-            alt='Historic exterior of Ekuphumuleni nursing home'
-            className='w-full h-64 object-cover rounded-lg shadow bg-[var(--color-soft-sand)]'
-          />
+            className='w-full'
+          >
+            <Image
+              src='/images/building/building_01.webp'
+              alt='Historic exterior of Ekuphumuleni nursing home'
+              width={800}
+              height={400}
+              className='w-full h-64 object-cover rounded-lg shadow bg-[var(--color-soft-sand)]'
+              priority={false}
+            />
+          </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
