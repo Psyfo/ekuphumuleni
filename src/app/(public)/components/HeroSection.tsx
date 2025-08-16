@@ -1,36 +1,69 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function HeroSection() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <section
       id='hero'
-      className='py-16 px-4 text-center bg-[var(--color-warm-beige)]'
+      className='bg-[var(--color-warm-beige)] px-4 py-16 text-center
+                 min-h-[calc(100dvh-4rem)] grid place-items-center'
       aria-label='Hero Section'
     >
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
         className='max-w-5xl mx-auto'
       >
-        <Image
-          src='/images/staff/staff_21.webp'
-          alt='Peaceful garden walkway symbolizing rest and restoration'
-          width={1200}
-          height={288}
-          className='mx-auto mb-8 rounded-lg shadow-lg w-full max-w-3xl object-cover h-72 bg-[var(--color-soft-sand)]'
-          priority
-        />
-        <h1 className='heading-1 mb-4'>A Place of Rest and Restoration</h1>
-        <p className='body-text mb-8'>
-          Compassionate geriatric care in a tranquil, culturally sensitive
-          environment. Discover comfort, dignity, and community at Ekuphumuleni.
-        </p>
+        {/* Logo */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            scale: prefersReducedMotion ? 1 : 0.95,
+            y: prefersReducedMotion ? 0 : 8,
+          }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className='mx-auto'
+        >
+          <Image
+            src='/images/brand/ekuphumuleni_logo.png'
+            alt='Ekuphumuleni logo'
+            width={512}
+            height={512}
+            priority
+            sizes='(min-width: 1024px) 256px, (min-width: 640px) 224px, 160px'
+            className='mx-auto h-auto w-60 sm:w-56 lg:w-84 object-contain'
+            unoptimized
+          />
+        </motion.div>
+
+        {/* Headings */}
+        <motion.h1
+          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.15 }}
+          className='heading-1 mt-5 mb-2 !text-[var(--color-muted-terracotta)] uppercase tracking-wider'
+        >
+          Ekuphumuleni
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.25 }}
+          className='!text-2xl md:text-2xl font-semibold !font-sans !text-[var(--color-muted-terracotta)] mb-8'
+        >
+          Geriatric Nursing Home
+        </motion.p>
+
+        {/* CTAs */}
         <div className='flex items-center justify-center gap-4'>
           <Link
             href='#services'
