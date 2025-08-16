@@ -2,12 +2,10 @@
 
 import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
+import React, { useState } from 'react';
 
 import {
-  ArrowPathIcon,
-  HeartIcon,
-  HomeModernIcon,
-  SparklesIcon,
+    ArrowPathIcon, HeartIcon, HomeModernIcon, SparklesIcon
 } from '@heroicons/react/24/outline';
 
 const cardVariants: Variants = {
@@ -19,11 +17,31 @@ const cardVariants: Variants = {
   }),
 };
 
+function FadeImage({ src, alt }: { src: string; alt: string }) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    // Taller and closer to square using a 5:4 aspect ratio (height = 80% of width)
+    <div className='relative w-full pt-[80%] overflow-hidden rounded bg-[var(--color-off-white)] mb-3'>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes='(min-width:1024px) 280px, (min-width:768px) 50vw, 100vw'
+        className={`object-cover transition-opacity duration-700 ${
+          loaded ? 'opacity-100' : 'opacity-0'
+        }`}
+        onLoadingComplete={() => setLoaded(true)}
+        priority={false}
+      />
+    </div>
+  );
+}
+
 export default function ServicesSection() {
   return (
     <section
       id='services'
-      className='py-16 px-4 bg-[var(--color-soft-sand)]'
+      className='relative z-0 py-16 px-4 bg-[var(--color-soft-sand)]'
       aria-label='Our Services'
     >
       <div className='max-w-6xl mx-auto'>
@@ -47,15 +65,14 @@ export default function ServicesSection() {
             viewport={{ once: true, amount: 0.4 }}
             className='card p-6 rounded-lg shadow text-center'
           >
-            <HeartIcon className='w-10 h-10 text-[var(--color-earth-brown)] mx-auto mb-3' />
-            <div className='w-full h-28 relative rounded bg-[var(--color-off-white)] mb-3'>
-              <Image
-                src='/images/nursing.jpg'
-                alt='Nursing care in a calm setting'
-                fill
-                className='object-cover rounded'
-              />
-            </div>
+            <HeartIcon
+              aria-hidden='true'
+              className='w-10 h-10 text-[var(--color-earth-brown)] mx-auto mb-3'
+            />
+            <FadeImage
+              src='/images/staff/staff_19.webp'
+              alt='Nursing care in a calm setting'
+            />
             <h3 className='heading-3 mb-2'>Nursing Care</h3>
             <p className='body-text'>
               Compassionate, round‑the‑clock care tailored to each resident’s
@@ -72,12 +89,13 @@ export default function ServicesSection() {
             viewport={{ once: true, amount: 0.4 }}
             className='card p-6 rounded-lg shadow text-center'
           >
-            <ArrowPathIcon className='w-10 h-10 text-[var(--color-earth-brown)] mx-auto mb-3' />
-            <Image
-              src='/images/rehabilitation.jpg'
+            <ArrowPathIcon
+              aria-hidden='true'
+              className='w-10 h-10 text-[var(--color-earth-brown)] mx-auto mb-3'
+            />
+            <FadeImage
+              src='/images/staff/staff_20.webp'
               alt='Rehabilitation and mobility support'
-              fill
-              className='object-cover rounded bg-[var(--color-off-white)] mb-3'
             />
             <h3 className='heading-3 mb-2'>Rehabilitation</h3>
             <p className='body-text'>
@@ -95,12 +113,13 @@ export default function ServicesSection() {
             viewport={{ once: true, amount: 0.4 }}
             className='card p-6 rounded-lg shadow text-center'
           >
-            <SparklesIcon className='w-10 h-10 text-[var(--color-earth-brown)] mx-auto mb-3' />
-            <Image
-              src='/images/sustainability.jpg'
+            <SparklesIcon
+              aria-hidden='true'
+              className='w-10 h-10 text-[var(--color-earth-brown)] mx-auto mb-3'
+            />
+            <FadeImage
+              src='/images/facilities/facilities_19.webp'
               alt='Sustainability initiatives at the home'
-              fill
-              className='object-cover rounded bg-[var(--color-off-white)] mb-3'
             />
             <h3 className='heading-3 mb-2'>Sustainability</h3>
             <p className='body-text'>
@@ -115,14 +134,15 @@ export default function ServicesSection() {
             initial='hidden'
             whileInView='show'
             viewport={{ once: true, amount: 0.4 }}
-            className='card p-6 rounded-lg shadow text-center'
+            className='card p-6 rounded-lg shadow text-center bg-[var(--color-off-white)] text-[var(--color-earth-brown)]'
           >
-            <HomeModernIcon className='w-10 h-10 text-[var(--color-earth-brown)] mx-auto mb-3' />
-            <Image
-              src='/images/facilities.jpg'
+            <HomeModernIcon
+              aria-hidden='true'
+              className='w-10 h-10 text-[var(--color-earth-brown)] mx-auto mb-3'
+            />
+            <FadeImage
+              src='/images/facilities/facilities_11.webp'
               alt='Comfortable living facilities and communal spaces'
-              fill
-              className='object-cover rounded bg-[var(--color-off-white)] mb-3'
             />
             <h3 className='heading-3 mb-2'>Facilities</h3>
             <p className='body-text'>
