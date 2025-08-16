@@ -1,6 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
@@ -84,9 +85,17 @@ export default function Navigation() {
           {/* Brand / Logo */}
           <Link
             href='/'
-            className='flex items-center gap-2'
+            className='flex items-center gap-3'
             aria-label='Ekuphumuleni Home'
           >
+            <Image
+              src='/images/brand/ekuphumuleni_logo.png' // or '/images/logo.svg'
+              alt='Ekuphumuleni logo'
+              width={32}
+              height={32}
+              priority
+              className='h-8 w-8 object-contain'
+            />
             <span className='text-xl font-semibold font-serif text-[var(--color-earth-brown)]'>
               Ekuphumuleni
             </span>
