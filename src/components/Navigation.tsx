@@ -32,6 +32,7 @@ const NAV_ITEMS: NavItem[] = [
     children: [
       { label: 'Board', href: '/team#board' },
       { label: 'Administration', href: '/team#administration' },
+      { label: 'Staff', href: '/team#staff' },
     ],
   },
   {
