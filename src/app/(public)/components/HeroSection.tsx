@@ -49,7 +49,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut', delay: 0.15 }}
-          className='heading-1 mt-5 mb-2 !text-[var(--color-muted-terracotta)] uppercase tracking-wider'
+          className='heading-1 mt-2 mb-0 !font-serif !text-[var(--color-muted-terracotta)] uppercase tracking-wider'
         >
           Ekuphumuleni
         </motion.h1>
