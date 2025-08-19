@@ -42,6 +42,7 @@ export default function AboutSection() {
               height={400}
               className='w-full h-64 object-cover rounded-lg shadow bg-[var(--color-soft-sand)]'
               priority={false}
+              unoptimized
             />
           </motion.div>
           <motion.div
