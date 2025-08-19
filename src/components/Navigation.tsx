@@ -24,8 +24,7 @@ const NAV_ITEMS: NavItem[] = [
     label: 'About Us',
     children: [
       { label: 'Establishment', href: '/about#establishment' },
-      { label: 'Mission & Vision', href: '/about#mission-vision' },
-      { label: 'Core Values', href: '/about#core-values' },
+      { label: 'Mission & Core Values', href: '/about#mission-vision' },
     ],
   },
   {
