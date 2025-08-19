@@ -5,7 +5,10 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 
 import {
-    ArrowPathIcon, HeartIcon, HomeModernIcon, SparklesIcon
+  ArrowPathIcon,
+  HeartIcon,
+  HomeModernIcon,
+  SparklesIcon,
 } from '@heroicons/react/24/outline';
 
 const cardVariants: Variants = {
@@ -70,7 +73,7 @@ export default function ServicesSection() {
               className='w-10 h-10 text-[var(--color-earth-brown)] mx-auto mb-3'
             />
             <FadeImage
-              src='/images/staff/staff_19.webp'
+              src='/images/staff/staff_15.webp'
               alt='Nursing care in a calm setting'
             />
             <h3 className='heading-3 mb-2'>Nursing Care</h3>
