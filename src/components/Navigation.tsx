@@ -53,10 +53,28 @@ export default function Navigation() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const mobileRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+  const closeMobile = () => {
     setMobileOpen(false);
+    setOpenDropdown(null);
+  };
+
+  // Close on route changes
+  useEffect(() => {
+    closeMobile();
   }, [pathname]);
 
+  // Close on hash navigation and browser back/forward
+  useEffect(() => {
+    const onHashOrPop = () => closeMobile();
+    window.addEventListener('hashchange', onHashOrPop);
+    window.addEventListener('popstate', onHashOrPop);
+    return () => {
+      window.removeEventListener('hashchange', onHashOrPop);
+      window.removeEventListener('popstate', onHashOrPop);
+    };
+  }, []);
+
+  // Click outside to close mobile drawer
   useEffect(() => {
     function onClick(e: MouseEvent) {
       if (!mobileRef.current) return;
@@ -86,9 +104,10 @@ export default function Navigation() {
             href='/'
             className='flex items-center gap-3'
             aria-label='Ekuphumuleni Home'
+            onClick={closeMobile}
           >
             <Image
-              src='/images/brand/ekuphumuleni_logo.png' // or '/images/logo.svg'
+              src='/images/brand/ekuphumuleni_logo.png'
               alt='Ekuphumuleni logo'
               width={32}
               height={32}
@@ -209,6 +228,7 @@ export default function Navigation() {
                                 <Link
                                   href={child.href}
                                   className='block px-2 py-2 rounded-md text-[var(--color-deep-cocoa)] hover:text-[var(--color-muted-terracotta)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)]'
+                                  onClick={closeMobile}
                                 >
                                   {child.label}
                                 </Link>
@@ -229,6 +249,7 @@ export default function Navigation() {
                             ? 'bg-[var(--color-warm-beige)]'
                             : '',
                         ].join(' ')}
+                        onClick={closeMobile}
                       >
                         {item.label}
                       </Link>
@@ -239,6 +260,7 @@ export default function Navigation() {
                   <Link
                     href='/contact'
                     className='block text-center w-full px-4 py-3 rounded font-bold bg-[var(--color-muted-terracotta)] !text-white hover:!text-white focus-visible:!text-white shadow hover:opacity-90'
+                    onClick={closeMobile}
                   >
                     Get in Touch
                   </Link>
