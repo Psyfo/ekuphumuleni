@@ -80,10 +80,10 @@ export default function EstablishmentSection() {
             <div className='surface rounded-lg p-4 mb-4'>
               <p className='body-text'>
                 Ekuphumuleni is a nonprofit, non‑governmental organization
-                registered under welfare societies as <strong>W/O 23/80</strong>
-                . It is a convalescent home for elderly people discharged from
-                hospital who are not yet well enough to be cared for in a family
-                environment.
+                registered under welfare societies as{' '}
+                <strong>W/O 23/80.</strong> It is a convalescent home for
+                elderly people discharged from hospital who are not yet well
+                enough to be cared for in a family environment.
               </p>
             </div>
             <h4 className='heading-3 mb-2'>Why Families Choose Ekuphumuleni</h4>
