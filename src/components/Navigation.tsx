@@ -38,8 +38,10 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: 'Services',
     children: [
-      { label: 'Nursing Care', href: '/services#nursing-care' },
-      { label: 'Rehabilitation', href: '/services#rehabilitation' },
+      {
+        label: 'Nursing Care & Rehabilitation',
+        href: '/services#nursing-care',
+      },
       { label: 'Sustainability', href: '/services#sustainability' },
       { label: 'Facilities', href: '/services#facilities' },
     ],
