@@ -35,6 +35,7 @@ function FadeImage({ src, alt }: { src: string; alt: string }) {
         }`}
         onLoadingComplete={() => setLoaded(true)}
         priority={false}
+        unoptimized
       />
     </div>
   );
