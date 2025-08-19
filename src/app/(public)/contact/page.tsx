@@ -1,12 +1,19 @@
 import React from 'react';
 
+import ContactForm from './ContactForm';
+
 export default function ContactPage() {
   return (
-    <main className='min-h-screen flex flex-col justify-center items-center text-center bg-background text-foreground'>
-      <h1 className='text-3xl font-bold mb-4'>Contact</h1>
-      <p className='text-lg text-muted'>
-        This is the Contact page. Content coming soon.
-      </p>
+    <main>
+      <section
+        id='contact'
+        className='py-16 px-4 bg-[var(--color-off-white)] min-h-[60vh] flex items-center justify-center'
+        aria-label='Contact Ekuphumuleni'
+      >
+        <div className='w-full max-w-2xl mx-auto'>
+          <ContactForm />
+        </div>
+      </section>
     </main>
   );
 }
