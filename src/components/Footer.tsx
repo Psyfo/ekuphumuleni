@@ -121,15 +121,7 @@ export default function Footer() {
                   href='/services#nursing-care'
                   className='hover:text-[var(--color-muted-terracotta)] transition-colors'
                 >
-                  Nursing Care
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/services#rehabilitation'
-                  className='hover:text-[var(--color-muted-terracotta)] transition-colors'
-                >
-                  Rehabilitation
+                  Nursing Care & Rehabilitation
                 </Link>
               </li>
               <li>
