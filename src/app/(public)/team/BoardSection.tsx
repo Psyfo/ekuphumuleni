@@ -1,8 +1,8 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { motion, useInView, useReducedMotion, Variants } from 'framer-motion';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { UserIcon } from '@heroicons/react/24/outline';
 
@@ -15,7 +15,6 @@ type Member = {
 const BOARD: Member[] = Array.from({ length: 9 }).map((_, i) => ({
   name: `Trustee Name ${i + 1}`,
   role: 'Trustee',
-  // Optionally point to your real images, fallback will handle missing
   img: `/images/trustees/trustees_0${i + 1}.webp`,
 }));
 
@@ -38,19 +37,12 @@ const item: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
 };
 
-function getInitials(name: string) {
-  const parts = name.trim().split(/\s+/);
-  const first = parts[0]?.[0] ?? '';
-  const last = parts[parts.length - 1]?.[0] ?? '';
-  return (first + last).toUpperCase();
-}
-
 function Portrait({ src, alt }: { src?: string; alt: string }) {
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
 
   return (
-    <div className='relative w-full pt-[125%] overflow-hidden rounded-lg bg-[var(--color-off-white)]'>
+    <div className='relative w-full pt-[125%] min-h-[120px] overflow-hidden rounded-lg bg-[var(--color-off-white)]'>
       {!failed && src ? (
         <Image
           src={src}
@@ -62,7 +54,7 @@ function Portrait({ src, alt }: { src?: string; alt: string }) {
           }`}
           onLoadingComplete={() => setLoaded(true)}
           onError={() => setFailed(true)}
-          priority={false}
+          loading='lazy'
           unoptimized
         />
       ) : (
@@ -78,6 +70,13 @@ function Portrait({ src, alt }: { src?: string; alt: string }) {
 
 export default function BoardSection() {
   const prefersReducedMotion = useReducedMotion();
+  const rootRef = useRef<HTMLDivElement | null>(null);
+  // Trigger when ~12% enters viewport; account for sticky header with a negative top margin.
+  const inView = useInView(rootRef, {
+    once: true,
+    amount: 0.0,
+    margin: '-64px 0px -15% 0px',
+  });
 
   return (
     <section
@@ -86,11 +85,11 @@ export default function BoardSection() {
       className='py-16 px-4 bg-[var(--color-off-white)]'
     >
       <motion.div
+        ref={rootRef}
         className='max-w-6xl mx-auto'
         variants={container}
         initial='hidden'
-        whileInView='show'
-        viewport={{ once: true, amount: 0.25 }}
+        animate={inView ? 'show' : 'hidden'}
       >
         <motion.h2 variants={item} className='heading-2 text-center mb-2'>
           Board of Trustees
