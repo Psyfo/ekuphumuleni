@@ -52,7 +52,7 @@ function Portrait({ src, alt }: { src?: string; alt: string }) {
           className={`object-cover transition-opacity duration-700 ${
             loaded ? 'opacity-100' : 'opacity-0'
           }`}
-          onLoadingComplete={() => setLoaded(true)}
+          onLoad={() => setLoaded(true)}
           onError={() => setFailed(true)}
           loading='lazy'
           unoptimized
