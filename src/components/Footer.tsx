@@ -23,8 +23,8 @@ export default function Footer() {
 
   return (
     <footer className='bg-[var(--color-deep-cocoa)] text-[var(--color-off-white)]'>
-      <div className='max-w-7xl mx-auto px-4 py-14'>
-        <div className='grid gap-10 sm:grid-cols-2 lg:grid-cols-4'>
+      <div className='mx-auto px-4 py-14 max-w-7xl'>
+        <div className='gap-10 grid sm:grid-cols-2 lg:grid-cols-4'>
           {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -32,10 +32,10 @@ export default function Footer() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
           >
-            <h2 className='heading-2 text-[var(--color-warm-beige)] mb-3'>
+            <h2 className='mb-3 text-[var(--color-warm-beige)] heading-2'>
               Ekuphumuleni
             </h2>
-            <p className='body-text text-[var(--color-off-white)]/90'>
+            <p className='text-[var(--color-off-white)]/90 body-text'>
               A place of rest and restoration. Compassionate geriatric care in a
               tranquil, culturally sensitive environment.
             </p>
@@ -49,7 +49,7 @@ export default function Footer() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, ease: 'easeOut', delay: 0.05 }}
           >
-            <h3 className='heading-3 text-[var(--color-warm-beige)] mb-3'>
+            <h3 className='mb-3 text-[var(--color-warm-beige)] heading-3'>
               Quick Links
             </h3>
             <ul className='space-y-2'>
@@ -112,7 +112,7 @@ export default function Footer() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
           >
-            <h3 className='heading-3 text-[var(--color-warm-beige)] mb-3'>
+            <h3 className='mb-3 text-[var(--color-warm-beige)] heading-3'>
               Care & Facilities
             </h3>
             <ul className='space-y-2'>
@@ -150,12 +150,12 @@ export default function Footer() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, ease: 'easeOut', delay: 0.15 }}
           >
-            <h3 className='heading-3 text-[var(--color-warm-beige)] mb-3'>
+            <h3 className='mb-3 text-[var(--color-warm-beige)] heading-3'>
               Get in Touch
             </h3>
             <ul className='space-y-3 mb-4'>
               <li className='flex items-start gap-2'>
-                <EnvelopeIcon className='h-5 w-5 mt-0.5 text-[var(--color-warm-beige)]' />
+                <EnvelopeIcon className='mt-0.5 w-5 h-5 text-[var(--color-warm-beige)]' />
                 <a
                   href='mailto:info@ekuphumuleni.org'
                   className='hover:text-[var(--color-muted-terracotta)] transition-colors'
@@ -164,16 +164,16 @@ export default function Footer() {
                 </a>
               </li>
               <li className='flex items-start gap-2'>
-                <PhoneIcon className='h-5 w-5 mt-0.5 text-[var(--color-warm-beige)]' />
+                <PhoneIcon className='mt-0.5 w-5 h-5 text-[var(--color-warm-beige)]' />
                 <a
                   href='tel:+27000000000'
                   className='hover:text-[var(--color-muted-terracotta)] transition-colors'
                 >
-                  +263 9 216 877
+                  263 292 216 877
                 </a>
               </li>
               <li className='flex items-start gap-2'>
-                <MapPinIcon className='h-5 w-5 mt-0.5 text-[var(--color-warm-beige)]' />
+                <MapPinIcon className='mt-0.5 w-5 h-5 text-[var(--color-warm-beige)]' />
                 <address className='not-italic'>
                   Ekuphumuleni Geriatric Nursing Home, VHCG+86V, Old Falls Rd,
                   Bulawayo
@@ -197,14 +197,14 @@ export default function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder='Your email'
-                  className='flex-1 rounded-md px-3 py-2 text-[var(--color-deep-cocoa)] bg-[var(--color-off-white)] placeholder:text-[var(--color-deep-cocoa)]/70 focus:outline-none focus:ring-2 focus:ring-[var(--color-muted-terracotta)]'
+                  className='flex-1 bg-[var(--color-off-white)] px-3 py-2 rounded-md focus:outline-none focus:ring-[var(--color-muted-terracotta)] focus:ring-2 text-[var(--color-deep-cocoa)] placeholder:text-[var(--color-deep-cocoa)]/70'
                 />
                 <button
                   type='submit'
-                  className='inline-flex items-center gap-1 px-4 py-2 rounded-md font-semibold bg-[var(--color-muted-terracotta)] text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-muted-terracotta)]'
+                  className='inline-flex items-center gap-1 bg-[var(--color-muted-terracotta)] hover:opacity-90 px-4 py-2 rounded-md focus:outline-none focus:ring-[var(--color-muted-terracotta)] focus:ring-2 font-semibold text-white'
                 >
                   Subscribe
-                  <ArrowRightIcon className='h-4 w-4' aria-hidden='true' />
+                  <ArrowRightIcon className='w-4 h-4' aria-hidden='true' />
                 </button>
               </div>
             </form>
@@ -213,8 +213,8 @@ export default function Footer() {
 
         <hr className='mt-12 border-[var(--color-off-white)]/20' />
 
-        <div className='mt-6 flex flex-col-reverse gap-3 md:flex-row md:items-center md:justify-between'>
-          <p className='text-sm text-[var(--color-off-white)]/90'>
+        <div className='flex md:flex-row flex-col-reverse md:justify-between md:items-center gap-3 mt-6'>
+          <p className='text-[var(--color-off-white)]/90 text-sm'>
             © {year} Ekuphumuleni. All rights reserved.
           </p>
           <ul className='flex flex-wrap items-center gap-x-6 gap-y-2 text-sm'>
