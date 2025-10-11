@@ -12,11 +12,17 @@ type Member = {
   img?: string; // replace with actual portrait paths when available
 };
 
-const BOARD: Member[] = Array.from({ length: 9 }).map((_, i) => ({
-  name: `Trustee Name ${i + 1}`,
-  role: 'Trustee',
-  img: `/images/trustees/trustees_0${i + 1}.webp`,
-}));
+const BOARD: Member[] = [
+    { name: 'Mr P Ncube', role: 'Board Chairperson', img: '/images/team/board/ncube.jpg' },
+    { name: 'Ms F Ndlovu', role: 'H R Chairperson', img: '/images/team/board/ndlovu.jpg' },
+    { name: 'Mr J M Nyoni', role: 'Board Member', img: '/images/team/board/nyoni.jpg' },
+    { name: 'Ms G N Mahlangu', role: 'Board Member', img: '/images/team/board/mahlangu.jpg' },
+    { name: 'Mrs H M Mahachi', role: 'Vice Chair Person', img: '/images/team/board/mahachi.jpg' },
+    { name: 'Mr Miclose', role: 'Board Person Treasury', img: '/images/team/board/miclose.jpg' },
+    { name: 'Mr J L Ncube Sikosana', role: 'Committee Member', img: '/images/team/board/sikosana.jpg' },
+    { name: 'Mr L Mpofu', role: 'Committee Member', img: '/images/team/board/mpofu.jpg' },
+    { name: 'Ms S S Hove', role: 'Committee Member', img: '/images/team/board/' },
+];
 
 const container: Variants = {
   hidden: { opacity: 0, y: 12 },
@@ -42,7 +48,7 @@ function Portrait({ src, alt }: { src?: string; alt: string }) {
   const [failed, setFailed] = useState(false);
 
   return (
-    <div className='relative w-full pt-[125%] min-h-[120px] overflow-hidden rounded-lg bg-[var(--color-off-white)]'>
+    <div className='relative bg-[var(--color-off-white)] pt-[125%] rounded-lg w-full min-h-[120px] overflow-hidden'>
       {!failed && src ? (
         <Image
           src={src}
@@ -58,9 +64,9 @@ function Portrait({ src, alt }: { src?: string; alt: string }) {
           unoptimized
         />
       ) : (
-        <div className='absolute inset-0 grid place-items-center'>
-          <div className='flex items-center justify-center h-20 w-20 rounded-full bg-[var(--color-warm-beige)] text-[var(--color-earth-brown)] shadow'>
-            <UserIcon className='h-8 w-8' aria-hidden='true' />
+        <div className='absolute inset-0 place-items-center grid'>
+          <div className='flex justify-center items-center bg-[var(--color-warm-beige)] shadow rounded-full w-20 h-20 text-[var(--color-earth-brown)]'>
+            <UserIcon className='w-8 h-8' aria-hidden='true' />
           </div>
         </div>
       )}
@@ -82,25 +88,25 @@ export default function BoardSection() {
     <section
       id='board'
       aria-label='Board of Trustees'
-      className='py-16 px-4 bg-[var(--color-off-white)]'
+      className='bg-[var(--color-off-white)] px-4 py-16'
     >
       <motion.div
         ref={rootRef}
-        className='max-w-6xl mx-auto'
+        className='mx-auto max-w-6xl'
         variants={container}
         initial='hidden'
         animate={inView ? 'show' : 'hidden'}
       >
-        <motion.h2 variants={item} className='heading-2 text-center mb-2'>
-          Board of Trustees
+        <motion.h2 variants={item} className='mb-2 text-center heading-2'>
+          Executive Board Members
         </motion.h2>
-        <motion.p variants={item} className='body-text text-center mb-10'>
-          Nine dedicated trustees guiding Ekuphumuleni’s mission and service.
+        <motion.p variants={item} className='mb-10 text-center body-text'>
+          The current executive board members guiding Ekuphumuleni’s mission and service.
         </motion.p>
 
         <motion.ul
           variants={container}
-          className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'
+          className='gap-6 grid sm:grid-cols-2 lg:grid-cols-3'
         >
           {BOARD.map((m, idx) => (
             <motion.li
@@ -111,14 +117,14 @@ export default function BoardSection() {
                   ? {}
                   : { y: -4, scale: 1.01, transition: { duration: 0.15 } }
               }
-              className='card rounded-xl p-4 shadow hover:shadow-lg transition-shadow'
+              className='shadow hover:shadow-lg p-4 rounded-xl transition-shadow card'
             >
               <Portrait src={m.img} alt={m.name} />
               <div className='mt-4 text-center'>
-                <h3 className='text-base md:text-lg font-semibold text-[var(--color-deep-cocoa)]'>
+                <h3 className='font-semibold text-[var(--color-deep-cocoa)] text-base md:text-lg'>
                   {m.name}
                 </h3>
-                <p className='caption text-[var(--color-deep-cocoa)]/80'>
+                <p className='text-[var(--color-deep-cocoa)]/80 caption'>
                   {m.role ?? 'Trustee'}
                 </p>
               </div>
