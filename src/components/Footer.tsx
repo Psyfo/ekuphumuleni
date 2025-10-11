@@ -2,10 +2,9 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 
 import {
-  ArrowRightIcon,
   EnvelopeIcon,
   MapPinIcon,
   PhoneIcon,
@@ -13,13 +12,6 @@ import {
 
 export default function Footer() {
   const year = new Date().getFullYear();
-  const [email, setEmail] = useState('');
-
-  function onSubscribe(e: React.FormEvent) {
-    e.preventDefault();
-    alert('Thank you! We will keep you updated.');
-    setEmail('');
-  }
 
   return (
     <footer className='bg-[var(--color-deep-cocoa)] text-[var(--color-off-white)]'>
@@ -143,7 +135,7 @@ export default function Footer() {
             </ul>
           </motion.nav>
 
-          {/* Contact + Newsletter */}
+          {/* Contact */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -153,7 +145,7 @@ export default function Footer() {
             <h3 className='mb-3 text-[var(--color-warm-beige)] heading-3'>
               Get in Touch
             </h3>
-            <ul className='space-y-3 mb-4'>
+            <ul className='space-y-3'>
               <li className='flex items-start gap-2'>
                 <EnvelopeIcon className='mt-0.5 w-5 h-5 text-[var(--color-warm-beige)]' />
                 <a
@@ -180,34 +172,6 @@ export default function Footer() {
                 </address>
               </li>
             </ul>
-
-            <form
-              className='mt-3'
-              onSubmit={onSubscribe}
-              aria-label='Newsletter subscription'
-            >
-              <label htmlFor='newsletter-email' className='sr-only'>
-                Email address
-              </label>
-              <div className='flex gap-2'>
-                <input
-                  id='newsletter-email'
-                  type='email'
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder='Your email'
-                  className='flex-1 bg-[var(--color-off-white)] px-3 py-2 rounded-md focus:outline-none focus:ring-[var(--color-muted-terracotta)] focus:ring-2 text-[var(--color-deep-cocoa)] placeholder:text-[var(--color-deep-cocoa)]/70'
-                />
-                <button
-                  type='submit'
-                  className='inline-flex items-center gap-1 bg-[var(--color-muted-terracotta)] hover:opacity-90 px-4 py-2 rounded-md focus:outline-none focus:ring-[var(--color-muted-terracotta)] focus:ring-2 font-semibold text-white'
-                >
-                  Subscribe
-                  <ArrowRightIcon className='w-4 h-4' aria-hidden='true' />
-                </button>
-              </div>
-            </form>
           </motion.div>
         </div>
 
@@ -232,14 +196,6 @@ export default function Footer() {
                 className='hover:text-[var(--color-muted-terracotta)] transition-colors'
               >
                 Terms of Service
-              </Link>
-            </li>
-            <li>
-              <Link
-                href='/contact'
-                className='hover:text-[var(--color-muted-terracotta)] transition-colors'
-              >
-                Support
               </Link>
             </li>
           </ul>
