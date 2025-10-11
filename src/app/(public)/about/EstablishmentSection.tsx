@@ -30,23 +30,23 @@ export default function EstablishmentSection() {
     <section
       id='establishment'
       aria-label='Establishment of Ekuphumuleni'
-      className='py-16 px-4 bg-[var(--color-off-white)]'
+      className='bg-[var(--color-off-white)] px-4 py-16'
     >
       <motion.div
-        className='max-w-6xl mx-auto'
+        className='mx-auto max-w-6xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.3 }}
       >
-        <motion.h2 variants={item} className='heading-2 text-center mb-10'>
+        <motion.h2 variants={item} className='mb-10 text-center heading-2'>
           Establishment
         </motion.h2>
 
-        <div className='grid gap-10 md:grid-cols-2 items-start'>
+        <div className='items-start gap-10 grid md:grid-cols-2'>
           {/* Founder image placeholder (4:5 portrait). Replace src with your real image when ready */}
           <motion.div variants={item} className='md:order-1'>
-            <div className='relative w-full pt-[125%] rounded-lg overflow-hidden shadow bg-[var(--color-warm-beige)]'>
+            <div className='relative bg-[var(--color-warm-beige)] shadow pt-[125%] rounded-lg w-full overflow-hidden'>
               <Image
                 src='/images/founder_01.jpg'
                 alt='Founder Polyanna Mahlangu'
@@ -56,28 +56,28 @@ export default function EstablishmentSection() {
                 priority={false}
               />
             </div>
-            <p className='caption mt-2 text-center text-[var(--color-deep-cocoa)]/80'>
+            <p className='mt-2 text-[var(--color-deep-cocoa)]/80 text-center caption'>
               Founder: Polyanna Mahlangu
             </p>
           </motion.div>
 
           {/* Narrative */}
           <motion.div variants={item}>
-            <h3 className='heading-3 mb-3'>Origins and Purpose</h3>
-            <p className='body-text mb-3'>
+            <h3 className='mb-3 heading-3'>Origins and Purpose</h3>
+            <p className='mb-3 body-text'>
               The idea of Ekuphumuleni Geriatric Nursing Home originated with
               Polyanna Mahlangu while she was a nursing sister at Mpilo General
               Hospital. She first discussed the vision with colleagues in 1978,
               seeking a compassionate place of rest and recovery for older
               adults.
             </p>
-            <p className='body-text mb-3'>
+            <p className='mb-3 body-text'>
               Ekuphumuleni opened at Vundu Clinic on 1 December 1983. By 19
               December 1984, the executive committee laid the foundation stone
               on a 1.57‑hectare piece of land granted by the Bulawayo City
               Council.
             </p>
-            <div className='surface rounded-lg p-4 mb-4'>
+            <div className='mb-4 p-4 rounded-lg surface'>
               <p className='body-text'>
                 Ekuphumuleni is a nonprofit, non‑governmental organization
                 registered under welfare societies as{' '}
@@ -86,8 +86,8 @@ export default function EstablishmentSection() {
                 enough to be cared for in a family environment.
               </p>
             </div>
-            <h4 className='heading-3 mb-2'>Why Families Choose Ekuphumuleni</h4>
-            <ul className='list-disc pl-5 space-y-2 body-text'>
+            <h4 className='mb-2 heading-3'>Why Families Choose Ekuphumuleni</h4>
+            <ul className='space-y-2 pl-5 list-disc body-text'>
               <li>
                 Professional nursing care when loved ones need recovery and
                 families lack the resources or knowledge to provide it at home.
@@ -101,7 +101,7 @@ export default function EstablishmentSection() {
                 resident’s unique needs.
               </li>
             </ul>
-            <p className='body-text mt-4'>
+            <p className='mt-4 body-text'>
               As an older persons’ nursing home, our chief concern is meeting
               residents’ needs through highly personalized, professional
               care—serving both the elderly and the wider community.
