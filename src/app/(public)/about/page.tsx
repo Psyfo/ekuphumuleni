@@ -5,7 +5,7 @@ import MissionVisionSection from './MissionVisionSection';
 
 export default function AboutPage() {
   return (
-    <main>
+    <main className=''>
       <EstablishmentSection />
       <MissionVisionSection />
     </main>

@@ -27,25 +27,25 @@ export default function DonorsPage() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <main>
+    <main className=''>
       <section
         id='donors'
-        className='py-16 px-4 bg-[var(--color-off-white)] min-h-[70vh]'
+        className='bg-[var(--color-off-white)] px-4 py-16 min-h-[70vh]'
         aria-label='Donors & Supporters'
       >
         <motion.div
-          className='max-w-4xl mx-auto'
+          className='mx-auto max-w-4xl'
           variants={container}
           initial='hidden'
           whileInView='show'
           viewport={{ once: true, amount: 0.2 }}
         >
-          <motion.h1 variants={item} className='heading-2 text-center mb-6'>
+          <motion.h1 variants={item} className='mb-6 text-center heading-2'>
             Our Donors &amp; Well-Wishers
           </motion.h1>
           <motion.p
             variants={item}
-            className='body-text text-center mb-10 max-w-2xl mx-auto'
+            className='mx-auto mb-10 max-w-2xl text-center body-text'
           >
             Ekuphumuleni does not have regular donors, but is deeply grateful
             for the generosity of well-wishers, organizations, and community
@@ -53,8 +53,8 @@ export default function DonorsPage() {
           </motion.p>
 
           <motion.div variants={item} className='mb-12'>
-            <h2 className='heading-3 text-center mb-4'>Notable Supporters</h2>
-            <ul className='flex flex-col items-center gap-2 text-lg font-semibold text-[var(--color-earth-brown)]'>
+            <h2 className='mb-4 text-center heading-3'>Notable Supporters</h2>
+            <ul className='flex flex-col items-center gap-2 font-semibold text-[var(--color-earth-brown)] text-lg'>
               <li>Beit Trust</li>
               <li>Jesus Latter Day</li>
               <li>Many individual well-wishers</li>
@@ -63,10 +63,10 @@ export default function DonorsPage() {
 
           <motion.div
             variants={item}
-            className='grid gap-8 md:grid-cols-2 mt-8'
+            className='gap-8 grid md:grid-cols-2 mt-8'
           >
             {/* Donor Wall 1 */}
-            <div className='relative w-full pt-[66%] min-h-[180px] rounded-lg overflow-hidden shadow bg-[var(--color-warm-beige)]'>
+            <div className='relative bg-[var(--color-warm-beige)] shadow pt-[66%] rounded-lg w-full min-h-[180px] overflow-hidden'>
               <Image
                 src='/images/building/donor-board_01.webp'
                 alt='Donor Wall 1'
@@ -75,12 +75,12 @@ export default function DonorsPage() {
                 className='object-cover'
                 unoptimized
               />
-              <div className='absolute bottom-0 left-0 right-0 bg-black/40 text-white text-center py-2 text-sm font-semibold'>
+              <div className='right-0 bottom-0 left-0 absolute bg-black/40 py-2 font-semibold text-white text-sm text-center'>
                 Historic Donor Wall
               </div>
             </div>
             {/* Donor Wall 2 */}
-            <div className='relative w-full pt-[66%] min-h-[180px] rounded-lg overflow-hidden shadow bg-[var(--color-warm-beige)]'>
+            <div className='relative bg-[var(--color-warm-beige)] shadow pt-[66%] rounded-lg w-full min-h-[180px] overflow-hidden'>
               <Image
                 src='/images/building/donor-board_02.webp'
                 alt='Donor Wall 2'
@@ -89,7 +89,7 @@ export default function DonorsPage() {
                 className='object-cover'
                 unoptimized
               />
-              <div className='absolute bottom-0 left-0 right-0 bg-black/40 text-white text-center py-2 text-sm font-semibold'>
+              <div className='right-0 bottom-0 left-0 absolute bg-black/40 py-2 font-semibold text-white text-sm text-center'>
                 Donor Wall Honoring Past Supporters
               </div>
             </div>
@@ -97,17 +97,17 @@ export default function DonorsPage() {
 
           <motion.div
             variants={item}
-            className='mt-12 max-w-2xl mx-auto text-center'
+            className='mx-auto mt-12 max-w-2xl text-center'
           >
-            <h2 className='heading-3 mb-3'>Become a Well-Wisher</h2>
-            <p className='body-text mb-4'>
+            <h2 className='mb-3 heading-3'>Become a Well-Wisher</h2>
+            <p className='mb-4 body-text'>
               Every contribution, large or small, helps us provide comfort and
               care to the elderly. If you would like to support Ekuphumuleni,
               please get in touch.
             </p>
             <a
               href='/contact'
-              className='inline-block px-6 py-3 rounded font-bold bg-[var(--color-muted-terracotta)] !text-white hover:!text-white focus-visible:!text-white shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)]'
+              className='inline-block bg-[var(--color-muted-terracotta)] shadow px-6 py-3 rounded focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 font-bold !text-white hover:!text-white focus-visible:!text-white'
             >
               Contact Us
             </a>

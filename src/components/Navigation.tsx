@@ -37,13 +37,13 @@ const NAV_ITEMS: NavItem[] = [
   },
   {
     label: 'Services',
+    href: '/services#nursing-care',
+  },
+  {
+    label: 'Facilities',
     children: [
-      {
-        label: 'Nursing Care & Rehabilitation',
-        href: '/services#nursing-care',
-      },
-      { label: 'Sustainability', href: '/services#sustainability' },
-      { label: 'Facilities', href: '/services#facilities' },
+      { label: 'Facilities', href: '/facilities#facilities' },
+      { label: 'Sustainability', href: '/facilities#sustainability' },
     ],
   },
   { label: 'Donors', href: '/donors' },
@@ -98,9 +98,9 @@ export default function Navigation() {
     (href === '/' ? pathname === '/' : pathname.startsWith(href.split('#')[0]));
 
   return (
-    <header className='sticky top-0 z-50 bg-[var(--color-off-white)]/95 backdrop-blur border-b border-[var(--color-earth-brown)]/30'>
-      <nav className='max-w-7xl mx-auto px-4' aria-label='Primary'>
-        <div className='flex h-16 items-center justify-between'>
+    <header className='top-0 z-50 sticky bg-[var(--color-off-white)]/95 backdrop-blur border-[var(--color-earth-brown)]/30 border-b'>
+      <nav className='mx-auto px-4 max-w-7xl' aria-label='Primary'>
+        <div className='flex justify-between items-center h-16'>
           {/* Brand / Logo */}
           <Link
             href='/'
@@ -114,9 +114,9 @@ export default function Navigation() {
               width={32}
               height={32}
               priority
-              className='h-8 w-8 object-contain'
+              className='w-8 h-8 object-contain'
             />
-            <span className='text-xl font-semibold font-serif text-[var(--color-earth-brown)]'>
+            <span className='font-serif font-semibold text-[var(--color-earth-brown)] text-xl'>
               Ekuphumuleni
             </span>
           </Link>
@@ -147,7 +147,7 @@ export default function Navigation() {
             )}
             <Link
               href='/contact'
-              className='ml-2 px-4 py-2 rounded font-bold bg-[var(--color-muted-terracotta)] !text-white hover:!text-white focus-visible:!text-white shadow hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)]'
+              className='bg-[var(--color-muted-terracotta)] hover:opacity-90 shadow ml-2 px-4 py-2 rounded focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 font-bold !text-white hover:!text-white focus-visible:!text-white'
             >
               Get in Touch
             </Link>
@@ -156,16 +156,16 @@ export default function Navigation() {
           {/* Mobile toggle */}
           <button
             type='button'
-            className='lg:hidden p-2 rounded-md text-[var(--color-earth-brown)] hover:text-[var(--color-muted-terracotta)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)]'
+            className='lg:hidden p-2 rounded-md focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 text-[var(--color-earth-brown)] hover:text-[var(--color-muted-terracotta)]'
             aria-label='Toggle menu'
             aria-expanded={mobileOpen ? 'true' : 'false'}
             aria-controls='primary-mobile-nav'
             onClick={() => setMobileOpen((v) => !v)}
           >
             {mobileOpen ? (
-              <XMarkIcon className='h-6 w-6' />
+              <XMarkIcon className='w-6 h-6' />
             ) : (
-              <Bars3Icon className='h-6 w-6' />
+              <Bars3Icon className='w-6 h-6' />
             )}
           </button>
         </div>
@@ -181,7 +181,7 @@ export default function Navigation() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -16, opacity: 0 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className='lg:hidden border-t border-[var(--color-earth-brown)]/20 bg-[var(--color-off-white)]'
+            className='lg:hidden bg-[var(--color-off-white)] border-[var(--color-earth-brown)]/20 border-t'
           >
             <div className='px-4 py-4'>
               <ul className='space-y-1'>
@@ -189,11 +189,11 @@ export default function Navigation() {
                   item.children ? (
                     <li
                       key={item.label}
-                      className='border-b border-[var(--color-earth-brown)]/10 pb-2'
+                      className='pb-2 border-[var(--color-earth-brown)]/10 border-b'
                     >
                       <button
                         type='button'
-                        className='w-full flex items-center justify-between px-2 py-2 rounded-md text-left text-[var(--color-earth-brown)] font-semibold hover:text-[var(--color-muted-terracotta)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)]'
+                        className='flex justify-between items-center px-2 py-2 rounded-md focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 w-full font-semibold text-[var(--color-earth-brown)] hover:text-[var(--color-muted-terracotta)] text-left'
                         aria-expanded={
                           openDropdown === item.label ? 'true' : 'false'
                         }
@@ -223,13 +223,13 @@ export default function Navigation() {
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className='pl-4 mt-1 space-y-1 overflow-hidden'
+                            className='space-y-1 mt-1 pl-4 overflow-hidden'
                           >
                             {item.children.map((child) => (
                               <li key={child.href}>
                                 <Link
                                   href={child.href}
-                                  className='block px-2 py-2 rounded-md text-[var(--color-deep-cocoa)] hover:text-[var(--color-muted-terracotta)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)]'
+                                  className='block px-2 py-2 rounded-md focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 text-[var(--color-deep-cocoa)] hover:text-[var(--color-muted-terracotta)]'
                                   onClick={closeMobile}
                                 >
                                   {child.label}
@@ -261,7 +261,7 @@ export default function Navigation() {
                 <li className='pt-2'>
                   <Link
                     href='/contact'
-                    className='block text-center w-full px-4 py-3 rounded font-bold bg-[var(--color-muted-terracotta)] !text-white hover:!text-white focus-visible:!text-white shadow hover:opacity-90'
+                    className='block bg-[var(--color-muted-terracotta)] hover:opacity-90 shadow px-4 py-3 rounded w-full font-bold !text-white hover:!text-white focus-visible:!text-white text-center'
                     onClick={closeMobile}
                   >
                     Get in Touch
@@ -381,7 +381,7 @@ function DesktopDropdown({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 6, scale: 0.98 }}
             transition={{ duration: 0.15, ease: 'easeOut' }}
-            className='absolute left-0 mt-2 w-64 rounded-lg shadow-lg border border-[var(--color-earth-brown)]/20 bg-[var(--color-off-white)]'
+            className='left-0 absolute bg-[var(--color-off-white)] shadow-lg mt-2 border border-[var(--color-earth-brown)]/20 rounded-lg w-64'
             role='menu'
             aria-labelledby={buttonId}
             onMouseLeave={(e) => {
@@ -423,7 +423,7 @@ function DesktopDropdown({
                 <li key={child.href}>
                   <Link
                     href={child.href}
-                    className='block px-4 py-2 text-sm text-[var(--color-deep-cocoa)] hover:text-[var(--color-muted-terracotta)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)]'
+                    className='block px-4 py-2 focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 text-[var(--color-deep-cocoa)] hover:text-[var(--color-muted-terracotta)] text-sm'
                     role='menuitem'
                   >
                     {child.label}

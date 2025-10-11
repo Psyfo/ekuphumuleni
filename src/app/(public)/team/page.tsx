@@ -6,7 +6,7 @@ import StaffSection from './StaffSection';
 
 export default function TeamPage() {
   return (
-    <main>
+    <main className=''>
       <BoardSection />
       <AdministrationSection />
       <StaffSection />

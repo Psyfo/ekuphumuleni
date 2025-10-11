@@ -28,22 +28,22 @@ export default function Sustainability() {
   return (
     <section
       id='sustainability'
-      className='py-16 px-4 bg-[var(--color-off-white)] min-h-[70vh]'
+      className='bg-[var(--color-off-white)] px-4 py-16 min-h-[70vh]'
       aria-label='Sustainability'
     >
       <motion.div
-        className='max-w-5xl mx-auto'
+        className='mx-auto max-w-5xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.2 }}
       >
-        <motion.h1 variants={item} className='heading-2 text-center mb-8'>
+        <motion.h1 variants={item} className='mb-8 text-center heading-2'>
           Sustainability at Ekuphumuleni
         </motion.h1>
         <motion.p
           variants={item}
-          className='body-text text-center mb-12 max-w-2xl mx-auto'
+          className='mx-auto mb-12 max-w-2xl text-center body-text'
         >
           We are committed to sustainable practices that benefit our residents,
           our community, and the environment. Our initiatives include renewable
@@ -51,11 +51,11 @@ export default function Sustainability() {
           vegetable gardens.
         </motion.p>
 
-        <div className='grid gap-10 md:grid-cols-2 items-start'>
+        <div className='items-start gap-10 grid md:grid-cols-2'>
           {/* Solar Panel Image */}
           <motion.div
             variants={item}
-            className='relative w-full pt-[66%] min-h-[180px] rounded-lg overflow-hidden shadow bg-[var(--color-warm-beige)]'
+            className='relative bg-[var(--color-warm-beige)] shadow pt-[66%] rounded-lg w-full min-h-[180px] overflow-hidden'
           >
             <Image
               src='/images/facilities/facilities_07.webp'
@@ -65,7 +65,7 @@ export default function Sustainability() {
               className='object-cover'
               unoptimized
             />
-            <div className='absolute bottom-0 left-0 right-0 bg-black/40 text-white text-center py-2 text-sm font-semibold'>
+            <div className='right-0 bottom-0 left-0 absolute bg-black/40 py-2 font-semibold text-white text-sm text-center'>
               Solar panels powering our home
             </div>
           </motion.div>
@@ -73,27 +73,27 @@ export default function Sustainability() {
           {/* Vegetable Garden Image */}
           <motion.div
             variants={item}
-            className='relative w-full pt-[66%] min-h-[180px] rounded-lg overflow-hidden shadow bg-[var(--color-warm-beige)]'
+            className='relative bg-[var(--color-warm-beige)] shadow pt-[66%] rounded-lg w-full min-h-[180px] overflow-hidden'
           >
             <Image
-              src='/images/facilities/facilities_04.webp'
+              src='/images/facilities/sustainability/garden.jpg'
               alt='Vegetable garden at Ekuphumuleni'
               fill
               sizes='(min-width:1024px) 480px, (min-width:768px) 50vw, 100vw'
               className='object-cover'
               unoptimized
             />
-            <div className='absolute bottom-0 left-0 right-0 bg-black/40 text-white text-center py-2 text-sm font-semibold'>
+            <div className='right-0 bottom-0 left-0 absolute bg-black/40 py-2 font-semibold text-white text-sm text-center'>
               Fresh produce from our vegetable garden
             </div>
           </motion.div>
         </div>
 
-        <div className='grid gap-10 md:grid-cols-2 items-start mt-8'>
+        <div className='items-start gap-10 grid md:grid-cols-2 mt-8'>
           {/* Water Storage Tanks Image */}
           <motion.div
             variants={item}
-            className='relative w-full pt-[66%] min-h-[180px] rounded-lg overflow-hidden shadow bg-[var(--color-warm-beige)]'
+            className='relative bg-[var(--color-warm-beige)] shadow pt-[66%] rounded-lg w-full min-h-[180px] overflow-hidden'
           >
             <Image
               src='/images/facilities/facilities_01.webp'
@@ -103,7 +103,7 @@ export default function Sustainability() {
               className='object-cover'
               unoptimized
             />
-            <div className='absolute bottom-0 left-0 right-0 bg-black/40 text-white text-center py-2 text-sm font-semibold'>
+            <div className='right-0 bottom-0 left-0 absolute bg-black/40 py-2 font-semibold text-white text-sm text-center'>
               Water tanks for efficient storage
             </div>
           </motion.div>
@@ -111,7 +111,7 @@ export default function Sustainability() {
           {/* Solar Geysers Image */}
           <motion.div
             variants={item}
-            className='relative w-full pt-[66%] min-h-[180px] rounded-lg overflow-hidden shadow bg-[var(--color-warm-beige)]'
+            className='relative bg-[var(--color-warm-beige)] shadow pt-[66%] rounded-lg w-full min-h-[180px] overflow-hidden'
           >
             <Image
               src='/images/facilities/facilities_08.webp'
@@ -121,17 +121,17 @@ export default function Sustainability() {
               className='object-cover'
               unoptimized
             />
-            <div className='absolute bottom-0 left-0 right-0 bg-black/40 text-white text-center py-2 text-sm font-semibold'>
+            <div className='right-0 bottom-0 left-0 absolute bg-black/40 py-2 font-semibold text-white text-sm text-center'>
               Solar geysers providing hot water sustainably
             </div>
           </motion.div>
         </div>
 
-        <motion.div variants={item} className='mt-12 max-w-3xl mx-auto'>
-          <h2 className='heading-3 mb-3 text-center'>
+        <motion.div variants={item} className='mx-auto mt-12 max-w-3xl'>
+          <h2 className='mb-3 text-center heading-3'>
             Our Sustainability Efforts
           </h2>
-          <ul className='list-disc pl-6 space-y-2 body-text'>
+          <ul className='space-y-2 pl-6 list-disc body-text'>
             <li>
               <strong>Solar Energy:</strong> We use solar panels to reduce our
               reliance on the grid and ensure a reliable, eco-friendly power

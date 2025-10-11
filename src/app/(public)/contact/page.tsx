@@ -4,13 +4,13 @@ import ContactForm from './ContactForm';
 
 export default function ContactPage() {
   return (
-    <main>
+    <main className=''>
       <section
         id='contact'
-        className='py-16 px-4 bg-[var(--color-off-white)] min-h-[60vh] flex items-center justify-center'
+        className='flex justify-center items-center bg-[var(--color-off-white)] px-4 py-16 min-h-[60vh]'
         aria-label='Contact Ekuphumuleni'
       >
-        <div className='w-full max-w-2xl mx-auto'>
+        <div className='mx-auto w-full max-w-2xl'>
           <ContactForm />
         </div>
       </section>

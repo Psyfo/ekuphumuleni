@@ -15,17 +15,17 @@ type StaffImage = { src: string; alt: string; caption?: string };
 
 const IMAGES: StaffImage[] = [
   {
-    src: '/images/staff/staff_14.webp',
+    src: '/images/team/staff/staff_01.jpg',
     alt: 'Full staff photo - day shift',
     caption: 'Staff',
   },
   {
-    src: '/images/staff/staff_20.webp',
+    src: '/images/team/staff/staff_02.jpg',
     alt: 'Full staff photo - night shift',
     caption: 'Staff',
   },
   {
-    src: '/images/staff/staff_22.webp',
+    src: '/images/team/staff/staff_03.jpg',
     alt: 'Full staff photo - night shift',
     caption: 'Staff',
   },
@@ -67,21 +67,21 @@ export default function StaffSection() {
     <section
       id='staff'
       aria-label='Our Staff'
-      className='py-16 px-4 bg-[var(--color-off-white)]'
+      className='bg-[var(--color-off-white)] px-4 py-16'
     >
-      <div className='max-w-6xl mx-auto'>
+      <div className='mx-auto max-w-6xl'>
         <motion.h2
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className='heading-2 text-center mb-8'
+          className='mb-8 text-center heading-2'
         >
           Our Staff
         </motion.h2>
 
         <div
-          className='relative w-full rounded-xl shadow overflow-hidden bg-[var(--color-warm-beige)] h-[60dvh] max-h-[720px]'
+          className='relative bg-[var(--color-warm-beige)] shadow rounded-xl w-full h-[60dvh] max-h-[720px] overflow-hidden'
           // Tall, immersive image area
           tabIndex={0}
           onKeyDown={(e) => {
@@ -112,8 +112,8 @@ export default function StaffSection() {
 
           {/* Caption */}
           {current.caption ? (
-            <div className='absolute left-0 right-0 bottom-0 p-3 sm:p-4 bg-gradient-to-t from-black/40 to-transparent'>
-              <p className='text-sm sm:text-base font-semibold text-white drop-shadow'>
+            <div className='right-0 bottom-0 left-0 absolute bg-gradient-to-t from-black/40 to-transparent p-3 sm:p-4'>
+              <p className='drop-shadow font-semibold text-white text-sm sm:text-base'>
                 {current.caption}
               </p>
             </div>
@@ -126,21 +126,21 @@ export default function StaffSection() {
                 type='button'
                 aria-label='Previous photo'
                 onClick={prev}
-                className='absolute left-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full h-10 w-10 bg-[var(--color-muted-terracotta)]/90 text-white shadow hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-muted-terracotta)]'
+                className='inline-flex top-1/2 left-3 absolute justify-center items-center bg-[var(--color-muted-terracotta)]/90 hover:opacity-90 shadow rounded-full focus:outline-none focus:ring-[var(--color-muted-terracotta)] focus:ring-2 w-10 h-10 text-white -translate-y-1/2'
               >
-                <ChevronLeftIcon className='h-6 w-6' aria-hidden='true' />
+                <ChevronLeftIcon className='w-6 h-6' aria-hidden='true' />
               </button>
               <button
                 type='button'
                 aria-label='Next photo'
                 onClick={next}
-                className='absolute right-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full h-10 w-10 bg-[var(--color-muted-terracotta)]/90 text-white shadow hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-muted-terracotta)]'
+                className='inline-flex top-1/2 right-3 absolute justify-center items-center bg-[var(--color-muted-terracotta)]/90 hover:opacity-90 shadow rounded-full focus:outline-none focus:ring-[var(--color-muted-terracotta)] focus:ring-2 w-10 h-10 text-white -translate-y-1/2'
               >
-                <ChevronRightIcon className='h-6 w-6' aria-hidden='true' />
+                <ChevronRightIcon className='w-6 h-6' aria-hidden='true' />
               </button>
 
               {/* Dots */}
-              <div className='absolute bottom-3 left-0 right-0 flex items-center justify-center gap-2'>
+              <div className='right-0 bottom-3 left-0 absolute flex justify-center items-center gap-2'>
                 {IMAGES.map((_, i) => (
                   <button
                     key={i}
@@ -159,7 +159,7 @@ export default function StaffSection() {
           )}
         </div>
 
-        <p className='caption text-center mt-3 text-[var(--color-deep-cocoa)]/80'>
+        <p className='mt-3 text-[var(--color-deep-cocoa)]/80 text-center caption'>
           Our dedicated staff work tirelessly to provide compassionate care and
           support to all our residents, ensuring a warm and welcoming
           environment every day.
