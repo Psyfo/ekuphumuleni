@@ -13,9 +13,9 @@ type Member = {
 };
 
 const ADMIN: Member[] = [
-  { name: 'Administrator Name', role: 'Administrator' },
-  { name: 'Administration Officer Name', role: 'Administration Officer' },
-  { name: 'Bookkeeper Name', role: 'Bookkeeper' },
+  { name: 'Mrs Nokuthula Moyo', role: 'Administrator', img: '/images/team/administration/administrator.jpg' },
+  { name: 'Ms Simangele Ncube', role: 'Administration Officer', img: '/images/team/administration/administration_officer.jpg' },
+  { name: 'Mrs Nomsa Gumpo', role: 'Bookkeeper', img: '/images/team/administration/book-keeper.jpg' },
   // Example with images when ready:
   // { name: 'Administrator Name', role: 'Administrator', img: '/images/admin/admin_01.webp' },
 ];
@@ -44,7 +44,7 @@ function Portrait({ src, alt }: { src?: string; alt: string }) {
   const [failed, setFailed] = useState(false);
 
   return (
-    <div className='relative w-full pt-[125%] overflow-hidden rounded-lg bg-[var(--color-off-white)]'>
+    <div className='relative bg-[var(--color-off-white)] pt-[125%] rounded-lg w-full overflow-hidden'>
       {!failed && src ? (
         <Image
           src={src}
@@ -58,9 +58,9 @@ function Portrait({ src, alt }: { src?: string; alt: string }) {
           onError={() => setFailed(true)}
         />
       ) : (
-        <div className='absolute inset-0 grid place-items-center'>
-          <div className='flex items-center justify-center h-20 w-20 rounded-full bg-[var(--color-warm-beige)] text-[var(--color-earth-brown)] shadow'>
-            <UserIcon className='h-8 w-8' aria-hidden='true' />
+        <div className='absolute inset-0 place-items-center grid'>
+          <div className='flex justify-center items-center bg-[var(--color-warm-beige)] shadow rounded-full w-20 h-20 text-[var(--color-earth-brown)]'>
+            <UserIcon className='w-8 h-8' aria-hidden='true' />
           </div>
         </div>
       )}
@@ -75,25 +75,25 @@ export default function AdministrationSection() {
     <section
       id='administration'
       aria-label='Administration Team'
-      className='py-16 px-4 bg-[var(--color-off-white)]'
+      className='bg-[var(--color-off-white)] px-4 py-16'
     >
       <motion.div
-        className='max-w-6xl mx-auto'
+        className='mx-auto max-w-6xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.25 }}
       >
-        <motion.h2 variants={item} className='heading-2 text-center mb-2'>
+        <motion.h2 variants={item} className='mb-2 text-center heading-2'>
           Administration
         </motion.h2>
-        <motion.p variants={item} className='body-text text-center mb-10'>
+        <motion.p variants={item} className='mb-10 text-center body-text'>
           The team that keeps Ekuphumuleni running smoothly.
         </motion.p>
 
         <motion.ul
           variants={container}
-          className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'
+          className='gap-6 grid sm:grid-cols-2 lg:grid-cols-3'
         >
           {ADMIN.map((m, idx) => (
             <motion.li
@@ -104,14 +104,14 @@ export default function AdministrationSection() {
                   ? {}
                   : { y: -4, scale: 1.01, transition: { duration: 0.15 } }
               }
-              className='card rounded-xl p-4 shadow hover:shadow-lg transition-shadow'
+              className='shadow hover:shadow-lg p-4 rounded-xl transition-shadow card'
             >
               <Portrait src={m.img} alt={m.name} />
               <div className='mt-4 text-center'>
-                <h3 className='text-base md:text-lg font-semibold text-[var(--color-deep-cocoa)]'>
+                <h3 className='font-semibold text-[var(--color-deep-cocoa)] text-base md:text-lg'>
                   {m.name}
                 </h3>
-                <p className='caption text-[var(--color-deep-cocoa)]/80'>
+                <p className='text-[var(--color-deep-cocoa)]/80 caption'>
                   {m.role}
                 </p>
               </div>
