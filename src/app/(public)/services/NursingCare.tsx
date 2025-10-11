@@ -28,67 +28,186 @@ export default function NursingCare() {
   return (
     <section
       id='nursing-care'
-      className='py-16 px-4 bg-[var(--color-off-white)] min-h-[70vh]'
+      className='bg-[var(--color-off-white)] px-4 py-16'
       aria-label='Nursing Care'
     >
       <motion.div
-        className='max-w-5xl mx-auto'
+        className='mx-auto max-w-6xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.2 }}
       >
-        <motion.h1 variants={item} className='heading-2 text-center !mb-8'>
+        <motion.h1 variants={item} className='!mb-12 text-center heading-2'>
           Nursing Care & Rehabilitation
         </motion.h1>
-        <div className='grid gap-10 md:grid-cols-2 items-start'>
-          {/* Image placeholder 1 */}
+
+        {/* Hero Section - Full Width Feature Image */}
+        <motion.div
+          variants={item}
+          className='relative bg-[var(--color-warm-beige)] shadow-lg mb-12 rounded-lg w-full aspect-[21/15] md:aspect-[16/9] overflow-hidden'
+        >
+          <Image
+            src='/images/services/nursing/100_5427.JPG'
+            alt='Professional nursing care at Ekuphumuleni'
+            fill
+            sizes='100vw'
+            className='object-cover'
+            priority
+            unoptimized
+          />
+        </motion.div>
+
+        {/* Introduction Section */}
+        <motion.div variants={item} className='mx-auto mb-16 max-w-4xl'>
+          <h2 className='mb-4 text-center heading-3'>Compassionate, Professional Care</h2>
+          <p className='mb-4 text-center body-text'>
+            Our nursing team provides round-the-clock, individualized care for
+            every resident. We focus on comfort, dignity, and holistic
+            well-being, ensuring each person receives the medical and personal
+            support they need.
+          </p>
+          <ul className='space-y-2 mx-auto pl-5 max-w-2xl list-disc body-text'>
+            <li>24/7 skilled nursing supervision</li>
+            <li>Medication management and administration</li>
+            <li>Assistance with daily living activities</li>
+            <li>Wound care and rehabilitation support</li>
+            <li>Coordination with doctors and families</li>
+          </ul>
+        </motion.div>
+
+        {/* Two Column Grid - Equal Height Images */}
+        <div className='gap-6 grid grid-cols-1 md:grid-cols-2 mb-16'>
           <motion.div
             variants={item}
-            className='relative w-full pt-[66%] min-h-[180px] rounded-lg overflow-hidden shadow bg-[var(--color-warm-beige)] mb-4'
+            className='relative bg-[var(--color-warm-beige)] shadow-md rounded-lg aspect-[4/5] overflow-hidden'
           >
             <Image
-              src='/images/staff/staff_20.webp'
-              alt='Nursing care in action'
+              src='/images/services/nursing/100_5440.JPG'
+              alt='Nursing staff providing care'
               fill
-              sizes='(min-width:1024px) 480px, (min-width:768px) 50vw, 100vw'
+              sizes='(min-width:768px) 50vw, 100vw'
               className='object-cover'
-              style={{ opacity: 1 }}
+              unoptimized
+            />
+          </motion.div>
+          <motion.div
+            variants={item}
+            className='relative bg-[var(--color-warm-beige)] shadow-md rounded-lg aspect-[4/5] overflow-hidden'
+          >
+            <Image
+              src='/images/services/nursing/100_5551.JPG'
+              alt='Patient care and comfort'
+              fill
+              sizes='(min-width:768px) 50vw, 100vw'
+              className='object-cover'
+              unoptimized
+            />
+          </motion.div>
+        </div>
+
+        {/* Asymmetric Grid - Featured Layout */}
+        <div className='gap-6 grid grid-cols-1 lg:grid-cols-3 mb-16'>
+          {/* Large Feature Image - Spans 2 columns, fit to height */}
+          <motion.div
+            variants={item}
+            className='relative flex items-stretch lg:col-span-2 bg-[var(--color-warm-beige)] shadow-lg rounded-lg aspect-[16/10] overflow-hidden'
+          >
+            <Image
+              src='/images/services/nursing/100_5556.JPG'
+              alt='Comprehensive nursing care services'
+              fill
+              sizes='(min-width:1024px) 66vw, 100vw'
+              className='h-full object-center object-cover'
+              style={{ objectFit: 'cover', objectPosition: 'center', height: '100%' }}
               unoptimized
             />
           </motion.div>
 
-          {/* Description */}
-          <motion.div variants={item}>
-            <h2 className='heading-3 mb-3'>Compassionate, Professional Care</h2>
-            <p className='body-text mb-3'>
-              Our nursing team provides round-the-clock, individualized care for
-              every resident. We focus on comfort, dignity, and holistic
-              well-being, ensuring each person receives the medical and personal
-              support they need.
-            </p>
-            <ul className='list-disc pl-5 space-y-2 body-text'>
-              <li>24/7 skilled nursing supervision</li>
-              <li>Medication management and administration</li>
-              <li>Assistance with daily living activities</li>
-              <li>Wound care and rehabilitation support</li>
-              <li>Coordination with doctors and families</li>
-            </ul>
+          {/* Portrait Image Stack */}
+          <div className='flex flex-col gap-6 h-full'>
+            <motion.div
+              variants={item}
+              className='relative bg-[var(--color-warm-beige)] shadow-md rounded-lg h-full aspect-auto overflow-x-visible overflow-y-hidden'
+              style={{ minHeight: 0 }}
+            >
+              <Image
+                src='/images/services/nursing/100_5564.JPG'
+                alt='Personalized care approach'
+                fill
+                sizes='(min-width:1024px) 33vw, 100vw'
+                className='object-cover'
+                unoptimized
+                style={{ objectFit: 'cover', objectPosition: 'center', height: '100%', width: '100%' }}
+              />
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Rehabilitation Section Header */}
+        <motion.div variants={item} className='mx-auto mb-12 max-w-4xl'>
+          <h2 className='mb-4 text-center heading-3'>Rehabilitation & Wellness</h2>
+          <p className='text-center body-text'>
+            We provide comprehensive rehabilitation support to help residents
+            maintain or regain independence, mobility, and quality of life through
+            personalized therapy programs and activities.
+          </p>
+        </motion.div>
+
+        {/* Three Column Equal Grid */}
+        <div className='gap-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-16'>
+          <motion.div
+            variants={item}
+            className='relative bg-[var(--color-warm-beige)] shadow-md rounded-lg aspect-square overflow-hidden'
+          >
+            <Image
+              src='/images/services/nursing/100_5582.JPG'
+              alt='Rehabilitation activities'
+              fill
+              sizes='(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw'
+              className='object-cover'
+              unoptimized
+            />
+          </motion.div>
+          <motion.div
+            variants={item}
+            className='relative bg-[var(--color-warm-beige)] shadow-md rounded-lg aspect-square overflow-hidden'
+          >
+            <Image
+              src='/images/patients/patients_01.webp'
+              alt='Therapeutic care'
+              fill
+              sizes='(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw'
+              className='object-cover'
+              unoptimized
+            />
+          </motion.div>
+          <motion.div
+            variants={item}
+            className='relative bg-[var(--color-warm-beige)] shadow-md rounded-lg aspect-square overflow-hidden'
+          >
+            <Image
+              src='/images/patients/patients_02.webp'
+              alt='Wellness programs'
+              fill
+              sizes='(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw'
+              className='object-cover'
+              unoptimized
+            />
           </motion.div>
         </div>
 
-        {/* Image placeholder 2 */}
+        {/* Final Wide Banner Spread */}
         <motion.div
           variants={item}
-          className='relative w-full max-w-4xl mx-auto mt-12 aspect-[4/3] md:aspect-[16/9] min-h-[120px] rounded-lg overflow-hidden shadow bg-[var(--color-warm-beige)]'
+          className='relative bg-[var(--color-warm-beige)] shadow-lg rounded-lg w-full aspect-[21/9] overflow-hidden'
         >
           <Image
-            src='/images/staff/staff_21.webp'
-            alt='Nursing staff with residents'
+            src='/images/patients/patients_03.webp'
+            alt='Community and compassionate care at Ekuphumuleni'
             fill
-            sizes='(min-width:1024px) 640px, 100vw'
+            sizes='100vw'
             className='object-cover'
-            style={{ opacity: 1 }}
             unoptimized
           />
         </motion.div>
