@@ -149,10 +149,10 @@ export default function Footer() {
               <li className='flex items-start gap-2'>
                 <EnvelopeIcon className='mt-0.5 w-5 h-5 text-[var(--color-warm-beige)]' />
                 <a
-                  href='mailto:info@ekuphumuleni.org'
+                  href='mailto:administration@ekuphumuleni.ngo'
                   className='hover:text-[var(--color-muted-terracotta)] transition-colors'
                 >
-                  info@ekuphumuleni.org
+                  administration@ekuphumuleni.ngo
                 </a>
               </li>
               <li className='flex items-start gap-2'>
