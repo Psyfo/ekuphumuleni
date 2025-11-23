@@ -12,18 +12,27 @@ interface FormErrors {
   message?: string;
 }
 
-interface ZeptoMailAddress {
+interface ZeptoMailFromAddress {
   address: string;
   name?: string;
 }
 
+interface ZeptoMailToEmailAddress {
+  address: string;
+  name?: string;
+}
+
+interface ZeptoMailToObject {
+  email_address: ZeptoMailToEmailAddress;
+}
+
 interface ZeptoMailRequest {
-  from: ZeptoMailAddress;
-  to: ZeptoMailAddress[];
+  from: ZeptoMailFromAddress;
+  to: ZeptoMailToObject[];
   subject: string;
   htmlbody: string;
   textbody?: string;
-  reply_to?: ZeptoMailAddress[];
+  reply_to?: ZeptoMailFromAddress[];
 }
 
 export async function POST(request: NextRequest) {
@@ -270,8 +279,6 @@ export async function POST(request: NextRequest) {
       </html>
     `;
 
-    console.log('Sending emails...');
-
     // Helper function to send email via ZeptoMail REST API
     const sendZeptoMail = async (mailData: ZeptoMailRequest) => {
       const response = await fetch(
@@ -303,7 +310,12 @@ export async function POST(request: NextRequest) {
       .split(',') // Split by comma
       .map((email) => email.trim()) // Remove whitespace
       .filter((email) => email.length > 0) // Remove empty strings
-      .map((email) => ({ address: email })); // Convert to ZeptoMail format
+      .map((email) => ({ email_address: { address: email } })); // Convert to ZeptoMail format
+
+    console.log('Preparing to send emails via ZeptoMail...');
+    console.log('MAIL_FROM_EMAIL:', process.env.MAIL_FROM_EMAIL);
+    console.log('MAIL_TO_EMAIL:', process.env.MAIL_TO_EMAIL);
+    console.log('Recipient emails:', recipientEmails);
 
     // Prepare email to site owner (notification of new contact)
     const ownerEmail: ZeptoMailRequest = {
@@ -331,8 +343,10 @@ export async function POST(request: NextRequest) {
       },
       to: [
         {
-          address: email,
-          name: name,
+          email_address: {
+            address: email,
+            name: name,
+          },
         },
       ],
       subject: 'Thank you for contacting Ekuphumuleni',
