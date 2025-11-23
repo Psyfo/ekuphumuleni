@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
 
 interface ContactFormData {
   name: string;
@@ -11,6 +10,20 @@ interface FormErrors {
   name?: string;
   email?: string;
   message?: string;
+}
+
+interface ZeptoMailAddress {
+  address: string;
+  name?: string;
+}
+
+interface ZeptoMailRequest {
+  from: ZeptoMailAddress;
+  to: ZeptoMailAddress[];
+  subject: string;
+  htmlbody: string;
+  textbody?: string;
+  reply_to?: ZeptoMailAddress[];
 }
 
 export async function POST(request: NextRequest) {
@@ -67,11 +80,11 @@ export async function POST(request: NextRequest) {
 
     // Verify environment variables
     if (
-      !process.env.MAIL_HOST ||
-      !process.env.MAIL_USER ||
-      !process.env.MAIL_PASSWORD
+      !process.env.ZEPTOMAIL_HOST ||
+      !process.env.ZEPTOMAIL_TOKEN ||
+      !process.env.MAIL_FROM_EMAIL
     ) {
-      console.error('Missing email configuration environment variables');
+      console.error('Missing ZeptoMail configuration environment variables');
       return NextResponse.json(
         {
           error:
@@ -81,37 +94,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log('Creating email transporter...');
-
-    // Create transporter with better error handling
-    const transporter = nodemailer.createTransport({
-      host: process.env.MAIL_HOST,
-      port: parseInt(process.env.MAIL_PORT || '587'),
-      secure: process.env.MAIL_SECURE === 'true',
-      auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASSWORD,
-      },
-      // Add connection timeout
-      connectionTimeout: 10000, // 10 seconds
-      greetingTimeout: 5000, // 5 seconds
-      socketTimeout: 10000, // 10 seconds
-    });
-
-    // Test the connection first
-    try {
-      await transporter.verify();
-      console.log('Email transporter verified successfully');
-    } catch (verifyError) {
-      console.error('Email transporter verification failed:', verifyError);
-      return NextResponse.json(
-        {
-          error:
-            'Email service is temporarily unavailable. Please try again later.',
-        },
-        { status: 503 }
-      );
-    }
+    console.log('Preparing to send emails via ZeptoMail...');
 
     // Email template styles matching brand aesthetics
     const emailStyles = `
@@ -289,30 +272,82 @@ export async function POST(request: NextRequest) {
 
     console.log('Sending emails...');
 
+    // Helper function to send email via ZeptoMail REST API
+    const sendZeptoMail = async (mailData: ZeptoMailRequest) => {
+      const response = await fetch(
+        `https://${process.env.ZEPTOMAIL_HOST}/v1.1/email`,
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: process.env.ZEPTOMAIL_TOKEN!,
+          },
+          body: JSON.stringify(mailData),
+        }
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('ZeptoMail API error:', errorText);
+        throw new Error(`ZeptoMail API error: ${response.status}`);
+      }
+
+      return response.json();
+    };
+
+    // Parse multiple recipient emails from environment variable
+    const recipientEmails = (
+      process.env.MAIL_TO_EMAIL || process.env.MAIL_FROM_EMAIL!
+    )
+      .split(',') // Split by comma
+      .map((email) => email.trim()) // Remove whitespace
+      .filter((email) => email.length > 0) // Remove empty strings
+      .map((email) => ({ address: email })); // Convert to ZeptoMail format
+
+    // Prepare email to site owner (notification of new contact)
+    const ownerEmail: ZeptoMailRequest = {
+      from: {
+        address: process.env.MAIL_FROM_EMAIL!,
+        name: process.env.MAIL_FROM_NAME || 'Ekuphumuleni',
+      },
+      to: recipientEmails,
+      reply_to: [
+        {
+          address: email,
+          name: name,
+        },
+      ],
+      subject: `New Contact Form Submission from ${name}`,
+      htmlbody: ownerEmailHtml,
+      textbody: `New contact form submission from ${name} (${email}):\n\n${message}`,
+    };
+
+    // Prepare confirmation email to the person who submitted the form
+    const confirmationEmail: ZeptoMailRequest = {
+      from: {
+        address: process.env.MAIL_FROM_EMAIL!,
+        name: process.env.MAIL_FROM_NAME || 'Ekuphumuleni',
+      },
+      to: [
+        {
+          address: email,
+          name: name,
+        },
+      ],
+      subject: 'Thank you for contacting Ekuphumuleni',
+      htmlbody: confirmationEmailHtml,
+      textbody: `Dear ${name},\n\nThank you for contacting us. We have received your message and will respond within 24-48 hours.\n\nYour message:\n${message}\n\nThank you,\nThe Ekuphumuleni Team`,
+    };
+
     // Send both emails with Promise.all for better performance
     try {
       await Promise.all([
-        // Send email to site owner
-        transporter.sendMail({
-          from: `"${process.env.MAIL_FROM_NAME}" <${process.env.MAIL_FROM_EMAIL}>`,
-          to: process.env.MAIL_FROM_EMAIL,
-          replyTo: email,
-          subject: `New Contact Form Submission from ${name}`,
-          html: ownerEmailHtml,
-          text: `New contact form submission from ${name} (${email}):\n\n${message}`,
-        }),
-
-        // Send confirmation email to the person who submitted the form
-        transporter.sendMail({
-          from: `"${process.env.MAIL_FROM_NAME}" <${process.env.MAIL_FROM_EMAIL}>`,
-          to: email,
-          subject: 'Thank you for contacting Ekuphumuleni',
-          html: confirmationEmailHtml,
-          text: `Dear ${name},\n\nThank you for contacting us. We have received your message and will respond within 24-48 hours.\n\nYour message:\n${message}\n\nThank you,\nThe Ekuphumuleni Team`,
-        }),
+        sendZeptoMail(ownerEmail),
+        sendZeptoMail(confirmationEmail),
       ]);
 
-      console.log('Emails sent successfully');
+      console.log('Emails sent successfully via ZeptoMail');
 
       return NextResponse.json({
         message: 'Emails sent successfully',
