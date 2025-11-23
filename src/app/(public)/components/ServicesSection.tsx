@@ -48,7 +48,7 @@ export default function ServicesSection() {
       className='z-0 relative bg-[var(--color-soft-sand)] px-4 py-16'
       aria-label='Our Services'
     >
-      <div className='mx-auto max-w-6xl'>
+      <div className='mx-auto max-w-[1400px]'>
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ export default function ServicesSection() {
           Our Services
         </motion.h2>
 
-        <div className='gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
+        <div className='gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
           {/* Nursing Care */}
           <motion.div
             custom={0}
