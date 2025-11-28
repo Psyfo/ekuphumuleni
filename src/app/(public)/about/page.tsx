@@ -2,9 +2,10 @@ import React from 'react';
 import type { Metadata } from 'next';
 
 import AboutHeroSection from './AboutHeroSection';
+
+import ImpactStatisticsSection from './ImpactStatisticsSection';
 import EstablishmentSection from './EstablishmentSection';
 import MissionVisionSection from './MissionVisionSection';
-import ImpactStatisticsSection from './ImpactStatisticsSection';
 
 export const metadata: Metadata = {
   title: 'About Us | Ekuphumuleni Geriatric Nursing Home',
