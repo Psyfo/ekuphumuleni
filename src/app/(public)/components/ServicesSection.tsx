@@ -23,20 +23,21 @@ const cardVariants: Variants = {
 function FadeImage({ src, alt }: { src: string; alt: string }) {
   const [loaded, setLoaded] = useState(false);
   return (
-    // Taller and closer to square using a 5:4 aspect ratio (height = 80% of width)
-    <div className='relative bg-[var(--color-off-white)] mb-3 pt-[80%] rounded w-full overflow-hidden'>
+    <div className='relative bg-gradient-to-br from-[var(--color-soft-sand)] to-[var(--color-warm-beige)] mb-4 pt-[80%] rounded-lg w-full overflow-hidden group'>
       <Image
         src={src}
         alt={alt}
         fill
-        sizes='(min-width:1024px) 280px, (min-width:768px) 50vw, 100vw'
-        className={`object-cover transition-opacity duration-700 ${
+        sizes='(min-width:1024px) 320px, (min-width:768px) 50vw, 100vw'
+        className={`object-cover transition-all duration-700 group-hover:scale-110 ${
           loaded ? 'opacity-100' : 'opacity-0'
         }`}
         onLoadingComplete={() => setLoaded(true)}
         priority={false}
         unoptimized
       />
+      {/* Overlay gradient on hover */}
+      <div className='absolute inset-0 bg-gradient-to-t from-[var(--color-deep-cocoa)]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
     </div>
   );
 }
@@ -45,21 +46,25 @@ export default function ServicesSection() {
   return (
     <section
       id='services'
-      className='z-0 relative bg-[var(--color-soft-sand)] px-4 py-16'
+      className='z-0 relative bg-gradient-to-b from-[var(--color-soft-sand)] to-[var(--color-warm-beige)] px-4 py-20 lg:py-24'
       aria-label='Our Services'
     >
       <div className='mx-auto max-w-[1400px]'>
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className='mb-10 text-center heading-2'
+          className='mb-16 text-center'
         >
-          Our Services
-        </motion.h2>
+          <h2 className='mb-4 heading-2 !text-3xl lg:!text-4xl'>Our Services</h2>
+          <div className='w-16 h-1 bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full' />
+          <p className='body-text !text-lg max-w-2xl mx-auto leading-relaxed'>
+            Comprehensive care tailored to your loved ones' unique needs, delivered with compassion and professionalism
+          </p>
+        </motion.div>
 
-        <div className='gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
+        <div className='gap-6 lg:gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
           {/* Nursing Care */}
           <motion.div
             custom={0}
@@ -67,19 +72,21 @@ export default function ServicesSection() {
             initial='hidden'
             whileInView='show'
             viewport={{ once: true, amount: 0.4 }}
-            className='shadow p-6 rounded-lg text-center card'
+            className='bg-white shadow-warm-lg hover:shadow-warm-xl p-6 lg:p-8 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 border border-subtle group'
           >
-            <HeartIcon
-              aria-hidden='true'
-              className='mx-auto mb-3 w-10 h-10 text-[var(--color-earth-brown)]'
-            />
+            <div className='w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300'>
+              <HeartIcon
+                aria-hidden='true'
+                className='w-8 h-8 text-[var(--color-muted-terracotta)]'
+              />
+            </div>
             <FadeImage
               src='/images/services/nursing/IMG_8799.JPG'
               alt='Nursing care in a calm setting'
             />
-            <h3 className='mb-2 heading-3'>Nursing Care</h3>
-            <p className='body-text'>
-              Compassionate, round‑the‑clock care tailored to each resident’s
+            <h3 className='mb-3 heading-3 !text-xl'>Nursing Care</h3>
+            <p className='body-text !text-sm leading-relaxed'>
+              Compassionate, round‑the‑clock care tailored to each resident's
               needs.
             </p>
           </motion.div>
@@ -91,18 +98,20 @@ export default function ServicesSection() {
             initial='hidden'
             whileInView='show'
             viewport={{ once: true, amount: 0.4 }}
-            className='shadow p-6 rounded-lg text-center card'
+            className='bg-white shadow-warm-lg hover:shadow-warm-xl p-6 lg:p-8 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 border border-subtle group'
           >
-            <ArrowPathIcon
-              aria-hidden='true'
-              className='mx-auto mb-3 w-10 h-10 text-[var(--color-earth-brown)]'
-            />
+            <div className='w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300'>
+              <ArrowPathIcon
+                aria-hidden='true'
+                className='w-8 h-8 text-[var(--color-muted-terracotta)]'
+              />
+            </div>
             <FadeImage
               src='/images/services/nursing/IMG_8845.JPG'
               alt='Rehabilitation and mobility support'
             />
-            <h3 className='mb-2 heading-3'>Rehabilitation</h3>
-            <p className='body-text'>
+            <h3 className='mb-3 heading-3 !text-xl'>Rehabilitation</h3>
+            <p className='body-text !text-sm leading-relaxed'>
               Supportive therapies that restore mobility, independence, and
               well‑being.
             </p>
@@ -115,18 +124,20 @@ export default function ServicesSection() {
             initial='hidden'
             whileInView='show'
             viewport={{ once: true, amount: 0.4 }}
-            className='shadow p-6 rounded-lg text-center card'
+            className='bg-white shadow-warm-lg hover:shadow-warm-xl p-6 lg:p-8 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 border border-subtle group'
           >
-            <SparklesIcon
-              aria-hidden='true'
-              className='mx-auto mb-3 w-10 h-10 text-[var(--color-earth-brown)]'
-            />
+            <div className='w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300'>
+              <SparklesIcon
+                aria-hidden='true'
+                className='w-8 h-8 text-[var(--color-muted-terracotta)]'
+              />
+            </div>
             <FadeImage
               src='/images/facilities/facilities_19.webp'
               alt='Sustainability initiatives at the home'
             />
-            <h3 className='mb-2 heading-3'>Sustainability</h3>
-            <p className='body-text'>
+            <h3 className='mb-3 heading-3 !text-xl'>Sustainability</h3>
+            <p className='body-text !text-sm leading-relaxed'>
               Eco‑friendly practices that care for our residents and our planet.
             </p>
           </motion.div>
@@ -138,18 +149,20 @@ export default function ServicesSection() {
             initial='hidden'
             whileInView='show'
             viewport={{ once: true, amount: 0.4 }}
-            className='bg-[var(--color-off-white)] shadow p-6 rounded-lg text-[var(--color-earth-brown)] text-center card'
+            className='bg-white shadow-warm-lg hover:shadow-warm-xl p-6 lg:p-8 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 border border-subtle group'
           >
-            <HomeModernIcon
-              aria-hidden='true'
-              className='mx-auto mb-3 w-10 h-10 text-[var(--color-earth-brown)]'
-            />
+            <div className='w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300'>
+              <HomeModernIcon
+                aria-hidden='true'
+                className='w-8 h-8 text-[var(--color-muted-terracotta)]'
+              />
+            </div>
             <FadeImage
               src='/images/facilities/facilities_11.webp'
               alt='Comfortable living facilities and communal spaces'
             />
-            <h3 className='mb-2 heading-3'>Facilities</h3>
-            <p className='body-text'>
+            <h3 className='mb-3 heading-3 !text-xl'>Facilities</h3>
+            <p className='body-text !text-sm leading-relaxed'>
               Comfortable spaces and amenities designed for community and care.
             </p>
           </motion.div>

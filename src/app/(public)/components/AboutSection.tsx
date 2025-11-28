@@ -8,52 +8,61 @@ export default function AboutSection() {
   return (
     <section
       id='about'
-      className='bg-[var(--color-off-white)] px-4 py-16'
+      className='bg-[var(--color-off-white)] px-4 py-20 lg:py-24'
       aria-label='About Ekuphumuleni'
     >
-      <div className='mx-auto max-w-6xl'>
+      <div className='mx-auto max-w-7xl'>
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className='mb-10 text-center'
+          className='mb-16 text-center'
         >
-          <h2 className='mb-3 heading-2'>About Ekuphumuleni</h2>
-          <p className='body-text'>
+          <h2 className='mb-4 heading-2 !text-3xl lg:!text-4xl'>About Ekuphumuleni</h2>
+          <div className='w-16 h-1 bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full' />
+          <p className='body-text !text-lg max-w-3xl mx-auto leading-relaxed'>
             Ekuphumuleni means "place of rest", a sanctuary for elderly individuals requiring nursing care. Established in 1983 by Polyanna Mahlangu, it was founded to provide compassionate, professional care for older adults in a peaceful, dignified environment.
           </p>
         </motion.div>
 
         {/* Establishment */}
-        <div className='items-start gap-8 grid md:grid-cols-2 mb-12'>
+        <div className='items-center gap-10 lg:gap-16 grid md:grid-cols-2 mb-20'>
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.8 }}
-            className='w-full'
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className='w-full order-2 md:order-1'
           >
-            <Image
-              src='/images/building/building_01.webp'
-              alt='Historic exterior of Ekuphumuleni nursing home'
-              width={800}
-              height={400}
-              className='bg-[var(--color-soft-sand)] shadow rounded-lg w-full h-64 object-cover'
-              priority={false}
-              unoptimized
-            />
+            <div className='relative group'>
+              {/* Decorative border effect */}
+              <div className='absolute -inset-2 bg-gradient-to-br from-[var(--color-muted-terracotta)]/20 to-[var(--color-earth-brown)]/20 rounded-xl blur-sm group-hover:blur-md transition-all duration-300' />
+              <div className='relative overflow-hidden rounded-xl border-2 border-[var(--color-earth-brown)]/10'>
+                <Image
+                  src='/images/building/building_01.webp'
+                  alt='Historic exterior of Ekuphumuleni nursing home'
+                  width={800}
+                  height={600}
+                  className='w-full h-72 lg:h-96 object-cover transition-transform duration-500 group-hover:scale-105'
+                  priority={false}
+                  unoptimized
+                />
+              </div>
+            </div>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className='order-1 md:order-2'
           >
-            <h3 className='mb-2 heading-3'>Establishment</h3>
-            <p className='body-text'>
+            <h3 className='mb-4 heading-3 !text-2xl'>Our Establishment</h3>
+            <div className='w-12 h-1 bg-[var(--color-muted-terracotta)] mb-4 rounded-full' />
+            <p className='body-text !text-base leading-relaxed'>
               Founded to provide dependable, compassionate care, our home blends
-              professional excellence with a warm, family-like environment.
+              professional excellence with a warm, family-like environment. Over four decades, we have remained committed to honoring the dignity and individuality of every resident.
             </p>
           </motion.div>
         </div>
@@ -63,19 +72,30 @@ export default function AboutSection() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.7 }}
-          className='gap-6 grid md:grid-cols-2'
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className='gap-6 lg:gap-8 grid md:grid-cols-2 mb-16'
         >
-          <div className='shadow p-6 rounded-lg card'>
-            <h3 className='mb-2 heading-3'>Mission</h3>
-            <p className='body-text'>
+          <div className='bg-white shadow-warm-lg hover:shadow-warm-xl p-8 lg:p-10 rounded-xl border border-subtle transition-all duration-300 hover:-translate-y-1 group'>
+            <div className='w-12 h-12 rounded-lg bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300'>
+              <svg className='w-6 h-6 text-[var(--color-muted-terracotta)]' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' />
+              </svg>
+            </div>
+            <h3 className='mb-3 heading-3 !text-xl'>Our Mission</h3>
+            <p className='body-text leading-relaxed'>
               To create peaceful, nurturing environments where people find rest,
               healing, and restoration in body and spirit.
             </p>
           </div>
-          <div className='shadow p-6 rounded-lg card'>
-            <h3 className='mb-2 heading-3'>Vision</h3>
-            <p className='body-text'>
+          <div className='bg-white shadow-warm-lg hover:shadow-warm-xl p-8 lg:p-10 rounded-xl border border-subtle transition-all duration-300 hover:-translate-y-1 group'>
+            <div className='w-12 h-12 rounded-lg bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300'>
+              <svg className='w-6 h-6 text-[var(--color-muted-terracotta)]' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M15 12a3 3 0 11-6 0 3 3 0 016 0z' />
+                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z' />
+              </svg>
+            </div>
+            <h3 className='mb-3 heading-3 !text-xl'>Our Vision</h3>
+            <p className='body-text leading-relaxed'>
               A community where elders thrive with dignity, safety, and joy
               through compassionate, culturally sensitive care.
             </p>
@@ -87,16 +107,25 @@ export default function AboutSection() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.7 }}
-          className='mt-12'
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className='bg-gradient-to-br from-[var(--color-soft-sand)]/50 to-[var(--color-warm-beige)]/50 p-8 lg:p-12 rounded-2xl border border-subtle'
         >
-          <h3 className='mb-4 heading-3'>Core Values</h3>
-          <ul className='gap-3 grid sm:grid-cols-2'>
-            <li className='body-text'>Compassion</li>
-            <li className='body-text'>Tranquility</li>
-            <li className='body-text'>Reliability</li>
-            <li className='body-text'>Cultural Sensitivity</li>
-            <li className='body-text'>Excellence</li>
+          <h3 className='mb-6 heading-3 text-center !text-2xl'>Our Core Values</h3>
+          <div className='w-16 h-1 bg-[var(--color-muted-terracotta)] mx-auto mb-8 rounded-full' />
+          <ul className='gap-4 grid sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto'>
+            {['Compassion', 'Tranquility', 'Reliability', 'Cultural Sensitivity', 'Excellence'].map((value, index) => (
+              <motion.li
+                key={value}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className='flex items-center gap-3 bg-white/60 backdrop-blur-sm px-4 py-3 rounded-lg shadow-warm hover:shadow-warm-lg transition-all duration-300 hover:-translate-y-0.5'
+              >
+                <div className='w-2 h-2 rounded-full bg-[var(--color-muted-terracotta)] flex-shrink-0' />
+                <span className='body-text font-semibold !text-[var(--color-deep-cocoa)]'>{value}</span>
+              </motion.li>
+            ))}
           </ul>
         </motion.div>
       </div>
