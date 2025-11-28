@@ -23,7 +23,7 @@ const cardVariants: Variants = {
 function FadeImage({ src, alt }: { src: string; alt: string }) {
   const [loaded, setLoaded] = useState(false);
   return (
-    <div className='relative bg-gradient-to-br from-[var(--color-soft-sand)] to-[var(--color-warm-beige)] mb-4 pt-[80%] rounded-lg w-full overflow-hidden group'>
+    <div className='group relative bg-gradient-to-br from-[var(--color-soft-sand)] to-[var(--color-warm-beige)] mb-4 pt-[80%] rounded-lg w-full overflow-hidden'>
       <Image
         src={src}
         alt={alt}
@@ -57,10 +57,13 @@ export default function ServicesSection() {
           transition={{ duration: 0.6 }}
           className='mb-16 text-center'
         >
-          <h2 className='mb-4 heading-2 !text-3xl lg:!text-4xl'>Our Services</h2>
-          <div className='w-16 h-1 bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full' />
-          <p className='body-text !text-lg max-w-2xl mx-auto leading-relaxed'>
-            Comprehensive care tailored to your loved ones' unique needs, delivered with compassion and professionalism
+          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
+            Our Services
+          </h2>
+          <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
+          <p className='mx-auto max-w-2xl !text-lg leading-relaxed body-text'>
+            Comprehensive care tailored to your loved ones' unique needs,
+            delivered with compassion and professionalism
           </p>
         </motion.div>
 
@@ -72,9 +75,9 @@ export default function ServicesSection() {
             initial='hidden'
             whileInView='show'
             viewport={{ once: true, amount: 0.4 }}
-            className='bg-white shadow-warm-lg hover:shadow-warm-xl p-6 lg:p-8 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 border border-subtle group'
+            className='group bg-white shadow-warm-lg hover:shadow-warm-xl p-6 lg:p-8 border border-subtle rounded-xl text-center transition-all hover:-translate-y-2 duration-300'
           >
-            <div className='w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300'>
+            <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 mx-auto mb-4 rounded-xl w-14 h-14 group-hover:scale-110 transition-transform duration-300'>
               <HeartIcon
                 aria-hidden='true'
                 className='w-8 h-8 text-[var(--color-muted-terracotta)]'
@@ -84,8 +87,8 @@ export default function ServicesSection() {
               src='/images/services/nursing/IMG_8799.JPG'
               alt='Nursing care in a calm setting'
             />
-            <h3 className='mb-3 heading-3 !text-xl'>Nursing Care</h3>
-            <p className='body-text !text-sm leading-relaxed'>
+            <h3 className='mb-3 !text-xl heading-3'>Nursing Care</h3>
+            <p className='!text-sm leading-relaxed body-text'>
               Compassionate, round‑the‑clock care tailored to each resident's
               needs.
             </p>
@@ -98,9 +101,9 @@ export default function ServicesSection() {
             initial='hidden'
             whileInView='show'
             viewport={{ once: true, amount: 0.4 }}
-            className='bg-white shadow-warm-lg hover:shadow-warm-xl p-6 lg:p-8 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 border border-subtle group'
+            className='group bg-white shadow-warm-lg hover:shadow-warm-xl p-6 lg:p-8 border border-subtle rounded-xl text-center transition-all hover:-translate-y-2 duration-300'
           >
-            <div className='w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300'>
+            <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 mx-auto mb-4 rounded-xl w-14 h-14 group-hover:scale-110 transition-transform duration-300'>
               <ArrowPathIcon
                 aria-hidden='true'
                 className='w-8 h-8 text-[var(--color-muted-terracotta)]'
@@ -110,8 +113,8 @@ export default function ServicesSection() {
               src='/images/services/nursing/IMG_8845.JPG'
               alt='Rehabilitation and mobility support'
             />
-            <h3 className='mb-3 heading-3 !text-xl'>Rehabilitation</h3>
-            <p className='body-text !text-sm leading-relaxed'>
+            <h3 className='mb-3 !text-xl heading-3'>Rehabilitation</h3>
+            <p className='!text-sm leading-relaxed body-text'>
               Supportive therapies that restore mobility, independence, and
               well‑being.
             </p>
@@ -124,9 +127,9 @@ export default function ServicesSection() {
             initial='hidden'
             whileInView='show'
             viewport={{ once: true, amount: 0.4 }}
-            className='bg-white shadow-warm-lg hover:shadow-warm-xl p-6 lg:p-8 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 border border-subtle group'
+            className='group bg-white shadow-warm-lg hover:shadow-warm-xl p-6 lg:p-8 border border-subtle rounded-xl text-center transition-all hover:-translate-y-2 duration-300'
           >
-            <div className='w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300'>
+            <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 mx-auto mb-4 rounded-xl w-14 h-14 group-hover:scale-110 transition-transform duration-300'>
               <SparklesIcon
                 aria-hidden='true'
                 className='w-8 h-8 text-[var(--color-muted-terracotta)]'
@@ -136,8 +139,8 @@ export default function ServicesSection() {
               src='/images/facilities/facilities_19.webp'
               alt='Sustainability initiatives at the home'
             />
-            <h3 className='mb-3 heading-3 !text-xl'>Sustainability</h3>
-            <p className='body-text !text-sm leading-relaxed'>
+            <h3 className='mb-3 !text-xl heading-3'>Sustainability</h3>
+            <p className='!text-sm leading-relaxed body-text'>
               Eco‑friendly practices that care for our residents and our planet.
             </p>
           </motion.div>
@@ -149,9 +152,9 @@ export default function ServicesSection() {
             initial='hidden'
             whileInView='show'
             viewport={{ once: true, amount: 0.4 }}
-            className='bg-white shadow-warm-lg hover:shadow-warm-xl p-6 lg:p-8 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 border border-subtle group'
+            className='group bg-white shadow-warm-lg hover:shadow-warm-xl p-6 lg:p-8 border border-subtle rounded-xl text-center transition-all hover:-translate-y-2 duration-300'
           >
-            <div className='w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300'>
+            <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 mx-auto mb-4 rounded-xl w-14 h-14 group-hover:scale-110 transition-transform duration-300'>
               <HomeModernIcon
                 aria-hidden='true'
                 className='w-8 h-8 text-[var(--color-muted-terracotta)]'
@@ -161,8 +164,8 @@ export default function ServicesSection() {
               src='/images/facilities/facilities_11.webp'
               alt='Comfortable living facilities and communal spaces'
             />
-            <h3 className='mb-3 heading-3 !text-xl'>Facilities</h3>
-            <p className='body-text !text-sm leading-relaxed'>
+            <h3 className='mb-3 !text-xl heading-3'>Facilities</h3>
+            <p className='!text-sm leading-relaxed body-text'>
               Comfortable spaces and amenities designed for community and care.
             </p>
           </motion.div>
