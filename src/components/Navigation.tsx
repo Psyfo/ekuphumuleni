@@ -23,14 +23,14 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: 'About Us',
     children: [
-      { label: 'Establishment', href: '/about#establishment' },
+      { label: 'Establishment', href: '/about' },
       { label: 'Mission & Core Values', href: '/about#mission-vision' },
     ],
   },
   {
     label: 'Team',
     children: [
-      { label: 'Board', href: '/team#board' },
+      { label: 'Board', href: '/team' },
       { label: 'Administration', href: '/team#administration' },
       { label: 'Staff', href: '/team#staff' },
     ],
