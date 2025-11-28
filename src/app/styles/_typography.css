@@ -1,0 +1,56 @@
+/**
+ * Typography Utilities
+ * 
+ * Utility classes for consistent typography.
+ * Note: Colors are NOT set here - use Tailwind color utilities for flexibility.
+ */
+
+/* ===== Heading Utilities ===== */
+h1,
+.heading-1 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    /* 32px */
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+h2,
+.heading-2 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    /* 24px */
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+h3,
+.heading-3 {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    /* 20px */
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* ===== Body Text Utilities ===== */
+p,
+.body-text {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    /* 16px */
+    font-weight: 400;
+}
+
+small,
+.caption {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    /* 14px */
+    font-weight: 400;
+}
+
+/* ===== Text Emphasis ===== */
+.text-accent {
+    color: var(--color-muted-terracotta);
+}

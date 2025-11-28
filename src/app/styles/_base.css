@@ -1,0 +1,37 @@
+/**
+ * Base Styles
+ * 
+ * Global element defaults and resets.
+ * These apply to bare HTML elements without classes.
+ */
+
+/* ===== Document Base ===== */
+body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* ===== Default Link Styles ===== */
+a {
+    color: var(--color-muted-terracotta);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Default Heading Styles ===== */
+/* Note: Colors should be set per-component with Tailwind classes */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+}

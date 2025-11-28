@@ -1,256 +1,32 @@
+/**
+ * Global Styles - Ekuphumuleni
+ * 
+ * Main stylesheet that imports all modular CSS files.
+ * This file orchestrates the order of imports for proper CSS cascade.
+ * 
+ * Import order:
+ * 1. Tailwind CSS
+ * 2. Design tokens (variables)
+ * 3. Font faces
+ * 4. Base styles
+ * 5. Typography
+ * 6. Components
+ * 7. Utilities
+ */
+
+/* ===== Core Framework ===== */
 @import "tailwindcss";
 
-/* Brand Color Palette */
-:root {
-    --color-warm-beige: #F2E8CF;
-    --color-earth-brown: #A68A64;
-    --color-deep-cocoa: #6B4F4F;
-    --color-soft-sand: #D9C6A5;
-    --color-off-white: #EDE6E3;
-    --color-muted-terracotta: #C97C5D;
+/* ===== Design System ===== */
+@import "./_variables.css";
+@import "./_fonts.css";
+@import "./_base.css";
 
-    --background: var(--color-warm-beige);
-    --foreground: var(--color-deep-cocoa);
+/* ===== Typography ===== */
+@import "./_typography.css";
 
-    --font-sans: 'Nunito', Arial, Helvetica, sans-serif;
-    --font-serif: 'Playfair Display', serif;
-}
+/* ===== Components ===== */
+@import "./_components.css";
 
-body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-/* Typography Hierarchy */
-h1,
-.heading-1 {
-    font-family: var(--font-serif);
-    font-size: 2rem;
-    /* 32px */
-    font-weight: 700;
-    margin-bottom: 2rem;
-}
-
-h2,
-.heading-2 {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    /* 24px */
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-h3,
-.heading-3 {
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
-    /* 20px */
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-p,
-.body-text {
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    /* 16px */
-    font-weight: 400;
-}
-
-small,
-.caption {
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
-    /* 14px */
-    font-weight: 400;
-}
-
-/* Accent Elements */
-a,
-.accent,
-.btn-primary {
-    color: var(--color-muted-terracotta);
-}
-
-.card,
-.surface {
-    background: var(--color-off-white);
-}
-
-.section-secondary {
-    background: var(--color-soft-sand);
-}
-
-/* Shadow Utilities */
-.shadow-warm-sm {
-    box-shadow: 0 1px 2px 0 rgba(107, 79, 79, 0.05);
-}
-
-.shadow-warm {
-    box-shadow: 0 4px 6px -1px rgba(107, 79, 79, 0.08), 0 2px 4px -1px rgba(107, 79, 79, 0.04);
-}
-
-.shadow-warm-lg {
-    box-shadow: 0 10px 15px -3px rgba(107, 79, 79, 0.1), 0 4px 6px -2px rgba(107, 79, 79, 0.05);
-}
-
-.shadow-warm-xl {
-    box-shadow: 0 20px 25px -5px rgba(107, 79, 79, 0.12), 0 10px 10px -5px rgba(107, 79, 79, 0.04);
-}
-
-/* Border Utilities */
-.border-subtle {
-    border: 1px solid rgba(166, 138, 100, 0.15);
-}
-
-.border-standard {
-    border: 1px solid rgba(166, 138, 100, 0.25);
-}
-
-.border-emphasis {
-    border: 2px solid rgba(166, 138, 100, 0.4);
-}
-
-.border-accent {
-    border: 2px solid var(--color-muted-terracotta);
-}
-
-/* Gradient Utilities */
-.gradient-warm-fade {
-    background: linear-gradient(to bottom, var(--color-warm-beige), var(--color-soft-sand));
-}
-
-.gradient-subtle-overlay {
-    background: radial-gradient(circle at center, var(--color-off-white), transparent);
-}
-
-.gradient-accent-highlight {
-    background: linear-gradient(135deg, rgba(201, 124, 93, 0.1), rgba(201, 124, 93, 0.2));
-}
-
-/* Enhanced Button Styles */
-.btn-primary {
-    background-color: var(--color-muted-terracotta);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: 700;
-    box-shadow: 0 4px 6px -1px rgba(107, 79, 79, 0.08), 0 2px 4px -1px rgba(107, 79, 79, 0.04);
-    transition: all 250ms ease-out;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-primary:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 15px -3px rgba(107, 79, 79, 0.1), 0 4px 6px -2px rgba(107, 79, 79, 0.05);
-}
-
-.btn-primary:active {
-    transform: scale(0.98);
-}
-
-.btn-primary:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px white, 0 0 0 4px var(--color-muted-terracotta);
-}
-
-.btn-secondary {
-    background-color: white;
-    color: var(--color-earth-brown);
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: 700;
-    border: 1px solid var(--color-earth-brown);
-    transition: all 250ms ease-out;
-    cursor: pointer;
-}
-
-.btn-secondary:hover {
-    background-color: var(--color-warm-beige);
-    transform: translateY(-1px);
-}
-
-.btn-secondary:active {
-    transform: translateY(0);
-}
-
-/* Enhanced Card Styles */
-.card-elevated {
-    background: var(--color-off-white);
-    border-radius: 0.75rem;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px -1px rgba(107, 79, 79, 0.08), 0 2px 4px -1px rgba(107, 79, 79, 0.04);
-    border: 1px solid rgba(166, 138, 100, 0.15);
-    transition: all 300ms ease-out;
-}
-
-.card-elevated:hover {
-    box-shadow: 0 10px 15px -3px rgba(107, 79, 79, 0.1), 0 4px 6px -2px rgba(107, 79, 79, 0.05);
-    transform: translateY(-2px);
-}
-
-/* Section Containers */
-.section-container {
-    max-width: 80rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-
-@media (min-width: 768px) {
-    .section-container {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-    }
-}
-
-/* Transition Utilities */
-.transition-smooth {
-    transition: all 250ms ease-out;
-}
-
-.transition-fast {
-    transition: all 150ms ease-out;
-}
-
-.transition-slow {
-    transition: all 500ms ease-out;
-}
-
-/* Font Faces */
-@font-face {
-    font-family: 'Nunito';
-    src: url('/fonts/Nunito-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Nunito';
-    src: url('/fonts/Nunito-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Playfair Display';
-    src: url('/fonts/PlayfairDisplay-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Playfair Display';
-    src: url('/fonts/PlayfairDisplay-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
+/* ===== Utilities ===== */
+@import "./_utilities.css";

@@ -1,0 +1,40 @@
+/**
+ * Font Faces
+ * 
+ * Defines @font-face declarations for custom fonts.
+ * Uses font-display: swap for better performance.
+ */
+
+/* ===== Nunito (Sans-Serif) ===== */
+@font-face {
+    font-family: 'Nunito';
+    src: url('/fonts/Nunito-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('/fonts/Nunito-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ===== Playfair Display (Serif) ===== */
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/fonts/PlayfairDisplay-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/fonts/PlayfairDisplay-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
