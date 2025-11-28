@@ -119,11 +119,11 @@ export default function DonorWallSection() {
           transition={{ duration: 0.6 }}
           className='mb-16 text-center'
         >
-          <h2 className='mb-4 font-serif text-deep-cocoa text-4xl md:text-5xl'>
-            Ekuphumuleni Historical Donor Wall
+          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
+            Wall of Gratitude
           </h2>
-          <div className='bg-gradient-to-r from-transparent via-terracotta to-transparent mx-auto mb-6 w-24 h-1' />
-          <p className='mx-auto max-w-2xl text-earth-brown text-lg'>
+          <div className='bg-gradient-to-r from-transparent via-[var(--color-muted-terracotta)] to-transparent mx-auto mb-6 rounded-full w-24 h-1' />
+          <p className='mx-auto max-w-2xl !text-lg leading-relaxed body-text'>
             Honoring those whose generosity has sustained our mission of
             compassionate care
           </p>
@@ -137,21 +137,23 @@ export default function DonorWallSection() {
           transition={{ duration: 0.6 }}
           className='mb-16'
         >
-          <h3 className='mb-8 font-serif text-deep-cocoa text-2xl md:text-3xl text-center'>
+          <h3 className='mb-8 font-serif text-[var(--color-deep-cocoa)] text-2xl md:text-3xl text-center'>
             2003
           </h3>
-          <div className='bg-gradient-to-br from-warm-beige/30 via-off-white to-soft-sand/30 shadow-warm-lg p-8 md:p-12 border border-soft-sand rounded-2xl'>
-            <div className='gap-8 columns-1 sm:columns-2 md:columns-3 lg:columns-4'>
+          <div className='bg-white shadow-warm-lg p-8 md:p-12 border border-subtle rounded-2xl'>
+            <div className='gap-x-8 gap-y-3 columns-1 sm:columns-2 md:columns-3 lg:columns-4'>
               {donors2003.map((donor, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.02 }}
-                  className='mb-3 break-inside-avoid'
+                  transition={{ duration: 0.4, delay: index * 0.015 }}
+                  className='group mb-3 break-inside-avoid'
                 >
-                  <p className='text-earth-brown leading-relaxed'>{donor}</p>
+                  <p className='text-[var(--color-earth-brown)] group-hover:text-[var(--color-muted-terracotta)] leading-relaxed transition-colors duration-200'>
+                    {donor}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -165,21 +167,23 @@ export default function DonorWallSection() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <h3 className='mb-8 font-serif text-deep-cocoa text-2xl md:text-3xl text-center'>
+          <h3 className='mb-8 font-serif text-[var(--color-deep-cocoa)] text-2xl md:text-3xl text-center'>
             2004
           </h3>
-          <div className='bg-gradient-to-br from-warm-beige/30 via-off-white to-soft-sand/30 shadow-warm-lg p-8 md:p-12 border border-soft-sand rounded-2xl'>
-            <div className='gap-8 columns-1 sm:columns-2 md:columns-3 lg:columns-4'>
+          <div className='bg-white shadow-warm-lg p-8 md:p-12 border border-subtle rounded-2xl'>
+            <div className='gap-x-8 gap-y-3 columns-1 sm:columns-2 md:columns-3 lg:columns-4'>
               {donors2004.map((donor, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.02 }}
-                  className='mb-3 break-inside-avoid'
+                  transition={{ duration: 0.4, delay: index * 0.015 }}
+                  className='group mb-3 break-inside-avoid'
                 >
-                  <p className='text-earth-brown leading-relaxed'>{donor}</p>
+                  <p className='text-[var(--color-earth-brown)] group-hover:text-[var(--color-muted-terracotta)] leading-relaxed transition-colors duration-200'>
+                    {donor}
+                  </p>
                 </motion.div>
               ))}
             </div>

@@ -87,8 +87,8 @@ export default function DonorsHeroSection() {
 
         {/* Decorative Quote */}
         <motion.div variants={item} className='mx-auto mt-12 max-w-2xl'>
-          <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl'>
-            <p className='!text-[var(--color-deep-cocoa)] text-lg text-center italic leading-relaxed'>
+          <div className='bg-white/70 shadow-warm-lg backdrop-blur-sm p-8 lg:p-10 border border-subtle rounded-2xl'>
+            <p className='font-serif !text-[var(--color-deep-cocoa)] text-lg lg:text-xl text-center italic leading-relaxed'>
               &ldquo;Every act of generosity creates ripples of hope and
               healing&rdquo;
             </p>
