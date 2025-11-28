@@ -37,12 +37,12 @@ const NAV_ITEMS: NavItem[] = [
   },
   {
     label: 'Services',
-    href: '/services#nursing-care',
+    href: '/services',
   },
   {
     label: 'Facilities',
     children: [
-      { label: 'Facilities', href: '/facilities#facilities' },
+      { label: 'Facilities', href: '/facilities' },
       { label: 'Sustainability', href: '/facilities#sustainability' },
     ],
   },
