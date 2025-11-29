@@ -52,7 +52,7 @@ export const metadata: Metadata = {
       'Over 40 years of excellence in geriatric care. Professional nursing, rehabilitation, and elderly care in Bulawayo, Zimbabwe.',
     images: [
       {
-        url: 'https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo.png',
+        url: 'https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo-seo.png',
         width: 512,
         height: 512,
         alt: 'Ekuphumuleni Geriatric Nursing Home Logo',
@@ -60,12 +60,12 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     title:
       'Ekuphumuleni Geriatric Nursing Home | Elderly Nursing Care in Bulawayo, Zimbabwe',
     description:
       'Over 40 years of excellence in geriatric care. Professional nursing, rehabilitation, and elderly care in Bulawayo, Zimbabwe.',
-    images: ['https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo.png'],
+    images: ['https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo-seo.png'],
   },
   robots: {
     index: true,
@@ -108,7 +108,7 @@ export default function RootLayout({
               name: 'Ekuphumuleni Geriatric Nursing Home',
               alternateName: 'Ekuphumuleni',
               url: 'https://ekuphumuleni.ngo',
-              logo: 'https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo.png',
+              logo: 'https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo-seo.png',
               description:
                 'Non-profit organization providing geriatric nursing care and elderly support services in Bulawayo, Zimbabwe.',
               foundingDate: '1980',
