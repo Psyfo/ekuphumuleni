@@ -33,7 +33,7 @@ function FadeImage({ src, alt }: { src: string; alt: string }) {
         className={`object-cover transition-all duration-700 group-hover:scale-110 ${
           loaded ? 'opacity-100' : 'opacity-0'
         }`}
-        onLoadingComplete={() => setLoaded(true)}
+        onLoad={() => setLoaded(true)}
         priority={false}
         unoptimized
       />

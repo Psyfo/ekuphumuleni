@@ -220,6 +220,34 @@
    - `Link` provides client-side navigation, prefetching, and better performance
    - These components are essential for Next.js performance and SEO benefits
 
+   **IMPORTANT: Image Event Handlers**
+
+   ```tsx
+   // ✅ CORRECT: Use onLoad (current property)
+   <Image
+     src="/images/photo.jpg"
+     alt="Description"
+     width={800}
+     height={600}
+     onLoad={() => setLoaded(true)}
+   />
+
+   // ❌ WRONG: Never use onLoadingComplete (deprecated)
+   <Image
+     src="/images/photo.jpg"
+     alt="Description"
+     width={800}
+     height={600}
+     onLoadingComplete={() => setLoaded(true)} // DEPRECATED!
+   />
+   ```
+
+   **Why:**
+
+   - `onLoadingComplete` is deprecated in Next.js 15+
+   - Use `onLoad` instead for handling image load events
+   - `onLoad` is the standard React event handler
+
 3. **Server vs Client Components**
 
    ```tsx
@@ -325,6 +353,7 @@
 - Don't mix route groups - keep public pages in `(public)/`
 - **Don't use `<img>` tags - always use Next.js `Image` component**
 - **Don't use `<a>` tags for internal links - always use Next.js `Link` component**
+- **Don't use `onLoadingComplete` - use `onLoad` instead (onLoadingComplete is deprecated)**
 
 ---
 
