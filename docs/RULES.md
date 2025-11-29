@@ -1162,7 +1162,7 @@
    ZEPTOMAIL_MAIL_AGENT_ALIAS=your_mail_agent_alias
    MAIL_FROM_EMAIL=no-reply@ekuphumuleni.ngo
    MAIL_FROM_NAME=Ekuphumuleni
-   MAIL_TO_EMAIL=info@ekuphumuleni.ngo
+   MAIL_TO_EMAIL=administration@ekuphumuleni.ngo
    ```
 
 3. **API Error Handling**
@@ -1692,7 +1692,7 @@
            addressCountry: 'ZW',
          },
          telephone: '+263-292-216-877',
-         email: 'info@ekuphumuleni.org',
+         email: 'administration@ekuphumuleni.ngo',
        }),
      }}
    />

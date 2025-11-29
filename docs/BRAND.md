@@ -17,6 +17,18 @@
 
 Ekuphumuleni is a name derived from African languages meaning "place of rest" or "place of restoration." Our brand represents comfort, care, and rejuvenation in all the services we provide.
 
+### Contact Information
+
+**Address:**
+Old Falls Rd
+Bulawayo, Zimbabwe
+
+**Phone:**
++263 292 216 877
+
+**Email:**
+administration@ekuphumuleni.ngo
+
 ### Mission Statement
 
 To create peaceful, nurturing environments where people can find rest, healing, and restoration in body and spirit.

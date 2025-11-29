@@ -66,10 +66,10 @@ export default function ContactSection() {
             </div>
             <h3 className='mb-3 !text-lg heading-3'>Email</h3>
             <a
-              href='mailto:info@ekuphumuleni.org'
+              href='mailto:administration@ekuphumuleni.ngo'
               className='font-medium !text-[var(--color-muted-terracotta)] hover:underline body-text'
             >
-              info@ekuphumuleni.org
+              administration@ekuphumuleni.ngo
             </a>
           </motion.div>
 
@@ -82,10 +82,10 @@ export default function ContactSection() {
             </div>
             <h3 className='mb-3 !text-lg heading-3'>Phone</h3>
             <a
-              href='tel:+2639216877'
+              href='tel:+263292216877'
               className='font-medium !text-[var(--color-muted-terracotta)] hover:underline body-text'
             >
-              +263 9 216 877
+              +263 292 216 877
             </a>
           </motion.div>
 
