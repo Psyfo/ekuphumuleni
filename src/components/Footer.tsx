@@ -239,29 +239,12 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-          className='flex md:flex-row flex-col-reverse md:justify-between md:items-center gap-4'
         >
           <div className='flex sm:flex-row flex-col items-start sm:items-center gap-2 sm:gap-4'>
             <p className='font-sans text-[var(--color-off-white)]/80 text-sm'>
               © {year} Ekuphumuleni. All rights reserved.
             </p>
           </div>
-
-          <ul className='flex flex-wrap items-center gap-x-6 gap-y-2'>
-            {[
-              { href: '/privacy', label: 'Privacy Policy' },
-              { href: '/terms', label: 'Terms of Service' },
-            ].map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className='font-sans font-medium text-[var(--color-off-white)] hover:text-[var(--color-muted-terracotta)] text-sm transition-colors duration-200'
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
         </motion.div>
       </div>
     </footer>
