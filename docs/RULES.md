@@ -175,7 +175,52 @@
    }
    ```
 
-2. **Server vs Client Components**
+2. **Next.js Components - Required**
+
+   **ALWAYS use Next.js optimized components instead of standard HTML tags:**
+
+   ```tsx
+   // ✅ CORRECT: Use Next.js Image component
+   import Image from 'next/image';
+
+   <Image
+     src="/images/photo.jpg"
+     alt="Description"
+     width={800}
+     height={600}
+     priority // for above-fold images
+   />
+
+   // ❌ WRONG: Never use <img> tag
+   <img src="/images/photo.jpg" alt="Description" />
+
+   // ✅ CORRECT: Use Next.js Link component
+   import Link from 'next/link';
+
+   <Link href="/about" prefetch={false}>
+     About Us
+   </Link>
+
+   // ❌ WRONG: Never use <a> tag for internal navigation
+   <a href="/about">About Us</a>
+
+   // ✅ CORRECT: Only use <a> for external links
+   <a
+     href="https://external-site.com"
+     target="_blank"
+     rel="noopener noreferrer"
+   >
+     External Link
+   </a>
+   ```
+
+   **Why:**
+
+   - `Image` provides automatic optimization, lazy loading, and responsive images
+   - `Link` provides client-side navigation, prefetching, and better performance
+   - These components are essential for Next.js performance and SEO benefits
+
+3. **Server vs Client Components**
 
    ```tsx
    // ✅ Server Component (default - no 'use client')
@@ -197,7 +242,7 @@
    }
    ```
 
-3. **Route Group Organization**
+4. **Route Group Organization**
 
    ```
    src/app/
@@ -216,7 +261,7 @@
        └── contact/
    ```
 
-4. **Component Composition**
+5. **Component Composition**
 
    ```tsx
    // ✅ CORRECT: Section-based composition
@@ -245,7 +290,7 @@
    }
    ```
 
-5. **Component Props with TypeScript**
+6. **Component Props with TypeScript**
 
    ```tsx
    // ✅ CORRECT: Explicit interfaces
@@ -278,6 +323,8 @@
 - Don't duplicate components - check existing components first
 - Don't create components with more than 300-400 lines - break them down
 - Don't mix route groups - keep public pages in `(public)/`
+- **Don't use `<img>` tags - always use Next.js `Image` component**
+- **Don't use `<a>` tags for internal links - always use Next.js `Link` component**
 
 ---
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion, Variants } from 'framer-motion';
+import Link from 'next/link';
 import {
   HeartIcon,
   ClipboardDocumentCheckIcon,
@@ -131,13 +132,14 @@ export default function CoreServicesSection() {
               Our team is here to answer your questions and help you understand
               how we can best support your loved one&apos;s needs.
             </p>
-            <a
+            <Link
               href='/contact'
-              className='inline-flex items-center gap-2 bg-[var(--color-muted-terracotta)] hover:opacity-90 shadow-warm px-8 py-3.5 rounded-lg font-bold text-white hover:scale-105 transition-all duration-200'
+              prefetch={false}
+              className='inline-flex items-center gap-2 bg-[var(--color-muted-terracotta)] shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 font-bold !text-white hover:!text-white focus-visible:!text-white transition-all duration-300'
             >
               Get in Touch
               <ChevronRightIcon className='w-5 h-5' aria-hidden='true' />
-            </a>
+            </Link>
           </div>
         </motion.div>
       </motion.div>
