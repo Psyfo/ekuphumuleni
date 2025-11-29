@@ -277,47 +277,64 @@ export default function Navigation() {
                         transition={{ delay: index * 0.05, duration: 0.3 }}
                         className='pb-3 border-[var(--color-earth-brown)]/10 border-b last:border-b-0'
                       >
-                        <button
-                          type='button'
+                        <div
                           className={[
-                            'group flex justify-between items-center px-3 py-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 w-full font-semibold transition-all duration-200',
-                            '!text-[var(--color-earth-brown)] hover:!text-[var(--color-muted-terracotta)]',
+                            'transition-all duration-200',
                             item.children?.some((child) => isActive(child.href))
-                              ? 'bg-gradient-to-r from-[var(--color-warm-beige)] to-transparent shadow-sm'
-                              : 'hover:bg-white/50',
+                              ? 'bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-sm'
+                              : '',
                           ].join(' ')}
-                          aria-expanded={
-                            openDropdown === item.label ? 'true' : 'false'
-                          }
-                          aria-controls={`mobile-submenu-${item.label
-                            .replace(/\s+/g, '-')
-                            .toLowerCase()}`}
-                          onClick={() =>
-                            setOpenDropdown((cur) =>
-                              cur === item.label ? null : item.label
-                            )
-                          }
                         >
-                          <span className='flex items-center gap-2'>
-                            <span
-                              className={`rounded-full transition-all duration-200 ${
-                                item.children?.some((child) =>
-                                  isActive(child.href)
-                                )
-                                  ? 'w-1.5 h-1.5 bg-[var(--color-muted-terracotta)]'
-                                  : 'w-1.5 h-1.5 bg-[var(--color-muted-terracotta)]/20 group-hover:scale-110'
+                          <button
+                            type='button'
+                            className={[
+                              'relative group flex justify-between items-center px-3 py-2.5 focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 w-full font-semibold transition-all duration-200',
+                              '!text-[var(--color-earth-brown)] hover:!text-[var(--color-muted-terracotta)]',
+                              item.children?.some((child) =>
+                                isActive(child.href)
+                              )
+                                ? ''
+                                : 'hover:bg-white/50',
+                            ].join(' ')}
+                            aria-expanded={
+                              openDropdown === item.label ? 'true' : 'false'
+                            }
+                            aria-controls={`mobile-submenu-${item.label
+                              .replace(/\s+/g, '-')
+                              .toLowerCase()}`}
+                            onClick={() =>
+                              setOpenDropdown((cur) =>
+                                cur === item.label ? null : item.label
+                              )
+                            }
+                          >
+                            <span className='flex items-center gap-2'>
+                              <span
+                                className={`rounded-full transition-all duration-200 ${
+                                  item.children?.some((child) =>
+                                    isActive(child.href)
+                                  )
+                                    ? 'w-1.5 h-1.5 bg-[var(--color-muted-terracotta)]'
+                                    : 'w-1.5 h-1.5 bg-[var(--color-muted-terracotta)]/20 group-hover:scale-110'
+                                }`}
+                              />
+                              {item.label}
+                            </span>
+                            <ChevronDownIcon
+                              className={`h-5 w-5 transition-all duration-300 ${
+                                openDropdown === item.label
+                                  ? 'rotate-180 text-[var(--color-muted-terracotta)]'
+                                  : 'group-hover:text-[var(--color-muted-terracotta)]'
                               }`}
                             />
-                            {item.label}
-                          </span>
-                          <ChevronDownIcon
-                            className={`h-5 w-5 transition-all duration-300 ${
-                              openDropdown === item.label
-                                ? 'rotate-180 text-[var(--color-muted-terracotta)]'
-                                : 'group-hover:text-[var(--color-muted-terracotta)]'
-                            }`}
-                          />
-                        </button>
+                            {/* Active indicator */}
+                            {item.children?.some((child) =>
+                              isActive(child.href)
+                            ) && (
+                              <div className='bottom-0 left-0 absolute bg-[var(--color-muted-terracotta)] w-full h-0.5' />
+                            )}
+                          </button>
+                        </div>
                         <AnimatePresence initial={false}>
                           {openDropdown === item.label && (
                             <motion.ul
@@ -345,10 +362,20 @@ export default function Navigation() {
                                 >
                                   <Link
                                     href={child.href}
-                                    className='group flex items-center gap-2 hover:bg-white/70 px-3 py-2 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 !text-[var(--color-deep-cocoa)] hover:!text-[var(--color-muted-terracotta)] text-sm transition-all duration-200'
+                                    className={`group flex items-center gap-2 px-3 py-2 focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 text-sm transition-all duration-200 ${
+                                      isActive(child.href)
+                                        ? '!text-[var(--color-muted-terracotta)] font-semibold'
+                                        : 'hover:bg-white/70 !text-[var(--color-deep-cocoa)] hover:!text-[var(--color-muted-terracotta)]'
+                                    }`}
                                     onClick={closeMobile}
                                   >
-                                    <span className='bg-[var(--color-muted-terracotta)] rounded-full w-1 group-hover:w-2 h-1 transition-all duration-200' />
+                                    <span
+                                      className={`rounded-full transition-all duration-200 ${
+                                        isActive(child.href)
+                                          ? 'w-1.5 h-1.5 bg-[var(--color-muted-terracotta)]'
+                                          : 'w-1 h-1 bg-[var(--color-muted-terracotta)] group-hover:w-1.5 group-hover:h-1.5'
+                                      }`}
+                                    />
                                     {child.label}
                                   </Link>
                                 </motion.li>
@@ -367,27 +394,38 @@ export default function Navigation() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.05, duration: 0.3 }}
                       >
-                        <Link
-                          href={item.href!}
+                        <div
                           className={[
-                            'group flex items-center gap-2 px-3 py-2.5 rounded-lg font-semibold transition-all duration-200',
-                            '!text-[var(--color-earth-brown)] hover:!text-[var(--color-muted-terracotta)]',
-                            'focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2',
+                            'transition-all duration-200',
                             isActive(item.href)
-                              ? 'bg-gradient-to-r from-[var(--color-warm-beige)] to-transparent shadow-sm'
-                              : 'hover:bg-white/50',
+                              ? 'bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-sm'
+                              : '',
                           ].join(' ')}
-                          onClick={closeMobile}
                         >
-                          <span
-                            className={`rounded-full transition-all duration-200 ${
-                              isActive(item.href)
-                                ? 'w-1.5 h-1.5 bg-[var(--color-muted-terracotta)]'
-                                : 'w-1 h-1 bg-[var(--color-muted-terracotta)]/20 group-hover:bg-[var(--color-muted-terracotta)] group-hover:w-1.5 group-hover:h-1.5'
-                            }`}
-                          />
-                          {item.label}
-                        </Link>
+                          <Link
+                            href={item.href!}
+                            className={[
+                              'relative group flex items-center gap-2 px-3 py-2.5 font-semibold transition-all duration-200',
+                              '!text-[var(--color-earth-brown)] hover:!text-[var(--color-muted-terracotta)]',
+                              'focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2',
+                              isActive(item.href) ? '' : 'hover:bg-white/50',
+                            ].join(' ')}
+                            onClick={closeMobile}
+                          >
+                            <span
+                              className={`rounded-full transition-all duration-200 ${
+                                isActive(item.href)
+                                  ? 'w-1.5 h-1.5 bg-[var(--color-muted-terracotta)]'
+                                  : 'w-1 h-1 bg-[var(--color-muted-terracotta)]/20 group-hover:bg-[var(--color-muted-terracotta)] group-hover:w-1.5 group-hover:h-1.5'
+                              }`}
+                            />
+                            {item.label}
+                            {/* Active indicator */}
+                            {isActive(item.href) && (
+                              <div className='bottom-0 left-0 absolute bg-[var(--color-muted-terracotta)] w-full h-0.5' />
+                            )}
+                          </Link>
+                        </div>
                       </motion.li>
                     )
                   )}
@@ -573,7 +611,7 @@ function DesktopDropdown({
               duration: 0.2,
               ease: [0.16, 1, 0.3, 1], // Custom easing for smooth feel
             }}
-            className='left-0 absolute bg-[var(--color-warm-beige)] shadow-xl mt-3 border border-[var(--color-earth-brown)]/15 w-72 overflow-hidden'
+            className='left-0 absolute bg-white shadow-xl mt-3 border border-[var(--color-earth-brown)]/15 w-72 overflow-hidden'
             style={{
               boxShadow:
                 '0 10px 40px -10px rgba(107, 79, 79, 0.15), 0 0 0 1px rgba(166, 138, 100, 0.1)',
@@ -611,7 +649,7 @@ function DesktopDropdown({
             {/* Decorative gradient top */}
             <div className='bg-gradient-to-r from-[var(--color-muted-terracotta)]/20 via-[var(--color-earth-brown)]/10 to-[var(--color-muted-terracotta)]/20 w-full h-1' />
 
-            <ul className='py-2'>
+            <ul>
               {item.children!.map((child, index) => (
                 <motion.li
                   key={child.href}
