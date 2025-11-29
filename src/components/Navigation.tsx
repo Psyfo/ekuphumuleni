@@ -177,8 +177,9 @@ export default function Navigation() {
                   <Link
                     href={item.href!}
                     className={[
-                      'relative px-4 py-2.5 text-sm font-semibold transition-all duration-200 group block',
-                      linkColor,
+                      'relative px-4 py-2.5 text-sm font-semibold transition-all duration-200 group inline-flex items-center',
+                      '!text-[var(--color-earth-brown)] hover:!text-[var(--color-muted-terracotta)]',
+                      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-offset-2',
                       isActive(item.href)
                         ? ''
                         : 'hover:bg-[var(--color-warm-beige)]/50',
@@ -280,7 +281,7 @@ export default function Navigation() {
                           type='button'
                           className={[
                             'group flex justify-between items-center px-3 py-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 w-full font-semibold transition-all duration-200',
-                            'text-[var(--color-earth-brown)] hover:text-[var(--color-muted-terracotta)]',
+                            '!text-[var(--color-earth-brown)] hover:!text-[var(--color-muted-terracotta)]',
                             item.children?.some((child) => isActive(child.href))
                               ? 'bg-gradient-to-r from-[var(--color-warm-beige)] to-transparent shadow-sm'
                               : 'hover:bg-white/50',
@@ -344,7 +345,7 @@ export default function Navigation() {
                                 >
                                   <Link
                                     href={child.href}
-                                    className='group flex items-center gap-2 hover:bg-white/70 px-3 py-2 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 text-[var(--color-deep-cocoa)] hover:text-[var(--color-muted-terracotta)] text-sm transition-all duration-200'
+                                    className='group flex items-center gap-2 hover:bg-white/70 px-3 py-2 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 !text-[var(--color-deep-cocoa)] hover:!text-[var(--color-muted-terracotta)] text-sm transition-all duration-200'
                                     onClick={closeMobile}
                                   >
                                     <span className='bg-[var(--color-muted-terracotta)] rounded-full w-1 group-hover:w-2 h-1 transition-all duration-200' />
@@ -370,7 +371,7 @@ export default function Navigation() {
                           href={item.href!}
                           className={[
                             'group flex items-center gap-2 px-3 py-2.5 rounded-lg font-semibold transition-all duration-200',
-                            'text-[var(--color-earth-brown)] hover:text-[var(--color-muted-terracotta)]',
+                            '!text-[var(--color-earth-brown)] hover:!text-[var(--color-muted-terracotta)]',
                             'focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2',
                             isActive(item.href)
                               ? 'bg-gradient-to-r from-[var(--color-warm-beige)] to-transparent shadow-sm'
@@ -490,9 +491,12 @@ function DesktopDropdown({
       <button
         id={buttonId}
         type='button'
-        className={`relative px-4 py-2.5 text-sm font-semibold transition-all duration-200 ${linkColor} group inline-flex items-center gap-1.5 ${
-          hasActiveChild ? '' : 'hover:bg-[var(--color-warm-beige)]/50'
-        }`}
+        className={[
+          'relative px-4 py-2.5 text-sm font-semibold transition-all duration-200 group inline-flex items-center gap-1.5',
+          'text-[var(--color-earth-brown)] hover:text-[var(--color-muted-terracotta)]',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-offset-2',
+          hasActiveChild ? '' : 'hover:bg-[var(--color-warm-beige)]/50',
+        ].join(' ')}
         aria-haspopup='menu'
         aria-controls={menuId}
         aria-expanded={open ? 'true' : 'false'}
