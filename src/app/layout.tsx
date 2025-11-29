@@ -94,6 +94,11 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <head>
+        <link rel='canonical' href='https://ekuphumuleni.ngo' />
+        <meta name='geo.region' content='ZW-BU' />
+        <meta name='geo.placename' content='Bulawayo' />
+        <meta name='geo.position' content='-20.17095;28.62589' />
+        <meta name='ICBM' content='-20.17095, 28.62589' />
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{
@@ -111,18 +116,27 @@ export default function RootLayout({
                 '@type': 'PostalAddress',
                 streetAddress: 'VHCG+86V, Old Falls Rd',
                 addressLocality: 'Bulawayo',
+                addressRegion: 'Bulawayo',
                 addressCountry: 'ZW',
               },
               geo: {
                 '@type': 'GeoCoordinates',
-                latitude: '-20.17095',
-                longitude: '28.62589',
+                latitude: -20.17095,
+                longitude: 28.62589,
               },
               telephone: '+263-292-216-877',
               email: 'administration@ekuphumuleni.ngo',
+              contactPoint: {
+                '@type': 'ContactPoint',
+                telephone: '+263-292-216-877',
+                contactType: 'customer service',
+                email: 'administration@ekuphumuleni.ngo',
+                areaServed: 'ZW',
+                availableLanguage: ['en'],
+              },
               sameAs: [
                 // Add social media profiles when available
-                // 'https://www.facebook.com/ekuphumuleni',
+                'https://www.facebook.com/ebadaleni',
                 // 'https://twitter.com/ekuphumuleni',
               ],
               areaServed: {
@@ -136,6 +150,15 @@ export default function RootLayout({
                 'Rehabilitation Services',
                 'Palliative Care',
                 'Senior Wellness Programs',
+              ],
+              knowsAbout: [
+                'Geriatric Care',
+                'Elderly Care',
+                'Nursing Home Services',
+                'Senior Care',
+                'Rehabilitation',
+                'Palliative Care',
+                'Dementia Care',
               ],
               additionalType: 'https://schema.org/HealthAndBeautyBusiness',
               nonprofitStatus: 'Nonprofit501c3',
