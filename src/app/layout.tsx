@@ -7,8 +7,7 @@ import Navigation from '@/components/Navigation';
 export const metadata: Metadata = {
   metadataBase: new URL('https://ekuphumuleni.ngo'),
   title: {
-    default:
-      'Ekuphumuleni Geriatric Nursing Home | Compassionate Elderly Care in Bulawayo, Zimbabwe',
+    default: 'Ekuphumuleni Geriatric Nursing Home | Bulawayo',
     template: '%s | Ekuphumuleni',
   },
   description:
@@ -53,7 +52,7 @@ export const metadata: Metadata = {
       'Over 40 years of excellence in geriatric care. Professional nursing, rehabilitation, and compassionate elderly care in Bulawayo, Zimbabwe.',
     images: [
       {
-        url: '/images/brand/ekuphumuleni_logo.png',
+        url: 'https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo.png',
         width: 512,
         height: 512,
         alt: 'Ekuphumuleni Geriatric Nursing Home Logo',
@@ -66,7 +65,7 @@ export const metadata: Metadata = {
       'Ekuphumuleni Geriatric Nursing Home | Compassionate Elderly Care in Bulawayo, Zimbabwe',
     description:
       'Over 40 years of excellence in geriatric care. Professional nursing, rehabilitation, and compassionate elderly care in Bulawayo, Zimbabwe.',
-    images: ['/images/brand/ekuphumuleni_logo.png'],
+    images: ['https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo.png'],
   },
   robots: {
     index: true,

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     url: 'https://ekuphumuleni.ngo/about',
     images: [
       {
-        url: '/images/brand/ekuphumuleni_logo.png',
+        url: 'https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo.png',
         width: 512,
         height: 512,
         alt: 'Ekuphumuleni Geriatric Nursing Home Logo',
