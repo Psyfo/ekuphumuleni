@@ -63,8 +63,8 @@ export default function ServicesSection() {
           </h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
           <p className='mx-auto max-w-2xl !text-lg leading-relaxed body-text'>
-            Comprehensive care tailored to your loved ones' unique needs,
-            delivered with compassion and professionalism
+            Comprehensive care tailored to each resident's needs, delivered by a
+            skilled, multidisciplinary team
           </p>
         </motion.div>
 
@@ -90,8 +90,8 @@ export default function ServicesSection() {
             />
             <h3 className='mb-3 !text-xl heading-3'>Nursing Care</h3>
             <p className='!text-sm leading-relaxed body-text'>
-              Compassionate, round‑the‑clock care tailored to each resident's
-              needs.
+              Round‑the‑clock nursing care, observation, and support for each
+              resident.
             </p>
           </motion.div>
 

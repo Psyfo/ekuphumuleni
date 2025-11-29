@@ -61,8 +61,8 @@ export default function MeetTheTeamSection() {
           variants={item}
           className='mx-auto mb-10 max-w-2xl !text-lg leading-relaxed body-text'
         >
-          Dedicated professionals and board members committed to excellence and
-          compassionate service.
+          Clinical, administrative, and board professionals responsible for the
+          day‑to‑day running and governance of the home.
         </motion.p>
 
         <motion.div

@@ -68,7 +68,7 @@ export default function Footer() {
               </h2>
               <div className='flex items-center gap-2 text-[var(--color-warm-beige)] text-sm italic'>
                 <HeartIcon className='w-4 h-4' aria-hidden='true' />
-                <span>Caring since 1983</span>
+                <span>Serving the elderly since 1983</span>
               </div>
             </div>
           </motion.div>

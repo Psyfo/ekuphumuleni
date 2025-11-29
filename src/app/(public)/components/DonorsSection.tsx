@@ -61,8 +61,8 @@ export default function DonorsSection() {
           variants={item}
           className='mx-auto mb-10 max-w-2xl !text-lg leading-relaxed body-text'
         >
-          We are grateful to our generous donors and partners whose support
-          brings comfort and hope.
+          We acknowledge the donors and partners whose contributions help us
+          maintain services, staffing, and facilities.
         </motion.p>
 
         <motion.div

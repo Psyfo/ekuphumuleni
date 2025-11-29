@@ -31,7 +31,7 @@ administration@ekuphumuleni.ngo
 
 ### Mission Statement
 
-To create peaceful, nurturing environments where people can find rest, healing, and restoration in body and spirit.
+To provide stable, well‑run residential nursing environments where people receive appropriate care, rest, and support.
 
 ### Brand Values
 
@@ -262,19 +262,19 @@ Use simple, outlined icons with rounded corners for a soft, approachable feel. I
 
 Our communication style is:
 
-- **Warm:** Friendly and inviting
+- **Warm:** Friendly and approachable without exaggeration
 - **Clear:** Direct and easy to understand
-- **Compassionate:** Empathetic and supportive
+- **Grounded:** Focused on facts, services, and outcomes
 - **Respectful:** Honoring dignity and cultural sensitivity
-- **Confident:** Knowledgeable without being clinical
+- **Confident:** Knowledgeable without being technical or cold
 
 ### Tone Considerations
 
 While our voice remains consistent, our tone may adjust depending on the context:
 
 - **Informational content:** Clear, helpful, and straightforward
-- **Crisis situations:** Calm, reassuring, and directive
-- **Marketing materials:** Warm, inviting, and inspiring
+- **Crisis situations:** Calm, concise, and directive
+- **Marketing materials:** Warm, inviting, and specific about services
 - **Community outreach:** Inclusive, engaging, and conversational
 
 ## 8. Applications
