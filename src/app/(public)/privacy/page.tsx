@@ -2,8 +2,27 @@ import { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Ekuphumuleni',
-  description: 'Privacy Policy - Coming Soon',
+  title: 'Privacy Policy',
+  description:
+    'Privacy Policy for Ekuphumuleni Geriatric Nursing Home. Learn how we protect and handle personal information, resident data, and maintain confidentiality in accordance with Zimbabwe privacy laws.',
+  keywords: [
+    'privacy policy',
+    'data protection',
+    'patient confidentiality',
+    'nursing home privacy',
+    'Zimbabwe privacy laws',
+  ],
+  openGraph: {
+    title: 'Privacy Policy | Ekuphumuleni',
+    description:
+      'Learn how we protect and handle personal information and maintain confidentiality.',
+    type: 'website',
+    url: 'https://ekuphumuleni.ngo/privacy',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function PrivacyPage() {

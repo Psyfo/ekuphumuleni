@@ -4,14 +4,31 @@ import ContactForm from './ContactForm';
 import ContactInfoSection from './ContactInfoSection';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Ekuphumuleni Geriatric Nursing Home',
+  title: 'Contact Us',
   description:
-    "Get in touch with Ekuphumuleni. We're here to answer your questions about our geriatric care services, facilities, and admission process in Bulawayo, Zimbabwe.",
+    'Get in touch with Ekuphumuleni Geriatric Nursing Home. Contact us at +263 292 216 877 or administration@ekuphumuleni.ngo for inquiries about our elderly care services, facilities, admission process, and visiting arrangements in Bulawayo, Zimbabwe.',
+  keywords: [
+    'contact Ekuphumuleni',
+    'nursing home contact',
+    'Bulawayo elderly care contact',
+    'geriatric care inquiries',
+    'nursing home admission',
+    'elderly care information Zimbabwe',
+  ],
   openGraph: {
     title: 'Contact Us | Ekuphumuleni Geriatric Nursing Home',
     description:
-      'Reach out to our team for inquiries about elderly care services in Bulawayo, Zimbabwe.',
+      'Reach out to our team for inquiries about elderly care services, admission process, and facilities in Bulawayo, Zimbabwe. Call +263 292 216 877.',
     type: 'website',
+    url: 'https://ekuphumuleni.ngo/contact',
+    images: [
+      {
+        url: '/images/brand/ekuphumuleni_logo.png',
+        width: 512,
+        height: 512,
+        alt: 'Ekuphumuleni Geriatric Nursing Home Logo',
+      },
+    ],
   },
 };
 

@@ -6,14 +6,33 @@ import FacilitiesShowcaseSection from './FacilitiesShowcaseSection';
 import SustainabilitySection from './SustainabilitySection';
 
 export const metadata: Metadata = {
-  title: 'Our Facilities | Ekuphumuleni Geriatric Nursing Home',
+  title: 'Our Facilities',
   description:
-    'Explore our modern, comfortable facilities designed for senior care. From spacious living areas to sustainable initiatives including solar energy and organic gardens.',
+    "Explore Ekuphumuleni's modern, comfortable facilities designed for exceptional senior care in Bulawayo. Features include spacious private and shared rooms, accessible common areas, sustainable solar energy, therapeutic organic gardens, and secure outdoor spaces for residents.",
+  keywords: [
+    'nursing home facilities',
+    'geriatric care facilities',
+    'elderly care amenities',
+    'senior living spaces',
+    'accessible nursing home',
+    'sustainable elderly care',
+    'Bulawayo nursing home facilities',
+    'therapeutic gardens',
+  ],
   openGraph: {
     title: 'Our Facilities | Ekuphumuleni Geriatric Nursing Home',
     description:
-      'Explore our modern, comfortable facilities designed for senior care. From spacious living areas to sustainable initiatives including solar energy and organic gardens.',
+      'Modern, comfortable facilities designed for senior care. Spacious living areas, sustainable solar energy, therapeutic organic gardens, and more.',
     type: 'website',
+    url: 'https://ekuphumuleni.ngo/facilities',
+    images: [
+      {
+        url: '/images/brand/ekuphumuleni_logo.png',
+        width: 512,
+        height: 512,
+        alt: 'Ekuphumuleni Geriatric Nursing Home Logo',
+      },
+    ],
   },
 };
 

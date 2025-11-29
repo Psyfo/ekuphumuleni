@@ -7,14 +7,33 @@ import AdministrationSection from './AdministrationSection';
 import StaffSection from './StaffSection';
 
 export const metadata: Metadata = {
-  title: 'Meet the Team | Ekuphumuleni Geriatric Nursing Home',
+  title: 'Meet the Team',
   description:
-    'Meet the dedicated team at Ekuphumuleni - from our board of trustees to our compassionate staff, every member plays a vital role in providing exceptional geriatric care.',
+    'Meet the dedicated team at Ekuphumuleni Geriatric Nursing Home. Our board of trustees, experienced administrators, skilled nursing staff, and compassionate caregivers work together to provide exceptional elderly care in Bulawayo, Zimbabwe. Every member plays a vital role in our mission.',
+  keywords: [
+    'nursing home staff',
+    'geriatric care team',
+    'healthcare professionals',
+    'nursing staff Bulawayo',
+    'elderly care team',
+    'board of trustees',
+    'nursing home administration',
+    'skilled caregivers',
+  ],
   openGraph: {
     title: 'Meet the Team | Ekuphumuleni Geriatric Nursing Home',
     description:
-      'Meet the dedicated team at Ekuphumuleni - from our board of trustees to our compassionate staff, every member plays a vital role in providing exceptional geriatric care.',
+      'Meet our dedicated team - board of trustees, administrators, skilled nursing staff, and compassionate caregivers providing exceptional geriatric care.',
     type: 'website',
+    url: 'https://ekuphumuleni.ngo/team',
+    images: [
+      {
+        url: '/images/brand/ekuphumuleni_logo.png',
+        width: 512,
+        height: 512,
+        alt: 'Ekuphumuleni Geriatric Nursing Home Logo',
+      },
+    ],
   },
 };
 
