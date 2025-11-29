@@ -53,7 +53,8 @@ export default function MissionVisionSection() {
           </h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
           <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
-            Guided by purpose, driven by compassion, committed to excellence
+            Guided by a clear mandate, focused on quality, and accountable for
+            outcomes
           </p>
         </motion.div>
 
@@ -132,9 +133,9 @@ export default function MissionVisionSection() {
               </p>
               <div className='mt-6 pt-6 border-[var(--color-earth-brown)]/10 border-t'>
                 <p className='text-[var(--color-deep-cocoa)]/70 !text-sm italic body-text'>
-                  We envision a future where every elder receives care that
-                  honors their dignity, celebrates their life story, and
-                  supports their journey with unwavering compassion.
+                  We envision a future where every older person who needs our
+                  services receives consistent, appropriate care that protects
+                  their dignity and supports daily living.
                 </p>
               </div>
             </div>

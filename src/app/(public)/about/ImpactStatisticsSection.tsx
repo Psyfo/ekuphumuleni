@@ -156,8 +156,8 @@ export default function ImpactStatisticsSection() {
           </h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
           <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
-            Over four decades of dedicated service, compassionate care, and
-            meaningful impact
+            Over four decades of residential nursing, rehabilitation, and
+            support for older adults
           </p>
         </motion.div>
 
@@ -203,8 +203,8 @@ export default function ImpactStatisticsSection() {
             </p>
             <p className='text-[var(--color-deep-cocoa)]/80 leading-relaxed body-text'>
               Our modern 100-bed facility, combined with our experienced team of
-              healthcare professionals, ensures that every resident receives
-              personalized, compassionate care in a warm and supportive
+              healthcare professionals, provides structured nursing, daily
+              living support, and rehabilitation services in a stable
               environment.
             </p>
           </div>

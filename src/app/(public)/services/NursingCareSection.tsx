@@ -30,9 +30,9 @@ const NURSING_FEATURES: Feature[] = [
   },
   {
     icon: HeartIcon,
-    title: 'Compassionate Approach',
+    title: 'Bedside Care',
     description:
-      'Every interaction is grounded in empathy, respect, and genuine concern for the wellbeing of our residents.',
+      'Nurses and care assistants provide bedside support, monitoring, and assistance with daily living tasks.',
   },
   {
     icon: UserGroupIcon,
@@ -81,8 +81,8 @@ export default function NursingCareSection() {
           </h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
           <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
-            Our expert nursing team delivers compassionate, evidence-based care
-            designed to support health, dignity, and independence
+            Our nursing team delivers evidence-based geriatric care designed to
+            support residents&apos; health, safety, and level of independence
           </p>
         </motion.div>
 
@@ -111,11 +111,11 @@ export default function NursingCareSection() {
               Dedicated to Your Wellbeing
             </h3>
             <p className='mb-6 leading-relaxed body-text'>
-              Our nursing team provides comprehensive medical care and personal
-              support, ensuring every resident receives the attention and
-              expertise they deserve. From medication management to wound care,
-              we handle all aspects of geriatric nursing with professionalism
-              and compassion.
+              Our nursing team provides medical care and personal support
+              through medication administration, observations, and practical
+              assistance. From wound care to monitoring long-term conditions, we
+              handle core geriatric nursing tasks in a structured, safe
+              environment.
             </p>
             <ul className='space-y-3'>
               <li className='flex items-start gap-3'>

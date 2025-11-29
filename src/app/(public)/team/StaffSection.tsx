@@ -97,8 +97,8 @@ export default function StaffSection() {
           </h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
           <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
-            Our compassionate team works tirelessly to provide exceptional care
-            and create a warm, welcoming environment for all residents
+            Our nursing, care, and support teams work in shifts to provide daily
+            care, monitoring, and assistance for residents
           </p>
         </motion.div>
 
@@ -193,10 +193,9 @@ export default function StaffSection() {
         <motion.div variants={item} className='mt-8'>
           <div className='bg-white shadow-warm mx-auto p-6 lg:p-8 border border-subtle rounded-2xl max-w-4xl'>
             <p className='text-center leading-relaxed body-text'>
-              Our dedicated staff work tirelessly around the clock to provide
-              compassionate care and support to all our residents. With a
-              commitment to excellence and dignity, they ensure a warm and
-              welcoming environment every single day.
+              Staff work across day, night, and weekend shifts to provide
+              hands‑on care, supervision, and practical support. Their focus is
+              on safety, clinical tasks, and daily living needs for residents.
             </p>
           </div>
         </motion.div>

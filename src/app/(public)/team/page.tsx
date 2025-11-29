@@ -9,7 +9,7 @@ import StaffSection from './StaffSection';
 export const metadata: Metadata = {
   title: 'Meet the Team',
   description:
-    'Meet the dedicated team at Ekuphumuleni Geriatric Nursing Home. Our board of trustees, experienced administrators, skilled nursing staff, and compassionate caregivers work together to provide exceptional elderly care in Bulawayo, Zimbabwe. Every member plays a vital role in our mission.',
+    'Meet the team at Ekuphumuleni Geriatric Nursing Home. Our board of trustees, administrators, nursing staff, and care workers manage the day-to-day running of the home and delivery of elderly care in Bulawayo, Zimbabwe.',
   keywords: [
     'nursing home staff',
     'geriatric care team',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Meet the Team | Ekuphumuleni Geriatric Nursing Home',
     description:
-      'Meet our dedicated team - board of trustees, administrators, skilled nursing staff, and compassionate caregivers providing exceptional geriatric care.',
+      'Meet our team - board of trustees, administrators, nursing staff, and care workers responsible for the operation of Ekuphumuleni and delivery of geriatric care.',
     type: 'website',
     url: 'https://ekuphumuleni.ngo/team',
     images: [

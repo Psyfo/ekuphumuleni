@@ -80,17 +80,18 @@ export default function TeamHeroSection() {
           variants={item}
           className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text'
         >
-          Meet the dedicated individuals who make Ekuphumuleni a place of
-          warmth, care, and dignity. From our board of trustees to our
-          compassionate staff, every member plays a vital role in our mission.
+          Meet the individuals responsible for the clinical work, day‑to‑day
+          operations, and governance of Ekuphumuleni. From our board of trustees
+          to front‑line staff, every member has defined duties in how the home
+          is run.
         </motion.p>
 
         {/* Decorative Quote */}
         <motion.div variants={item} className='mx-auto mt-12 max-w-2xl'>
           <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl'>
             <p className='text-[var(--color-deep-cocoa)] text-lg text-center italic leading-relaxed'>
-              &ldquo;Together, we create a home where every resident is valued,
-              respected, and cared for with compassion.&rdquo;
+              &ldquo;Together, we manage a home where every resident is treated
+              with dignity and receives consistent nursing and support.&rdquo;
             </p>
           </div>
         </motion.div>

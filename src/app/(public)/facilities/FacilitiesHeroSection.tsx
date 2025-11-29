@@ -80,16 +80,17 @@ export default function FacilitiesHeroSection() {
           variants={item}
           className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text'
         >
-          Modern, comfortable spaces thoughtfully designed to create a warm,
-          home-like environment where residents feel safe, valued, and at peace
+          Modern, comfortable spaces designed for residential nursing, daily
+          living, and visiting families, with attention to safety and access
         </motion.p>
 
         {/* Decorative Quote */}
         <motion.div variants={item} className='mx-auto mt-12 max-w-2xl'>
           <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl'>
             <p className='!text-[var(--color-deep-cocoa)] text-lg text-center italic leading-relaxed'>
-              &ldquo;A place designed not just for living, but for thriving —
-              where comfort meets care&rdquo;
+              &ldquo;A facility designed to combine accommodation, nursing
+              stations, and shared spaces so daily care is easier to deliver and
+              receive.&rdquo;
             </p>
           </div>
         </motion.div>
