@@ -7,84 +7,67 @@ import Link from 'next/link';
 export default function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        duration: 0.4,
+        staggerChildren: 0.12,
+        when: 'beforeChildren' as const,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  };
+
   return (
     <section
       id='hero'
-      className='relative place-items-center grid bg-gradient-to-br from-[var(--color-warm-beige)] via-[var(--color-warm-beige)] to-[var(--color-soft-sand)] px-4 py-20 min-h-[calc(100dvh-4rem)] overflow-hidden text-center'
       aria-label='Hero Section'
+      className='relative flex justify-center items-center bg-gradient-to-br from-[var(--color-warm-beige)] via-[var(--color-soft-sand)] to-[var(--color-off-white)] px-4 min-h-[calc(100vh-4rem)]'
     >
-      {/* Subtle decorative gradient overlay */}
-      <div className='absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[var(--color-off-white)]/20 pointer-events-none' />
-
       <motion.div
-        initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className='z-10 relative mx-auto max-w-5xl'
+        className='mx-auto max-w-5xl text-center'
+        variants={container}
+        initial='hidden'
+        animate='show'
       >
         {/* Logo */}
-        <motion.div
-          initial={{
-            opacity: 0,
-            scale: prefersReducedMotion ? 1 : 0.95,
-            y: prefersReducedMotion ? 0 : 8,
-          }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className='mx-auto mb-6'
-        >
-          <div className='inline-block relative'>
-            {/* Subtle glow effect behind logo */}
-            <div className='absolute inset-0 bg-[var(--color-muted-terracotta)]/10 blur-3xl scale-110' />
-            <Image
-              src='/images/brand/ekuphumuleni_logo.png'
-              alt='Ekuphumuleni logo'
-              width={512}
-              height={512}
-              priority
-              sizes='(min-width: 1024px) 288px, (min-width: 640px) 256px, 192px'
-              className='relative drop-shadow-lg mx-auto w-48 sm:w-64 lg:w-72 h-auto object-contain'
-              unoptimized
-            />
-          </div>
+        <motion.div variants={item} className='mx-auto mb-10'>
+          <Image
+            src='/images/brand/ekuphumuleni_master_terracotta.svg'
+            alt='Ekuphumuleni logo'
+            width={320}
+            height={320}
+            priority
+            sizes='(min-width: 1024px) 320px, (min-width: 640px) 280px, 240px'
+            className='mx-auto w-60 sm:w-70 lg:w-80 h-auto object-contain'
+          />
         </motion.div>
 
-        {/* Headings */}
+        {/* Page Title */}
         <motion.h1
-          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.15 }}
-          className='mt-2 mb-3 !font-serif !text-3xl sm:!text-4xl lg:!text-5xl uppercase tracking-[0.2em] heading-1'
+          variants={item}
+          className='mb-4 !font-bold !text-5xl md:!text-6xl lg:!text-7xl text-center heading-1'
         >
           Ekuphumuleni
         </motion.h1>
 
+        {/* Subtitle */}
         <motion.p
-          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.25 }}
-          className='mb-4 !font-sans font-semibold !text-[var(--color-muted-terracotta)] !text-xl sm:!text-2xl lg:!text-3xl'
+          variants={item}
+          className='mb-12 !font-semibold !text-[var(--color-muted-terracotta)] !text-2xl md:!text-3xl lg:!text-4xl text-center'
         >
           Geriatric Nursing Home
         </motion.p>
 
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.35 }}
-          className='mx-auto mb-10 max-w-2xl font-medium !text-[var(--color-deep-cocoa)]/80 text-base sm:text-lg'
-        >
-          A dedicated geriatric nursing home where dignity, safety, and daily
-          care are at the centre of life
-        </motion.p>
-
         {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.45 }}
+          variants={item}
           className='flex sm:flex-row flex-col justify-center items-center gap-4'
         >
           <Link
@@ -103,9 +86,6 @@ export default function HeroSection() {
           </Link>
         </motion.div>
       </motion.div>
-
-      {/* Decorative bottom fade */}
-      <div className='right-0 bottom-0 left-0 absolute bg-gradient-to-t from-[var(--color-off-white)]/30 to-transparent h-24 pointer-events-none' />
     </section>
   );
 }
