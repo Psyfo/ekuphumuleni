@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
@@ -104,8 +105,8 @@ export default function Navigation() {
   const linkColor =
     'text-[var(--color-earth-brown)] hover:text-[var(--color-muted-terracotta)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-offset-2';
 
-  const isActive = (href?: string) =>
-    href &&
+  const isActive = (href?: string): boolean =>
+    !!href &&
     (href === '/' ? pathname === '/' : pathname.startsWith(href.split('#')[0]));
 
   return (
