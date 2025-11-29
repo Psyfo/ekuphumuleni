@@ -80,9 +80,9 @@ export default function DonorsHeroSection() {
           variants={item}
           className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text'
         >
-          Honoring the generous individuals, organizations, and community
-          members whose compassion and support have helped us serve our
-          residents with dignity and care
+          Honoring the individuals, organizations, and community members whose
+          support helps us maintain residential nursing care and services for
+          older adults
         </motion.p>
 
         {/* Decorative Quote */}

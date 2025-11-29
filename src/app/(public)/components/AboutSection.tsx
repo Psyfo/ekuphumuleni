@@ -26,8 +26,8 @@ export default function AboutSection() {
           <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
             Ekuphumuleni means "place of rest", a sanctuary for elderly
             individuals requiring nursing care. Established in 1983 by Polyanna
-            Mahlangu, it was founded to provide compassionate, professional care
-            for older adults in a peaceful, dignified environment.
+            Mahlangu, it was founded to provide reliable, professional care for
+            older adults in a peaceful, dignified environment.
           </p>
         </motion.div>
 
@@ -66,10 +66,10 @@ export default function AboutSection() {
             <h3 className='mb-4 !text-2xl heading-3'>Our Establishment</h3>
             <div className='bg-[var(--color-muted-terracotta)] mb-4 rounded-full w-12 h-1' />
             <p className='!text-base leading-relaxed body-text'>
-              Founded to provide dependable, compassionate care, our home blends
-              professional excellence with a warm, family-like environment. Over
-              four decades, we have remained committed to honoring the dignity
-              and individuality of every resident.
+              Founded to provide dependable care, our home blends professional
+              excellence with a stable, family-like environment. Over four
+              decades, we have remained committed to honoring the dignity and
+              individuality of every resident.
             </p>
           </motion.div>
         </div>
@@ -129,7 +129,7 @@ export default function AboutSection() {
             <h3 className='mb-3 !text-xl heading-3'>Our Vision</h3>
             <p className='leading-relaxed body-text'>
               A community where elders thrive with dignity, safety, and joy
-              through compassionate, culturally sensitive care.
+              through consistent, culturally sensitive care.
             </p>
           </div>
         </motion.div>

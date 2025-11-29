@@ -10,7 +10,7 @@ import MissionVisionSection from './MissionVisionSection';
 export const metadata: Metadata = {
   title: 'About Us',
   description:
-    'Learn about Ekuphumuleni Geriatric Nursing Home - over 40 years of compassionate geriatric care in Bulawayo, Zimbabwe. Discover our mission to provide dignified, professional elderly care, our vision for excellence, and the values that guide our dedicated team.',
+    'Learn about Ekuphumuleni Geriatric Nursing Home - over 40 years of geriatric care in Bulawayo, Zimbabwe. Discover our mission to provide dignified, professional elderly care, our vision for excellence, and the values that guide our team.',
   keywords: [
     'about Ekuphumuleni',
     'geriatric care history',
@@ -18,12 +18,12 @@ export const metadata: Metadata = {
     'nursing home values',
     'Zimbabwe elderly care history',
     'Bulawayo nursing home',
-    'compassionate care philosophy',
+    'elderly care philosophy',
   ],
   openGraph: {
     title: 'About Us | Ekuphumuleni Geriatric Nursing Home',
     description:
-      'Over 40 years of compassionate geriatric care in Bulawayo, Zimbabwe. Learn about our mission, vision, values, and legacy of excellence in elderly care.',
+      'Over 40 years of geriatric care in Bulawayo, Zimbabwe. Learn about our mission, vision, values, and legacy of excellence in elderly care.',
     type: 'website',
     url: 'https://ekuphumuleni.ngo/about',
     images: [

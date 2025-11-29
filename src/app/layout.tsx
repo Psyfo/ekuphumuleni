@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     template: '%s | Ekuphumuleni',
   },
   description:
-    'Ekuphumuleni Geriatric Nursing Home provides compassionate, professional elderly care in Bulawayo, Zimbabwe. Over 40 years of excellence in geriatric nursing, skilled medical care, rehabilitation services, and dignified senior living in a warm, caring environment.',
+    'Ekuphumuleni Geriatric Nursing Home provides professional elderly care in Bulawayo, Zimbabwe. Over 40 years of excellence in geriatric nursing, skilled medical care, rehabilitation services, and dignified senior living in a calm, well-supported environment.',
   keywords: [
     'geriatric care Zimbabwe',
     'nursing home Bulawayo',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     'elderly nursing care',
     'senior living Bulawayo',
     'Zimbabwe elderly care',
-    'compassionate geriatric care',
+    'professional geriatric care',
     'skilled nursing facility',
     'rehabilitation services elderly',
     'palliative care Zimbabwe',
@@ -47,9 +47,9 @@ export const metadata: Metadata = {
     url: 'https://ekuphumuleni.ngo',
     siteName: 'Ekuphumuleni Geriatric Nursing Home',
     title:
-      'Ekuphumuleni Geriatric Nursing Home | Compassionate Elderly Care in Bulawayo, Zimbabwe',
+      'Ekuphumuleni Geriatric Nursing Home | Elderly Nursing Care in Bulawayo, Zimbabwe',
     description:
-      'Over 40 years of excellence in geriatric care. Professional nursing, rehabilitation, and compassionate elderly care in Bulawayo, Zimbabwe.',
+      'Over 40 years of excellence in geriatric care. Professional nursing, rehabilitation, and elderly care in Bulawayo, Zimbabwe.',
     images: [
       {
         url: 'https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo.png',
@@ -62,9 +62,9 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title:
-      'Ekuphumuleni Geriatric Nursing Home | Compassionate Elderly Care in Bulawayo, Zimbabwe',
+      'Ekuphumuleni Geriatric Nursing Home | Elderly Nursing Care in Bulawayo, Zimbabwe',
     description:
-      'Over 40 years of excellence in geriatric care. Professional nursing, rehabilitation, and compassionate elderly care in Bulawayo, Zimbabwe.',
+      'Over 40 years of excellence in geriatric care. Professional nursing, rehabilitation, and elderly care in Bulawayo, Zimbabwe.',
     images: ['https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo.png'],
   },
   robots: {
@@ -110,7 +110,7 @@ export default function RootLayout({
               url: 'https://ekuphumuleni.ngo',
               logo: 'https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo.png',
               description:
-                'Non-profit organization providing compassionate geriatric nursing care and elderly support services in Bulawayo, Zimbabwe.',
+                'Non-profit organization providing geriatric nursing care and elderly support services in Bulawayo, Zimbabwe.',
               foundingDate: '1980',
               address: {
                 '@type': 'PostalAddress',

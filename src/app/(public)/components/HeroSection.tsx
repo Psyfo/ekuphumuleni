@@ -76,8 +76,8 @@ export default function HeroSection() {
           transition={{ duration: 0.5, ease: 'easeOut', delay: 0.35 }}
           className='mx-auto mb-10 max-w-2xl font-medium !text-[var(--color-deep-cocoa)]/80 text-base sm:text-lg'
         >
-          A sanctuary of compassionate care, where dignity meets comfort in
-          every moment
+          A dedicated geriatric nursing home where dignity, safety, and daily
+          care are at the centre of life
         </motion.p>
 
         {/* CTAs */}

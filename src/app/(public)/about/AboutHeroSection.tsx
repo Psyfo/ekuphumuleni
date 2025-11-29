@@ -80,7 +80,7 @@ export default function AboutHeroSection() {
           variants={item}
           className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text'
         >
-          A legacy of compassionate care, dignity, and restoration since 1983
+          A legacy of geriatric nursing, dignity, and restoration since 1983
         </motion.p>
 
         {/* Decorative Quote */}
@@ -88,8 +88,8 @@ export default function AboutHeroSection() {
           <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl'>
             <p className='!text-[var(--color-deep-cocoa)] text-lg text-center italic leading-relaxed'>
               &ldquo;Ekuphumuleni means &lsquo;place of rest&rsquo; — a
-              sanctuary where dignity, care, and compassion come together to
-              honor every individual&rdquo;
+              sanctuary where dignity, skilled care, and respect come together
+              to honor every individual&rdquo;
             </p>
           </div>
         </motion.div>

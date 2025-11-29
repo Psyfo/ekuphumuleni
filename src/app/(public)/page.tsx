@@ -12,7 +12,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Home',
   description:
-    'Ekuphumuleni Geriatric Nursing Home - Over 40 years of compassionate elderly care in Bulawayo, Zimbabwe. Professional nursing, rehabilitation services, and dignified senior living in a warm, caring environment.',
+    'Ekuphumuleni Geriatric Nursing Home - Over 40 years of elderly care in Bulawayo, Zimbabwe. Professional nursing, rehabilitation services, and dignified senior living in a supportive environment.',
   keywords: [
     'geriatric care Zimbabwe',
     'nursing home Bulawayo',
@@ -23,10 +23,9 @@ export const metadata: Metadata = {
     'Zimbabwe elderly services',
   ],
   openGraph: {
-    title:
-      'Ekuphumuleni Geriatric Nursing Home | Compassionate Elderly Care in Bulawayo',
+    title: 'Ekuphumuleni Geriatric Nursing Home | Elderly Care in Bulawayo',
     description:
-      'Over 40 years of excellence in geriatric care. Professional nursing, rehabilitation, and compassionate elderly care in Bulawayo, Zimbabwe.',
+      'Over 40 years of excellence in geriatric care. Professional nursing, rehabilitation, and elderly care in Bulawayo, Zimbabwe.',
     type: 'website',
     url: 'https://ekuphumuleni.ngo',
     images: [
