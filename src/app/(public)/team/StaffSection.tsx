@@ -15,17 +15,17 @@ type StaffImage = { src: string; alt: string; caption?: string };
 
 const IMAGES: StaffImage[] = [
   {
-    src: '/images/team/staff/staff_01.jpg',
+    src: '/images/team/staff/staff_01.JPG',
     alt: 'Full staff photo - day shift',
     caption: 'Day Shift Staff',
   },
   {
-    src: '/images/team/staff/staff_02.jpg',
+    src: '/images/team/staff/staff_02.JPG',
     alt: 'Full staff photo - night shift',
     caption: 'Night Shift Staff',
   },
   {
-    src: '/images/team/staff/staff_03.jpg',
+    src: '/images/team/staff/staff_03.JPG',
     alt: 'Full staff photo - weekend team',
     caption: 'Weekend Team',
   },
