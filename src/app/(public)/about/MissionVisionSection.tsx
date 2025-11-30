@@ -45,7 +45,7 @@ export default function MissionVisionSection() {
         variants={container}
         initial='hidden'
         whileInView='show'
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         <motion.div variants={item} className='mb-16 text-center'>
           <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>

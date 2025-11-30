@@ -148,7 +148,7 @@ export default function ImpactStatisticsSection() {
         variants={container}
         initial='hidden'
         whileInView='show'
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         <motion.div variants={titleVariant} className='mb-16 text-center'>
           <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
