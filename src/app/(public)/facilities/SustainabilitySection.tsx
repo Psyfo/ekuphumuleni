@@ -152,7 +152,7 @@ export default function SustainabilitySection() {
           >
             <div className='relative aspect-[4/3]'>
               <Image
-                src='/images/facilities/sustainability/garden.jpg'
+                src='/images/facilities/sustainability/garden.JPG'
                 alt='Organic vegetable garden producing fresh produce'
                 fill
                 sizes='(min-width:640px) 50vw, 100vw'
