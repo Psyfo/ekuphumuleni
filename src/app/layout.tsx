@@ -3,6 +3,7 @@ import './styles/globals.css';
 
 import Footer from '@/components/Footer';
 import Navigation from '@/components/Navigation';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ekuphumuleni.ngo'),
@@ -172,6 +173,10 @@ export default function RootLayout({
         {children}
         <Footer />
       </body>
+      {process.env.NODE_ENV === 'production' &&
+        process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
     </html>
   );
 }
