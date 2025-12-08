@@ -13,14 +13,18 @@ const contactDetails = [
   {
     icon: MapPinIcon,
     title: 'Our Location',
-    content: ['Old Falls Rd', 'Bulawayo, Zimbabwe'],
+    content: [
+      'Stand 7165 Old Falls Road',
+      'P O Box 1667',
+      'Bulawayo, Zimbabwe',
+    ],
     link: null,
   },
   {
     icon: PhoneIcon,
     title: 'Phone',
-    content: ['+263 292 216 877'],
-    link: 'tel:+263292216877',
+    content: ['Tel: +263 292 216877', 'Mobile: +263 778 719166'],
+    link: null,
   },
   {
     icon: EnvelopeIcon,
@@ -32,9 +36,8 @@ const contactDetails = [
     icon: ClockIcon,
     title: 'Visiting Hours',
     content: [
-      'Monday - Friday: 9:00 AM - 5:00 PM',
-      'Saturday: 9:00 AM - 1:00 PM',
-      'Sunday: Closed',
+      'Patient Visits: Daily 8:00 AM - 4:00 PM',
+      'Office Hours: Mon - Fri 8:00 AM - 4:00 PM',
     ],
     link: null,
   },

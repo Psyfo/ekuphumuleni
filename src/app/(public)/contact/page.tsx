@@ -6,7 +6,7 @@ import ContactInfoSection from './ContactInfoSection';
 export const metadata: Metadata = {
   title: 'Contact Us',
   description:
-    'Get in touch with Ekuphumuleni Geriatric Nursing Home. Contact us at +263 292 216 877 or administration@ekuphumuleni.ngo for inquiries about our elderly care services, facilities, admission process, and visiting arrangements in Bulawayo, Zimbabwe.',
+    'Get in touch with Ekuphumuleni Geriatric Nursing Home. Located at Stand 7165 Old Falls Road, Bulawayo. Call +263 292 216877 or +263 778 719166, or email administration@ekuphumuleni.ngo. Patient visits daily 8AM-4PM. Office hours Mon-Fri 8AM-4PM.',
   keywords: [
     'contact Ekuphumuleni',
     'nursing home contact',
@@ -14,11 +14,15 @@ export const metadata: Metadata = {
     'geriatric care inquiries',
     'nursing home admission',
     'elderly care information Zimbabwe',
+    'Old Falls Road Bulawayo',
+    'Stand 7165 Old Falls Road',
+    'visiting hours',
+    'patient visits',
   ],
   openGraph: {
     title: 'Contact Us | Ekuphumuleni Geriatric Nursing Home',
     description:
-      'Reach out to our team for inquiries about elderly care services, admission process, and facilities in Bulawayo, Zimbabwe. Call +263 292 216 877.',
+      'Reach out to our team for inquiries about elderly care services, admission process, and facilities in Bulawayo, Zimbabwe. Call +263 292 216877 or +263 778 719166. Patient visits daily 8AM-4PM.',
     type: 'website',
     url: 'https://ekuphumuleni.ngo/contact',
     images: [

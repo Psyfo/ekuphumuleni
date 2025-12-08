@@ -81,12 +81,20 @@ export default function ContactSection() {
               <PhoneIcon className='w-6 h-6 text-[var(--color-muted-terracotta)]' />
             </div>
             <h3 className='mb-3 !text-lg heading-3'>Phone</h3>
-            <a
-              href='tel:+263292216877'
-              className='font-medium !text-[var(--color-muted-terracotta)] hover:underline body-text'
-            >
-              +263 292 216 877
-            </a>
+            <div className='space-y-1'>
+              <a
+                href='tel:+263292216877'
+                className='block font-medium !text-[var(--color-muted-terracotta)] hover:underline body-text'
+              >
+                +263 292 216877
+              </a>
+              <a
+                href='tel:+263778719166'
+                className='block font-medium !text-[var(--color-muted-terracotta)] hover:underline body-text'
+              >
+                +263 778 719166
+              </a>
+            </div>
           </motion.div>
 
           <motion.div
@@ -97,7 +105,11 @@ export default function ContactSection() {
               <MapPinIcon className='w-6 h-6 text-[var(--color-muted-terracotta)]' />
             </div>
             <h3 className='mb-3 !text-lg heading-3'>Location</h3>
-            <p className='body-text'>Old Falls Rd, Bulawayo</p>
+            <div className='space-y-1 body-text'>
+              <p>Stand 7165 Old Falls Road</p>
+              <p>P O Box 1667</p>
+              <p>Bulawayo</p>
+            </div>
           </motion.div>
         </div>
 
