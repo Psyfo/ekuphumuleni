@@ -5,7 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import {
   Bars3Icon,
@@ -67,19 +67,24 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const closeMobile = () => {
+  const closeMobile = useCallback(() => {
     setMobileOpen(false);
     setOpenDropdown(null);
-  };
+  }, []);
 
   // Close on route changes
   useEffect(() => {
-    closeMobile();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMobileOpen(false);
+    setOpenDropdown(null);
   }, [pathname]);
 
   // Close on hash navigation and browser back/forward
   useEffect(() => {
-    const onHashOrPop = () => closeMobile();
+    const onHashOrPop = () => {
+      setMobileOpen(false);
+      setOpenDropdown(null);
+    };
     window.addEventListener('hashchange', onHashOrPop);
     window.addEventListener('popstate', onHashOrPop);
     return () => {
