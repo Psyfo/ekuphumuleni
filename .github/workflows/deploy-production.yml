@@ -63,12 +63,12 @@ jobs:
             "${VPS_USER}@${VPS_HOST}:~/ekuphumuleni/"
 
       - name: Restart application
-        uses: appleboy/ssh-action@v1.2.0
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          known_hosts: ${{ secrets.VPS_SSH_KNOWN_HOSTS }}
+          fingerprint: ${{ secrets.VPS_SSH_FINGERPRINT }}
           script: |
             cd ~/ekuphumuleni
             npm ci --omit=dev
