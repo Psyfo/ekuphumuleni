@@ -1,6 +1,12 @@
 import React from 'react';
 import type { Metadata } from 'next';
 
+import { client } from '@/sanity/lib/client';
+import { isSanityConfigured } from '@/sanity/env';
+import { TEAM_MEMBERS_QUERY } from '@/sanity/lib/queries';
+import type { CmsMember as BoardMember } from './BoardSection';
+import type { CmsMember as AdminMember } from './AdministrationSection';
+
 import TeamHeroSection from './TeamHeroSection';
 import BoardSection from './BoardSection';
 import AdministrationSection from './AdministrationSection';
@@ -37,12 +43,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TeamPage() {
+export default async function TeamPage() {
+  let boardMembers: BoardMember[] | undefined;
+  let adminMembers: AdminMember[] | undefined;
+
+  if (isSanityConfigured) {
+    const [board, admin] = await Promise.all([
+      client.fetch(TEAM_MEMBERS_QUERY, { department: 'board' }),
+      client.fetch(TEAM_MEMBERS_QUERY, { department: 'administration' }),
+    ]);
+    if (board?.length) boardMembers = board;
+    if (admin?.length) adminMembers = admin;
+  }
+
   return (
     <main>
       <TeamHeroSection />
-      <BoardSection />
-      <AdministrationSection />
+      <BoardSection members={boardMembers} />
+      <AdministrationSection members={adminMembers} />
       <StaffSection />
     </main>
   );

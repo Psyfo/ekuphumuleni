@@ -1,10 +1,11 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
 import { UserIcon } from '@heroicons/react/24/outline';
+import teamMembers from '@/content/teamMembers.json';
 
 type Member = {
   name: string;
@@ -12,51 +13,24 @@ type Member = {
   img?: string;
 };
 
-const BOARD: Member[] = [
-  {
-    name: 'Mr P Ncube',
-    role: 'Board Chairperson',
-    img: '/images/team/board/ncube.jpg',
-  },
-  {
-    name: 'Ms F Ndlovu',
-    role: 'H R Chairperson',
-    img: '/images/team/board/ndlovu.jpg',
-  },
-  {
-    name: 'Mr J M Nyoni',
-    role: 'Board Member',
-    img: '/images/team/board/nyoni.jpg',
-  },
-  {
-    name: 'Ms G N Mahlangu',
-    role: 'Board Member',
-    img: '/images/team/board/mahlangu.jpg',
-  },
-  {
-    name: 'Mrs H M Mahachi',
-    role: 'Vice Chair Person',
-    img: '/images/team/board/mahachi.jpg',
-  },
-  {
-    name: 'Mr Miclose',
-    role: 'Board Person Treasury',
-    img: '/images/team/board/miclose.jpg',
-  },
-  {
-    name: 'Mr J L Ncube Sikosana',
-    role: 'Committee Member',
-    img: '/images/team/board/sikosana.jpg',
-  },
-  {
-    name: 'Mr L Mpofu',
-    role: 'Committee Member',
-    img: '/images/team/board/mpofu.jpg',
-  },
-  { name: 'Ms S S Hove', role: 'Committee Member', img: '/images/team/board/' },
-];
+export type CmsMember = {
+  _id: string;
+  name: string;
+  role?: string | null;
+  imageUrl?: string | null;
+};
 
-function Portrait({ src, alt }: { src?: string; alt: string }) {
+const BOARD: Member[] = teamMembers.board;
+
+function Portrait({
+  src,
+  alt,
+  priority = false,
+}: {
+  src?: string;
+  alt: string;
+  priority?: boolean;
+}) {
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
 
@@ -76,7 +50,7 @@ function Portrait({ src, alt }: { src?: string; alt: string }) {
           }`}
           onLoad={() => setLoaded(true)}
           onError={() => setFailed(true)}
-          loading='lazy'
+          priority={priority}
           unoptimized
         />
       ) : (
@@ -90,8 +64,21 @@ function Portrait({ src, alt }: { src?: string; alt: string }) {
   );
 }
 
-export default function BoardSection() {
-  const prefersReducedMotion = useReducedMotion();
+export default function BoardSection({ members }: { members?: CmsMember[] }) {
+  const boardByName = new Map(
+    BOARD.map((member) => [member.name.toLowerCase(), member]),
+  );
+
+  const displayMembers: Member[] = members
+    ? members.map((m) => {
+        const fallback = boardByName.get(m.name.toLowerCase());
+        return {
+          name: m.name,
+          role: m.role ?? fallback?.role,
+          img: m.imageUrl ?? fallback?.img,
+        };
+      })
+    : BOARD;
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -106,7 +93,7 @@ export default function BoardSection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
@@ -116,14 +103,14 @@ export default function BoardSection() {
       aria-label='Board of Trustees'
       className='bg-gradient-to-b from-white to-[var(--color-soft-sand)]/30 px-4 py-20 lg:py-24'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-7xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.1 }}
       >
-        <motion.div variants={item} className='mb-16 text-center'>
+        <m.div variants={item} className='mb-16 text-center'>
           <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
             Executive Board Members
           </h2>
@@ -132,19 +119,23 @@ export default function BoardSection() {
             The current executive board members guiding Ekuphumuleni&apos;s
             mission and service excellence
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.ul
+        <m.ul
           variants={container}
           className='gap-6 lg:gap-8 grid sm:grid-cols-2 lg:grid-cols-3'
         >
-          {BOARD.map((member, idx) => (
-            <motion.li
+          {displayMembers.map((member, idx) => (
+            <m.li
               key={idx}
               variants={item}
               className='group bg-white shadow-warm-lg hover:shadow-warm-xl p-6 border border-subtle rounded-2xl transition-all hover:-translate-y-1 duration-300'
             >
-              <Portrait src={member.img} alt={member.name} />
+              <Portrait
+                src={member.img}
+                alt={member.name}
+                priority={idx === 0}
+              />
               <div className='mt-6 text-center'>
                 <h3 className='mb-1.5 font-serif font-bold text-[var(--color-deep-cocoa)] text-lg'>
                   {member.name}
@@ -153,10 +144,10 @@ export default function BoardSection() {
                   {member.role ?? 'Trustee'}
                 </p>
               </div>
-            </motion.li>
+            </m.li>
           ))}
-        </motion.ul>
-      </motion.div>
+        </m.ul>
+      </m.div>
     </section>
   );
 }

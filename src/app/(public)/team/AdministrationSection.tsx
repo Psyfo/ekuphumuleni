@@ -1,34 +1,26 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
 import { UserIcon } from '@heroicons/react/24/outline';
+import teamMembers from '@/content/teamMembers.json';
 
 type Member = {
   name: string;
-  role: 'Administrator' | 'Administration Officer' | 'Bookkeeper';
+  role: string;
   img?: string;
 };
 
-const ADMIN: Member[] = [
-  {
-    name: 'Mrs Nokuthula Moyo',
-    role: 'Administrator',
-    img: '/images/team/administration/administrator.jpg',
-  },
-  {
-    name: 'Ms Simangele Ncube',
-    role: 'Administration Officer',
-    img: '/images/team/administration/administration_officer.jpg',
-  },
-  {
-    name: 'Mrs Nomsa Gumpo',
-    role: 'Bookkeeper',
-    img: '/images/team/administration/book-keeper.jpg',
-  },
-];
+export type CmsMember = {
+  _id: string;
+  name: string;
+  role?: string | null;
+  imageUrl?: string | null;
+};
+
+const ADMIN: Member[] = teamMembers.administration;
 
 function Portrait({ src, alt }: { src?: string; alt: string }) {
   const [loaded, setLoaded] = useState(false);
@@ -64,8 +56,25 @@ function Portrait({ src, alt }: { src?: string; alt: string }) {
   );
 }
 
-export default function AdministrationSection() {
-  const prefersReducedMotion = useReducedMotion();
+export default function AdministrationSection({
+  members,
+}: {
+  members?: CmsMember[];
+}) {
+  const adminByName = new Map(
+    ADMIN.map((member) => [member.name.toLowerCase(), member]),
+  );
+
+  const displayMembers: Member[] = members
+    ? members.map((m) => {
+        const fallback = adminByName.get(m.name.toLowerCase());
+        return {
+          name: m.name,
+          role: m.role ?? fallback?.role ?? 'Administrator',
+          img: m.imageUrl ?? fallback?.img,
+        };
+      })
+    : ADMIN;
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -80,7 +89,7 @@ export default function AdministrationSection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
@@ -90,14 +99,14 @@ export default function AdministrationSection() {
       aria-label='Administration Team'
       className='bg-gradient-to-b from-[var(--color-soft-sand)]/30 to-white px-4 py-20 lg:py-24'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-7xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.25 }}
       >
-        <motion.div variants={item} className='mb-16 text-center'>
+        <m.div variants={item} className='mb-16 text-center'>
           <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
             Administration Team
           </h2>
@@ -106,14 +115,14 @@ export default function AdministrationSection() {
             The dedicated professionals who keep Ekuphumuleni running smoothly
             every day
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.ul
+        <m.ul
           variants={container}
           className='gap-6 lg:gap-8 grid sm:grid-cols-2 lg:grid-cols-3 mx-auto max-w-5xl'
         >
-          {ADMIN.map((member, idx) => (
-            <motion.li
+          {displayMembers.map((member, idx) => (
+            <m.li
               key={idx}
               variants={item}
               className='group bg-white shadow-warm-lg hover:shadow-warm-xl p-6 border border-subtle rounded-2xl transition-all hover:-translate-y-1 duration-300'
@@ -127,10 +136,10 @@ export default function AdministrationSection() {
                   {member.role}
                 </p>
               </div>
-            </motion.li>
+            </m.li>
           ))}
-        </motion.ul>
-      </motion.div>
+        </m.ul>
+      </m.div>
     </section>
   );
 }
