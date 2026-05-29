@@ -1,11 +1,6 @@
 'use client';
 
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-  Variants,
-} from 'framer-motion';
+import { AnimatePresence, m, Variants } from 'framer-motion';
 import Image from 'next/image';
 import React, { useMemo, useState } from 'react';
 
@@ -46,7 +41,6 @@ const fade: Variants = {
 };
 
 export default function StaffSection() {
-  const prefersReducedMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
   const hasMultiple = IMAGES.length > 1;
 
@@ -74,7 +68,7 @@ export default function StaffSection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
@@ -84,14 +78,14 @@ export default function StaffSection() {
       aria-label='Our Staff'
       className='bg-gradient-to-b from-white to-[var(--color-soft-sand)]/30 px-4 py-20 lg:py-24'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-6xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.2 }}
       >
-        <motion.div variants={item} className='mb-16 text-center'>
+        <m.div variants={item} className='mb-16 text-center'>
           <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
             Our Dedicated Staff
           </h2>
@@ -100,9 +94,9 @@ export default function StaffSection() {
             Our nursing, care, and support teams work in shifts to provide daily
             care, monitoring, and assistance for residents
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div variants={item}>
+        <m.div variants={item}>
           <div
             className='relative bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-warm-xl border-[var(--color-earth-brown)]/10 border-2 rounded-2xl w-full h-[60dvh] max-h-[720px] overflow-hidden'
             tabIndex={0}
@@ -114,9 +108,9 @@ export default function StaffSection() {
             }}
           >
             <AnimatePresence mode='wait' initial={false}>
-              <motion.div
+              <m.div
                 key={current.src}
-                variants={prefersReducedMotion ? undefined : fade}
+                variants={fade}
                 initial='enter'
                 animate='center'
                 exit='exit'
@@ -131,7 +125,7 @@ export default function StaffSection() {
                   priority={index === 0}
                   unoptimized
                 />
-              </motion.div>
+              </m.div>
             </AnimatePresence>
 
             {/* Caption */}
@@ -188,9 +182,9 @@ export default function StaffSection() {
               </>
             )}
           </div>
-        </motion.div>
+        </m.div>
 
-        <motion.div variants={item} className='mt-8'>
+        <m.div variants={item} className='mt-8'>
           <div className='bg-white shadow-warm mx-auto p-6 lg:p-8 border border-subtle rounded-2xl max-w-4xl'>
             <p className='text-center leading-relaxed body-text'>
               Staff work across day, night, and weekend shifts to provide
@@ -198,8 +192,8 @@ export default function StaffSection() {
               on safety, clinical tasks, and daily living needs for residents.
             </p>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }
