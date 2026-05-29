@@ -1,0 +1,12 @@
+{"_id":"teamMember.board.mr-p-ncube","_type":"teamMember","name":"Mr P Ncube","role":"Board Chairperson","department":"board","order":1}
+{"_id":"teamMember.board.ms-f-ndlovu","_type":"teamMember","name":"Ms F Ndlovu","role":"H R Chairperson","department":"board","order":2}
+{"_id":"teamMember.board.mr-j-m-nyoni","_type":"teamMember","name":"Mr J M Nyoni","role":"Board Member","department":"board","order":3}
+{"_id":"teamMember.board.ms-g-n-mahlangu","_type":"teamMember","name":"Ms G N Mahlangu","role":"Board Member","department":"board","order":4}
+{"_id":"teamMember.board.mrs-h-m-mahachi","_type":"teamMember","name":"Mrs H M Mahachi","role":"Vice Chair Person","department":"board","order":5}
+{"_id":"teamMember.board.mr-miclose","_type":"teamMember","name":"Mr Miclose","role":"Board Person Treasury","department":"board","order":6}
+{"_id":"teamMember.board.mr-j-l-ncube-sikosana","_type":"teamMember","name":"Mr J L Ncube Sikosana","role":"Committee Member","department":"board","order":7}
+{"_id":"teamMember.board.mr-l-mpofu","_type":"teamMember","name":"Mr L Mpofu","role":"Committee Member","department":"board","order":8}
+{"_id":"teamMember.board.ms-s-s-hove","_type":"teamMember","name":"Ms S S Hove","role":"Committee Member","department":"board","order":9}
+{"_id":"teamMember.administration.mrs-nokuthula-moyo","_type":"teamMember","name":"Mrs Nokuthula Moyo","role":"Administrator","department":"administration","order":1}
+{"_id":"teamMember.administration.ms-simangele-ncube","_type":"teamMember","name":"Ms Simangele Ncube","role":"Administration Officer","department":"administration","order":2}
+{"_id":"teamMember.administration.mrs-nomsa-gumpo","_type":"teamMember","name":"Mrs Nomsa Gumpo","role":"Bookkeeper","department":"administration","order":3}
