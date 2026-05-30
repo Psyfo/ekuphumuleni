@@ -1,12 +1,10 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function HeroSection() {
-  const prefersReducedMotion = useReducedMotion();
-
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -20,7 +18,7 @@ export default function HeroSection() {
   };
 
   const item = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: {
       opacity: 1,
       y: 0,
@@ -34,14 +32,14 @@ export default function HeroSection() {
       aria-label='Hero Section'
       className='relative flex justify-center items-center bg-gradient-to-br from-[var(--color-warm-beige)] via-[var(--color-soft-sand)] to-[var(--color-off-white)] px-4 min-h-[calc(100vh-4rem)]'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-5xl text-center'
         variants={container}
         initial='hidden'
         animate='show'
       >
         {/* Logo */}
-        <motion.div variants={item} className='mx-auto mb-10'>
+        <m.div variants={item} className='mx-auto mb-10'>
           <Image
             src='/images/brand/ekuphumuleni_master_terracotta.svg'
             alt='Ekuphumuleni logo'
@@ -51,26 +49,26 @@ export default function HeroSection() {
             sizes='(min-width: 1024px) 320px, (min-width: 640px) 280px, 240px'
             className='mx-auto w-60 sm:w-70 lg:w-80 h-auto object-contain'
           />
-        </motion.div>
+        </m.div>
 
         {/* Page Title */}
-        <motion.h1
+        <m.h1
           variants={item}
           className='mb-4 !font-bold !text-5xl md:!text-6xl lg:!text-7xl text-center heading-1'
         >
           Ekuphumuleni
-        </motion.h1>
+        </m.h1>
 
         {/* Subtitle */}
-        <motion.p
+        <m.p
           variants={item}
           className='mb-12 !font-semibold !text-[var(--color-muted-terracotta)] !text-2xl md:!text-3xl lg:!text-4xl text-center'
         >
           Geriatric Nursing Home
-        </motion.p>
+        </m.p>
 
         {/* CTAs */}
-        <motion.div
+        <m.div
           variants={item}
           className='flex sm:flex-row flex-col justify-center items-center gap-4'
         >
@@ -88,8 +86,8 @@ export default function HeroSection() {
           >
             Contact Us
           </Link>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

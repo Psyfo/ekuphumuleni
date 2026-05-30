@@ -1,13 +1,12 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import Image from 'next/image';
 
 export default function EstablishmentSection() {
-  const prefersReducedMotion = useReducedMotion();
 
   const container: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: {
       opacity: 1,
       y: 0,
@@ -21,7 +20,7 @@ export default function EstablishmentSection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
+    hidden: { opacity: 0, y: 16 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
   };
 
@@ -31,14 +30,14 @@ export default function EstablishmentSection() {
       aria-label='Establishment of Ekuphumuleni'
       className='bg-[var(--color-off-white)] px-4 py-20 lg:py-24'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-7xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.1 }}
       >
-        <motion.div variants={item} className='mb-16 text-center'>
+        <m.div variants={item} className='mb-16 text-center'>
           <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
             Our Establishment
           </h2>
@@ -46,11 +45,11 @@ export default function EstablishmentSection() {
           <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
             A journey that began with vision and dedication in 1983
           </p>
-        </motion.div>
+        </m.div>
 
         <div className='items-center gap-12 lg:gap-16 grid lg:grid-cols-2 mb-20'>
           {/* Founder image */}
-          <motion.div variants={item} className='lg:order-1'>
+          <m.div variants={item} className='lg:order-1'>
             <div className='group relative'>
               {/* Decorative border effect */}
               <div className='absolute -inset-3 bg-gradient-to-br from-[var(--color-muted-terracotta)]/20 to-[var(--color-earth-brown)]/20 blur-sm group-hover:blur-md rounded-2xl transition-all duration-300' />
@@ -67,7 +66,7 @@ export default function EstablishmentSection() {
                 </div>
               </div>
             </div>
-            <motion.div
+            <m.div
               variants={item}
               className='bg-white/60 shadow-warm backdrop-blur-sm mt-4 p-4 rounded-lg text-center'
             >
@@ -77,11 +76,11 @@ export default function EstablishmentSection() {
               <p className='text-[var(--color-deep-cocoa)]/70 text-sm'>
                 Founder & Visionary
               </p>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
 
           {/* Origins narrative */}
-          <motion.div variants={item} className='lg:order-2'>
+          <m.div variants={item} className='lg:order-2'>
             <div className='space-y-6'>
               <div>
                 <h3 className='mb-4 !text-2xl heading-3'>
@@ -139,11 +138,11 @@ export default function EstablishmentSection() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Why Families Choose Us */}
-        <motion.div variants={item} className='mx-auto max-w-6xl'>
+        <m.div variants={item} className='mx-auto max-w-6xl'>
           <div className='bg-white shadow-warm-lg p-8 lg:p-12 border border-subtle rounded-2xl'>
             <div className='mb-10 text-center'>
               <h3 className='mb-4 !text-2xl heading-3'>
@@ -234,8 +233,8 @@ export default function EstablishmentSection() {
               </p>
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

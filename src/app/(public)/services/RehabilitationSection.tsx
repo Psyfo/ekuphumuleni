@@ -1,10 +1,9 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import Image from 'next/image';
 
 export default function RehabilitationSection() {
-  const prefersReducedMotion = useReducedMotion();
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -19,7 +18,7 @@ export default function RehabilitationSection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
@@ -29,14 +28,14 @@ export default function RehabilitationSection() {
       aria-label='Rehabilitation and Wellness'
       className='bg-gradient-to-b from-white to-[var(--color-soft-sand)]/30 px-4 py-20 lg:py-24'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-7xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.2 }}
       >
-        <motion.div variants={item} className='mb-16 text-center'>
+        <m.div variants={item} className='mb-16 text-center'>
           <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
             Rehabilitation & Wellness Programs
           </h2>
@@ -46,11 +45,11 @@ export default function RehabilitationSection() {
             mobility, strength, and independence while enhancing overall quality
             of life
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Main Content with Image */}
         <div className='items-center gap-8 lg:gap-12 grid lg:grid-cols-2 mb-12'>
-          <motion.div variants={item} className='lg:order-2'>
+          <m.div variants={item} className='lg:order-2'>
             <div className='relative shadow-warm-xl border-[var(--color-earth-brown)]/10 border-2 rounded-2xl overflow-hidden'>
               <div className='relative aspect-[3/4]'>
                 <Image
@@ -65,9 +64,9 @@ export default function RehabilitationSection() {
             </div>
             {/* Decorative accent */}
             <div className='hidden lg:block -bottom-4 -left-4 -z-10 absolute bg-gradient-to-br from-[var(--color-muted-terracotta)]/20 to-[var(--color-earth-brown)]/20 rounded-2xl w-32 h-32' />
-          </motion.div>
+          </m.div>
 
-          <motion.div variants={item} className='lg:order-1'>
+          <m.div variants={item} className='lg:order-1'>
             <h3 className='mb-6 !text-2xl heading-3'>
               Empowering Recovery & Independence
             </h3>
@@ -109,12 +108,12 @@ export default function RehabilitationSection() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Image Grid */}
         <div className='gap-6 grid sm:grid-cols-3'>
-          <motion.div
+          <m.div
             variants={item}
             className='group relative shadow-warm-lg border border-subtle rounded-xl overflow-hidden'
           >
@@ -128,9 +127,9 @@ export default function RehabilitationSection() {
                 unoptimized
               />
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             variants={item}
             className='group relative shadow-warm-lg border border-subtle rounded-xl overflow-hidden'
           >
@@ -144,9 +143,9 @@ export default function RehabilitationSection() {
                 unoptimized
               />
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             variants={item}
             className='group relative shadow-warm-lg border border-subtle rounded-xl overflow-hidden'
           >
@@ -160,9 +159,9 @@ export default function RehabilitationSection() {
                 unoptimized
               />
             </div>
-          </motion.div>
+          </m.div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 
 export default function AboutSection() {
@@ -12,7 +12,7 @@ export default function AboutSection() {
       aria-label='About Ekuphumuleni'
     >
       <div className='mx-auto max-w-7xl'>
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -29,11 +29,11 @@ export default function AboutSection() {
             Mahlangu, it was founded to provide reliable, professional care for
             older adults in a peaceful, dignified environment.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Establishment */}
         <div className='items-center gap-10 lg:gap-16 grid md:grid-cols-2 mb-20'>
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.4 }}
@@ -55,8 +55,8 @@ export default function AboutSection() {
                 />
               </div>
             </div>
-          </motion.div>
-          <motion.div
+          </m.div>
+          <m.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.4 }}
@@ -71,11 +71,11 @@ export default function AboutSection() {
               decades, we have remained committed to honoring the dignity and
               individuality of every resident.
             </p>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Mission and Vision */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
@@ -132,10 +132,10 @@ export default function AboutSection() {
               through consistent, culturally sensitive care.
             </p>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Core Values */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
@@ -154,7 +154,7 @@ export default function AboutSection() {
               'Cultural Sensitivity',
               'Excellence',
             ].map((value, index) => (
-              <motion.li
+              <m.li
                 key={value}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -166,10 +166,10 @@ export default function AboutSection() {
                 <span className='font-semibold !text-[var(--color-deep-cocoa)] body-text'>
                   {value}
                 </span>
-              </motion.li>
+              </m.li>
             ))}
           </ul>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

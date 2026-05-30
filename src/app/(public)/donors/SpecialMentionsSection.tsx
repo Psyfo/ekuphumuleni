@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, Variants, useReducedMotion } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import {
   BuildingLibraryIcon,
   UsersIcon,
@@ -29,7 +29,6 @@ const specialMentions = [
 ];
 
 export default function SpecialMentionsSection() {
-  const prefersReducedMotion = useReducedMotion();
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -44,7 +43,7 @@ export default function SpecialMentionsSection() {
   };
 
   const cardVariant: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 30 },
+    hidden: { opacity: 0, y: 30 },
     show: {
       opacity: 1,
       y: 0,
@@ -60,7 +59,7 @@ export default function SpecialMentionsSection() {
 
       <div className='z-10 relative mx-auto px-4 max-w-7xl'>
         {/* Section header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -75,10 +74,10 @@ export default function SpecialMentionsSection() {
             We extend our deepest gratitude to these remarkable supporters whose
             extraordinary contributions have shaped our mission
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Special mentions cards */}
-        <motion.div
+        <m.div
           variants={container}
           initial='hidden'
           whileInView='show'
@@ -88,7 +87,7 @@ export default function SpecialMentionsSection() {
           {specialMentions.map((mention) => {
             const IconComponent = mention.icon;
             return (
-              <motion.div
+              <m.div
                 key={mention.name}
                 variants={cardVariant}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
@@ -116,13 +115,13 @@ export default function SpecialMentionsSection() {
                     {mention.description}
                   </p>
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
-        </motion.div>
+        </m.div>
 
         {/* Closing message */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -136,7 +135,7 @@ export default function SpecialMentionsSection() {
               the path forward for those in our care.
             </p>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

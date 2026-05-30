@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 
 import {
   CheckCircleIcon,
@@ -13,10 +13,9 @@ import {
 } from '@heroicons/react/24/outline';
 
 export default function MissionVisionSection() {
-  const prefersReducedMotion = useReducedMotion();
 
   const container: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: {
       opacity: 1,
       y: 0,
@@ -30,7 +29,7 @@ export default function MissionVisionSection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
+    hidden: { opacity: 0, y: 16 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
   };
 
@@ -40,14 +39,14 @@ export default function MissionVisionSection() {
       aria-label='Mission, Vision and Core Values'
       className='bg-gradient-to-b from-[var(--color-soft-sand)] to-[var(--color-warm-beige)] px-4 py-20 lg:py-24'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-7xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.1 }}
       >
-        <motion.div variants={item} className='mb-16 text-center'>
+        <m.div variants={item} className='mb-16 text-center'>
           <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
             Mission, Vision &amp; Core Values
           </h2>
@@ -56,11 +55,11 @@ export default function MissionVisionSection() {
             Guided by a clear mandate, focused on quality, and accountable for
             outcomes
           </p>
-        </motion.div>
+        </m.div>
 
         <div className='items-start gap-8 lg:gap-10 grid lg:grid-cols-2 mb-12'>
           {/* Mission */}
-          <motion.div variants={item}>
+          <m.div variants={item}>
             <div className='bg-white shadow-warm-lg hover:shadow-warm-xl p-8 lg:p-10 border border-subtle rounded-2xl h-full transition-all hover:-translate-y-1 duration-300'>
               <div className='flex items-start gap-4 mb-6'>
                 <div className='flex flex-shrink-0 justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 rounded-xl w-14 h-14'>
@@ -113,10 +112,10 @@ export default function MissionVisionSection() {
                 </li>
               </ul>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Vision */}
-          <motion.div variants={item}>
+          <m.div variants={item}>
             <div className='flex flex-col bg-white shadow-warm-lg hover:shadow-warm-xl p-8 lg:p-10 border border-subtle rounded-2xl h-full transition-all hover:-translate-y-1 duration-300'>
               <div className='flex items-start gap-4 mb-6'>
                 <div className='flex flex-shrink-0 justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 rounded-xl w-14 h-14'>
@@ -139,11 +138,11 @@ export default function MissionVisionSection() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Core Values */}
-        <motion.div variants={item}>
+        <m.div variants={item}>
           <div className='bg-white shadow-warm-lg p-8 lg:p-12 border border-subtle rounded-2xl'>
             <div className='mb-10 text-center'>
               <h3 className='mb-4 !text-2xl heading-3'>Core Values</h3>
@@ -197,8 +196,8 @@ export default function MissionVisionSection() {
               </div>
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

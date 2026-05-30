@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import {
   UserIcon,
   EnvelopeIcon,
@@ -24,7 +24,6 @@ interface FormData {
 }
 
 export default function ContactForm() {
-  const prefersReducedMotion = useReducedMotion();
   const [status, setStatus] = useState<
     'idle' | 'submitting' | 'success' | 'error'
   >('idle');
@@ -202,8 +201,8 @@ export default function ContactForm() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+    <m.div
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6 }}
@@ -258,18 +257,18 @@ export default function ContactForm() {
                 }
               />
               {touchedFields.has('name') && !validationErrors.name && (
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className='top-1/2 right-4 absolute -translate-y-1/2'
                 >
                   <CheckCircleIcon className='w-5 h-5 text-green-500' />
-                </motion.div>
+                </m.div>
               )}
             </div>
             <AnimatePresence mode='wait'>
               {touchedFields.has('name') && validationErrors.name && (
-                <motion.p
+                <m.p
                   id='name-error'
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
@@ -280,7 +279,7 @@ export default function ContactForm() {
                 >
                   <XCircleIcon className='flex-shrink-0 w-4 h-4' />
                   <span>{validationErrors.name}</span>
-                </motion.p>
+                </m.p>
               )}
             </AnimatePresence>
           </div>
@@ -314,18 +313,18 @@ export default function ContactForm() {
                 }
               />
               {touchedFields.has('email') && !validationErrors.email && (
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className='top-1/2 right-4 absolute -translate-y-1/2'
                 >
                   <CheckCircleIcon className='w-5 h-5 text-green-500' />
-                </motion.div>
+                </m.div>
               )}
             </div>
             <AnimatePresence mode='wait'>
               {touchedFields.has('email') && validationErrors.email && (
-                <motion.p
+                <m.p
                   id='email-error'
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
@@ -336,7 +335,7 @@ export default function ContactForm() {
                 >
                   <XCircleIcon className='flex-shrink-0 w-4 h-4' />
                   <span>{validationErrors.email}</span>
-                </motion.p>
+                </m.p>
               )}
             </AnimatePresence>
           </div>
@@ -370,18 +369,18 @@ export default function ContactForm() {
                 }
               />
               {touchedFields.has('message') && !validationErrors.message && (
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className='top-4 right-4 absolute'
                 >
                   <CheckCircleIcon className='w-5 h-5 text-green-500' />
-                </motion.div>
+                </m.div>
               )}
             </div>
             <AnimatePresence mode='wait'>
               {touchedFields.has('message') && validationErrors.message ? (
-                <motion.p
+                <m.p
                   id='message-error'
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
@@ -392,7 +391,7 @@ export default function ContactForm() {
                 >
                   <XCircleIcon className='flex-shrink-0 w-4 h-4' />
                   <span>{validationErrors.message}</span>
-                </motion.p>
+                </m.p>
               ) : (
                 <p
                   id='message-help'
@@ -405,19 +404,15 @@ export default function ContactForm() {
           </div>
 
           {/* Submit Button */}
-          <motion.button
+          <m.button
             type='submit'
             className='flex justify-center items-center gap-2 bg-[var(--color-muted-terracotta)] disabled:opacity-50 shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-xl focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)]/30 focus-visible:ring-4 w-full font-bold text-white hover:scale-[1.02] active:scale-[0.98] disabled:hover:scale-100 transition-all duration-200 disabled:cursor-not-allowed'
             disabled={status === 'submitting'}
             whileHover={
-              status !== 'submitting' && !prefersReducedMotion
-                ? { scale: 1.02 }
-                : {}
+              { scale: 1.02 }
             }
             whileTap={
-              status !== 'submitting' && !prefersReducedMotion
-                ? { scale: 0.98 }
-                : {}
+              { scale: 0.98 }
             }
           >
             {status === 'submitting' ? (
@@ -450,13 +445,13 @@ export default function ContactForm() {
                 <span>Send Message</span>
               </>
             )}
-          </motion.button>
+          </m.button>
         </div>
 
         {/* Success Message */}
         <AnimatePresence>
           {status === 'success' && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: -10, height: 0 }}
               animate={{ opacity: 1, y: 0, height: 'auto' }}
               exit={{ opacity: 0, y: -10, height: 0 }}
@@ -482,14 +477,14 @@ export default function ContactForm() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
 
         {/* Error Message */}
         <AnimatePresence>
           {status === 'error' && errorMessage && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: -10, height: 0 }}
               animate={{ opacity: 1, y: 0, height: 'auto' }}
               exit={{ opacity: 0, y: -10, height: 0 }}
@@ -520,10 +515,10 @@ export default function ContactForm() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </form>
-    </motion.div>
+    </m.div>
   );
 }
