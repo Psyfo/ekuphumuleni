@@ -20,7 +20,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Doppler CLI
-        run: curl -Ls https://cli.doppler.com/install.sh | sh
+        run: curl -Ls https://cli.doppler.com/install.sh | sudo sh
 
       - name: Setup SSH
         env:
