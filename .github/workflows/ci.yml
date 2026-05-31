@@ -8,6 +8,8 @@ jobs:
   build:
     name: Build check
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - uses: actions/checkout@v4
@@ -20,10 +22,19 @@ jobs:
       - name: Install Doppler CLI
         run: (curl -Ls --tlsv1.2 --proto "=https" --retry 3 https://cli.doppler.com/install.sh || wget -t 3 -qO- https://cli.doppler.com/install.sh) | sudo sh
 
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-
+
       - name: Install dependencies
         run: npm ci
 
       - name: Build
         env:
           DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN_EKU_PROD }}
+          NEXT_TELEMETRY_DISABLED: '1'
         run: doppler run -- npm run build
