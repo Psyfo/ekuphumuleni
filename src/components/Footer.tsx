@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
@@ -14,7 +14,6 @@ import {
 
 export default function Footer() {
   const year = new Date().getFullYear();
-  const prefersReducedMotion = useReducedMotion();
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -29,7 +28,7 @@ export default function Footer() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: {
       opacity: 1,
       y: 0,
@@ -45,7 +44,7 @@ export default function Footer() {
 
       <div className='z-10 relative mx-auto px-4 py-16 lg:py-20 max-w-7xl'>
         {/* Main Footer Content */}
-        <motion.div
+        <m.div
           variants={container}
           initial='hidden'
           whileInView='show'
@@ -53,7 +52,7 @@ export default function Footer() {
           className='gap-10 lg:gap-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 mb-12'
         >
           {/* Brand Section */}
-          <motion.div variants={item} className='lg:col-span-3'>
+          <m.div variants={item} className='lg:col-span-3'>
             <div className='flex flex-col items-start gap-4'>
               <Image
                 src='/images/brand/ekuphumuleni_logo.png'
@@ -71,10 +70,10 @@ export default function Footer() {
                 <span>Serving the elderly since 1983</span>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Quick Links */}
-          <motion.nav
+          <m.nav
             variants={item}
             aria-label='Footer - Quick Links'
             className='lg:col-span-2'
@@ -105,10 +104,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </motion.nav>
+          </m.nav>
 
           {/* Care & Facilities */}
-          <motion.nav
+          <m.nav
             variants={item}
             aria-label='Footer - Care & Facilities'
             className='lg:col-span-3'
@@ -143,10 +142,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </motion.nav>
+          </m.nav>
 
           {/* Contact Information */}
-          <motion.div variants={item} className='lg:col-span-4'>
+          <m.div variants={item} className='lg:col-span-4'>
             <h3 className='mb-5 font-serif font-bold text-[var(--color-warm-beige)] !text-xl'>
               Get in Touch
             </h3>
@@ -216,11 +215,11 @@ export default function Footer() {
                 </div>
               </li>
             </ul>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
 
         {/* Decorative Divider */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, scaleX: 0 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true }}
@@ -231,11 +230,11 @@ export default function Footer() {
             <div className='absolute inset-0 bg-gradient-to-r from-transparent via-[var(--color-warm-beige)]/30 to-transparent' />
             <div className='top-1/2 left-1/2 absolute bg-[var(--color-muted-terracotta)] rounded-full w-2 h-2 -translate-x-1/2 -translate-y-1/2' />
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Bottom Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
+        <m.div
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
@@ -245,7 +244,7 @@ export default function Footer() {
               © {year} Ekuphumuleni. All rights reserved.
             </p>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </footer>
   );

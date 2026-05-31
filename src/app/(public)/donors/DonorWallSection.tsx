@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 const donors2003 = [
   'A J Moyo',
@@ -112,7 +112,7 @@ export default function DonorWallSection() {
     <section className='bg-white py-20'>
       <div className='mx-auto px-4 container'>
         {/* Section header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -127,10 +127,10 @@ export default function DonorWallSection() {
             Honoring those whose generosity has sustained our mission of
             compassionate care
           </p>
-        </motion.div>
+        </m.div>
 
         {/* 2003 Donors */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
@@ -143,7 +143,7 @@ export default function DonorWallSection() {
           <div className='bg-white shadow-warm-lg p-8 md:p-12 border border-subtle rounded-2xl'>
             <div className='gap-x-8 gap-y-3 columns-1 sm:columns-2 md:columns-3 lg:columns-4'>
               {donors2003.map((donor, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -154,14 +154,14 @@ export default function DonorWallSection() {
                   <p className='text-[var(--color-earth-brown)] group-hover:text-[var(--color-muted-terracotta)] leading-relaxed transition-colors duration-200'>
                     {donor}
                   </p>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* 2004 Donors */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
@@ -173,7 +173,7 @@ export default function DonorWallSection() {
           <div className='bg-white shadow-warm-lg p-8 md:p-12 border border-subtle rounded-2xl'>
             <div className='gap-x-8 gap-y-3 columns-1 sm:columns-2 md:columns-3 lg:columns-4'>
               {donors2004.map((donor, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -184,11 +184,11 @@ export default function DonorWallSection() {
                   <p className='text-[var(--color-earth-brown)] group-hover:text-[var(--color-muted-terracotta)] leading-relaxed transition-colors duration-200'>
                     {donor}
                   </p>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

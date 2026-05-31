@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -56,7 +56,6 @@ export default function Navigation() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const mobileRef = useRef<HTMLDivElement | null>(null);
-  const prefersReducedMotion = useReducedMotion();
 
   // Track scroll for navbar background enhancement
   useEffect(() => {
@@ -194,7 +193,7 @@ export default function Navigation() {
                     {item.label}
                     {/* Active indicator */}
                     {isActive(item.href) && (
-                      <motion.div
+                      <m.div
                         layoutId='activeTab'
                         className='bottom-0 left-0 absolute bg-[var(--color-muted-terracotta)] w-full h-0.5'
                         transition={{
@@ -241,7 +240,7 @@ export default function Navigation() {
         {mobileOpen && (
           <>
             {/* Backdrop overlay */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -252,12 +251,12 @@ export default function Navigation() {
             />
 
             {/* Mobile menu drawer */}
-            <motion.aside
+            <m.aside
               ref={mobileRef}
               id='primary-mobile-nav'
-              initial={{ x: prefersReducedMotion ? 0 : '100%', opacity: 0 }}
+              initial={{ x: '100%', opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              exit={{ x: prefersReducedMotion ? 0 : '100%', opacity: 0 }}
+              exit={{ x: '100%', opacity: 0 }}
               transition={{
                 type: 'spring',
                 stiffness: 300,
@@ -273,11 +272,11 @@ export default function Navigation() {
                 <ul className='space-y-2'>
                   {NAV_ITEMS.map((item, index) =>
                     item.children ? (
-                      <motion.li
+                      <m.li
                         key={item.label}
                         initial={{
                           opacity: 0,
-                          x: prefersReducedMotion ? 0 : 20,
+                          x: 20,
                         }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.05, duration: 0.3 }}
@@ -343,7 +342,7 @@ export default function Navigation() {
                         </div>
                         <AnimatePresence initial={false}>
                           {openDropdown === item.label && (
-                            <motion.ul
+                            <m.ul
                               id={`mobile-submenu-${item.label
                                 .replace(/\s+/g, '-')
                                 .toLowerCase()}`}
@@ -357,11 +356,11 @@ export default function Navigation() {
                               className='space-y-1 mt-2 ml-4 pl-4 border-[var(--color-earth-brown)]/20 border-l overflow-hidden'
                             >
                               {item.children.map((child) => (
-                                <motion.li
+                                <m.li
                                   key={child.href}
                                   initial={{
                                     opacity: 0,
-                                    x: prefersReducedMotion ? 0 : -10,
+                                    x: -10,
                                   }}
                                   animate={{ opacity: 1, x: 0 }}
                                   transition={{ duration: 0.2 }}
@@ -384,18 +383,18 @@ export default function Navigation() {
                                     />
                                     {child.label}
                                   </Link>
-                                </motion.li>
+                                </m.li>
                               ))}
-                            </motion.ul>
+                            </m.ul>
                           )}
                         </AnimatePresence>
-                      </motion.li>
+                      </m.li>
                     ) : (
-                      <motion.li
+                      <m.li
                         key={item.label}
                         initial={{
                           opacity: 0,
-                          x: prefersReducedMotion ? 0 : 20,
+                          x: 20,
                         }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.05, duration: 0.3 }}
@@ -432,11 +431,11 @@ export default function Navigation() {
                             )}
                           </Link>
                         </div>
-                      </motion.li>
+                      </m.li>
                     )
                   )}
-                  <motion.li
-                    initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+                  <m.li
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
                       delay: NAV_ITEMS.length * 0.05,
@@ -453,10 +452,10 @@ export default function Navigation() {
                       <div className='-top-1/2 -left-1/2 absolute bg-white/20 blur-xl w-1/2 h-[200%] skew-x-12 transition-transform group-hover:translate-x-full duration-700' />
                       <span className='z-10 relative'>Get in Touch</span>
                     </Link>
-                  </motion.li>
+                  </m.li>
                 </ul>
               </div>
-            </motion.aside>
+            </m.aside>
           </>
         )}
       </AnimatePresence>
@@ -478,7 +477,6 @@ function DesktopDropdown({
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
-  const prefersReducedMotion = useReducedMotion();
 
   const baseId = item.label.toLowerCase().replace(/\s+/g, '-');
   const buttonId = `nav-dd-btn-${baseId}`;
@@ -585,7 +583,7 @@ function DesktopDropdown({
         />
         {/* Active indicator */}
         {hasActiveChild && (
-          <motion.div
+          <m.div
             layoutId='activeTab'
             className='bottom-0 left-0 absolute bg-[var(--color-muted-terracotta)] w-full h-0.5'
             transition={{
@@ -599,19 +597,19 @@ function DesktopDropdown({
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             ref={menuRef}
             id={menuId}
             initial={{
               opacity: 0,
-              y: prefersReducedMotion ? 0 : 8,
-              scale: prefersReducedMotion ? 1 : 0.96,
+              y: 8,
+              scale: 0.96,
             }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{
               opacity: 0,
-              y: prefersReducedMotion ? 0 : 8,
-              scale: prefersReducedMotion ? 1 : 0.96,
+              y: 8,
+              scale: 0.96,
             }}
             transition={{
               duration: 0.2,
@@ -657,11 +655,11 @@ function DesktopDropdown({
 
             <ul>
               {item.children!.map((child, index) => (
-                <motion.li
+                <m.li
                   key={child.href}
                   initial={{
                     opacity: 0,
-                    x: prefersReducedMotion ? 0 : -10,
+                    x: -10,
                   }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{
@@ -687,10 +685,10 @@ function DesktopDropdown({
                     />
                     {child.label}
                   </Link>
-                </motion.li>
+                </m.li>
               ))}
             </ul>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

@@ -1,36 +1,25 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
 import { UserIcon } from '@heroicons/react/24/outline';
 
-type Member = {
+export type CmsMember = {
+  _id: string;
   name: string;
-  role: 'Administrator' | 'Administration Officer' | 'Bookkeeper';
-  img?: string;
+  role?: string | null;
+  imageUrl?: string | null;
 };
 
-const ADMIN: Member[] = [
-  {
-    name: 'Mrs Nokuthula Moyo',
-    role: 'Administrator',
-    img: '/images/team/administration/administrator.jpg',
-  },
-  {
-    name: 'Ms Simangele Ncube',
-    role: 'Administration Officer',
-    img: '/images/team/administration/administration_officer.jpg',
-  },
-  {
-    name: 'Mrs Nomsa Gumpo',
-    role: 'Bookkeeper',
-    img: '/images/team/administration/book-keeper.jpg',
-  },
-];
+interface AdministrationSectionProps {
+  members: CmsMember[];
+  heading?: string | null;
+  description?: string | null;
+}
 
-function Portrait({ src, alt }: { src?: string; alt: string }) {
+function Portrait({ src, alt }: { src?: string | null; alt: string }) {
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
 
@@ -64,9 +53,11 @@ function Portrait({ src, alt }: { src?: string; alt: string }) {
   );
 }
 
-export default function AdministrationSection() {
-  const prefersReducedMotion = useReducedMotion();
-
+export default function AdministrationSection({
+  members,
+  heading,
+  description,
+}: AdministrationSectionProps) {
   const container: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -80,7 +71,7 @@ export default function AdministrationSection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
@@ -90,47 +81,54 @@ export default function AdministrationSection() {
       aria-label='Administration Team'
       className='bg-gradient-to-b from-[var(--color-soft-sand)]/30 to-white px-4 py-20 lg:py-24'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-7xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.25 }}
       >
-        <motion.div variants={item} className='mb-16 text-center'>
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
-            Administration Team
-          </h2>
+        <m.div variants={item} className='mb-16 text-center'>
+          {heading ? (
+            <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>{heading}</h2>
+          ) : null}
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
-          <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
-            The dedicated professionals who keep Ekuphumuleni running smoothly
-            every day
-          </p>
-        </motion.div>
+          {description ? (
+            <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
+              {description}
+            </p>
+          ) : null}
+        </m.div>
 
-        <motion.ul
-          variants={container}
-          className='gap-6 lg:gap-8 grid sm:grid-cols-2 lg:grid-cols-3 mx-auto max-w-5xl'
-        >
-          {ADMIN.map((member, idx) => (
-            <motion.li
-              key={idx}
-              variants={item}
-              className='group bg-white shadow-warm-lg hover:shadow-warm-xl p-6 border border-subtle rounded-2xl transition-all hover:-translate-y-1 duration-300'
-            >
-              <Portrait src={member.img} alt={member.name} />
-              <div className='mt-6 text-center'>
-                <h3 className='mb-1.5 font-serif font-bold text-[var(--color-deep-cocoa)] text-lg'>
-                  {member.name}
-                </h3>
-                <p className='font-medium text-[var(--color-earth-brown)] text-sm'>
-                  {member.role}
-                </p>
-              </div>
-            </motion.li>
-          ))}
-        </motion.ul>
-      </motion.div>
+        {members.length === 0 ? (
+          <m.p variants={item} className='text-center body-text'>
+            Administration member information will be available soon.
+          </m.p>
+        ) : (
+          <m.ul
+            variants={container}
+            className='gap-6 lg:gap-8 grid sm:grid-cols-2 lg:grid-cols-3 mx-auto max-w-5xl'
+          >
+            {members.map((member) => (
+              <m.li
+                key={member._id}
+                variants={item}
+                className='group bg-white shadow-warm-lg hover:shadow-warm-xl p-6 border border-subtle rounded-2xl transition-all hover:-translate-y-1 duration-300'
+              >
+                <Portrait src={member.imageUrl} alt={member.name} />
+                <div className='mt-6 text-center'>
+                  <h3 className='mb-1.5 font-serif font-bold text-[var(--color-deep-cocoa)] text-lg'>
+                    {member.name}
+                  </h3>
+                  <p className='font-medium text-[var(--color-earth-brown)] text-sm'>
+                    {member.role ?? 'Administrator'}
+                  </p>
+                </div>
+              </m.li>
+            ))}
+          </m.ul>
+        )}
+      </m.div>
     </section>
   );
 }

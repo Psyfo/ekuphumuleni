@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import Image from 'next/image';
 import {
   BoltIcon,
@@ -48,7 +48,6 @@ const INITIATIVES: SustainabilityFeature[] = [
 ];
 
 export default function SustainabilitySection() {
-  const prefersReducedMotion = useReducedMotion();
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -63,7 +62,7 @@ export default function SustainabilitySection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
@@ -73,14 +72,14 @@ export default function SustainabilitySection() {
       aria-label='Sustainability Initiatives'
       className='bg-gradient-to-b from-[var(--color-soft-sand)]/30 to-white px-4 py-20 lg:py-24'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-7xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.2 }}
       >
-        <motion.div variants={item} className='mb-16 text-center'>
+        <m.div variants={item} className='mb-16 text-center'>
           <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
             Sustainability at Ekuphumuleni
           </h2>
@@ -89,12 +88,12 @@ export default function SustainabilitySection() {
             We&apos;re committed to sustainable practices that benefit our
             residents, our community, and our planet
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Feature Cards */}
         <div className='gap-6 grid sm:grid-cols-2 lg:grid-cols-4 mb-16'>
           {INITIATIVES.map((initiative, index) => (
-            <motion.div
+            <m.div
               key={index}
               variants={item}
               className='bg-white shadow-warm hover:shadow-warm-lg p-6 border border-subtle rounded-xl transition-all hover:-translate-y-1 duration-300'
@@ -116,13 +115,13 @@ export default function SustainabilitySection() {
                   {initiative.impact}
                 </p>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* Image Showcase */}
         <div className='gap-6 grid sm:grid-cols-2 mb-12'>
-          <motion.div
+          <m.div
             variants={item}
             className='group relative shadow-warm-xl border-[var(--color-earth-brown)]/10 border-2 rounded-2xl overflow-hidden'
           >
@@ -144,9 +143,9 @@ export default function SustainabilitySection() {
                 Powering our home sustainably
               </p>
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             variants={item}
             className='group relative shadow-warm-xl border-[var(--color-earth-brown)]/10 border-2 rounded-2xl overflow-hidden'
           >
@@ -166,11 +165,11 @@ export default function SustainabilitySection() {
               </p>
               <p className='text-white/90 text-sm'>Fresh, nutritious produce</p>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         <div className='gap-6 grid sm:grid-cols-2'>
-          <motion.div
+          <m.div
             variants={item}
             className='group relative shadow-warm-xl border-[var(--color-earth-brown)]/10 border-2 rounded-2xl overflow-hidden'
           >
@@ -192,9 +191,9 @@ export default function SustainabilitySection() {
                 Rainwater harvesting systems
               </p>
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             variants={item}
             className='group relative shadow-warm-xl border-[var(--color-earth-brown)]/10 border-2 rounded-2xl overflow-hidden'
           >
@@ -216,11 +215,11 @@ export default function SustainabilitySection() {
                 Sustainable hot water supply
               </p>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Impact Statement */}
-        <motion.div variants={item} className='mt-16'>
+        <m.div variants={item} className='mt-16'>
           <div className='bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-warm mx-auto p-8 lg:p-12 border border-subtle rounded-2xl max-w-4xl text-center'>
             <h3 className='mb-4 !text-2xl heading-3'>
               Our Commitment to the Environment
@@ -233,8 +232,8 @@ export default function SustainabilitySection() {
               enhancing the quality of life for everyone at Ekuphumuleni.
             </p>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

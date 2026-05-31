@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion, Variants, useInView } from 'framer-motion';
+import { m, Variants, useInView } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 
 import {
@@ -80,15 +80,14 @@ function Statistic({
   decimals = 0,
   duration = 2,
 }: StatisticProps) {
-  const prefersReducedMotion = useReducedMotion();
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
   return (
-    <motion.div
+    <m.div
       variants={item}
       className='group bg-white shadow-warm-lg hover:shadow-warm-xl p-8 lg:p-10 border border-subtle rounded-2xl text-center transition-all hover:-translate-y-1 duration-300'
     >
@@ -110,12 +109,11 @@ function Statistic({
       <p className='font-medium text-[var(--color-earth-brown)] !text-base body-text'>
         {label}
       </p>
-    </motion.div>
+    </m.div>
   );
 }
 
 export default function ImpactStatisticsSection() {
-  const prefersReducedMotion = useReducedMotion();
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -130,7 +128,7 @@ export default function ImpactStatisticsSection() {
   };
 
   const titleVariant: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
@@ -143,14 +141,14 @@ export default function ImpactStatisticsSection() {
       aria-label='Impact and Legacy'
       className='bg-white px-4 py-20 lg:py-24'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-7xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.1 }}
       >
-        <motion.div variants={titleVariant} className='mb-16 text-center'>
+        <m.div variants={titleVariant} className='mb-16 text-center'>
           <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
             Our Legacy of Care
           </h2>
@@ -159,7 +157,7 @@ export default function ImpactStatisticsSection() {
             Over four decades of residential nursing, rehabilitation, and
             support for older adults
           </p>
-        </motion.div>
+        </m.div>
 
         <div className='gap-6 lg:gap-8 grid sm:grid-cols-2 lg:grid-cols-4'>
           <Statistic
@@ -192,7 +190,7 @@ export default function ImpactStatisticsSection() {
         </div>
 
         {/* Additional Context */}
-        <motion.div
+        <m.div
           variants={titleVariant}
           className='bg-gradient-to-br from-[var(--color-soft-sand)]/50 to-[var(--color-warm-beige)]/50 mt-16 p-8 lg:p-10 border border-subtle rounded-2xl'
         >
@@ -208,8 +206,8 @@ export default function ImpactStatisticsSection() {
               environment.
             </p>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

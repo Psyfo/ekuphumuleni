@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import {
   MapPinIcon,
   PhoneIcon,
@@ -44,7 +44,6 @@ const contactDetails = [
 ];
 
 export default function ContactInfoSection() {
-  const prefersReducedMotion = useReducedMotion();
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -58,7 +57,7 @@ export default function ContactInfoSection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -70,8 +69,8 @@ export default function ContactInfoSection() {
     <section className='bg-gradient-to-br from-[var(--color-warm-beige)] via-[var(--color-off-white)] to-[var(--color-soft-sand)] px-4 py-20'>
       <div className='mx-auto max-w-7xl'>
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : -20 }}
+        <m.div
+          initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6 }}
@@ -85,10 +84,10 @@ export default function ContactInfoSection() {
             Find us at our location or reach out through any of the channels
             below
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Contact Details Cards */}
-        <motion.div
+        <m.div
           variants={container}
           initial='hidden'
           whileInView='visible'
@@ -98,7 +97,7 @@ export default function ContactInfoSection() {
           {contactDetails.map((detail, index) => {
             const IconComponent = detail.icon;
             return (
-              <motion.div
+              <m.div
                 key={index}
                 variants={item}
                 className='group flex flex-col bg-white shadow-warm hover:shadow-warm-lg p-6 border border-subtle rounded-2xl transition-all hover:-translate-y-1 duration-300'
@@ -133,16 +132,16 @@ export default function ContactInfoSection() {
                     )}
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
-        </motion.div>
+        </m.div>
 
         {/* Map */}
-        <motion.div
+        <m.div
           initial={{
             opacity: 0,
-            scale: prefersReducedMotion ? 1 : 0.95,
+            scale: 0.95,
           }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-50px' }}
@@ -150,11 +149,11 @@ export default function ContactInfoSection() {
           className='shadow-warm-xl border border-subtle rounded-2xl overflow-hidden'
         >
           <MapEmbed query='Ekuphumuleni Geriatric Nursing Home, VHCG+86V, Old Falls Rd, Bulawayo' />
-        </motion.div>
+        </m.div>
 
         {/* Additional Info Card */}
-        <motion.div
-          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+        <m.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -171,7 +170,7 @@ export default function ContactInfoSection() {
               and facilities.
             </p>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

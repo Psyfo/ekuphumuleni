@@ -1,11 +1,10 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import Link from 'next/link';
 import { HomeIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 export default function ServicesHeroSection() {
-  const prefersReducedMotion = useReducedMotion();
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -20,7 +19,7 @@ export default function ServicesHeroSection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
@@ -29,14 +28,14 @@ export default function ServicesHeroSection() {
       aria-label='Services Page Header'
       className='relative bg-gradient-to-br from-[var(--color-warm-beige)] via-[var(--color-soft-sand)] to-[var(--color-off-white)] px-4 py-16 lg:py-20'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-5xl'
         variants={container}
         initial='hidden'
         animate='show'
       >
         {/* Breadcrumb */}
-        <motion.nav variants={item} aria-label='Breadcrumb' className='mb-8'>
+        <m.nav variants={item} aria-label='Breadcrumb' className='mb-8'>
           <ol className='flex items-center gap-2 text-sm'>
             <li>
               <Link
@@ -59,41 +58,41 @@ export default function ServicesHeroSection() {
               </span>
             </li>
           </ol>
-        </motion.nav>
+        </m.nav>
 
         {/* Page Title */}
-        <motion.h1
+        <m.h1
           variants={item}
           className='mb-6 !text-4xl md:!text-5xl lg:!text-6xl text-center heading-1'
         >
           Our Services
-        </motion.h1>
+        </m.h1>
 
         {/* Accent Divider */}
-        <motion.div
+        <m.div
           variants={item}
           className='bg-[var(--color-muted-terracotta)] mx-auto mb-8 rounded-full w-20 h-1.5'
         />
 
         {/* Subtitle */}
-        <motion.p
+        <m.p
           variants={item}
           className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text'
         >
           Comprehensive geriatric care designed to promote dignity,
           independence, and quality of life for every resident
-        </motion.p>
+        </m.p>
 
         {/* Decorative Quote */}
-        <motion.div variants={item} className='mx-auto mt-12 max-w-2xl'>
+        <m.div variants={item} className='mx-auto mt-12 max-w-2xl'>
           <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl'>
             <p className='!text-[var(--color-deep-cocoa)] text-lg text-center italic leading-relaxed'>
               &ldquo;Excellence in care is not just what we do — it&apos;s who
               we are&rdquo;
             </p>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

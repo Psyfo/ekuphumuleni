@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import Image from 'next/image';
 import {
   HomeModernIcon,
@@ -48,7 +48,6 @@ const FACILITIES: FacilityHighlight[] = [
 ];
 
 export default function FacilitiesShowcaseSection() {
-  const prefersReducedMotion = useReducedMotion();
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -63,7 +62,7 @@ export default function FacilitiesShowcaseSection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
@@ -73,14 +72,14 @@ export default function FacilitiesShowcaseSection() {
       aria-label='Facilities Showcase'
       className='bg-white px-4 py-20 lg:py-24'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-7xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.2 }}
       >
-        <motion.div variants={item} className='mb-16 text-center'>
+        <m.div variants={item} className='mb-16 text-center'>
           <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
             Comfortable Spaces & Amenities
           </h2>
@@ -89,7 +88,7 @@ export default function FacilitiesShowcaseSection() {
             Every space at Ekuphumuleni is thoughtfully designed to promote
             comfort, dignity, and a true sense of home
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Alternating Layout for Facilities */}
         <div className='space-y-20'>
@@ -100,7 +99,7 @@ export default function FacilitiesShowcaseSection() {
                 index % 2 === 1 ? 'lg:flex-row-reverse' : ''
               }`}
             >
-              <motion.div
+              <m.div
                 variants={item}
                 className={index % 2 === 1 ? 'lg:order-2' : ''}
               >
@@ -122,9 +121,9 @@ export default function FacilitiesShowcaseSection() {
                     index % 2 === 0 ? '-bottom-4 -right-4' : '-bottom-4 -left-4'
                   }`}
                 />
-              </motion.div>
+              </m.div>
 
-              <motion.div
+              <m.div
                 variants={item}
                 className={index % 2 === 1 ? 'lg:order-1' : ''}
               >
@@ -132,13 +131,13 @@ export default function FacilitiesShowcaseSection() {
                 <p className='text-[var(--color-deep-cocoa)]/90 leading-relaxed body-text'>
                   {facility.description}
                 </p>
-              </motion.div>
+              </m.div>
             </div>
           ))}
         </div>
 
         {/* Feature Grid */}
-        <motion.div variants={item} className='mt-20'>
+        <m.div variants={item} className='mt-20'>
           <div className='bg-gradient-to-br from-[var(--color-soft-sand)]/30 to-[var(--color-warm-beige)]/30 p-8 lg:p-12 border border-subtle rounded-2xl'>
             <h3 className='mb-8 !text-2xl text-center heading-3'>
               What Makes Our Facilities Special
@@ -205,8 +204,8 @@ export default function FacilitiesShowcaseSection() {
               </div>
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

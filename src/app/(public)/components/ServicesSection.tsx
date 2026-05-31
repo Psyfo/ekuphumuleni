@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
 
-import { motion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
@@ -51,7 +51,7 @@ export default function ServicesSection() {
       aria-label='Our Services'
     >
       <div className='mx-auto max-w-[1400px]'>
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -66,11 +66,11 @@ export default function ServicesSection() {
             Comprehensive care tailored to each resident's needs, delivered by a
             skilled, multidisciplinary team
           </p>
-        </motion.div>
+        </m.div>
 
         <div className='gap-6 lg:gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
           {/* Nursing Care */}
-          <motion.div
+          <m.div
             custom={0}
             variants={cardVariants}
             initial='hidden'
@@ -93,10 +93,10 @@ export default function ServicesSection() {
               Round‑the‑clock nursing care, observation, and support for each
               resident.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Rehabilitation */}
-          <motion.div
+          <m.div
             custom={1}
             variants={cardVariants}
             initial='hidden'
@@ -119,10 +119,10 @@ export default function ServicesSection() {
               Supportive therapies that restore mobility, independence, and
               well‑being.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Sustainability */}
-          <motion.div
+          <m.div
             custom={2}
             variants={cardVariants}
             initial='hidden'
@@ -144,10 +144,10 @@ export default function ServicesSection() {
             <p className='!text-sm leading-relaxed body-text'>
               Eco‑friendly practices that care for our residents and our planet.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Facilities */}
-          <motion.div
+          <m.div
             custom={3}
             variants={cardVariants}
             initial='hidden'
@@ -169,7 +169,7 @@ export default function ServicesSection() {
             <p className='!text-sm leading-relaxed body-text'>
               Comfortable spaces and amenities designed for community and care.
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

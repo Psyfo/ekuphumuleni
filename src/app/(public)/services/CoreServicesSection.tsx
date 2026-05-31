@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import Link from 'next/link';
 import {
   HeartIcon,
@@ -57,7 +57,6 @@ const SERVICES: ServiceHighlight[] = [
 ];
 
 export default function CoreServicesSection() {
-  const prefersReducedMotion = useReducedMotion();
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -72,7 +71,7 @@ export default function CoreServicesSection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
@@ -82,14 +81,14 @@ export default function CoreServicesSection() {
       aria-label='Core Services'
       className='bg-white px-4 py-20 lg:py-24'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-7xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.2 }}
       >
-        <motion.div variants={item} className='mb-16 text-center'>
+        <m.div variants={item} className='mb-16 text-center'>
           <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
             Comprehensive Care Services
           </h2>
@@ -99,11 +98,11 @@ export default function CoreServicesSection() {
             quality of life for our residents through exceptional, personalized
             care
           </p>
-        </motion.div>
+        </m.div>
 
         <div className='gap-6 lg:gap-8 grid sm:grid-cols-2 lg:grid-cols-3'>
           {SERVICES.map((service, index) => (
-            <motion.div
+            <m.div
               key={index}
               variants={item}
               className='group bg-gradient-to-br from-[var(--color-soft-sand)]/20 to-[var(--color-warm-beige)]/20 hover:shadow-warm-lg p-8 border border-subtle rounded-2xl transition-all hover:-translate-y-1 duration-300'
@@ -118,12 +117,12 @@ export default function CoreServicesSection() {
               <p className='text-[var(--color-deep-cocoa)]/80 !text-sm leading-relaxed body-text'>
                 {service.description}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* Call to Action */}
-        <motion.div variants={item} className='mt-16 text-center'>
+        <m.div variants={item} className='mt-16 text-center'>
           <div className='bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-warm mx-auto p-8 lg:p-12 border border-subtle rounded-2xl max-w-4xl'>
             <h3 className='mb-4 !text-2xl heading-3'>
               Have Questions About Our Services?
@@ -141,8 +140,8 @@ export default function CoreServicesSection() {
               <ChevronRightIcon className='w-5 h-5' aria-hidden='true' />
             </Link>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

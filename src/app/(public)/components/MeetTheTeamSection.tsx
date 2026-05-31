@@ -1,15 +1,14 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import Link from 'next/link';
 
 import { UserGroupIcon } from '@heroicons/react/24/outline';
 
 export default function MeetTheTeamSection() {
-  const prefersReducedMotion = useReducedMotion();
 
   const container: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: {
       opacity: 1,
       y: 0,
@@ -23,7 +22,7 @@ export default function MeetTheTeamSection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
+    hidden: { opacity: 0, y: 16 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
   };
 
@@ -33,42 +32,42 @@ export default function MeetTheTeamSection() {
       className='bg-[var(--color-off-white)] px-4 py-20 lg:py-24'
       aria-label='Meet the Team'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-4xl text-center'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.3 }}
       >
-        <motion.div variants={item} className='inline-block mb-6'>
+        <m.div variants={item} className='inline-block mb-6'>
           <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 shadow-warm mx-auto rounded-2xl w-20 h-20'>
             <UserGroupIcon className='w-10 h-10 text-[var(--color-muted-terracotta)]' />
           </div>
-        </motion.div>
+        </m.div>
 
-        <motion.h2
+        <m.h2
           variants={item}
           className='mb-4 !text-3xl lg:!text-4xl heading-2'
         >
           Meet the Team
-        </motion.h2>
+        </m.h2>
 
-        <motion.div variants={item}>
+        <m.div variants={item}>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
-        </motion.div>
+        </m.div>
 
-        <motion.p
+        <m.p
           variants={item}
           className='mx-auto mb-10 max-w-2xl !text-lg leading-relaxed body-text'
         >
           Clinical, administrative, and board professionals responsible for the
           day‑to‑day running and governance of the home.
-        </motion.p>
+        </m.p>
 
-        <motion.div
+        <m.div
           variants={item}
-          whileHover={prefersReducedMotion ? {} : { scale: 1.03, y: -2 }}
-          whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
+          whileHover={{ scale: 1.03, y: -2 }}
+          whileTap={{ scale: 0.98 }}
           className='inline-block'
         >
           <Link
@@ -91,8 +90,8 @@ export default function MeetTheTeamSection() {
               />
             </svg>
           </Link>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

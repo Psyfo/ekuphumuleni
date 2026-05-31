@@ -1,6 +1,13 @@
 import React from 'react';
 import type { Metadata } from 'next';
 
+import { client } from '@/sanity/lib/client';
+import {
+  TEAM_MEMBERS_QUERY,
+  STAFF_PHOTOS_QUERY,
+  TEAM_PAGE_SETTINGS_QUERY,
+} from '@/sanity/lib/queries';
+
 import TeamHeroSection from './TeamHeroSection';
 import BoardSection from './BoardSection';
 import AdministrationSection from './AdministrationSection';
@@ -37,13 +44,37 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TeamPage() {
+export default async function TeamPage() {
+  const [boardMembers, adminMembers, staffPhotos, pageSettings] =
+    await Promise.all([
+      client.fetch(TEAM_MEMBERS_QUERY, { department: 'board' }),
+      client.fetch(TEAM_MEMBERS_QUERY, { department: 'administration' }),
+      client.fetch(STAFF_PHOTOS_QUERY),
+      client.fetch(TEAM_PAGE_SETTINGS_QUERY),
+    ]);
+
   return (
     <main>
-      <TeamHeroSection />
-      <BoardSection />
-      <AdministrationSection />
-      <StaffSection />
+      <TeamHeroSection
+        title={pageSettings?.heroTitle}
+        subtitle={pageSettings?.heroSubtitle}
+        quote={pageSettings?.heroQuote}
+      />
+      <BoardSection
+        members={boardMembers ?? []}
+        heading={pageSettings?.boardSection?.heading}
+        description={pageSettings?.boardSection?.description}
+      />
+      <AdministrationSection
+        members={adminMembers ?? []}
+        heading={pageSettings?.adminSection?.heading}
+        description={pageSettings?.adminSection?.description}
+      />
+      <StaffSection
+        photos={staffPhotos ?? []}
+        heading={pageSettings?.staffSection?.heading}
+        description={pageSettings?.staffSection?.description}
+      />
     </main>
   );
 }
