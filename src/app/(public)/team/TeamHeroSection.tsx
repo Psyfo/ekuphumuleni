@@ -4,7 +4,17 @@ import { m, Variants } from 'framer-motion';
 import Link from 'next/link';
 import { HomeIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
-export default function TeamHeroSection() {
+interface TeamHeroSectionProps {
+  title?: string | null;
+  subtitle?: string | null;
+  quote?: string | null;
+}
+
+export default function TeamHeroSection({
+  title,
+  subtitle,
+  quote,
+}: TeamHeroSectionProps) {
   const container: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -53,19 +63,21 @@ export default function TeamHeroSection() {
             </li>
             <li>
               <span className='font-medium text-[var(--color-deep-cocoa)]'>
-                Meet the Team
+                {title ?? 'Meet the Team'}
               </span>
             </li>
           </ol>
         </m.nav>
 
         {/* Page Title */}
-        <m.h1
-          variants={item}
-          className='mb-6 !text-4xl md:!text-5xl lg:!text-6xl text-center heading-1'
-        >
-          Meet the Team
-        </m.h1>
+        {title ? (
+          <m.h1
+            variants={item}
+            className='mb-6 !text-4xl md:!text-5xl lg:!text-6xl text-center heading-1'
+          >
+            {title}
+          </m.h1>
+        ) : null}
 
         {/* Accent Divider */}
         <m.div
@@ -74,25 +86,25 @@ export default function TeamHeroSection() {
         />
 
         {/* Subtitle */}
-        <m.p
-          variants={item}
-          className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text'
-        >
-          Meet the individuals responsible for the clinical work, day‑to‑day
-          operations, and governance of Ekuphumuleni. From our board of trustees
-          to front‑line staff, every member has defined duties in how the home
-          is run.
-        </m.p>
+        {subtitle ? (
+          <m.p
+            variants={item}
+            className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text'
+          >
+            {subtitle}
+          </m.p>
+        ) : null}
 
         {/* Decorative Quote */}
-        <m.div variants={item} className='mx-auto mt-12 max-w-2xl'>
-          <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl'>
-            <p className='text-[var(--color-deep-cocoa)] text-lg text-center italic leading-relaxed'>
-              &ldquo;Together, we manage a home where every resident is treated
-              with dignity and receives consistent nursing and support.&rdquo;
-            </p>
-          </div>
-        </m.div>
+        {quote ? (
+          <m.div variants={item} className='mx-auto mt-12 max-w-2xl'>
+            <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl'>
+              <p className='text-[var(--color-deep-cocoa)] text-lg text-center italic leading-relaxed'>
+                &ldquo;{quote}&rdquo;
+              </p>
+            </div>
+          </m.div>
+        ) : null}
       </m.div>
     </section>
   );

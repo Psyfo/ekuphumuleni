@@ -5,13 +5,6 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 
 import { UserIcon } from '@heroicons/react/24/outline';
-import teamMembers from '@/content/teamMembers.json';
-
-type Member = {
-  name: string;
-  role?: string;
-  img?: string;
-};
 
 export type CmsMember = {
   _id: string;
@@ -20,14 +13,18 @@ export type CmsMember = {
   imageUrl?: string | null;
 };
 
-const BOARD: Member[] = teamMembers.board;
+interface BoardSectionProps {
+  members: CmsMember[];
+  heading?: string | null;
+  description?: string | null;
+}
 
 function Portrait({
   src,
   alt,
   priority = false,
 }: {
-  src?: string;
+  src?: string | null;
   alt: string;
   priority?: boolean;
 }) {
@@ -64,22 +61,11 @@ function Portrait({
   );
 }
 
-export default function BoardSection({ members }: { members?: CmsMember[] }) {
-  const boardByName = new Map(
-    BOARD.map((member) => [member.name.toLowerCase(), member]),
-  );
-
-  const displayMembers: Member[] = members
-    ? members.map((m) => {
-        const fallback = boardByName.get(m.name.toLowerCase());
-        return {
-          name: m.name,
-          role: m.role ?? fallback?.role,
-          img: m.imageUrl ?? fallback?.img,
-        };
-      })
-    : BOARD;
-
+export default function BoardSection({
+  members,
+  heading,
+  description,
+}: BoardSectionProps) {
   const container: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -111,42 +97,49 @@ export default function BoardSection({ members }: { members?: CmsMember[] }) {
         viewport={{ once: true, amount: 0.1 }}
       >
         <m.div variants={item} className='mb-16 text-center'>
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
-            Executive Board Members
-          </h2>
+          {heading ? (
+            <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>{heading}</h2>
+          ) : null}
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
-          <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
-            The current executive board members guiding Ekuphumuleni&apos;s
-            mission and service excellence
-          </p>
+          {description ? (
+            <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
+              {description}
+            </p>
+          ) : null}
         </m.div>
 
-        <m.ul
-          variants={container}
-          className='gap-6 lg:gap-8 grid sm:grid-cols-2 lg:grid-cols-3'
-        >
-          {displayMembers.map((member, idx) => (
-            <m.li
-              key={idx}
-              variants={item}
-              className='group bg-white shadow-warm-lg hover:shadow-warm-xl p-6 border border-subtle rounded-2xl transition-all hover:-translate-y-1 duration-300'
-            >
-              <Portrait
-                src={member.img}
-                alt={member.name}
-                priority={idx === 0}
-              />
-              <div className='mt-6 text-center'>
-                <h3 className='mb-1.5 font-serif font-bold text-[var(--color-deep-cocoa)] text-lg'>
-                  {member.name}
-                </h3>
-                <p className='font-medium text-[var(--color-earth-brown)] text-sm'>
-                  {member.role ?? 'Trustee'}
-                </p>
-              </div>
-            </m.li>
-          ))}
-        </m.ul>
+        {members.length === 0 ? (
+          <m.p variants={item} className='text-center body-text'>
+            Board member information will be available soon.
+          </m.p>
+        ) : (
+          <m.ul
+            variants={container}
+            className='gap-6 lg:gap-8 grid sm:grid-cols-2 lg:grid-cols-3'
+          >
+            {members.map((member, idx) => (
+              <m.li
+                key={member._id}
+                variants={item}
+                className='group bg-white shadow-warm-lg hover:shadow-warm-xl p-6 border border-subtle rounded-2xl transition-all hover:-translate-y-1 duration-300'
+              >
+                <Portrait
+                  src={member.imageUrl}
+                  alt={member.name}
+                  priority={idx === 0}
+                />
+                <div className='mt-6 text-center'>
+                  <h3 className='mb-1.5 font-serif font-bold text-[var(--color-deep-cocoa)] text-lg'>
+                    {member.name}
+                  </h3>
+                  <p className='font-medium text-[var(--color-earth-brown)] text-sm'>
+                    {member.role ?? 'Trustee'}
+                  </p>
+                </div>
+              </m.li>
+            ))}
+          </m.ul>
+        )}
       </m.div>
     </section>
   );

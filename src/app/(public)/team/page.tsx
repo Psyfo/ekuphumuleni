@@ -2,10 +2,11 @@ import React from 'react';
 import type { Metadata } from 'next';
 
 import { client } from '@/sanity/lib/client';
-import { isSanityConfigured } from '@/sanity/env';
-import { TEAM_MEMBERS_QUERY } from '@/sanity/lib/queries';
-import type { CmsMember as BoardMember } from './BoardSection';
-import type { CmsMember as AdminMember } from './AdministrationSection';
+import {
+  TEAM_MEMBERS_QUERY,
+  STAFF_PHOTOS_QUERY,
+  TEAM_PAGE_SETTINGS_QUERY,
+} from '@/sanity/lib/queries';
 
 import TeamHeroSection from './TeamHeroSection';
 import BoardSection from './BoardSection';
@@ -44,24 +45,36 @@ export const metadata: Metadata = {
 };
 
 export default async function TeamPage() {
-  let boardMembers: BoardMember[] | undefined;
-  let adminMembers: AdminMember[] | undefined;
-
-  if (isSanityConfigured) {
-    const [board, admin] = await Promise.all([
+  const [boardMembers, adminMembers, staffPhotos, pageSettings] =
+    await Promise.all([
       client.fetch(TEAM_MEMBERS_QUERY, { department: 'board' }),
       client.fetch(TEAM_MEMBERS_QUERY, { department: 'administration' }),
+      client.fetch(STAFF_PHOTOS_QUERY),
+      client.fetch(TEAM_PAGE_SETTINGS_QUERY),
     ]);
-    if (board?.length) boardMembers = board;
-    if (admin?.length) adminMembers = admin;
-  }
 
   return (
     <main>
-      <TeamHeroSection />
-      <BoardSection members={boardMembers} />
-      <AdministrationSection members={adminMembers} />
-      <StaffSection />
+      <TeamHeroSection
+        title={pageSettings?.heroTitle}
+        subtitle={pageSettings?.heroSubtitle}
+        quote={pageSettings?.heroQuote}
+      />
+      <BoardSection
+        members={boardMembers ?? []}
+        heading={pageSettings?.boardSection?.heading}
+        description={pageSettings?.boardSection?.description}
+      />
+      <AdministrationSection
+        members={adminMembers ?? []}
+        heading={pageSettings?.adminSection?.heading}
+        description={pageSettings?.adminSection?.description}
+      />
+      <StaffSection
+        photos={staffPhotos ?? []}
+        heading={pageSettings?.staffSection?.heading}
+        description={pageSettings?.staffSection?.description}
+      />
     </main>
   );
 }
