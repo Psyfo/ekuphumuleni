@@ -23,7 +23,12 @@ export interface TeamMembersSource {
 // Sanity import document shapes
 // ---------------------------------------------------------------------------
 
-export type Department = 'board' | 'administration' | 'staff';
+export type Department = 'board' | 'administration' | 'nursing' | 'care';
+
+export interface SanityAssetRef {
+  _type: 'image';
+  asset: { _type: 'reference'; _ref: string };
+}
 
 export interface SanityTeamMemberDoc {
   _id: string;
@@ -32,4 +37,30 @@ export interface SanityTeamMemberDoc {
   role: string | undefined;
   department: Department;
   order: number;
+  image?: SanityAssetRef;
+}
+
+export interface SanityStaffPhotoDoc {
+  _id: string;
+  _type: 'staffPhoto';
+  image: SanityAssetRef;
+  alt: string;
+  caption?: string;
+  order: number;
+}
+
+interface SectionSettings {
+  heading: string;
+  description: string;
+}
+
+export interface SanityTeamPageSettingsDoc {
+  _id: 'teamPageSettings';
+  _type: 'teamPageSettings';
+  heroTitle: string;
+  heroSubtitle: string;
+  heroQuote: string;
+  boardSection: SectionSettings;
+  adminSection: SectionSettings;
+  staffSection: SectionSettings;
 }
