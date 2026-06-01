@@ -12,6 +12,11 @@ import TeamHeroSection from './TeamHeroSection';
 import BoardSection from './BoardSection';
 import AdministrationSection from './AdministrationSection';
 import StaffSection from './StaffSection';
+import {
+  FALLBACK_BOARD_MEMBERS,
+  FALLBACK_ADMIN_MEMBERS,
+  FALLBACK_PAGE_SETTINGS,
+} from './fallback-data';
 
 export const metadata: Metadata = {
   title: 'Meet the Team',
@@ -45,13 +50,22 @@ export const metadata: Metadata = {
 };
 
 export default async function TeamPage() {
-  const [boardMembers, adminMembers, staffPhotos, pageSettings] =
-    await Promise.all([
+  let boardMembers, adminMembers, staffPhotos, pageSettings;
+
+  try {
+    [boardMembers, adminMembers, staffPhotos, pageSettings] = await Promise.all([
       client.fetch(TEAM_MEMBERS_QUERY, { department: 'board' }),
       client.fetch(TEAM_MEMBERS_QUERY, { department: 'administration' }),
       client.fetch(STAFF_PHOTOS_QUERY),
       client.fetch(TEAM_PAGE_SETTINGS_QUERY),
     ]);
+  } catch (err) {
+    console.error('[TeamPage] Sanity fetch failed — rendering fallback content:', err);
+    boardMembers = FALLBACK_BOARD_MEMBERS;
+    adminMembers = FALLBACK_ADMIN_MEMBERS;
+    staffPhotos = [];
+    pageSettings = FALLBACK_PAGE_SETTINGS;
+  }
 
   return (
     <main>
