@@ -5,7 +5,7 @@ import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './src/sanity/schemaTypes';
 import { apiVersion, dataset, projectId } from './src/sanity/env';
 
-const SINGLETON_TYPES = new Set(['teamPageSettings']);
+const SINGLETON_TYPES = new Set(['teamPageSettings', 'servicesPageSettings']);
 
 export default defineConfig({
   basePath: '/studio',
@@ -26,6 +26,15 @@ export default defineConfig({
                 S.document()
                   .schemaType('teamPageSettings')
                   .documentId('teamPageSettings'),
+              ),
+            // Singleton: Services Page Settings
+            S.listItem()
+              .title('Services Page Settings')
+              .id('servicesPageSettings')
+              .child(
+                S.document()
+                  .schemaType('servicesPageSettings')
+                  .documentId('servicesPageSettings'),
               ),
             S.divider(),
             // All other document types (excluding singletons)

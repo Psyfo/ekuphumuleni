@@ -4,7 +4,17 @@ import { m, Variants } from 'framer-motion';
 import Link from 'next/link';
 import { HomeIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
-export default function ServicesHeroSection() {
+interface ServicesHeroSectionProps {
+  heroTitle: string;
+  heroSubtitle: string;
+  heroQuote: string;
+}
+
+export default function ServicesHeroSection({
+  heroTitle,
+  heroSubtitle,
+  heroQuote,
+}: ServicesHeroSectionProps) {
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -65,7 +75,7 @@ export default function ServicesHeroSection() {
           variants={item}
           className='mb-6 !text-4xl md:!text-5xl lg:!text-6xl text-center heading-1'
         >
-          Our Services
+          {heroTitle}
         </m.h1>
 
         {/* Accent Divider */}
@@ -79,16 +89,14 @@ export default function ServicesHeroSection() {
           variants={item}
           className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text'
         >
-          Comprehensive geriatric care designed to promote dignity,
-          independence, and quality of life for every resident
+          {heroSubtitle}
         </m.p>
 
         {/* Decorative Quote */}
         <m.div variants={item} className='mx-auto mt-12 max-w-2xl'>
           <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl'>
             <p className='!text-[var(--color-deep-cocoa)] text-lg text-center italic leading-relaxed'>
-              &ldquo;Excellence in care is not just what we do — it&apos;s who
-              we are&rdquo;
+              &ldquo;{heroQuote}&rdquo;
             </p>
           </div>
         </m.div>
