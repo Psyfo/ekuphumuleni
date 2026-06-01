@@ -2,6 +2,8 @@
  * scripts/sanity/seed.ts — ORCHESTRATOR
  *
  * Entry point for `npm run sanity:seed`.
+ * Idempotent — all seeds use createOrReplace with fixed _id values, so running
+ * this script multiple times is safe and will not create duplicate documents.
  *
  * To add a new page seed:
  *   1. Create  scripts/sanity/seeds/<page>.ts  exporting `seed<Page>()`
@@ -11,38 +13,9 @@
  *   npm run sanity:seed
  */
 
-import { projectId, dataset, token } from './lib';
+import { projectId, token } from './lib';
 import { seedTeam } from './seeds/team';
-
-// ---------------------------------------------------------------------------
-// Project-level setup (runs once per seed, not per page)
-// ---------------------------------------------------------------------------
-
-async function renameProject() {
-  console.log('\n── Project setup: rename ──');
-  try {
-    const res = await fetch(
-      `https://api.sanity.io/v2021-06-07/projects/${projectId}`,
-      {
-        method: 'PATCH',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ displayName: 'Ekuphumuleni' }),
-      },
-    );
-    if (res.ok) {
-      console.log('  ✓ Project renamed to "Ekuphumuleni"');
-    } else {
-      const body = await res.text();
-      console.warn(`  ⚠  Could not rename project (${res.status}): ${body}`);
-      console.warn('  ⚠  Continuing — token may not have Administrator role.');
-    }
-  } catch (err) {
-    console.warn('  ⚠  Project rename failed (network error):', err);
-  }
-}
+import { seedServices } from './seeds/services';
 
 // ---------------------------------------------------------------------------
 // Main — add new page seeds here
@@ -54,14 +27,12 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`\nSeeding Sanity project: ${projectId} / ${dataset}\n`);
-
-  await renameProject();
+  console.log(`\nSeeding Sanity project: ${projectId}\n`);
 
   // ── Page seeds ──────────────────────────────────────────────────────────
   await seedTeam();
-  // await seedHome();      // future: scripts/sanity/seeds/home.ts
-  // await seedServices();  // future: scripts/sanity/seeds/services.ts
+  await seedServices();
+  // await seedHome();   // future: scripts/sanity/seeds/home.ts
   // ────────────────────────────────────────────────────────────────────────
 
   console.log('\n✅  Seed complete.\n');

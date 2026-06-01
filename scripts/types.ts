@@ -64,3 +64,69 @@ export interface SanityTeamPageSettingsDoc {
   adminSection: SectionSettings;
   staffSection: SectionSettings;
 }
+
+// ---------------------------------------------------------------------------
+// Services page types
+// ---------------------------------------------------------------------------
+
+export interface SanityServiceItem {
+  _key: string;
+  iconName: string;
+  title: string;
+  description: string;
+}
+
+export interface SanityServiceFeatureCard {
+  _key: string;
+  iconName: string;
+  title: string;
+  description: string;
+}
+
+export interface SanityGalleryImageItem {
+  _key: string;
+  image: SanityAssetRef;
+  alt: string;
+}
+
+export interface SanityCoreServicesSection {
+  heading: string;
+  subtitle: string;
+  ctaHeading: string;
+  ctaBody: string;
+  ctaButtonLabel: string;
+  services: SanityServiceItem[];
+}
+
+export interface SanityNursingSection {
+  heading: string;
+  subtitle: string;
+  featuredImage?: SanityAssetRef;
+  featuredHeading: string;
+  featuredBody: string;
+  bulletItems: string[];
+  featureCards: SanityServiceFeatureCard[];
+  galleryImages: SanityGalleryImageItem[];
+}
+
+export interface SanityRehabilitationSection {
+  heading: string;
+  subtitle: string;
+  featuredImage?: SanityAssetRef;
+  featuredHeading: string;
+  featuredBody: string;
+  programs: { _key: string; title: string; description: string }[];
+  galleryImages: SanityGalleryImageItem[];
+}
+
+export interface SanityServicesPageSettingsDoc {
+  _id: 'servicesPageSettings';
+  _type: 'servicesPageSettings';
+  heroTitle: string;
+  heroSubtitle: string;
+  heroQuote: string;
+  seo: { metaTitle: string; metaDescription: string };
+  coreServicesSection: SanityCoreServicesSection;
+  nursingSection: SanityNursingSection;
+  rehabilitationSection: SanityRehabilitationSection;
+}

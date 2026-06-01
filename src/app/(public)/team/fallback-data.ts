@@ -26,13 +26,13 @@ export const FALLBACK_ADMIN_MEMBERS: CmsMember[] = [
 export const FALLBACK_PAGE_SETTINGS = {
   heroTitle: 'Meet the Team',
   heroSubtitle:
-    'Meet the individuals responsible for the clinical work, day‑to‑day operations, and governance of Ekuphumuleni. From our board of trustees to front‑line staff, every member has defined duties in how the home is run.',
+    'Meet the individuals responsible for the clinical work, day-to-day operations, and governance of Ekuphumuleni. From our board of trustees to front-line staff, every member has defined duties in how the home is run.',
   heroQuote:
     'Together, we manage a home where every resident is treated with dignity and receives consistent nursing and support.',
   boardSection: {
     heading: 'Executive Board Members',
     description:
-      'The current executive board members guiding Ekuphumuleni’s mission and service excellence',
+      "The current executive board members guiding Ekuphumuleni's mission and service excellence",
   },
   adminSection: {
     heading: 'Administration Team',
@@ -43,5 +43,10 @@ export const FALLBACK_PAGE_SETTINGS = {
     heading: 'Our Dedicated Staff',
     description:
       'Our nursing, care, and support teams work in shifts to provide daily care, monitoring, and assistance for residents',
+  },
+  seo: {
+    metaTitle: 'Meet the Team | Ekuphumuleni Geriatric Nursing Home',
+    metaDescription:
+      'Meet our team - board of trustees, administrators, nursing staff, and care workers responsible for the operation of Ekuphumuleni and delivery of geriatric care.',
   },
 };

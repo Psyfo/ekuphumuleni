@@ -18,36 +18,49 @@ import {
   FALLBACK_PAGE_SETTINGS,
 } from './fallback-data';
 
-export const metadata: Metadata = {
-  title: 'Meet the Team',
-  description:
-    'Meet the team at Ekuphumuleni Geriatric Nursing Home. Our board of trustees, administrators, nursing staff, and care workers manage the day-to-day running of the home and delivery of elderly care in Bulawayo, Zimbabwe.',
-  keywords: [
-    'nursing home staff',
-    'geriatric care team',
-    'healthcare professionals',
-    'nursing staff Bulawayo',
-    'elderly care team',
-    'board of trustees',
-    'nursing home administration',
-    'skilled caregivers',
-  ],
-  openGraph: {
-    title: 'Meet the Team | Ekuphumuleni Geriatric Nursing Home',
-    description:
-      'Meet our team - board of trustees, administrators, nursing staff, and care workers responsible for the operation of Ekuphumuleni and delivery of geriatric care.',
-    type: 'website',
-    url: 'https://ekuphumuleni.ngo/team',
-    images: [
-      {
-        url: 'https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo-seo.png',
-        width: 512,
-        height: 512,
-        alt: 'Ekuphumuleni Geriatric Nursing Home Logo',
-      },
+export async function generateMetadata(): Promise<Metadata> {
+  let seo = FALLBACK_PAGE_SETTINGS.seo;
+  try {
+    const settings = await client.fetch(TEAM_PAGE_SETTINGS_QUERY);
+    if (settings?.seo) seo = settings.seo;
+  } catch {
+    // Fall through to defaults
+  }
+
+  const title = seo?.metaTitle ?? 'Meet the Team | Ekuphumuleni Geriatric Nursing Home';
+  const description =
+    seo?.metaDescription ??
+    'Meet our team - board of trustees, administrators, nursing staff, and care workers responsible for the operation of Ekuphumuleni and delivery of geriatric care.';
+
+  return {
+    title,
+    description,
+    keywords: [
+      'nursing home staff',
+      'geriatric care team',
+      'healthcare professionals',
+      'nursing staff Bulawayo',
+      'elderly care team',
+      'board of trustees',
+      'nursing home administration',
+      'skilled caregivers',
     ],
-  },
-};
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      url: 'https://ekuphumuleni.ngo/team',
+      images: [
+        {
+          url: 'https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo-seo.png',
+          width: 512,
+          height: 512,
+          alt: 'Ekuphumuleni Geriatric Nursing Home Logo',
+        },
+      ],
+    },
+  };
+}
 
 export default async function TeamPage() {
   let boardMembers, adminMembers, staffPhotos, pageSettings;
