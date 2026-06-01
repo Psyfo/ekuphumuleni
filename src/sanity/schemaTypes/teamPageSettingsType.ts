@@ -34,6 +34,8 @@ export const teamPageSettingsType = defineType({
       name: 'boardSection',
       title: 'Board of Trustees Section',
       type: 'object',
+      description:
+        'Controls the heading and intro text shown above the Board of Trustees profile grid on the /team page.',
       fields: [
         defineField({ name: 'heading', title: 'Heading', type: 'string' }),
         defineField({
@@ -50,6 +52,8 @@ export const teamPageSettingsType = defineType({
       name: 'adminSection',
       title: 'Administration Section',
       type: 'object',
+      description:
+        'Controls the heading and intro text shown above the Administration team profile grid on the /team page.',
       fields: [
         defineField({ name: 'heading', title: 'Heading', type: 'string' }),
         defineField({
@@ -66,6 +70,8 @@ export const teamPageSettingsType = defineType({
       name: 'staffSection',
       title: 'Staff Section',
       type: 'object',
+      description:
+        'Controls the heading and intro text shown above the staff photo carousel on the /team page.',
       fields: [
         defineField({ name: 'heading', title: 'Heading', type: 'string' }),
         defineField({
