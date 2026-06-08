@@ -9,33 +9,52 @@ import {
 } from '@heroicons/react/24/outline';
 import MapEmbed from '@/components/MapEmbed';
 
-const contactDetails = [
+const ICON_MAP: Record<string, typeof MapPinIcon> = {
+  'map-pin': MapPinIcon,
+  phone: PhoneIcon,
+  envelope: EnvelopeIcon,
+  clock: ClockIcon,
+};
+
+interface ContactDetail {
+  iconName: string;
+  title: string;
+  lines: string[];
+  link?: string | null;
+}
+
+interface ContactInfoSectionData {
+  heading: string;
+  subtitle: string;
+  details: ContactDetail[];
+  mapQuery: string;
+  additionalInfoHeading: string;
+  additionalInfoBody: string;
+}
+
+const FALLBACK_DETAILS: ContactDetail[] = [
   {
-    icon: MapPinIcon,
+    iconName: 'map-pin',
     title: 'Our Location',
-    content: [
-      'Stand 7165 Old Falls Road',
-      'P O Box 1667',
-      'Bulawayo, Zimbabwe',
-    ],
+    lines: ['Stand 7165 Old Falls Road', 'P O Box 1667', 'Bulawayo, Zimbabwe'],
     link: null,
   },
   {
-    icon: PhoneIcon,
+    iconName: 'phone',
     title: 'Phone',
-    content: ['Tel: +263 292 216877', 'Mobile: +263 778 719166'],
+    lines: ['Tel: +263 292 216877', 'Mobile: +263 778 719166'],
     link: null,
   },
   {
-    icon: EnvelopeIcon,
+    iconName: 'envelope',
     title: 'Email',
-    content: ['administration@ekuphumuleni.ngo'],
+    lines: ['administration@ekuphumuleni.ngo'],
     link: 'mailto:administration@ekuphumuleni.ngo',
   },
   {
-    icon: ClockIcon,
+    iconName: 'clock',
     title: 'Visiting Hours',
-    content: [
+    lines: [
       'Patient Visits: Daily 8:00 AM - 4:00 PM',
       'Office Hours: Mon - Fri 8:00 AM - 4:00 PM',
     ],
@@ -43,7 +62,23 @@ const contactDetails = [
   },
 ];
 
-export default function ContactInfoSection() {
+interface ContactInfoSectionProps {
+  data?: Partial<ContactInfoSectionData>;
+}
+
+export default function ContactInfoSection({ data }: ContactInfoSectionProps = {}) {
+  const heading = data?.heading ?? 'Contact Information';
+  const subtitle =
+    data?.subtitle ??
+    'Find us at our location or reach out through any of the channels below';
+  const details = data?.details ?? FALLBACK_DETAILS;
+  const mapQuery =
+    data?.mapQuery ??
+    'Ekuphumuleni Geriatric Nursing Home, VHCG+86V, Old Falls Rd, Bulawayo';
+  const additionalInfoHeading = data?.additionalInfoHeading ?? 'Planning a visit?';
+  const additionalInfoBody =
+    data?.additionalInfoBody ??
+    'We recommend calling ahead to schedule your visit and ensure we can provide you with the attention and information you need. Our team is here to assist you with any questions about our services and facilities.';
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -77,12 +112,11 @@ export default function ContactInfoSection() {
           className='mb-16 text-center'
         >
           <h2 className='mb-4 !text-4xl md:!text-5xl heading-2'>
-            Contact Information
+            {heading}
           </h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-20 h-1.5' />
           <p className='mx-auto max-w-2xl text-[var(--color-earth-brown)] text-lg'>
-            Find us at our location or reach out through any of the channels
-            below
+            {subtitle}
           </p>
         </m.div>
 
@@ -94,8 +128,8 @@ export default function ContactInfoSection() {
           viewport={{ once: true, margin: '-100px' }}
           className='gap-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-12'
         >
-          {contactDetails.map((detail, index) => {
-            const IconComponent = detail.icon;
+          {details.map((detail, index) => {
+            const IconComponent = ICON_MAP[detail.iconName] ?? MapPinIcon;
             return (
               <m.div
                 key={index}
@@ -115,7 +149,7 @@ export default function ContactInfoSection() {
                         href={detail.link}
                         className='block text-[var(--color-earth-brown)] hover:text-[var(--color-muted-terracotta)] transition-colors duration-200'
                       >
-                        {detail.content.map((line, i) => (
+                        {detail.lines.map((line, i) => (
                           <span key={i} className='block text-sm'>
                             {line}
                           </span>
@@ -123,7 +157,7 @@ export default function ContactInfoSection() {
                       </a>
                     ) : (
                       <div className='text-[var(--color-earth-brown)]'>
-                        {detail.content.map((line, i) => (
+                        {detail.lines.map((line, i) => (
                           <span key={i} className='block text-sm'>
                             {line}
                           </span>
@@ -148,7 +182,7 @@ export default function ContactInfoSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className='shadow-warm-xl border border-subtle rounded-2xl overflow-hidden'
         >
-          <MapEmbed query='Ekuphumuleni Geriatric Nursing Home, VHCG+86V, Old Falls Rd, Bulawayo' />
+          <MapEmbed query={mapQuery} />
         </m.div>
 
         {/* Additional Info Card */}
@@ -162,12 +196,9 @@ export default function ContactInfoSection() {
           <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl text-center'>
             <p className='text-[var(--color-earth-brown)] text-lg leading-relaxed'>
               <span className='font-semibold text-[var(--color-deep-cocoa)]'>
-                Planning a visit?
+                {additionalInfoHeading}
               </span>{' '}
-              We recommend calling ahead to schedule your visit and ensure we
-              can provide you with the attention and information you need. Our
-              team is here to assist you with any questions about our services
-              and facilities.
+              {additionalInfoBody}
             </p>
           </div>
         </m.div>

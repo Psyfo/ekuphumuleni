@@ -4,7 +4,17 @@ import { m, Variants } from 'framer-motion';
 import Link from 'next/link';
 import { HomeIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
-export default function ContactHeroSection() {
+interface ContactHeroSectionProps {
+  title?: string;
+  subtitle?: string;
+  quote?: string;
+}
+
+export default function ContactHeroSection({
+  title = 'Get in Touch',
+  subtitle = "We're here to answer your questions and provide the information you need about our geriatric care services and facilities",
+  quote = "Whether you're seeking information about our services, exploring care options for a loved one, or wanting to support our mission, we welcome your inquiries",
+}: ContactHeroSectionProps = {}) {
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -65,7 +75,7 @@ export default function ContactHeroSection() {
           variants={item}
           className='mb-6 !text-4xl md:!text-5xl lg:!text-6xl text-center heading-1'
         >
-          Get in Touch
+          {title}
         </m.h1>
 
         {/* Accent Divider */}
@@ -79,17 +89,14 @@ export default function ContactHeroSection() {
           variants={item}
           className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text'
         >
-          We&apos;re here to answer your questions and provide the information
-          you need about our geriatric care services and facilities
+          {subtitle}
         </m.p>
 
         {/* Decorative Quote */}
         <m.div variants={item} className='mx-auto mt-12 max-w-2xl'>
           <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl'>
             <p className='!text-[var(--color-deep-cocoa)] text-lg text-center italic leading-relaxed'>
-              &ldquo;Whether you&apos;re seeking information about our services,
-              exploring care options for a loved one, or wanting to support our
-              mission, we welcome your inquiries&rdquo;
+              &ldquo;{quote}&rdquo;
             </p>
           </div>
         </m.div>
