@@ -16,6 +16,12 @@
 import { projectId, token } from './lib';
 import { seedTeam } from './seeds/team';
 import { seedServices } from './seeds/services';
+import { seedAbout } from './seeds/about';
+import { seedFacilities } from './seeds/facilities';
+import { seedContact } from './seeds/contact';
+import { seedHome } from './seeds/home';
+import { seedDonors } from './seeds/donors';
+import { seedLegal } from './seeds/legal';
 
 // ---------------------------------------------------------------------------
 // Main — add new page seeds here
@@ -32,7 +38,12 @@ async function main() {
   // ── Page seeds ──────────────────────────────────────────────────────────
   await seedTeam();
   await seedServices();
-  // await seedHome();   // future: scripts/sanity/seeds/home.ts
+  await seedAbout();
+  await seedFacilities();
+  await seedContact();
+  await seedHome();
+  await seedDonors();
+  await seedLegal();
   // ────────────────────────────────────────────────────────────────────────
 
   console.log('\n✅  Seed complete.\n');

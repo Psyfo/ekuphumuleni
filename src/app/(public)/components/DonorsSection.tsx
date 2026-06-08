@@ -5,7 +5,22 @@ import Link from 'next/link';
 
 import { GiftIcon } from '@heroicons/react/24/outline';
 
-export default function DonorsSection() {
+interface DonorsSectionData {
+  heading?: string;
+  body?: string;
+  ctaLabel?: string;
+}
+
+interface DonorsSectionProps {
+  data?: DonorsSectionData;
+}
+
+export default function DonorsSection({ data }: DonorsSectionProps = {}) {
+  const heading = data?.heading ?? 'Donors & Support';
+  const body =
+    data?.body ??
+    'We acknowledge the donors and partners whose contributions help us maintain services, staffing, and facilities.';
+  const ctaLabel = data?.ctaLabel ?? 'See Our Donors';
 
   const container: Variants = {
     hidden: { opacity: 0, y: 20 },
@@ -49,7 +64,7 @@ export default function DonorsSection() {
           variants={item}
           className='mb-4 !text-3xl lg:!text-4xl heading-2'
         >
-          Donors &amp; Support
+          {heading}
         </m.h2>
 
         <m.div variants={item}>
@@ -60,8 +75,7 @@ export default function DonorsSection() {
           variants={item}
           className='mx-auto mb-10 max-w-2xl !text-lg leading-relaxed body-text'
         >
-          We acknowledge the donors and partners whose contributions help us
-          maintain services, staffing, and facilities.
+          {body}
         </m.p>
 
         <m.div
@@ -75,7 +89,7 @@ export default function DonorsSection() {
             prefetch={false}
             className='inline-flex items-center gap-2 bg-[var(--color-muted-terracotta)] shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 font-bold !text-white hover:!text-white focus-visible:!text-white transition-all duration-300'
           >
-            See Our Donors
+            {ctaLabel}
             <svg
               className='w-5 h-5'
               fill='none'

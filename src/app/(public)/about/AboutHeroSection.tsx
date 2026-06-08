@@ -4,7 +4,17 @@ import { m, Variants } from 'framer-motion';
 import Link from 'next/link';
 import { HomeIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
-export default function AboutHeroSection() {
+interface AboutHeroSectionProps {
+  title?: string;
+  subtitle?: string;
+  quote?: string;
+}
+
+export default function AboutHeroSection({
+  title = 'About Ekuphumuleni',
+  subtitle = 'A legacy of geriatric nursing, dignity, and restoration since 1983',
+  quote = "Ekuphumuleni means 'place of rest' — a sanctuary where dignity, skilled care, and respect come together to honor every individual",
+}: AboutHeroSectionProps) {
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -65,7 +75,7 @@ export default function AboutHeroSection() {
           variants={item}
           className='mb-6 !text-4xl md:!text-5xl lg:!text-6xl text-center heading-1'
         >
-          About Ekuphumuleni
+          {title}
         </m.h1>
 
         {/* Accent Divider */}
@@ -79,16 +89,14 @@ export default function AboutHeroSection() {
           variants={item}
           className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text'
         >
-          A legacy of geriatric nursing, dignity, and restoration since 1983
+          {subtitle}
         </m.p>
 
         {/* Decorative Quote */}
         <m.div variants={item} className='mx-auto mt-12 max-w-2xl'>
           <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl'>
             <p className='!text-[var(--color-deep-cocoa)] text-lg text-center italic leading-relaxed'>
-              &ldquo;Ekuphumuleni means &lsquo;place of rest&rsquo; — a
-              sanctuary where dignity, skilled care, and respect come together
-              to honor every individual&rdquo;
+              &ldquo;{quote}&rdquo;
             </p>
           </div>
         </m.div>

@@ -12,7 +12,30 @@ import {
   PhoneIcon,
 } from '@heroicons/react/24/outline';
 
-export default function ContactSection() {
+interface ContactSectionData {
+  heading?: string;
+  subtitle?: string;
+  email?: string;
+  phoneNumbers?: string[];
+  locationLines?: string[];
+  mapQuery?: string;
+  ctaLabel?: string;
+}
+
+interface ContactSectionProps {
+  data?: ContactSectionData;
+}
+
+export default function ContactSection({ data }: ContactSectionProps = {}) {
+  const heading = data?.heading ?? 'Contact Us';
+  const subtitle =
+    data?.subtitle ?? "We're here to answer your questions and provide the information you need";
+  const email = data?.email ?? 'administration@ekuphumuleni.ngo';
+  const phoneNumbers = data?.phoneNumbers ?? ['+263 292 216877', '+263 778 719166'];
+  const locationLines = data?.locationLines ?? ['Stand 7165 Old Falls Road', 'P O Box 1667', 'Bulawayo'];
+  const mapQuery =
+    data?.mapQuery ?? 'Ekuphumuleni Geriatric Nursing Home, VHCG+86V, Old Falls Rd, Bulawayo';
+  const ctaLabel = data?.ctaLabel ?? 'Send a Message';
 
   const container: Variants = {
     hidden: { opacity: 0, y: 20 },
@@ -47,11 +70,10 @@ export default function ContactSection() {
         viewport={{ once: true, amount: 0.3 }}
       >
         <m.div variants={item} className='mb-16 text-center'>
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>Contact Us</h2>
+          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>{heading}</h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
           <p className='mx-auto max-w-2xl !text-lg leading-relaxed body-text'>
-            We're here to answer your questions and provide the information you
-            need
+            {subtitle}
           </p>
         </m.div>
 
@@ -65,10 +87,10 @@ export default function ContactSection() {
             </div>
             <h3 className='mb-3 !text-lg heading-3'>Email</h3>
             <a
-              href='mailto:administration@ekuphumuleni.ngo'
+              href={`mailto:${email}`}
               className='font-medium !text-[var(--color-muted-terracotta)] hover:underline body-text'
             >
-              administration@ekuphumuleni.ngo
+              {email}
             </a>
           </m.div>
 
@@ -81,18 +103,15 @@ export default function ContactSection() {
             </div>
             <h3 className='mb-3 !text-lg heading-3'>Phone</h3>
             <div className='space-y-1'>
-              <a
-                href='tel:+263292216877'
-                className='block font-medium !text-[var(--color-muted-terracotta)] hover:underline body-text'
-              >
-                +263 292 216877
-              </a>
-              <a
-                href='tel:+263778719166'
-                className='block font-medium !text-[var(--color-muted-terracotta)] hover:underline body-text'
-              >
-                +263 778 719166
-              </a>
+              {phoneNumbers.map((number, i) => (
+                <a
+                  key={i}
+                  href={`tel:${number.replace(/\s+/g, '')}`}
+                  className='block font-medium !text-[var(--color-muted-terracotta)] hover:underline body-text'
+                >
+                  {number}
+                </a>
+              ))}
             </div>
           </m.div>
 
@@ -105,9 +124,9 @@ export default function ContactSection() {
             </div>
             <h3 className='mb-3 !text-lg heading-3'>Location</h3>
             <div className='space-y-1 body-text'>
-              <p>Stand 7165 Old Falls Road</p>
-              <p>P O Box 1667</p>
-              <p>Bulawayo</p>
+              {locationLines.map((line, i) => (
+                <p key={i}>{line}</p>
+              ))}
             </div>
           </m.div>
         </div>
@@ -118,10 +137,7 @@ export default function ContactSection() {
           className='shadow-warm-lg mb-12 border-[var(--color-earth-brown)]/10 border-2 rounded-xl overflow-hidden'
           aria-label='Map'
         >
-          <MapEmbed
-            query='Ekuphumuleni Geriatric Nursing Home, VHCG+86V, Old Falls Rd, Bulawayo'
-            zoom={15}
-          />
+          <MapEmbed query={mapQuery} zoom={15} />
         </m.div>
 
         <m.div
@@ -135,7 +151,7 @@ export default function ContactSection() {
             prefetch={false}
             className='inline-flex items-center gap-2 bg-[var(--color-muted-terracotta)] shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 font-bold !text-white hover:!text-white focus-visible:!text-white transition-all duration-300'
           >
-            Send a Message
+            {ctaLabel}
             <svg
               className='w-5 h-5'
               fill='none'

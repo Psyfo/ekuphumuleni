@@ -23,7 +23,46 @@ interface FormData {
   message: string;
 }
 
-export default function ContactForm() {
+interface ContactFormSectionData {
+  heading?: string;
+  subheading?: string;
+  nameLabel?: string;
+  namePlaceholder?: string;
+  emailLabel?: string;
+  emailPlaceholder?: string;
+  messageLabel?: string;
+  messagePlaceholder?: string;
+  messageHelpText?: string;
+  submitButtonLabel?: string;
+  successHeading?: string;
+  successBody?: string;
+  errorHeading?: string;
+}
+
+interface ContactFormProps {
+  data?: ContactFormSectionData;
+}
+
+export default function ContactForm({ data }: ContactFormProps = {}) {
+  const heading = data?.heading ?? 'Send Us a Message';
+  const subheading =
+    data?.subheading ??
+    "Fill out the form below and we'll get back to you within 24-48 hours";
+  const nameLabel = data?.nameLabel ?? 'Your Name';
+  const namePlaceholder = data?.namePlaceholder ?? 'e.g., John Doe';
+  const emailLabel = data?.emailLabel ?? 'Email Address';
+  const emailPlaceholder = data?.emailPlaceholder ?? 'e.g., john@example.com';
+  const messageLabel = data?.messageLabel ?? 'Your Message';
+  const messagePlaceholder =
+    data?.messagePlaceholder ?? 'Please tell us how we can help you...';
+  const messageHelpText =
+    data?.messageHelpText ?? 'Minimum 10 characters, maximum 2000 characters';
+  const submitButtonLabel = data?.submitButtonLabel ?? 'Send Message';
+  const successHeading = data?.successHeading ?? 'Message Sent Successfully!';
+  const successBody =
+    data?.successBody ??
+    "Thank you for reaching out to us. We've received your message and will respond within 24-48 hours. Please check your email for a confirmation message.";
+  const errorHeading = data?.errorHeading ?? 'Error Sending Message';
   const [status, setStatus] = useState<
     'idle' | 'submitting' | 'success' | 'error'
   >('idle');
@@ -218,12 +257,11 @@ export default function ContactForm() {
         {/* Form Header */}
         <div className='mb-10 text-center'>
           <h2 className='mb-3 !text-3xl md:!text-4xl heading-2'>
-            Send Us a Message
+            {heading}
           </h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-5 rounded-full w-16 h-1.5' />
           <p className='text-[var(--color-earth-brown)] text-base md:text-lg'>
-            Fill out the form below and we&apos;ll get back to you within 24-48
-            hours
+            {subheading}
           </p>
         </div>
 
@@ -232,7 +270,7 @@ export default function ContactForm() {
           <div>
             <label htmlFor='name' className={getLabelClassName('name')}>
               <UserIcon className='w-5 h-5 text-[var(--color-muted-terracotta)]' />
-              <span>Your Name</span>
+              <span>{nameLabel}</span>
               <span className='text-red-500'>*</span>
             </label>
             <div className='relative'>
@@ -242,7 +280,7 @@ export default function ContactForm() {
                 type='text'
                 required
                 maxLength={100}
-                placeholder='e.g., John Doe'
+                placeholder={namePlaceholder}
                 className={getFieldClassName('name')}
                 disabled={status === 'submitting'}
                 onBlur={(e) => handleFieldBlur('name', e.target.value)}
@@ -288,7 +326,7 @@ export default function ContactForm() {
           <div>
             <label htmlFor='email' className={getLabelClassName('email')}>
               <EnvelopeIcon className='w-5 h-5 text-[var(--color-muted-terracotta)]' />
-              <span>Email Address</span>
+              <span>{emailLabel}</span>
               <span className='text-red-500'>*</span>
             </label>
             <div className='relative'>
@@ -298,7 +336,7 @@ export default function ContactForm() {
                 type='email'
                 required
                 maxLength={254}
-                placeholder='e.g., john@example.com'
+                placeholder={emailPlaceholder}
                 className={getFieldClassName('email')}
                 disabled={status === 'submitting'}
                 onBlur={(e) => handleFieldBlur('email', e.target.value)}
@@ -344,7 +382,7 @@ export default function ContactForm() {
           <div>
             <label htmlFor='message' className={getLabelClassName('message')}>
               <ChatBubbleLeftRightIcon className='w-5 h-5 text-[var(--color-muted-terracotta)]' />
-              <span>Your Message</span>
+              <span>{messageLabel}</span>
               <span className='text-red-500'>*</span>
             </label>
             <div className='relative'>
@@ -354,7 +392,7 @@ export default function ContactForm() {
                 rows={6}
                 required
                 maxLength={2000}
-                placeholder='Please tell us how we can help you...'
+                placeholder={messagePlaceholder}
                 className={getFieldClassName('message', 'resize-none')}
                 disabled={status === 'submitting'}
                 onBlur={(e) => handleFieldBlur('message', e.target.value)}
@@ -397,7 +435,7 @@ export default function ContactForm() {
                   id='message-help'
                   className='mt-2 text-[var(--color-earth-brown)]/70 text-xs'
                 >
-                  Minimum 10 characters, maximum 2000 characters
+                  {messageHelpText}
                 </p>
               )}
             </AnimatePresence>
@@ -442,7 +480,7 @@ export default function ContactForm() {
             ) : (
               <>
                 <PaperAirplaneIcon className='w-5 h-5' />
-                <span>Send Message</span>
+                <span>{submitButtonLabel}</span>
               </>
             )}
           </m.button>
@@ -466,14 +504,10 @@ export default function ContactForm() {
                 </div>
                 <div className='flex-1'>
                   <h3 className='mb-2 font-bold text-green-800 text-lg'>
-                    Message Sent Successfully!
+                    {successHeading}
                   </h3>
                   <p className='mb-1 text-green-700 text-sm leading-relaxed'>
-                    Thank you for reaching out to us. We&apos;ve received your
-                    message and will respond within 24-48 hours.
-                  </p>
-                  <p className='text-green-700 text-sm'>
-                    Please check your email for a confirmation message.
+                    {successBody}
                   </p>
                 </div>
               </div>
@@ -499,7 +533,7 @@ export default function ContactForm() {
                 </div>
                 <div className='flex-1'>
                   <h3 className='mb-2 font-bold text-red-800 text-lg'>
-                    Error Sending Message
+                    {errorHeading}
                   </h3>
                   <p className='mb-1 text-red-700 text-sm leading-relaxed'>
                     {errorMessage}

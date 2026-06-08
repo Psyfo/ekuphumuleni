@@ -4,7 +4,17 @@ import { m, Variants } from 'framer-motion';
 import Link from 'next/link';
 import { HomeIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
-export default function FacilitiesHeroSection() {
+interface FacilitiesHeroSectionProps {
+  title?: string;
+  subtitle?: string;
+  quote?: string;
+}
+
+export default function FacilitiesHeroSection({
+  title = 'Our Facilities',
+  subtitle = 'Modern, comfortable spaces designed for residential nursing, daily living, and visiting families, with attention to safety and access',
+  quote = 'A facility designed to combine accommodation, nursing stations, and shared spaces so daily care is easier to deliver and receive.',
+}: FacilitiesHeroSectionProps) {
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -65,7 +75,7 @@ export default function FacilitiesHeroSection() {
           variants={item}
           className='mb-6 !text-4xl md:!text-5xl lg:!text-6xl text-center heading-1'
         >
-          Our Facilities
+          {title}
         </m.h1>
 
         {/* Accent Divider */}
@@ -79,17 +89,14 @@ export default function FacilitiesHeroSection() {
           variants={item}
           className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text'
         >
-          Modern, comfortable spaces designed for residential nursing, daily
-          living, and visiting families, with attention to safety and access
+          {subtitle}
         </m.p>
 
         {/* Decorative Quote */}
         <m.div variants={item} className='mx-auto mt-12 max-w-2xl'>
           <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl'>
             <p className='!text-[var(--color-deep-cocoa)] text-lg text-center italic leading-relaxed'>
-              &ldquo;A facility designed to combine accommodation, nursing
-              stations, and shared spaces so daily care is easier to deliver and
-              receive.&rdquo;
+              &ldquo;{quote}&rdquo;
             </p>
           </div>
         </m.div>
