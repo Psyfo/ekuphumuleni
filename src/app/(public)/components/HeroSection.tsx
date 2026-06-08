@@ -4,7 +4,22 @@ import { m } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function HeroSection() {
+interface HeroSectionData {
+  title?: string;
+  subtitle?: string;
+  primaryCtaLabel?: string;
+  secondaryCtaLabel?: string;
+}
+
+interface HeroSectionProps {
+  data?: HeroSectionData;
+}
+
+export default function HeroSection({ data }: HeroSectionProps = {}) {
+  const title = data?.title ?? 'Ekuphumuleni';
+  const subtitle = data?.subtitle ?? 'Geriatric Nursing Home';
+  const primaryCtaLabel = data?.primaryCtaLabel ?? 'Explore Our Care';
+  const secondaryCtaLabel = data?.secondaryCtaLabel ?? 'Contact Us';
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -56,7 +71,7 @@ export default function HeroSection() {
           variants={item}
           className='mb-4 !font-bold !text-5xl md:!text-6xl lg:!text-7xl text-center heading-1'
         >
-          Ekuphumuleni
+          {title}
         </m.h1>
 
         {/* Subtitle */}
@@ -64,7 +79,7 @@ export default function HeroSection() {
           variants={item}
           className='mb-12 !font-semibold !text-[var(--color-muted-terracotta)] !text-2xl md:!text-3xl lg:!text-4xl text-center'
         >
-          Geriatric Nursing Home
+          {subtitle}
         </m.p>
 
         {/* CTAs */}
@@ -77,14 +92,14 @@ export default function HeroSection() {
             className='bg-[var(--color-muted-terracotta)] shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 w-full sm:w-auto font-bold !text-white hover:!text-white focus-visible:!text-white hover:scale-105 active:scale-95 transition-all duration-300'
             prefetch={false}
           >
-            Explore Our Care
+            {primaryCtaLabel}
           </Link>
           <Link
             href='#contact'
             className='bg-white/80 hover:bg-[var(--color-warm-beige)] shadow-warm hover:shadow-warm-lg backdrop-blur-sm px-8 py-4 border-[var(--color-earth-brown)] border-2 hover:border-[var(--color-earth-brown)]/80 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-earth-brown)] focus-visible:ring-2 focus-visible:ring-offset-2 w-full sm:w-auto font-bold text-[var(--color-earth-brown)] hover:scale-105 active:scale-95 transition-all duration-300'
             prefetch={false}
           >
-            Contact Us
+            {secondaryCtaLabel}
           </Link>
         </m.div>
       </m.div>

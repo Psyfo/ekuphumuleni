@@ -4,7 +4,51 @@
 import { m } from 'framer-motion';
 import Image from 'next/image';
 
-export default function AboutSection() {
+interface AboutSectionData {
+  heading?: string;
+  intro?: string;
+  establishmentImageUrl?: string;
+  establishmentHeading?: string;
+  establishmentBody?: string;
+  missionHeading?: string;
+  missionBody?: string;
+  visionHeading?: string;
+  visionBody?: string;
+  coreValuesHeading?: string;
+  coreValues?: string[];
+}
+
+interface AboutSectionProps {
+  data?: AboutSectionData;
+}
+
+export default function AboutSection({ data }: AboutSectionProps = {}) {
+  const heading = data?.heading ?? 'About Ekuphumuleni';
+  const intro =
+    data?.intro ??
+    'Ekuphumuleni means "place of rest", a sanctuary for elderly individuals requiring nursing care. Established in 1983 by Polyanna Mahlangu, it was founded to provide reliable, professional care for older adults in a peaceful, dignified environment.';
+  const establishmentImageUrl = data?.establishmentImageUrl ?? '/images/building/building_01.webp';
+  const establishmentHeading = data?.establishmentHeading ?? 'Our Establishment';
+  const establishmentBody =
+    data?.establishmentBody ??
+    'Founded to provide dependable care, our home blends professional excellence with a stable, family-like environment. Over four decades, we have remained committed to honoring the dignity and individuality of every resident.';
+  const missionHeading = data?.missionHeading ?? 'Our Mission';
+  const missionBody =
+    data?.missionBody ??
+    'To create peaceful, nurturing environments where people find rest, healing, and restoration in body and spirit.';
+  const visionHeading = data?.visionHeading ?? 'Our Vision';
+  const visionBody =
+    data?.visionBody ??
+    'A community where elders thrive with dignity, safety, and joy through consistent, culturally sensitive care.';
+  const coreValuesHeading = data?.coreValuesHeading ?? 'Our Core Values';
+  const coreValues = data?.coreValues ?? [
+    'Compassion',
+    'Tranquility',
+    'Reliability',
+    'Cultural Sensitivity',
+    'Excellence',
+  ];
+
   return (
     <section
       id='about'
@@ -20,14 +64,11 @@ export default function AboutSection() {
           className='mb-16 text-center'
         >
           <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
-            About Ekuphumuleni
+            {heading}
           </h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
           <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
-            Ekuphumuleni means "place of rest", a sanctuary for elderly
-            individuals requiring nursing care. Established in 1983 by Polyanna
-            Mahlangu, it was founded to provide reliable, professional care for
-            older adults in a peaceful, dignified environment.
+            {intro}
           </p>
         </m.div>
 
@@ -45,7 +86,7 @@ export default function AboutSection() {
               <div className='absolute -inset-2 bg-gradient-to-br from-[var(--color-muted-terracotta)]/20 to-[var(--color-earth-brown)]/20 blur-sm group-hover:blur-md rounded-xl transition-all duration-300' />
               <div className='relative border-[var(--color-earth-brown)]/10 border-2 rounded-xl overflow-hidden'>
                 <Image
-                  src='/images/building/building_01.webp'
+                  src={establishmentImageUrl}
                   alt='Historic exterior of Ekuphumuleni nursing home'
                   width={800}
                   height={600}
@@ -63,13 +104,10 @@ export default function AboutSection() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className='order-1 md:order-2'
           >
-            <h3 className='mb-4 !text-2xl heading-3'>Our Establishment</h3>
+            <h3 className='mb-4 !text-2xl heading-3'>{establishmentHeading}</h3>
             <div className='bg-[var(--color-muted-terracotta)] mb-4 rounded-full w-12 h-1' />
             <p className='!text-base leading-relaxed body-text'>
-              Founded to provide dependable care, our home blends professional
-              excellence with a stable, family-like environment. Over four
-              decades, we have remained committed to honoring the dignity and
-              individuality of every resident.
+              {establishmentBody}
             </p>
           </m.div>
         </div>
@@ -98,10 +136,9 @@ export default function AboutSection() {
                 />
               </svg>
             </div>
-            <h3 className='mb-3 !text-xl heading-3'>Our Mission</h3>
+            <h3 className='mb-3 !text-xl heading-3'>{missionHeading}</h3>
             <p className='leading-relaxed body-text'>
-              To create peaceful, nurturing environments where people find rest,
-              healing, and restoration in body and spirit.
+              {missionBody}
             </p>
           </div>
           <div className='group bg-white shadow-warm-lg hover:shadow-warm-xl p-8 lg:p-10 border border-subtle rounded-xl transition-all hover:-translate-y-1 duration-300'>
@@ -126,10 +163,9 @@ export default function AboutSection() {
                 />
               </svg>
             </div>
-            <h3 className='mb-3 !text-xl heading-3'>Our Vision</h3>
+            <h3 className='mb-3 !text-xl heading-3'>{visionHeading}</h3>
             <p className='leading-relaxed body-text'>
-              A community where elders thrive with dignity, safety, and joy
-              through consistent, culturally sensitive care.
+              {visionBody}
             </p>
           </div>
         </m.div>
@@ -143,17 +179,11 @@ export default function AboutSection() {
           className='bg-gradient-to-br from-[var(--color-soft-sand)]/50 to-[var(--color-warm-beige)]/50 p-8 lg:p-12 border border-subtle rounded-2xl'
         >
           <h3 className='mb-6 !text-2xl text-center heading-3'>
-            Our Core Values
+            {coreValuesHeading}
           </h3>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-8 rounded-full w-16 h-1' />
           <ul className='gap-4 grid sm:grid-cols-2 lg:grid-cols-3 mx-auto max-w-4xl'>
-            {[
-              'Compassion',
-              'Tranquility',
-              'Reliability',
-              'Cultural Sensitivity',
-              'Excellence',
-            ].map((value, index) => (
+            {coreValues.map((value, index) => (
               <m.li
                 key={value}
                 initial={{ opacity: 0, scale: 0.95 }}

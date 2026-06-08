@@ -5,7 +5,22 @@ import Link from 'next/link';
 
 import { UserGroupIcon } from '@heroicons/react/24/outline';
 
-export default function MeetTheTeamSection() {
+interface MeetTheTeamSectionData {
+  heading?: string;
+  body?: string;
+  ctaLabel?: string;
+}
+
+interface MeetTheTeamSectionProps {
+  data?: MeetTheTeamSectionData;
+}
+
+export default function MeetTheTeamSection({ data }: MeetTheTeamSectionProps = {}) {
+  const heading = data?.heading ?? 'Meet the Team';
+  const body =
+    data?.body ??
+    'Clinical, administrative, and board professionals responsible for the day‑to‑day running and governance of the home.';
+  const ctaLabel = data?.ctaLabel ?? 'View Team';
 
   const container: Variants = {
     hidden: { opacity: 0, y: 20 },
@@ -49,7 +64,7 @@ export default function MeetTheTeamSection() {
           variants={item}
           className='mb-4 !text-3xl lg:!text-4xl heading-2'
         >
-          Meet the Team
+          {heading}
         </m.h2>
 
         <m.div variants={item}>
@@ -60,8 +75,7 @@ export default function MeetTheTeamSection() {
           variants={item}
           className='mx-auto mb-10 max-w-2xl !text-lg leading-relaxed body-text'
         >
-          Clinical, administrative, and board professionals responsible for the
-          day‑to‑day running and governance of the home.
+          {body}
         </m.p>
 
         <m.div
@@ -75,7 +89,7 @@ export default function MeetTheTeamSection() {
             prefetch={false}
             className='inline-flex items-center gap-2 bg-[var(--color-muted-terracotta)] shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 font-bold !text-white hover:!text-white focus-visible:!text-white transition-all duration-300'
           >
-            View Team
+            {ctaLabel}
             <svg
               className='w-5 h-5'
               fill='none'
