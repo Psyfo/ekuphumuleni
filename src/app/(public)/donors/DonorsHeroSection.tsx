@@ -4,7 +4,17 @@ import { m, Variants } from 'framer-motion';
 import Link from 'next/link';
 import { HomeIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
-export default function DonorsHeroSection() {
+interface DonorsHeroSectionProps {
+  title?: string;
+  subtitle?: string;
+  quote?: string;
+}
+
+export default function DonorsHeroSection({
+  title = 'Our Donors & Well-Wishers',
+  subtitle = 'Honoring the individuals, organizations, and community members whose support helps us maintain residential nursing care and services for older adults',
+  quote = 'Every act of generosity creates ripples of hope and healing',
+}: DonorsHeroSectionProps = {}) {
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -65,7 +75,7 @@ export default function DonorsHeroSection() {
           variants={item}
           className='mb-6 !text-4xl md:!text-5xl lg:!text-6xl text-center heading-1'
         >
-          Our Donors & Well-Wishers
+          {title}
         </m.h1>
 
         {/* Accent Divider */}
@@ -79,17 +89,14 @@ export default function DonorsHeroSection() {
           variants={item}
           className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text'
         >
-          Honoring the individuals, organizations, and community members whose
-          support helps us maintain residential nursing care and services for
-          older adults
+          {subtitle}
         </m.p>
 
         {/* Decorative Quote */}
         <m.div variants={item} className='mx-auto mt-12 max-w-2xl'>
           <div className='bg-white/70 shadow-warm-lg backdrop-blur-sm p-8 lg:p-10 border border-subtle rounded-2xl'>
             <p className='font-serif !text-[var(--color-deep-cocoa)] text-lg lg:text-xl text-center italic leading-relaxed'>
-              &ldquo;Every act of generosity creates ripples of hope and
-              healing&rdquo;
+              &ldquo;{quote}&rdquo;
             </p>
           </div>
         </m.div>
