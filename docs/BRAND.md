@@ -67,9 +67,9 @@ To maintain legibility, never reproduce the logo smaller than 1 inch or 25mm in 
 
 **Warm Beige (#F2E8CF):** Our main neutral tone, used for backgrounds and large areas to create a warm, inviting atmosphere.
 
-**Earth Brown (#A68A64):** Used for headings and as a logo accent, providing a grounding element to our visual identity.
+**Earth Brown (#A68A64):** A grounding element of our visual identity, used for borders, decorative details, and as a logo accent. Earth Brown does not meet accessibility contrast requirements as a text color on our light backgrounds (≈2.7:1 on Warm Beige), so it must not be used for headings or body text.
 
-**Deep Cocoa (#6B4F4F):** Our primary text color, also used for footers and navigation elements.
+**Deep Cocoa (#6B4F4F):** Our primary text and heading color, also used for footers and navigation elements (≈6:1 contrast on Warm Beige).
 
 ### Secondary Colors
 
@@ -77,9 +77,13 @@ To maintain legibility, never reproduce the logo smaller than 1 inch or 25mm in 
 
 **Off-White (#EDE6E3):** Used for cards, highlights, and to create balance in layouts.
 
-### Accent Color
+### Accent Colors
 
-**Muted Terracotta (#C97C5D):** Our vibrant accent color, used sparingly for buttons, links, and calls-to-action.
+**Muted Terracotta (#C97C5D):** Our vibrant accent color, used sparingly for decorative elements — divider bars, icons, hover glows, and accents on dark backgrounds. It does not meet the 4.5:1 contrast requirement with white text, so it must not be used as a button or link surface.
+
+**Deep Terracotta (#B05A3C):** The accessible counterpart to Muted Terracotta (4.8:1 with white text), used for buttons, links, and calls-to-action.
+
+**Dark Terracotta (#9C4F35):** Hover states and gradient ends for Deep Terracotta surfaces.
 
 ### Color Usage
 
@@ -95,11 +99,11 @@ Our earthy, warm palette evokes feelings of comfort, stability, and natural heal
 
 ### Font Hierarchy
 
-**H1:** 32px/2rem, Earth Brown (#A68A64), Bold
+**H1:** 32px/2rem, Deep Cocoa (#6B4F4F), Bold
 
-**H2:** 24px/1.5rem, Earth Brown (#A68A64), Bold
+**H2:** 24px/1.5rem, Deep Cocoa (#6B4F4F), Bold
 
-**H3:** 20px/1.25rem, Earth Brown (#A68A64), Bold
+**H3:** 20px/1.25rem, Deep Cocoa (#6B4F4F), Bold
 
 **Body:** 16px/1rem, Deep Cocoa (#6B4F4F), Regular
 
@@ -285,7 +289,7 @@ Business cards, letterheads, and envelopes should use our color palette consiste
 
 ### Digital Presence
 
-Websites and social media should maintain our warm, earthy palette, with Muted Terracotta used for interactive elements. Typography hierarchy should be consistent across all platforms.
+Websites and social media should maintain our warm, earthy palette, with Deep Terracotta (#B05A3C) used for interactive elements such as buttons and links, and Muted Terracotta reserved for decorative accents. Typography hierarchy should be consistent across all platforms.
 
 ### Environmental Design
 
