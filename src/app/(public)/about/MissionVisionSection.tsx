@@ -1,5 +1,6 @@
 'use client';
 
+import SectionHeading from '@/components/SectionHeading';
 import { m, Variants } from 'framer-motion';
 
 import {
@@ -101,9 +102,7 @@ export default function MissionVisionSection({ data = {} }: MissionVisionSection
         viewport={{ once: true, amount: 0.1 }}
       >
         <m.div variants={item} className='mb-16 text-center'>
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>{heading}</h2>
-          <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
-          <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>{subtitle}</p>
+          <SectionHeading title={heading} lede={subtitle} />
         </m.div>
 
         <div className='items-start gap-8 lg:gap-10 grid lg:grid-cols-2 mb-12'>
@@ -114,7 +113,7 @@ export default function MissionVisionSection({ data = {} }: MissionVisionSection
                 <div className='flex flex-shrink-0 justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 rounded-xl w-14 h-14'>
                   <HeartIcon className='w-8 h-8 text-[var(--color-muted-terracotta)]' aria-hidden='true' />
                 </div>
-                <h3 className='!text-2xl heading-3'>{missionHeading}</h3>
+                <h3 className='heading-3'>{missionHeading}</h3>
               </div>
               <p className='mb-6 leading-relaxed body-text'>{missionBody}</p>
               <ul className='space-y-3'>
@@ -137,7 +136,7 @@ export default function MissionVisionSection({ data = {} }: MissionVisionSection
                 <div className='flex flex-shrink-0 justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 rounded-xl w-14 h-14'>
                   <EyeIcon className='w-8 h-8 text-[var(--color-muted-terracotta)]' aria-hidden='true' />
                 </div>
-                <h3 className='!text-2xl heading-3'>{visionHeading}</h3>
+                <h3 className='heading-3'>{visionHeading}</h3>
               </div>
               <p className='flex-grow leading-relaxed body-text'>{visionBody}</p>
               <div className='mt-6 pt-6 border-[var(--color-earth-brown)]/10 border-t'>
@@ -151,7 +150,7 @@ export default function MissionVisionSection({ data = {} }: MissionVisionSection
         <m.div variants={item}>
           <div className='bg-white shadow-warm-lg p-8 lg:p-12 border border-subtle rounded-2xl'>
             <div className='mb-10 text-center'>
-              <h3 className='mb-4 !text-2xl heading-3'>{coreValuesHeading}</h3>
+              <h3 className='mb-4 heading-3'>{coreValuesHeading}</h3>
               <div className='bg-[var(--color-muted-terracotta)] mx-auto rounded-full w-16 h-1' />
             </div>
             <div className='gap-4 lg:gap-6 grid sm:grid-cols-2 lg:grid-cols-3'>

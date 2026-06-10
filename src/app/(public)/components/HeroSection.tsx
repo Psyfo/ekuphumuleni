@@ -85,7 +85,7 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
           </p>
 
           {/* Title */}
-          <h1 className='mb-3 !font-bold !text-5xl md:!text-6xl lg:!text-7xl heading-1 animate-rise animate-rise-delay-2'>
+          <h1 className='mb-3 heading-display animate-rise animate-rise-delay-2'>
             {title}
           </h1>
 
@@ -103,14 +103,14 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
           <div className='flex sm:flex-row flex-col items-stretch sm:items-center gap-4 animate-rise animate-rise-delay-4'>
             <Link
               href='#services'
-              className='bg-[var(--color-terracotta-deep)] shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 font-bold !text-white hover:!text-white focus-visible:!text-white text-center hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300'
+              className='btn btn-primary'
               prefetch={false}
             >
               {primaryCtaLabel}
             </Link>
             <Link
               href='#contact'
-              className='bg-white/80 hover:bg-[var(--color-warm-beige)] shadow-warm hover:shadow-warm-lg backdrop-blur-sm px-8 py-4 border-[var(--color-earth-brown)] border-2 hover:border-[var(--color-earth-brown)]/80 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-earth-brown)] focus-visible:ring-2 focus-visible:ring-offset-2 font-bold text-[var(--color-deep-cocoa)] text-center hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300'
+              className='btn btn-secondary backdrop-blur-sm'
               prefetch={false}
             >
               {secondaryCtaLabel}

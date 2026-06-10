@@ -20,13 +20,13 @@ export default function ContactError({ reset }: ContactErrorProps) {
         <div className='flex flex-col sm:flex-row gap-3 justify-center'>
           <button
             onClick={reset}
-            className='inline-block px-6 py-3 rounded font-bold bg-[var(--color-terracotta-deep)] !text-white shadow hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)]'
+            className='btn btn-primary'
           >
             Try Again
           </button>
           <button
             onClick={() => router.push('/')}
-            className='inline-block px-6 py-3 rounded font-bold border border-[var(--color-terracotta-deep)] text-[var(--color-terracotta-deep)] hover:bg-[var(--color-terracotta-deep)] hover:!text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)]'
+            className='btn btn-secondary'
           >
             Go Home
           </button>

@@ -1,5 +1,6 @@
 'use client';
 
+import SectionHeading from '@/components/SectionHeading';
 import { m, Variants } from 'framer-motion';
 import Image from 'next/image';
 import {
@@ -96,9 +97,7 @@ export default function EstablishmentSection({ data = {} }: EstablishmentSection
         viewport={{ once: true, amount: 0.1 }}
       >
         <m.div variants={item} className='mb-16 text-center'>
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>{heading}</h2>
-          <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
-          <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>{subtitle}</p>
+          <SectionHeading title={heading} lede={subtitle} />
         </m.div>
 
         <div className='items-center gap-12 lg:gap-16 grid lg:grid-cols-2 mb-20'>
@@ -133,7 +132,7 @@ export default function EstablishmentSection({ data = {} }: EstablishmentSection
           <m.div variants={item} className='lg:order-2'>
             <div className='space-y-6'>
               <div>
-                <h3 className='mb-4 !text-2xl heading-3'>{narrativeHeading}</h3>
+                <h3 className='mb-4 heading-3'>{narrativeHeading}</h3>
                 <div className='bg-[var(--color-muted-terracotta)] mb-4 rounded-full w-12 h-1' />
                 <p className='mb-4 leading-relaxed body-text'>{narrativeParagraph1}</p>
                 <p className='leading-relaxed body-text'>{narrativeParagraph2}</p>
@@ -172,7 +171,7 @@ export default function EstablishmentSection({ data = {} }: EstablishmentSection
         <m.div variants={item} className='mx-auto max-w-6xl'>
           <div className='bg-white shadow-warm-lg p-8 lg:p-12 border border-subtle rounded-2xl'>
             <div className='mb-10 text-center'>
-              <h3 className='mb-4 !text-2xl heading-3'>{whyChooseHeading}</h3>
+              <h3 className='mb-4 heading-3'>{whyChooseHeading}</h3>
               <div className='bg-[var(--color-muted-terracotta)] mx-auto rounded-full w-16 h-1' />
             </div>
 
@@ -184,7 +183,7 @@ export default function EstablishmentSection({ data = {} }: EstablishmentSection
                     <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 mx-auto mb-4 rounded-xl w-16 h-16 group-hover:scale-110 transition-transform duration-300'>
                       <Icon className='w-8 h-8 text-[var(--color-muted-terracotta)]' aria-hidden='true' />
                     </div>
-                    <h4 className='mb-3 !text-lg heading-3'>{card.title}</h4>
+                    <h4 className='mb-3 heading-3'>{card.title}</h4>
                     <p className='!text-sm leading-relaxed body-text'>{card.description}</p>
                   </div>
                 );

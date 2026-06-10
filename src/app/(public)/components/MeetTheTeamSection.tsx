@@ -62,7 +62,7 @@ export default function MeetTheTeamSection({ data }: MeetTheTeamSectionProps = {
 
         <m.h2
           variants={item}
-          className='mb-4 !text-3xl lg:!text-4xl heading-2'
+          className='mb-4 heading-2'
         >
           {heading}
         </m.h2>
@@ -87,7 +87,7 @@ export default function MeetTheTeamSection({ data }: MeetTheTeamSectionProps = {
           <Link
             href='/team'
             prefetch={false}
-            className='inline-flex items-center gap-2 bg-[var(--color-terracotta-deep)] shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 font-bold !text-white hover:!text-white focus-visible:!text-white transition-all duration-300'
+            className='btn btn-primary'
           >
             {ctaLabel}
             <svg

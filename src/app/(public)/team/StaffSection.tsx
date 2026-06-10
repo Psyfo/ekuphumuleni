@@ -1,5 +1,6 @@
 'use client';
 
+import SectionHeading from '@/components/SectionHeading';
 import { AnimatePresence, m, Variants } from 'framer-motion';
 import Image from 'next/image';
 import React, { useMemo, useState } from 'react';
@@ -87,15 +88,7 @@ export default function StaffSection({
         viewport={{ once: true, amount: 0.2 }}
       >
         <m.div variants={item} className='mb-16 text-center'>
-          {heading ? (
-            <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>{heading}</h2>
-          ) : null}
-          <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
-          {description ? (
-            <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
-              {description}
-            </p>
-          ) : null}
+          <SectionHeading title={heading} lede={description} />
         </m.div>
 
         {photos.length === 0 ? (

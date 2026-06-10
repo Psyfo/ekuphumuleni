@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
 
+import SectionHeading from '@/components/SectionHeading';
+
 import { m, Variants } from 'framer-motion';
 import Image from 'next/image';
 import React, { useState } from 'react';
@@ -112,7 +114,7 @@ export default function ServicesSection({ data }: ServicesSectionProps = {}) {
       className='z-0 relative bg-gradient-to-b from-[var(--color-soft-sand)] to-[var(--color-warm-beige)] px-4 py-20 lg:py-24'
       aria-label='Our Services'
     >
-      <div className='mx-auto max-w-[1400px]'>
+      <div className='mx-auto max-w-7xl'>
         <m.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -120,13 +122,7 @@ export default function ServicesSection({ data }: ServicesSectionProps = {}) {
           transition={{ duration: 0.6 }}
           className='mb-16 text-center'
         >
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
-            {heading}
-          </h2>
-          <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
-          <p className='mx-auto max-w-2xl !text-lg leading-relaxed body-text'>
-            {subtitle}
-          </p>
+          <SectionHeading title={heading} lede={subtitle} />
         </m.div>
 
         <div className='gap-6 lg:gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
@@ -149,7 +145,7 @@ export default function ServicesSection({ data }: ServicesSectionProps = {}) {
                   />
                 </div>
                 <FadeImage src={card.imageUrl} alt={card.alt} />
-                <h3 className='mb-3 !text-xl heading-3'>{card.title}</h3>
+                <h3 className='mb-3 heading-3'>{card.title}</h3>
                 <p className='!text-sm leading-relaxed body-text'>
                   {card.description}
                 </p>

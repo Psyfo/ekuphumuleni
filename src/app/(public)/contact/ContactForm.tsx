@@ -224,9 +224,9 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
 
     return `${baseClasses} w-full px-4 py-3.5 rounded-xl border-2 transition-all duration-200 bg-white font-sans text-[var(--color-deep-cocoa)] placeholder:text-[var(--color-deep-cocoa)]/40 ${
       hasError
-        ? 'border-red-400 focus:border-red-500 focus:ring-4 focus:ring-red-100'
+        ? 'border-[var(--color-error)]/60 focus:border-[var(--color-error)] focus:ring-4 focus:ring-[var(--color-error)]/10'
         : isValid
-        ? 'border-green-400 focus:border-green-500 focus:ring-4 focus:ring-green-100'
+        ? 'border-[var(--color-success)]/60 focus:border-[var(--color-success)] focus:ring-4 focus:ring-[var(--color-success)]/10'
         : 'border-[var(--color-earth-brown)]/25 focus:border-[var(--color-muted-terracotta)] focus:ring-4 focus:ring-[var(--color-muted-terracotta)]/10'
     } focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed`;
   };
@@ -235,7 +235,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
     const hasError =
       touchedFields.has(fieldName) && validationErrors[fieldName];
     return `flex items-center gap-2 mb-2 font-semibold text-sm transition-colors duration-200 ${
-      hasError ? 'text-red-600' : 'text-[var(--color-deep-cocoa)]'
+      hasError ? 'text-[var(--color-error)]' : 'text-[var(--color-deep-cocoa)]'
     }`;
   };
 
@@ -256,7 +256,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
       >
         {/* Form Header */}
         <div className='mb-10 text-center'>
-          <h2 className='mb-3 !text-3xl md:!text-4xl heading-2'>
+          <h2 className='mb-3 heading-2'>
             {heading}
           </h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-5 rounded-full w-16 h-1.5' />
@@ -271,7 +271,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
             <label htmlFor='name' className={getLabelClassName('name')}>
               <UserIcon className='w-5 h-5 text-[var(--color-muted-terracotta)]' />
               <span>{nameLabel}</span>
-              <span className='text-red-500'>*</span>
+              <span className='text-[var(--color-error)]'>*</span>
             </label>
             <div className='relative'>
               <input
@@ -300,7 +300,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
                   animate={{ opacity: 1, scale: 1 }}
                   className='top-1/2 right-4 absolute -translate-y-1/2'
                 >
-                  <CheckCircleIcon className='w-5 h-5 text-green-500' />
+                  <CheckCircleIcon className='w-5 h-5 text-[var(--color-success)]' />
                 </m.div>
               )}
             </div>
@@ -312,7 +312,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.2 }}
-                  className='flex items-center gap-1.5 mt-2 text-red-600 text-sm'
+                  className='flex items-center gap-1.5 mt-2 text-[var(--color-error)] text-sm'
                   role='alert'
                 >
                   <XCircleIcon className='flex-shrink-0 w-4 h-4' />
@@ -327,7 +327,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
             <label htmlFor='email' className={getLabelClassName('email')}>
               <EnvelopeIcon className='w-5 h-5 text-[var(--color-muted-terracotta)]' />
               <span>{emailLabel}</span>
-              <span className='text-red-500'>*</span>
+              <span className='text-[var(--color-error)]'>*</span>
             </label>
             <div className='relative'>
               <input
@@ -356,7 +356,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
                   animate={{ opacity: 1, scale: 1 }}
                   className='top-1/2 right-4 absolute -translate-y-1/2'
                 >
-                  <CheckCircleIcon className='w-5 h-5 text-green-500' />
+                  <CheckCircleIcon className='w-5 h-5 text-[var(--color-success)]' />
                 </m.div>
               )}
             </div>
@@ -368,7 +368,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.2 }}
-                  className='flex items-center gap-1.5 mt-2 text-red-600 text-sm'
+                  className='flex items-center gap-1.5 mt-2 text-[var(--color-error)] text-sm'
                   role='alert'
                 >
                   <XCircleIcon className='flex-shrink-0 w-4 h-4' />
@@ -383,7 +383,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
             <label htmlFor='message' className={getLabelClassName('message')}>
               <ChatBubbleLeftRightIcon className='w-5 h-5 text-[var(--color-muted-terracotta)]' />
               <span>{messageLabel}</span>
-              <span className='text-red-500'>*</span>
+              <span className='text-[var(--color-error)]'>*</span>
             </label>
             <div className='relative'>
               <textarea
@@ -412,7 +412,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
                   animate={{ opacity: 1, scale: 1 }}
                   className='top-4 right-4 absolute'
                 >
-                  <CheckCircleIcon className='w-5 h-5 text-green-500' />
+                  <CheckCircleIcon className='w-5 h-5 text-[var(--color-success)]' />
                 </m.div>
               )}
             </div>
@@ -424,7 +424,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.2 }}
-                  className='flex items-center gap-1.5 mt-2 text-red-600 text-sm'
+                  className='flex items-center gap-1.5 mt-2 text-[var(--color-error)] text-sm'
                   role='alert'
                 >
                   <XCircleIcon className='flex-shrink-0 w-4 h-4' />
@@ -444,7 +444,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
           {/* Submit Button */}
           <button
             type='submit'
-            className='flex justify-center items-center gap-2 bg-[var(--color-terracotta-deep)] disabled:opacity-50 shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-xl focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)]/30 focus-visible:ring-4 w-full font-bold text-white hover:-translate-y-0.5 active:translate-y-0 disabled:hover:translate-y-0 transition-all duration-200 disabled:cursor-not-allowed'
+            className='btn btn-primary w-full'
             disabled={status === 'submitting'}
           >
             {status === 'submitting' ? (
@@ -488,19 +488,19 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
               animate={{ opacity: 1, y: 0, height: 'auto' }}
               exit={{ opacity: 0, y: -10, height: 0 }}
               transition={{ duration: 0.3 }}
-              className='bg-gradient-to-r from-green-50 to-emerald-50 shadow-warm mt-8 p-6 border-green-500 border-l-4 rounded-r-xl overflow-hidden'
+              className='bg-[var(--color-success)]/5 shadow-warm mt-8 p-6 border-[var(--color-success)] border-l-4 rounded-r-xl overflow-hidden'
               role='status'
               aria-live='polite'
             >
               <div className='flex items-start gap-4'>
-                <div className='flex flex-shrink-0 justify-center items-center bg-green-100 p-2 rounded-full'>
-                  <CheckCircleIcon className='w-6 h-6 text-green-600' />
+                <div className='flex flex-shrink-0 justify-center items-center bg-[var(--color-success)]/15 p-2 rounded-full'>
+                  <CheckCircleIcon className='w-6 h-6 text-[var(--color-success)]' />
                 </div>
                 <div className='flex-1'>
-                  <h3 className='mb-2 font-bold text-green-800 text-lg'>
+                  <h3 className='mb-2 font-bold text-[var(--color-success)] text-lg'>
                     {successHeading}
                   </h3>
-                  <p className='mb-1 text-green-700 text-sm leading-relaxed'>
+                  <p className='mb-1 text-[var(--color-deep-cocoa)]/80 text-sm leading-relaxed'>
                     {successBody}
                   </p>
                 </div>
@@ -517,26 +517,26 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
               animate={{ opacity: 1, y: 0, height: 'auto' }}
               exit={{ opacity: 0, y: -10, height: 0 }}
               transition={{ duration: 0.3 }}
-              className='bg-gradient-to-r from-red-50 to-rose-50 shadow-warm mt-8 p-6 border-red-500 border-l-4 rounded-r-xl overflow-hidden'
+              className='bg-[var(--color-error)]/5 shadow-warm mt-8 p-6 border-[var(--color-error)] border-l-4 rounded-r-xl overflow-hidden'
               role='alert'
               aria-live='assertive'
             >
               <div className='flex items-start gap-4'>
-                <div className='flex flex-shrink-0 justify-center items-center bg-red-100 p-2 rounded-full'>
-                  <XCircleIcon className='w-6 h-6 text-red-600' />
+                <div className='flex flex-shrink-0 justify-center items-center bg-[var(--color-error)]/15 p-2 rounded-full'>
+                  <XCircleIcon className='w-6 h-6 text-[var(--color-error)]' />
                 </div>
                 <div className='flex-1'>
-                  <h3 className='mb-2 font-bold text-red-800 text-lg'>
+                  <h3 className='mb-2 font-bold text-[var(--color-error)] text-lg'>
                     {errorHeading}
                   </h3>
-                  <p className='mb-1 text-red-700 text-sm leading-relaxed'>
+                  <p className='mb-1 text-[var(--color-deep-cocoa)]/80 text-sm leading-relaxed'>
                     {errorMessage}
                   </p>
-                  <p className='text-red-700 text-sm'>
+                  <p className='text-[var(--color-deep-cocoa)]/80 text-sm'>
                     If the problem persists, please contact us directly at{' '}
                     <a
                       href='mailto:administration@ekuphumuleni.ngo'
-                      className='font-semibold hover:text-red-800 underline'
+                      className='font-semibold hover:text-[var(--color-error)] underline'
                     >
                       administration@ekuphumuleni.ngo
                     </a>
