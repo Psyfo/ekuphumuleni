@@ -174,8 +174,8 @@ Consistent interactive feedback creates a cohesive user experience.
 **Button States:**
 
 - **Default:** Solid color with subtle shadow
-- **Hover:** Slight scale (1.02) and increased shadow, or subtle opacity change (0.9)
-- **Active/Pressed:** Scale down (0.98), reduced shadow
+- **Hover:** Subtle lift (translateY -1 to -2px) with increased shadow, or subtle opacity change (0.9). Avoid scale effects — they feel jumpy for our audience.
+- **Active/Pressed:** Return to rest position (translateY 0), reduced shadow
 - **Focus:** 2px ring with accent color, 2px offset
 - **Disabled:** 50% opacity, no hover effects, cursor not-allowed
 
@@ -222,6 +222,11 @@ Smooth transitions enhance user experience without causing distraction.
 
 - **Recommended:** opacity, transform, color, background-color, box-shadow
 - **Avoid:** width, height, margin, padding (causes layout shifts)
+
+**Entrance Animations:**
+
+- Above-the-fold (hero) content must never wait for JavaScript to become visible — use CSS-only entrance animations that run at first paint
+- Always respect the user's `prefers-reduced-motion` setting
 
 ### Iconography Standards
 

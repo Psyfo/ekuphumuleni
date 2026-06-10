@@ -442,16 +442,10 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
           </div>
 
           {/* Submit Button */}
-          <m.button
+          <button
             type='submit'
-            className='flex justify-center items-center gap-2 bg-[var(--color-terracotta-deep)] disabled:opacity-50 shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-xl focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)]/30 focus-visible:ring-4 w-full font-bold text-white hover:scale-[1.02] active:scale-[0.98] disabled:hover:scale-100 transition-all duration-200 disabled:cursor-not-allowed'
+            className='flex justify-center items-center gap-2 bg-[var(--color-terracotta-deep)] disabled:opacity-50 shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-xl focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)]/30 focus-visible:ring-4 w-full font-bold text-white hover:-translate-y-0.5 active:translate-y-0 disabled:hover:translate-y-0 transition-all duration-200 disabled:cursor-not-allowed'
             disabled={status === 'submitting'}
-            whileHover={
-              { scale: 1.02 }
-            }
-            whileTap={
-              { scale: 0.98 }
-            }
           >
             {status === 'submitting' ? (
               <>
@@ -483,7 +477,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
                 <span>{submitButtonLabel}</span>
               </>
             )}
-          </m.button>
+          </button>
         </div>
 
         {/* Success Message */}
