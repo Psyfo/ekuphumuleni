@@ -10,6 +10,10 @@ import CoreServicesSection from './CoreServicesSection';
 import NursingCareSection from './NursingCareSection';
 import RehabilitationSection from './RehabilitationSection';
 
+/** Re-render from Sanity at most every 5 minutes, so CMS edits reach
+ * production without a redeploy. */
+export const revalidate = 300;
+
 export async function generateMetadata(): Promise<Metadata> {
   let seo = FALLBACK_SERVICES_PAGE_SETTINGS.seo;
   try {
