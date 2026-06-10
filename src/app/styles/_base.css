@@ -16,7 +16,7 @@ body {
 
 /* ===== Default Link Styles ===== */
 a {
-    color: var(--color-muted-terracotta);
+    color: var(--color-terracotta-deep);
     text-decoration: none;
 }
 
