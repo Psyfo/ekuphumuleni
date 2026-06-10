@@ -85,6 +85,14 @@ To maintain legibility, never reproduce the logo smaller than 1 inch or 25mm in 
 
 **Dark Terracotta (#9C4F35):** Hover states and gradient ends for Deep Terracotta surfaces.
 
+### Feedback Colors
+
+Form validation and status feedback stay inside the palette rather than using stock red/green:
+
+**Error (#B3563B):** A terracotta-leaning red (≈4.9:1 on white) for validation errors and failure states.
+
+**Success (#5C7A4A):** An olive-toned green (≈4.9:1 on white) for confirmation and success states.
+
 ### Color Usage
 
 Our earthy, warm palette evokes feelings of comfort, stability, and natural healing. Always maintain appropriate contrast ratios for accessibility, particularly between text and background colors.
@@ -99,13 +107,17 @@ Our earthy, warm palette evokes feelings of comfort, stability, and natural heal
 
 ### Font Hierarchy
 
-**H1:** 32px/2rem, Deep Cocoa (#6B4F4F), Bold
+The scale is fluid: each step uses CSS `clamp()` to size smoothly between a mobile minimum and a desktop maximum, so components never need per-breakpoint size overrides.
 
-**H2:** 24px/1.5rem, Deep Cocoa (#6B4F4F), Bold
+**Display:** 48px → 72px (`clamp(3rem, 2.25rem + 3vw, 4.5rem)`), Deep Cocoa, Bold — reserved for the home hero title
 
-**H3:** 20px/1.25rem, Deep Cocoa (#6B4F4F), Bold
+**H1:** 36px → 60px (`clamp(2.25rem, 1.5rem + 2.5vw, 3.75rem)`), Deep Cocoa (#6B4F4F), Bold
 
-**Body:** 16px/1rem, Deep Cocoa (#6B4F4F), Regular
+**H2:** 30px → 36px (`clamp(1.875rem, 1.6rem + 0.9vw, 2.25rem)`), Deep Cocoa (#6B4F4F), Bold
+
+**H3:** 20px → 24px (`clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem)`), Deep Cocoa (#6B4F4F), Bold
+
+**Body:** 17px/1.0625rem, line-height 1.625, Deep Cocoa (#6B4F4F), Regular — generous sizing for older readers
 
 **Small/Caption:** 14px/0.875rem, Deep Cocoa (#6B4F4F), Regular
 
@@ -167,9 +179,26 @@ Consistent spacing creates visual rhythm and improves readability.
 - Container max-width: 1280px (80rem)
 - Container horizontal padding: 16px (1rem) on mobile, 24px (1.5rem) on desktop
 
+### Section Rhythm
+
+Long pages alternate warm neutrals (Warm Beige, Off-White, Soft Sand) but must not flow entirely through mid-tones — adjacent neutrals sit at low contrast and sections blur together.
+
+- Anchor each long page with **one Deep Cocoa band** roughly two-thirds down (e.g. the donors band on the home page), styled like the footer: Off-White serif headings, terracotta divider, soft warm glows, and an on-dark (Warm Beige) button
+- The footer is always Deep Cocoa, closing every page on the dark anchor
+- Section headers use the canonical pattern — serif title, 64px terracotta divider bar, optional lede — via the shared `SectionHeading` component
+
 ### Interactive States
 
 Consistent interactive feedback creates a cohesive user experience.
+
+**Button System:**
+
+All buttons use one system (`.btn` plus a tone variant) rather than bespoke styles:
+
+- **Primary** (`.btn-primary`): Deep Terracotta surface, white text — the main action on light backgrounds
+- **Secondary** (`.btn-secondary`): Translucent white surface, Deep Cocoa text, Earth Brown border — supporting actions
+- **On dark** (`.btn-on-dark`): Warm Beige surface, Deep Cocoa text — actions inside Deep Cocoa bands and the footer
+- **Small** (`.btn-sm`): Reduced padding for navigation and compact contexts
 
 **Button States:**
 
@@ -241,8 +270,8 @@ Icons create visual landmarks and improve scanability.
 
 **Icon Colors:**
 
-- Primary icons: Earth Brown (#A68A64)
-- Interactive icons: Muted Terracotta (#C97C5D)
+- Feature icons: Muted Terracotta (#C97C5D) on a tinted chip (terracotta/earth-brown at 10–15% opacity)
+- Icons on dark backgrounds: Muted Terracotta — the lighter shade is the accessible direction on Deep Cocoa
 - Decorative icons: Deep Cocoa at 40% opacity
 
 **Icon Usage:**
@@ -259,7 +288,11 @@ Images should feel warm, natural, and comforting. Use soft natural lighting and 
 
 ### Image Treatment
 
-Apply a subtle warm filter to images when possible to maintain cohesion with our color palette. Avoid overly saturated or cool-toned imagery.
+All content photography passes through one warm grade (the `.img-warm` utility — `saturate(0.88) sepia(0.10) contrast(0.97) brightness(1.03)`) so mixed-quality photos read as a curated set. Logos, icons, and maps are never graded.
+
+- **Hero photography** sits under a Warm Beige wash: near-solid on small screens for text readability, easing toward transparent on larger screens so the photo breathes
+- **Missing portraits** never show an empty box: render serif initials in Deep Terracotta on a warm tinted circle (honorifics stripped — "Ms G N Mahlangu" → "GN")
+- Avoid overly saturated or cool-toned imagery at the source; the grade softens but cannot rescue clashing casts
 
 ### Iconography
 
