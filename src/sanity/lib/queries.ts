@@ -144,6 +144,9 @@ export const HOME_PAGE_SETTINGS_QUERY = defineQuery(
     heroSection {
       title,
       subtitle,
+      eyebrow,
+      tagline,
+      "backgroundImageUrl": backgroundImage.asset->url,
       primaryCtaLabel,
       secondaryCtaLabel,
     },

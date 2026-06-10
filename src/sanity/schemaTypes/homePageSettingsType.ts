@@ -30,6 +30,26 @@ export const homePageSettingsType = defineType({
       fields: [
         defineField({ name: 'title', title: 'Title', type: 'string', validation: (Rule) => Rule.required() }),
         defineField({ name: 'subtitle', title: 'Subtitle', type: 'string', validation: (Rule) => Rule.required() }),
+        defineField({
+          name: 'eyebrow',
+          title: 'Eyebrow',
+          description: 'Short trust line shown above the title, e.g. "Serving Bulawayo’s elders since 1983"',
+          type: 'string',
+        }),
+        defineField({
+          name: 'tagline',
+          title: 'Tagline',
+          description: 'Lede paragraph under the title — what Ekuphumuleni means and offers',
+          type: 'text',
+          rows: 2,
+        }),
+        defineField({
+          name: 'backgroundImage',
+          title: 'Background Image',
+          description: 'Full-bleed hero photo; a warm overlay is applied automatically',
+          type: 'image',
+          options: { hotspot: true },
+        }),
         defineField({ name: 'primaryCtaLabel', title: 'Primary CTA Label', type: 'string', validation: (Rule) => Rule.required() }),
         defineField({ name: 'secondaryCtaLabel', title: 'Secondary CTA Label', type: 'string', validation: (Rule) => Rule.required() }),
       ],

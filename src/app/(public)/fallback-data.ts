@@ -14,6 +14,10 @@ export const FALLBACK_HOME_PAGE_SETTINGS = {
   heroSection: {
     title: 'Ekuphumuleni',
     subtitle: 'Geriatric Nursing Home',
+    eyebrow: 'Serving Bulawayo’s elders since 1983',
+    tagline:
+      '“A place of rest” — dignified, professional nursing care for older adults in a peaceful, home-like environment.',
+    backgroundImageUrl: '/images/garden/garden_01.webp',
     primaryCtaLabel: 'Explore Our Care',
     secondaryCtaLabel: 'Contact Us',
   },
