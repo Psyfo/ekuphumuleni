@@ -153,7 +153,9 @@ export const HOME_PAGE_SETTINGS_QUERY = defineQuery(
     aboutSection {
       heading,
       intro,
-      "establishmentImageUrl": establishmentImage.asset->url,
+      "founderImageUrl": founderImage.asset->url,
+      founderName,
+      founderRole,
       establishmentHeading,
       establishmentBody,
       missionHeading,

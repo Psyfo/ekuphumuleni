@@ -7,7 +7,9 @@ import Image from 'next/image';
 interface AboutSectionData {
   heading?: string;
   intro?: string;
-  establishmentImageUrl?: string;
+  founderImageUrl?: string | null;
+  founderName?: string | null;
+  founderRole?: string | null;
   establishmentHeading?: string;
   establishmentBody?: string;
   missionHeading?: string;
@@ -27,7 +29,9 @@ export default function AboutSection({ data }: AboutSectionProps = {}) {
   const intro =
     data?.intro ??
     'Ekuphumuleni means "place of rest", a sanctuary for elderly individuals requiring nursing care. Established in 1983 by Polyanna Mahlangu, it was founded to provide reliable, professional care for older adults in a peaceful, dignified environment.';
-  const establishmentImageUrl = data?.establishmentImageUrl ?? '/images/building/building_01.webp';
+  const founderImageUrl = data?.founderImageUrl ?? '/images/founder_01.jpg';
+  const founderName = data?.founderName ?? 'Polyanna Mahlangu';
+  const founderRole = data?.founderRole ?? 'Founder · Est. 1983';
   const establishmentHeading = data?.establishmentHeading ?? 'Our Establishment';
   const establishmentBody =
     data?.establishmentBody ??
@@ -81,21 +85,32 @@ export default function AboutSection({ data }: AboutSectionProps = {}) {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className='order-2 md:order-1 w-full'
           >
-            <div className='group relative'>
+            <figure className='relative mx-auto max-w-sm'>
               {/* Decorative border effect */}
-              <div className='absolute -inset-2 bg-gradient-to-br from-[var(--color-muted-terracotta)]/20 to-[var(--color-earth-brown)]/20 blur-sm group-hover:blur-md rounded-xl transition-all duration-300' />
-              <div className='relative border-[var(--color-earth-brown)]/10 border-2 rounded-xl overflow-hidden'>
+              <div
+                className='absolute -inset-2 bg-gradient-to-br from-[var(--color-muted-terracotta)]/20 to-[var(--color-earth-brown)]/20 blur-sm rounded-2xl'
+                aria-hidden='true'
+              />
+              {/* Photograph-style mat and caption */}
+              <div className='relative bg-white shadow-warm-lg p-3 border border-subtle rounded-2xl'>
                 <Image
-                  src={establishmentImageUrl}
-                  alt='Historic exterior of Ekuphumuleni nursing home'
-                  width={800}
-                  height={600}
-                  className='w-full h-72 lg:h-96 object-cover group-hover:scale-105 transition-transform duration-500'
+                  src={founderImageUrl}
+                  alt={`Portrait of ${founderName}, ${founderRole}`}
+                  width={603}
+                  height={603}
+                  className='rounded-xl w-full aspect-square object-cover'
                   priority={false}
-                  unoptimized
                 />
+                <figcaption className='pt-4 pb-2 text-center'>
+                  <span className='block font-serif font-bold text-[var(--color-deep-cocoa)] text-lg'>
+                    {founderName}
+                  </span>
+                  <span className='block mt-0.5 text-[var(--color-deep-cocoa)]/70 text-sm'>
+                    {founderRole}
+                  </span>
+                </figcaption>
               </div>
-            </div>
+            </figure>
           </m.div>
           <m.div
             initial={{ opacity: 0, x: 24 }}

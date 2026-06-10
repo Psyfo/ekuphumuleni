@@ -64,7 +64,15 @@ export const homePageSettingsType = defineType({
       fields: [
         defineField({ name: 'heading', title: 'Heading', type: 'string', validation: (Rule) => Rule.required() }),
         defineField({ name: 'intro', title: 'Intro Paragraph', type: 'text', rows: 4, validation: (Rule) => Rule.required() }),
-        defineField({ name: 'establishmentImage', title: 'Establishment Image', type: 'image', options: { hotspot: true } }),
+        defineField({
+          name: 'founderImage',
+          title: 'Founder Portrait',
+          description: 'Shown beside the establishment story with the name and role as a caption',
+          type: 'image',
+          options: { hotspot: true },
+        }),
+        defineField({ name: 'founderName', title: 'Founder Name', type: 'string' }),
+        defineField({ name: 'founderRole', title: 'Founder Caption', description: 'Shown under the name, e.g. "Founder · Est. 1983"', type: 'string' }),
         defineField({ name: 'establishmentHeading', title: 'Establishment Heading', type: 'string', validation: (Rule) => Rule.required() }),
         defineField({ name: 'establishmentBody', title: 'Establishment Body', type: 'text', rows: 4, validation: (Rule) => Rule.required() }),
         defineField({ name: 'missionHeading', title: 'Mission Heading', type: 'string', validation: (Rule) => Rule.required() }),
