@@ -130,7 +130,7 @@ export default function StaffSection({
                         alt={current.alt}
                         fill
                         sizes='100vw'
-                        className='object-cover'
+                        className='img-warm object-cover'
                         priority={index === 0}
                         unoptimized
                       />

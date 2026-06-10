@@ -142,7 +142,7 @@ export default function SustainabilitySection({ data = {} }: SustainabilitySecti
                       alt={image.alt ?? image.caption ?? ''}
                       fill
                       sizes='(min-width:640px) 50vw, 100vw'
-                      className='object-cover group-hover:scale-105 transition-transform duration-500'
+                      className='img-warm object-cover group-hover:scale-105 transition-transform duration-500'
                       unoptimized
                     />
                   )}

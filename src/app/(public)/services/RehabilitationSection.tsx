@@ -81,7 +81,7 @@ export default function RehabilitationSection({ data }: RehabilitationSectionPro
                   alt='Rehabilitation and therapeutic activities'
                   fill
                   sizes='(min-width:1024px) 50vw, 100vw'
-                  className='object-cover'
+                  className='img-warm object-cover'
                   unoptimized
                 />
               </div>
@@ -135,7 +135,7 @@ export default function RehabilitationSection({ data }: RehabilitationSectionPro
                     alt={photo.alt}
                     fill
                     sizes='(min-width:640px) 33vw, 100vw'
-                    className='object-cover group-hover:scale-105 transition-transform duration-500'
+                    className='img-warm object-cover group-hover:scale-105 transition-transform duration-500'
                     unoptimized
                   />
                 </div>

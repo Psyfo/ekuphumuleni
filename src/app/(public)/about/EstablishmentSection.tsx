@@ -114,7 +114,7 @@ export default function EstablishmentSection({ data = {} }: EstablishmentSection
                     alt={`Founder ${founderName}`}
                     fill
                     sizes='(min-width:1024px) 520px, (min-width:768px) 50vw, 100vw'
-                    className='object-cover group-hover:scale-105 transition-transform duration-500'
+                    className='img-warm object-cover group-hover:scale-105 transition-transform duration-500'
                     priority={false}
                   />
                 </div>

@@ -52,6 +52,14 @@
     background: linear-gradient(135deg, rgba(201, 124, 93, 0.1), rgba(201, 124, 93, 0.2));
 }
 
+/* ===== Photography Treatment ===== */
+/* Single warm grade for content photography so mixed-quality photos read
+   as a curated set: slightly desaturated, warmed, gently lifted.
+   Apply to content photos only — never logos, icons, or maps. */
+.img-warm {
+    filter: saturate(0.88) sepia(0.10) contrast(0.97) brightness(1.03);
+}
+
 /* ===== Entrance Animation Utilities ===== */
 /* CSS-only entrances for above-the-fold (LCP) content: they run at first
    paint instead of waiting for JS hydration, so heroes are never blank.

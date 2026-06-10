@@ -98,7 +98,7 @@ export default function AboutSection({ data }: AboutSectionProps = {}) {
                   alt={`Portrait of ${founderName}, ${founderRole}`}
                   width={603}
                   height={603}
-                  className='rounded-xl w-full aspect-square object-cover'
+                  className='img-warm rounded-xl w-full aspect-square object-cover'
                   priority={false}
                 />
                 <figcaption className='pt-4 pb-2 text-center'>

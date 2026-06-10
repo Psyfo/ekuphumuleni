@@ -106,7 +106,7 @@ export default function NursingCareSection({ data }: NursingCareSectionProps) {
                     alt='Professional nursing care at Ekuphumuleni'
                     fill
                     sizes='(min-width:1024px) 50vw, 100vw'
-                    className='object-cover'
+                    className='img-warm object-cover'
                     priority
                     unoptimized
                   />
@@ -116,7 +116,7 @@ export default function NursingCareSection({ data }: NursingCareSectionProps) {
                     alt='Professional nursing care at Ekuphumuleni'
                     fill
                     sizes='(min-width:1024px) 50vw, 100vw'
-                    className='object-cover'
+                    className='img-warm object-cover'
                     priority
                     unoptimized
                   />
@@ -207,7 +207,7 @@ export default function NursingCareSection({ data }: NursingCareSectionProps) {
                     alt={photo.alt}
                     fill
                     sizes='(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw'
-                    className='object-cover group-hover:scale-105 transition-transform duration-500'
+                    className='img-warm object-cover group-hover:scale-105 transition-transform duration-500'
                     unoptimized
                   />
                 </div>
