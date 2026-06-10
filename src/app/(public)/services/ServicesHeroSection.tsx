@@ -1,6 +1,3 @@
-'use client';
-
-import { m, Variants } from 'framer-motion';
 import Link from 'next/link';
 import { HomeIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
@@ -16,36 +13,14 @@ export default function ServicesHeroSection({
   heroQuote,
 }: ServicesHeroSectionProps) {
 
-  const container: Variants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        duration: 0.4,
-        staggerChildren: 0.12,
-        when: 'beforeChildren',
-      },
-    },
-  };
-
-  const item: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
-  };
-
   return (
     <section
       aria-label='Services Page Header'
       className='relative bg-gradient-to-br from-[var(--color-warm-beige)] via-[var(--color-soft-sand)] to-[var(--color-off-white)] px-4 py-16 lg:py-20'
     >
-      <m.div
-        className='mx-auto max-w-5xl'
-        variants={container}
-        initial='hidden'
-        animate='show'
-      >
+      <div className='mx-auto max-w-5xl'>
         {/* Breadcrumb */}
-        <m.nav variants={item} aria-label='Breadcrumb' className='mb-8'>
+        <nav aria-label='Breadcrumb' className='mb-8 animate-rise'>
           <ol className='flex items-center gap-2 text-sm'>
             <li>
               <Link
@@ -68,39 +43,30 @@ export default function ServicesHeroSection({
               </span>
             </li>
           </ol>
-        </m.nav>
+        </nav>
 
         {/* Page Title */}
-        <m.h1
-          variants={item}
-          className='mb-6 !text-4xl md:!text-5xl lg:!text-6xl text-center heading-1'
-        >
+        <h1 className='mb-6 !text-4xl md:!text-5xl lg:!text-6xl text-center heading-1 animate-rise animate-rise-delay-1'>
           {heroTitle}
-        </m.h1>
+        </h1>
 
         {/* Accent Divider */}
-        <m.div
-          variants={item}
-          className='bg-[var(--color-muted-terracotta)] mx-auto mb-8 rounded-full w-20 h-1.5'
-        />
+        <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-8 rounded-full w-20 h-1.5 animate-rise animate-rise-delay-2' />
 
         {/* Subtitle */}
-        <m.p
-          variants={item}
-          className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text'
-        >
+        <p className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text animate-rise animate-rise-delay-3'>
           {heroSubtitle}
-        </m.p>
+        </p>
 
         {/* Decorative Quote */}
-        <m.div variants={item} className='mx-auto mt-12 max-w-2xl'>
+        <div className='mx-auto mt-12 max-w-2xl animate-rise animate-rise-delay-4'>
           <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl'>
             <p className='!text-[var(--color-deep-cocoa)] text-lg text-center italic leading-relaxed'>
               &ldquo;{heroQuote}&rdquo;
             </p>
           </div>
-        </m.div>
-      </m.div>
+        </div>
+      </div>
     </section>
   );
 }
