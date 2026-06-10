@@ -1,62 +1,33 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
 import { UserIcon } from '@heroicons/react/24/outline';
 
-type Member = {
+export type CmsMember = {
+  _id: string;
   name: string;
-  role?: string;
-  img?: string;
+  role?: string | null;
+  imageUrl?: string | null;
 };
 
-const BOARD: Member[] = [
-  {
-    name: 'Mr P Ncube',
-    role: 'Board Chairperson',
-    img: '/images/team/board/ncube.jpg',
-  },
-  {
-    name: 'Ms F Ndlovu',
-    role: 'H R Chairperson',
-    img: '/images/team/board/ndlovu.jpg',
-  },
-  {
-    name: 'Mr J M Nyoni',
-    role: 'Board Member',
-    img: '/images/team/board/nyoni.jpg',
-  },
-  {
-    name: 'Ms G N Mahlangu',
-    role: 'Board Member',
-    img: '/images/team/board/mahlangu.jpg',
-  },
-  {
-    name: 'Mrs H M Mahachi',
-    role: 'Vice Chair Person',
-    img: '/images/team/board/mahachi.jpg',
-  },
-  {
-    name: 'Mr Miclose',
-    role: 'Board Person Treasury',
-    img: '/images/team/board/miclose.jpg',
-  },
-  {
-    name: 'Mr J L Ncube Sikosana',
-    role: 'Committee Member',
-    img: '/images/team/board/sikosana.jpg',
-  },
-  {
-    name: 'Mr L Mpofu',
-    role: 'Committee Member',
-    img: '/images/team/board/mpofu.jpg',
-  },
-  { name: 'Ms S S Hove', role: 'Committee Member', img: '/images/team/board/' },
-];
+interface BoardSectionProps {
+  members: CmsMember[];
+  heading?: string | null;
+  description?: string | null;
+}
 
-function Portrait({ src, alt }: { src?: string; alt: string }) {
+function Portrait({
+  src,
+  alt,
+  priority = false,
+}: {
+  src?: string | null;
+  alt: string;
+  priority?: boolean;
+}) {
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
 
@@ -76,12 +47,12 @@ function Portrait({ src, alt }: { src?: string; alt: string }) {
           }`}
           onLoad={() => setLoaded(true)}
           onError={() => setFailed(true)}
-          loading='lazy'
+          priority={priority}
           unoptimized
         />
       ) : (
         <div className='absolute inset-0 place-items-center grid'>
-          <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-warm rounded-full w-20 h-20 text-[var(--color-earth-brown)]'>
+          <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-warm rounded-full w-20 h-20 text-[var(--color-deep-cocoa)]'>
             <UserIcon className='w-9 h-9' aria-hidden='true' />
           </div>
         </div>
@@ -90,9 +61,11 @@ function Portrait({ src, alt }: { src?: string; alt: string }) {
   );
 }
 
-export default function BoardSection() {
-  const prefersReducedMotion = useReducedMotion();
-
+export default function BoardSection({
+  members,
+  heading,
+  description,
+}: BoardSectionProps) {
   const container: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -106,7 +79,7 @@ export default function BoardSection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
@@ -116,47 +89,58 @@ export default function BoardSection() {
       aria-label='Board of Trustees'
       className='bg-gradient-to-b from-white to-[var(--color-soft-sand)]/30 px-4 py-20 lg:py-24'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-7xl'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.1 }}
       >
-        <motion.div variants={item} className='mb-16 text-center'>
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
-            Executive Board Members
-          </h2>
+        <m.div variants={item} className='mb-16 text-center'>
+          {heading ? (
+            <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>{heading}</h2>
+          ) : null}
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
-          <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
-            The current executive board members guiding Ekuphumuleni&apos;s
-            mission and service excellence
-          </p>
-        </motion.div>
+          {description ? (
+            <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
+              {description}
+            </p>
+          ) : null}
+        </m.div>
 
-        <motion.ul
-          variants={container}
-          className='gap-6 lg:gap-8 grid sm:grid-cols-2 lg:grid-cols-3'
-        >
-          {BOARD.map((member, idx) => (
-            <motion.li
-              key={idx}
-              variants={item}
-              className='group bg-white shadow-warm-lg hover:shadow-warm-xl p-6 border border-subtle rounded-2xl transition-all hover:-translate-y-1 duration-300'
-            >
-              <Portrait src={member.img} alt={member.name} />
-              <div className='mt-6 text-center'>
-                <h3 className='mb-1.5 font-serif font-bold text-[var(--color-deep-cocoa)] text-lg'>
-                  {member.name}
-                </h3>
-                <p className='font-medium text-[var(--color-earth-brown)] text-sm'>
-                  {member.role ?? 'Trustee'}
-                </p>
-              </div>
-            </motion.li>
-          ))}
-        </motion.ul>
-      </motion.div>
+        {members.length === 0 ? (
+          <m.p variants={item} className='text-center body-text'>
+            Board member information will be available soon.
+          </m.p>
+        ) : (
+          <m.ul
+            variants={container}
+            className='gap-6 lg:gap-8 grid sm:grid-cols-2 lg:grid-cols-3'
+          >
+            {members.map((member, idx) => (
+              <m.li
+                key={member._id}
+                variants={item}
+                className='group bg-white shadow-warm-lg hover:shadow-warm-xl p-6 border border-subtle rounded-2xl transition-all hover:-translate-y-1 duration-300'
+              >
+                <Portrait
+                  src={member.imageUrl}
+                  alt={member.name}
+                  priority={idx === 0}
+                />
+                <div className='mt-6 text-center'>
+                  <h3 className='mb-1.5 font-serif font-bold text-[var(--color-deep-cocoa)] text-lg'>
+                    {member.name}
+                  </h3>
+                  <p className='font-medium text-[var(--color-deep-cocoa)] text-sm'>
+                    {member.role ?? 'Trustee'}
+                  </p>
+                </div>
+              </m.li>
+            ))}
+          </m.ul>
+        )}
+      </m.div>
     </section>
   );
 }

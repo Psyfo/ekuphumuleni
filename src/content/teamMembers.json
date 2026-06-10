@@ -1,0 +1,63 @@
+{
+    "board": [
+        {
+            "name": "Mr P Ncube",
+            "role": "Board Chairperson",
+            "img": "/images/team/board/ncube.jpg"
+        },
+        {
+            "name": "Ms F Ndlovu",
+            "role": "H R Chairperson",
+            "img": "/images/team/board/ndlovu.jpg"
+        },
+        {
+            "name": "Mr J M Nyoni",
+            "role": "Board Member"
+        },
+        {
+            "name": "Ms G N Mahlangu",
+            "role": "Board Member"
+        },
+        {
+            "name": "Mrs H M Mahachi",
+            "role": "Vice Chair Person",
+            "img": "/images/team/board/mahachi.jpg"
+        },
+        {
+            "name": "Mr Miclose",
+            "role": "Board Person Treasury",
+            "img": "/images/team/board/miclose.jpg"
+        },
+        {
+            "name": "Mr J L Ncube Sikosana",
+            "role": "Committee Member",
+            "img": "/images/team/board/sikosana.jpg"
+        },
+        {
+            "name": "Mr L Mpofu",
+            "role": "Committee Member",
+            "img": "/images/team/board/mpofu.jpg"
+        },
+        {
+            "name": "Ms S S Hove",
+            "role": "Committee Member"
+        }
+    ],
+    "administration": [
+        {
+            "name": "Mrs Nokuthula Moyo",
+            "role": "Administrator",
+            "img": "/images/team/administration/administrator.jpg"
+        },
+        {
+            "name": "Ms Simangele Ncube",
+            "role": "Administration Officer",
+            "img": "/images/team/administration/administration_officer.jpg"
+        },
+        {
+            "name": "Mrs Nomsa Gumpo",
+            "role": "Bookkeeper",
+            "img": "/images/team/administration/book-keeper.jpg"
+        }
+    ]
+}

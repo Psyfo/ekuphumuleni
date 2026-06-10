@@ -1,35 +1,65 @@
 'use client';
 
-import { motion, Variants, useReducedMotion } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import {
   BuildingLibraryIcon,
   UsersIcon,
   HeartIcon,
 } from '@heroicons/react/24/outline';
 
-const specialMentions = [
+const ICON_MAP: Record<string, typeof BuildingLibraryIcon> = {
+  'building-library': BuildingLibraryIcon,
+  heart: HeartIcon,
+  users: UsersIcon,
+};
+
+interface SpecialMention {
+  name: string;
+  iconName: string;
+  description: string;
+}
+
+interface SpecialMentionsSectionData {
+  heading?: string;
+  subtitle?: string;
+  mentions?: SpecialMention[];
+  closingMessage?: string;
+}
+
+interface SpecialMentionsSectionProps {
+  data?: SpecialMentionsSectionData;
+}
+
+const FALLBACK_MENTIONS: SpecialMention[] = [
   {
     name: 'Beit Trust',
-    icon: BuildingLibraryIcon,
+    iconName: 'building-library',
     description:
       'Foundational support and enduring partnership that has strengthened our mission',
   },
   {
     name: 'Jesus Latter Day',
-    icon: HeartIcon,
+    iconName: 'heart',
     description:
       'Faith-driven commitment illuminating our path with compassionate care',
   },
   {
     name: 'Many Individual Well-Wishers',
-    icon: UsersIcon,
+    iconName: 'users',
     description:
       'Countless acts of kindness woven into the fabric of our community',
   },
 ];
 
-export default function SpecialMentionsSection() {
-  const prefersReducedMotion = useReducedMotion();
+export default function SpecialMentionsSection({ data }: SpecialMentionsSectionProps = {}) {
+  const heading = data?.heading ?? 'Special Mentions';
+  const subtitle =
+    data?.subtitle ??
+    'We extend our deepest gratitude to these remarkable supporters whose extraordinary contributions have shaped our mission';
+  const mentions = data?.mentions ?? FALLBACK_MENTIONS;
+  const closingMessage =
+    data?.closingMessage ??
+    'Every contribution, whether grand or humble, has woven threads of hope into the fabric of our community. Your generosity illuminates the path forward for those in our care.';
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -44,7 +74,7 @@ export default function SpecialMentionsSection() {
   };
 
   const cardVariant: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 30 },
+    hidden: { opacity: 0, y: 30 },
     show: {
       opacity: 1,
       y: 0,
@@ -60,7 +90,7 @@ export default function SpecialMentionsSection() {
 
       <div className='z-10 relative mx-auto px-4 max-w-7xl'>
         {/* Section header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -68,27 +98,26 @@ export default function SpecialMentionsSection() {
           className='mb-16 lg:mb-20 text-center'
         >
           <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
-            Special Mentions
+            {heading}
           </h2>
           <div className='bg-gradient-to-r from-transparent via-[var(--color-muted-terracotta)] to-transparent mx-auto mb-6 rounded-full w-24 h-1' />
           <p className='mx-auto max-w-2xl !text-lg leading-relaxed body-text'>
-            We extend our deepest gratitude to these remarkable supporters whose
-            extraordinary contributions have shaped our mission
+            {subtitle}
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Special mentions cards */}
-        <motion.div
+        <m.div
           variants={container}
           initial='hidden'
           whileInView='show'
           viewport={{ once: true, margin: '-100px' }}
           className='gap-8 grid grid-cols-1 md:grid-cols-3 mx-auto max-w-6xl'
         >
-          {specialMentions.map((mention) => {
-            const IconComponent = mention.icon;
+          {mentions.map((mention) => {
+            const IconComponent = ICON_MAP[mention.iconName] ?? BuildingLibraryIcon;
             return (
-              <motion.div
+              <m.div
                 key={mention.name}
                 variants={cardVariant}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
@@ -107,22 +136,22 @@ export default function SpecialMentionsSection() {
                   </div>
 
                   {/* Name */}
-                  <h3 className='z-10 relative mb-4 font-serif text-[var(--color-deep-cocoa)] group-hover:text-[var(--color-muted-terracotta)] text-2xl transition-colors duration-300'>
+                  <h3 className='z-10 relative mb-4 font-serif text-[var(--color-deep-cocoa)] group-hover:text-[var(--color-terracotta-deep)] text-2xl transition-colors duration-300'>
                     {mention.name}
                   </h3>
 
                   {/* Description */}
-                  <p className='z-10 relative text-[var(--color-earth-brown)] leading-relaxed'>
+                  <p className='z-10 relative text-[var(--color-deep-cocoa)] leading-relaxed'>
                     {mention.description}
                   </p>
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
-        </motion.div>
+        </m.div>
 
         {/* Closing message */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -130,13 +159,11 @@ export default function SpecialMentionsSection() {
           className='mt-16 lg:mt-20 text-center'
         >
           <div className='bg-white/70 shadow-warm-lg backdrop-blur-sm mx-auto p-8 lg:p-10 border border-subtle rounded-2xl max-w-3xl'>
-            <p className='font-serif text-[var(--color-earth-brown)] text-lg lg:text-xl italic leading-relaxed'>
-              Every contribution, whether grand or humble, has woven threads of
-              hope into the fabric of our community. Your generosity illuminates
-              the path forward for those in our care.
+            <p className='font-serif text-[var(--color-deep-cocoa)] text-lg lg:text-xl italic leading-relaxed'>
+              {closingMessage}
             </p>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

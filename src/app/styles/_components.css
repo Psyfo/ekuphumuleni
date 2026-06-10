@@ -6,7 +6,7 @@
 
 /* ===== Button Components ===== */
 .btn-primary {
-    background-color: var(--color-muted-terracotta);
+    background-color: var(--color-terracotta-deep);
     color: white;
     padding: 0.75rem 1.5rem;
     border-radius: var(--radius-md);
@@ -28,12 +28,12 @@
 
 .btn-primary:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px white, 0 0 0 4px var(--color-muted-terracotta);
+    box-shadow: 0 0 0 2px white, 0 0 0 4px var(--color-terracotta-deep);
 }
 
 .btn-secondary {
     background-color: white;
-    color: var(--color-earth-brown);
+    color: var(--color-deep-cocoa);
     padding: 0.75rem 1.5rem;
     border-radius: var(--radius-md);
     font-weight: 700;

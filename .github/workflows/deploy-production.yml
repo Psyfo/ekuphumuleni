@@ -1,0 +1,87 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Doppler CLI
+        run: curl -Ls https://cli.doppler.com/install.sh | sudo sh
+
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-
+
+      - name: Setup SSH
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_SSH_KNOWN_HOSTS: ${{ secrets.VPS_SSH_KNOWN_HOSTS }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$VPS_SSH_KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "$VPS_SSH_KNOWN_HOSTS" | tr -d '\r' >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (with Doppler secrets injected)
+        run: doppler run -- npm run build
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN_EKU_PROD }}
+          NEXT_TELEMETRY_DISABLED: '1'
+
+      - name: Install rsync
+        run: sudo apt-get install -y rsync
+
+      - name: Sync files to VPS
+        env:
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+        run: |
+          rsync -az --delete \
+            --filter='P .env*' \
+            --filter='P node_modules' \
+            --include='.next' \
+            --include='.next/**' \
+            --include='public' \
+            --include='public/**' \
+            --include='package.json' \
+            --include='package-lock.json' \
+            --include='next.config.ts' \
+            --include='ecosystem.config.js' \
+            --exclude='*' \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes" \
+            ./ \
+            "${VPS_USER}@${VPS_HOST}:~/ekuphumuleni/"
+
+      - name: Restart application
+        env:
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=yes \
+            "${VPS_USER}@${VPS_HOST}" \
+            'cd ~/ekuphumuleni && npm ci --omit=dev && pm2 reload ekuphumuleni --update-env && pm2 save'

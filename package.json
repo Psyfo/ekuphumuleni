@@ -6,27 +6,35 @@
         "dev": "next dev --turbopack",
         "build": "next build",
         "postbuild": "next-sitemap",
-        "start": "next start",
-        "lint": "next lint"
+        "start": "next start -p 3001",
+        "lint": "eslint .",
+        "sanity:typegen": "sanity schema extract && sanity typegen generate",
+        "sanity:seed": "tsx --env-file=.env.local --tsconfig tsconfig.scripts.json scripts/sanity/seed.ts",
+        "sanity:seed:build": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/build-team-seed.ts",
+        "sanity:seed:import": "npm run sanity:seed:build && sanity dataset import scripts/sanity/team-members.seed.ndjson --dataset production"
     },
     "dependencies": {
         "@heroicons/react": "^2.2.0",
+        "@next/third-parties": "^16.0.7",
+        "@sanity/vision": "^5.28.0",
         "framer-motion": "^12.23.12",
-        "next": "^15.5.6",
-        "react": "19.1.0",
-        "react-dom": "19.1.0",
+        "next": "^16.1.7",
+        "next-sanity": "^13.0.7",
+        "react": "^19.2.3",
+        "react-dom": "^19.2.3",
+        "sanity": "^5.28.0",
         "sharp": "^0.34.5"
     },
     "devDependencies": {
-        "@eslint/eslintrc": "^3",
         "@tailwindcss/postcss": "^4",
-        "@types/node": "^20",
-        "@types/react": "^19",
-        "@types/react-dom": "^19",
+        "@types/node": "^25.9.1",
+        "@types/react": "^19.2.7",
+        "@types/react-dom": "^19.2.3",
         "eslint": "^9",
-        "eslint-config-next": "15.4.6",
+        "eslint-config-next": "^16.1.7",
         "next-sitemap": "^4.2.3",
         "tailwindcss": "^4",
+        "tsx": "^4.22.3",
         "typescript": "^5"
     }
 }

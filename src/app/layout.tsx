@@ -1,9 +1,6 @@
 import type { Metadata } from 'next';
 import './styles/globals.css';
 
-import Footer from '@/components/Footer';
-import Navigation from '@/components/Navigation';
-
 export const metadata: Metadata = {
   metadataBase: new URL('https://ekuphumuleni.ngo'),
   title: {
@@ -167,11 +164,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>
-        <Navigation />
-        {children}
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

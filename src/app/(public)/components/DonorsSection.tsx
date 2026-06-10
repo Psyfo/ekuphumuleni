@@ -1,15 +1,29 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import Link from 'next/link';
 
 import { GiftIcon } from '@heroicons/react/24/outline';
 
-export default function DonorsSection() {
-  const prefersReducedMotion = useReducedMotion();
+interface DonorsSectionData {
+  heading?: string;
+  body?: string;
+  ctaLabel?: string;
+}
+
+interface DonorsSectionProps {
+  data?: DonorsSectionData;
+}
+
+export default function DonorsSection({ data }: DonorsSectionProps = {}) {
+  const heading = data?.heading ?? 'Donors & Support';
+  const body =
+    data?.body ??
+    'We acknowledge the donors and partners whose contributions help us maintain services, staffing, and facilities.';
+  const ctaLabel = data?.ctaLabel ?? 'See Our Donors';
 
   const container: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: {
       opacity: 1,
       y: 0,
@@ -23,7 +37,7 @@ export default function DonorsSection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
+    hidden: { opacity: 0, y: 16 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
   };
 
@@ -33,50 +47,49 @@ export default function DonorsSection() {
       className='bg-gradient-to-b from-[var(--color-soft-sand)] to-[var(--color-warm-beige)] px-4 py-20 lg:py-24'
       aria-label='Donors and Support'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-4xl text-center'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.3 }}
       >
-        <motion.div variants={item} className='inline-block mb-6'>
+        <m.div variants={item} className='inline-block mb-6'>
           <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 shadow-warm mx-auto rounded-2xl w-20 h-20'>
             <GiftIcon className='w-10 h-10 text-[var(--color-muted-terracotta)]' />
           </div>
-        </motion.div>
+        </m.div>
 
-        <motion.h2
+        <m.h2
           variants={item}
           className='mb-4 !text-3xl lg:!text-4xl heading-2'
         >
-          Donors &amp; Support
-        </motion.h2>
+          {heading}
+        </m.h2>
 
-        <motion.div variants={item}>
+        <m.div variants={item}>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
-        </motion.div>
+        </m.div>
 
-        <motion.p
+        <m.p
           variants={item}
           className='mx-auto mb-10 max-w-2xl !text-lg leading-relaxed body-text'
         >
-          We acknowledge the donors and partners whose contributions help us
-          maintain services, staffing, and facilities.
-        </motion.p>
+          {body}
+        </m.p>
 
-        <motion.div
+        <m.div
           variants={item}
-          whileHover={prefersReducedMotion ? {} : { scale: 1.03, y: -2 }}
-          whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
+          whileHover={{ scale: 1.03, y: -2 }}
+          whileTap={{ scale: 0.98 }}
           className='inline-block'
         >
           <Link
             href='/donors'
             prefetch={false}
-            className='inline-flex items-center gap-2 bg-[var(--color-muted-terracotta)] shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 font-bold !text-white hover:!text-white focus-visible:!text-white transition-all duration-300'
+            className='inline-flex items-center gap-2 bg-[var(--color-terracotta-deep)] shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 font-bold !text-white hover:!text-white focus-visible:!text-white transition-all duration-300'
           >
-            See Our Donors
+            {ctaLabel}
             <svg
               className='w-5 h-5'
               fill='none'
@@ -91,8 +104,8 @@ export default function DonorsSection() {
               />
             </svg>
           </Link>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion, Variants, useInView } from 'framer-motion';
+import { m, Variants, useInView } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 
 import {
@@ -80,15 +80,14 @@ function Statistic({
   decimals = 0,
   duration = 2,
 }: StatisticProps) {
-  const prefersReducedMotion = useReducedMotion();
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
   return (
-    <motion.div
+    <m.div
       variants={item}
       className='group bg-white shadow-warm-lg hover:shadow-warm-xl p-8 lg:p-10 border border-subtle rounded-2xl text-center transition-all hover:-translate-y-1 duration-300'
     >
@@ -107,15 +106,39 @@ function Statistic({
           duration={duration}
         />
       </div>
-      <p className='font-medium text-[var(--color-earth-brown)] !text-base body-text'>
+      <p className='font-medium text-[var(--color-deep-cocoa)] !text-base body-text'>
         {label}
       </p>
-    </motion.div>
+    </m.div>
   );
 }
 
-export default function ImpactStatisticsSection() {
-  const prefersReducedMotion = useReducedMotion();
+export interface ImpactSectionData {
+  heading?: string;
+  subtitle?: string;
+  establishmentYear?: number;
+  bedsAvailable?: number;
+  staffCount?: number;
+  satisfactionPercent?: number;
+  contextParagraph1?: string;
+  contextParagraph2?: string;
+}
+
+interface ImpactStatisticsSectionProps {
+  data?: ImpactSectionData;
+}
+
+export default function ImpactStatisticsSection({ data = {} }: ImpactStatisticsSectionProps) {
+  const {
+    heading = 'Our Legacy of Care',
+    subtitle = 'Over four decades of residential nursing, rehabilitation, and support for older adults',
+    establishmentYear = 1983,
+    bedsAvailable = 100,
+    staffCount = 50,
+    satisfactionPercent = 98,
+    contextParagraph1 = 'Since our founding in 1983, Ekuphumuleni has remained steadfast in our commitment to providing exceptional geriatric care.',
+    contextParagraph2 = 'Our modern 100-bed facility, combined with our experienced team of healthcare professionals, provides structured nursing, daily living support, and rehabilitation services in a stable environment.',
+  } = data;
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -130,12 +153,12 @@ export default function ImpactStatisticsSection() {
   };
 
   const titleVariant: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
-  // Calculate years since establishment (1983)
-  const yearsSinceEstablishment = new Date().getFullYear() - 1983;
+  // Calculate years since establishment
+  const yearsSinceEstablishment = new Date().getFullYear() - establishmentYear;
 
   return (
     <section
@@ -143,23 +166,18 @@ export default function ImpactStatisticsSection() {
       aria-label='Impact and Legacy'
       className='bg-white px-4 py-20 lg:py-24'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-7xl'
         variants={container}
         initial='hidden'
         whileInView='show'
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
-        <motion.div variants={titleVariant} className='mb-16 text-center'>
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
-            Our Legacy of Care
-          </h2>
+        <m.div variants={titleVariant} className='mb-16 text-center'>
+          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>{heading}</h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
-          <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
-            Over four decades of residential nursing, rehabilitation, and
-            support for older adults
-          </p>
-        </motion.div>
+          <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>{subtitle}</p>
+        </m.div>
 
         <div className='gap-6 lg:gap-8 grid sm:grid-cols-2 lg:grid-cols-4'>
           <Statistic
@@ -172,44 +190,36 @@ export default function ImpactStatisticsSection() {
           <Statistic
             icon={HeartIcon}
             label='Beds Available'
-            value={100}
+            value={bedsAvailable}
             duration={2}
           />
           <Statistic
             icon={UserGroupIcon}
             label='Dedicated Staff'
-            value={50}
+            value={staffCount}
             suffix='+'
             duration={2.2}
           />
           <Statistic
             icon={SparklesIcon}
             label='Patient Satisfaction'
-            value={98}
+            value={satisfactionPercent}
             suffix='%'
             duration={2.3}
           />
         </div>
 
         {/* Additional Context */}
-        <motion.div
+        <m.div
           variants={titleVariant}
           className='bg-gradient-to-br from-[var(--color-soft-sand)]/50 to-[var(--color-warm-beige)]/50 mt-16 p-8 lg:p-10 border border-subtle rounded-2xl'
         >
           <div className='mx-auto max-w-4xl text-center'>
-            <p className='mb-4 !text-lg leading-relaxed body-text'>
-              Since our founding in 1983, Ekuphumuleni has remained steadfast in
-              our commitment to providing exceptional geriatric care.
-            </p>
-            <p className='text-[var(--color-deep-cocoa)]/80 leading-relaxed body-text'>
-              Our modern 100-bed facility, combined with our experienced team of
-              healthcare professionals, provides structured nursing, daily
-              living support, and rehabilitation services in a stable
-              environment.
-            </p>
+            <p className='mb-4 !text-lg leading-relaxed body-text'>{contextParagraph1}</p>
+            <p className='text-[var(--color-deep-cocoa)]/80 leading-relaxed body-text'>{contextParagraph2}</p>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

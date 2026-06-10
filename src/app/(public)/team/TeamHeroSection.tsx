@@ -1,12 +1,20 @@
 'use client';
 
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import Link from 'next/link';
 import { HomeIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
-export default function TeamHeroSection() {
-  const prefersReducedMotion = useReducedMotion();
+interface TeamHeroSectionProps {
+  title?: string | null;
+  subtitle?: string | null;
+  quote?: string | null;
+}
 
+export default function TeamHeroSection({
+  title,
+  subtitle,
+  quote,
+}: TeamHeroSectionProps) {
   const container: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -20,7 +28,7 @@ export default function TeamHeroSection() {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   };
 
@@ -29,19 +37,19 @@ export default function TeamHeroSection() {
       aria-label='Team Page Header'
       className='relative bg-gradient-to-br from-[var(--color-warm-beige)] via-[var(--color-soft-sand)] to-[var(--color-off-white)] px-4 py-16 lg:py-20'
     >
-      <motion.div
+      <m.div
         className='mx-auto max-w-5xl'
         variants={container}
         initial='hidden'
         animate='show'
       >
         {/* Breadcrumb */}
-        <motion.nav variants={item} aria-label='Breadcrumb' className='mb-8'>
+        <m.nav variants={item} aria-label='Breadcrumb' className='mb-8'>
           <ol className='flex items-center gap-2 text-sm'>
             <li>
               <Link
                 href='/'
-                className='flex items-center gap-1.5 text-[var(--color-deep-cocoa)]/70 hover:text-[var(--color-muted-terracotta)] transition-colors duration-200'
+                className='flex items-center gap-1.5 text-[var(--color-deep-cocoa)]/70 hover:text-[var(--color-terracotta-deep)] transition-colors duration-200'
               >
                 <HomeIcon className='w-4 h-4' aria-hidden='true' />
                 <span>Home</span>
@@ -55,47 +63,49 @@ export default function TeamHeroSection() {
             </li>
             <li>
               <span className='font-medium text-[var(--color-deep-cocoa)]'>
-                Meet the Team
+                {title ?? 'Meet the Team'}
               </span>
             </li>
           </ol>
-        </motion.nav>
+        </m.nav>
 
         {/* Page Title */}
-        <motion.h1
-          variants={item}
-          className='mb-6 !text-4xl md:!text-5xl lg:!text-6xl text-center heading-1'
-        >
-          Meet the Team
-        </motion.h1>
+        {title ? (
+          <m.h1
+            variants={item}
+            className='mb-6 !text-4xl md:!text-5xl lg:!text-6xl text-center heading-1'
+          >
+            {title}
+          </m.h1>
+        ) : null}
 
         {/* Accent Divider */}
-        <motion.div
+        <m.div
           variants={item}
           className='bg-[var(--color-muted-terracotta)] mx-auto mb-8 rounded-full w-20 h-1.5'
         />
 
         {/* Subtitle */}
-        <motion.p
-          variants={item}
-          className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text'
-        >
-          Meet the individuals responsible for the clinical work, day‑to‑day
-          operations, and governance of Ekuphumuleni. From our board of trustees
-          to front‑line staff, every member has defined duties in how the home
-          is run.
-        </motion.p>
+        {subtitle ? (
+          <m.p
+            variants={item}
+            className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text'
+          >
+            {subtitle}
+          </m.p>
+        ) : null}
 
         {/* Decorative Quote */}
-        <motion.div variants={item} className='mx-auto mt-12 max-w-2xl'>
-          <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl'>
-            <p className='text-[var(--color-deep-cocoa)] text-lg text-center italic leading-relaxed'>
-              &ldquo;Together, we manage a home where every resident is treated
-              with dignity and receives consistent nursing and support.&rdquo;
-            </p>
-          </div>
-        </motion.div>
-      </motion.div>
+        {quote ? (
+          <m.div variants={item} className='mx-auto mt-12 max-w-2xl'>
+            <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl'>
+              <p className='text-[var(--color-deep-cocoa)] text-lg text-center italic leading-relaxed'>
+                &ldquo;{quote}&rdquo;
+              </p>
+            </div>
+          </m.div>
+        ) : null}
+      </m.div>
     </section>
   );
 }
