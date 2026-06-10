@@ -14,6 +14,10 @@ export const FALLBACK_HOME_PAGE_SETTINGS = {
   heroSection: {
     title: 'Ekuphumuleni',
     subtitle: 'Geriatric Nursing Home',
+    eyebrow: 'Serving Bulawayo’s elders since 1983',
+    tagline:
+      '“A place of rest” — dignified, professional nursing care for older adults in a peaceful, home-like environment.',
+    backgroundImageUrl: '/images/building/building_01.webp',
     primaryCtaLabel: 'Explore Our Care',
     secondaryCtaLabel: 'Contact Us',
   },
@@ -22,7 +26,9 @@ export const FALLBACK_HOME_PAGE_SETTINGS = {
     heading: 'About Ekuphumuleni',
     intro:
       'Ekuphumuleni means "place of rest", a sanctuary for elderly individuals requiring nursing care. Established in 1983 by Polyanna Mahlangu, it was founded to provide reliable, professional care for older adults in a peaceful, dignified environment.',
-    establishmentImageUrl: '/images/building/building_01.webp',
+    founderImageUrl: '/images/founder_01.jpg',
+    founderName: 'Polyanna Mahlangu',
+    founderRole: 'Founder · Est. 1983',
     establishmentHeading: 'Our Establishment',
     establishmentBody:
       'Founded to provide dependable care, our home blends professional excellence with a stable, family-like environment. Over four decades, we have remained committed to honoring the dignity and individuality of every resident.',

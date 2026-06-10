@@ -30,6 +30,26 @@ export const homePageSettingsType = defineType({
       fields: [
         defineField({ name: 'title', title: 'Title', type: 'string', validation: (Rule) => Rule.required() }),
         defineField({ name: 'subtitle', title: 'Subtitle', type: 'string', validation: (Rule) => Rule.required() }),
+        defineField({
+          name: 'eyebrow',
+          title: 'Eyebrow',
+          description: 'Short trust line shown above the title, e.g. "Serving Bulawayo’s elders since 1983"',
+          type: 'string',
+        }),
+        defineField({
+          name: 'tagline',
+          title: 'Tagline',
+          description: 'Lede paragraph under the title — what Ekuphumuleni means and offers',
+          type: 'text',
+          rows: 2,
+        }),
+        defineField({
+          name: 'backgroundImage',
+          title: 'Background Image',
+          description: 'Full-bleed hero photo; a warm overlay is applied automatically',
+          type: 'image',
+          options: { hotspot: true },
+        }),
         defineField({ name: 'primaryCtaLabel', title: 'Primary CTA Label', type: 'string', validation: (Rule) => Rule.required() }),
         defineField({ name: 'secondaryCtaLabel', title: 'Secondary CTA Label', type: 'string', validation: (Rule) => Rule.required() }),
       ],
@@ -44,7 +64,15 @@ export const homePageSettingsType = defineType({
       fields: [
         defineField({ name: 'heading', title: 'Heading', type: 'string', validation: (Rule) => Rule.required() }),
         defineField({ name: 'intro', title: 'Intro Paragraph', type: 'text', rows: 4, validation: (Rule) => Rule.required() }),
-        defineField({ name: 'establishmentImage', title: 'Establishment Image', type: 'image', options: { hotspot: true } }),
+        defineField({
+          name: 'founderImage',
+          title: 'Founder Portrait',
+          description: 'Shown beside the establishment story with the name and role as a caption',
+          type: 'image',
+          options: { hotspot: true },
+        }),
+        defineField({ name: 'founderName', title: 'Founder Name', type: 'string' }),
+        defineField({ name: 'founderRole', title: 'Founder Caption', description: 'Shown under the name, e.g. "Founder · Est. 1983"', type: 'string' }),
         defineField({ name: 'establishmentHeading', title: 'Establishment Heading', type: 'string', validation: (Rule) => Rule.required() }),
         defineField({ name: 'establishmentBody', title: 'Establishment Body', type: 'text', rows: 4, validation: (Rule) => Rule.required() }),
         defineField({ name: 'missionHeading', title: 'Mission Heading', type: 'string', validation: (Rule) => Rule.required() }),
