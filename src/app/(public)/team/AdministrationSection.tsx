@@ -4,14 +4,23 @@ import { m, Variants } from 'framer-motion';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
-import { UserIcon } from '@heroicons/react/24/outline';
-
 export type CmsMember = {
   _id: string;
   name: string;
   role?: string | null;
   imageUrl?: string | null;
 };
+
+/** "Mr P Ncube" -> "PN" — branded placeholder when no portrait exists. */
+function getInitials(name: string): string {
+  return name
+    .replace(/^(Mr|Mrs|Ms|Miss|Dr|Prof|Rev)\.?\s+/i, '')
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]!.toUpperCase())
+    .join('');
+}
 
 interface AdministrationSectionProps {
   members: CmsMember[];
@@ -28,13 +37,25 @@ function Portrait({ src, alt }: { src?: string | null; alt: string }) {
       {/* Decorative border effect */}
       <div className='absolute inset-0 border-[var(--color-earth-brown)]/10 border-2 group-hover:border-[var(--color-muted-terracotta)]/30 rounded-xl transition-colors duration-300' />
 
+      {/* Branded underlay: shows while the photo loads and when none exists */}
+      <div className='absolute inset-0 place-items-center grid'>
+        <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/15 to-[var(--color-earth-brown)]/15 shadow-warm border border-subtle rounded-full w-24 h-24'>
+          <span
+            className='font-serif font-bold text-[var(--color-terracotta-deep)] text-3xl'
+            aria-hidden='true'
+          >
+            {getInitials(alt)}
+          </span>
+        </div>
+      </div>
+
       {!failed && src ? (
         <Image
           src={src}
           alt={alt}
           fill
           sizes='(min-width:1024px) 320px, (min-width:768px) 33vw, 100vw'
-          className={`object-cover rounded-xl transition-all duration-700 group-hover:scale-105 ${
+          className={`img-warm object-cover rounded-xl transition-all duration-700 ${
             loaded ? 'opacity-100' : 'opacity-0'
           }`}
           onLoad={() => setLoaded(true)}
@@ -42,13 +63,7 @@ function Portrait({ src, alt }: { src?: string | null; alt: string }) {
           loading='lazy'
           unoptimized
         />
-      ) : (
-        <div className='absolute inset-0 place-items-center grid'>
-          <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-warm rounded-full w-20 h-20 text-[var(--color-deep-cocoa)]'>
-            <UserIcon className='w-9 h-9' aria-hidden='true' />
-          </div>
-        </div>
-      )}
+      ) : null}
     </div>
   );
 }
