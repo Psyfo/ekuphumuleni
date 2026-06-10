@@ -23,7 +23,7 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
     data?.tagline ??
     '“A place of rest” — dignified, professional nursing care for older adults in a peaceful, home-like environment.';
   const backgroundImageUrl =
-    data?.backgroundImageUrl ?? '/images/garden/garden_01.webp';
+    data?.backgroundImageUrl ?? '/images/building/building_01.webp';
   const primaryCtaLabel = data?.primaryCtaLabel ?? 'Explore Our Care';
   const secondaryCtaLabel = data?.secondaryCtaLabel ?? 'Contact Us';
 
@@ -41,7 +41,7 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
         priority
         sizes='100vw'
         quality={80}
-        className='object-cover'
+        className='object-cover object-[65%_45%]'
         aria-hidden='true'
       />
 
