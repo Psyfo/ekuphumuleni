@@ -5,6 +5,10 @@ import { PRIVACY_PAGE_SETTINGS_QUERY } from '@/sanity/lib/queries';
 
 import { FALLBACK_PRIVACY_PAGE_SETTINGS } from './fallback-data';
 
+/** Re-render from Sanity at most every 5 minutes, so CMS edits reach
+ * production without a redeploy. */
+export const revalidate = 300;
+
 export async function generateMetadata(): Promise<Metadata> {
   let seo = FALLBACK_PRIVACY_PAGE_SETTINGS.seo;
   try {

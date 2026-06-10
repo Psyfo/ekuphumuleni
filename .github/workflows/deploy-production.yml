@@ -46,6 +46,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # The restored .next/cache includes Next's data (fetch) cache, which
+      # holds Sanity responses from previous builds. Left in place, prerendered
+      # pages bake stale CMS content no matter how often we deploy — only the
+      # compiler caches are safe to reuse.
+      - name: Clear persisted data cache (keep compiler caches)
+        run: rm -rf .next/cache/fetch-cache .next/cache/fetch-cache-tags-manifest.json
+
       - name: Build (with Doppler secrets injected)
         run: doppler run -- npm run build
         env:
