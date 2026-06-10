@@ -72,7 +72,7 @@ export default function DonorsSection({ data }: DonorsSectionProps = {}) {
 
         <m.h2
           variants={item}
-          className='mb-4 !text-[var(--color-off-white)] !text-3xl lg:!text-4xl heading-2'
+          className='mb-4 !text-[var(--color-off-white)] heading-2'
         >
           {heading}
         </m.h2>
@@ -92,7 +92,7 @@ export default function DonorsSection({ data }: DonorsSectionProps = {}) {
           <Link
             href='/donors'
             prefetch={false}
-            className='inline-flex items-center gap-2 bg-[var(--color-warm-beige)] hover:bg-[var(--color-off-white)] shadow-lg hover:shadow-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-warm-beige)] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-deep-cocoa)] font-bold !text-[var(--color-deep-cocoa)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300'
+            className='btn btn-on-dark'
           >
             {ctaLabel}
             <svg

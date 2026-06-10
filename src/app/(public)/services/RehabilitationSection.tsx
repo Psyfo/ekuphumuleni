@@ -62,7 +62,7 @@ export default function RehabilitationSection({ data }: RehabilitationSectionPro
         viewport={{ once: true, amount: 0.2 }}
       >
         <m.div variants={item} className='mb-16 text-center'>
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
+          <h2 className='mb-4 heading-2'>
             {data.heading}
           </h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
@@ -91,7 +91,7 @@ export default function RehabilitationSection({ data }: RehabilitationSectionPro
           </m.div>
 
           <m.div variants={item} className='lg:order-1'>
-            <h3 className='mb-6 !text-2xl heading-3'>
+            <h3 className='mb-6 heading-3'>
               {data.featuredHeading}
             </h3>
             <p className='mb-6 leading-relaxed body-text'>

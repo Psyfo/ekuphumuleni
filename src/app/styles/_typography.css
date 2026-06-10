@@ -1,35 +1,48 @@
 /**
  * Typography Utilities
- * 
- * Utility classes for consistent typography.
+ *
+ * Fluid type scale: each step scales smoothly with the viewport via clamp(),
+ * so components never need per-breakpoint !text-* overrides.
  * Note: Colors are NOT set here - use Tailwind color utilities for flexibility.
  */
 
 /* ===== Heading Utilities ===== */
+/* Display: reserved for the home hero title */
+.heading-display {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 2.25rem + 3vw, 4.5rem);
+    /* 48px -> 72px */
+    font-weight: 700;
+    line-height: 1.1;
+}
+
 h1,
 .heading-1 {
     font-family: var(--font-serif);
-    font-size: 2rem;
-    /* 32px */
+    font-size: clamp(2.25rem, 1.5rem + 2.5vw, 3.75rem);
+    /* 36px -> 60px */
     font-weight: 700;
+    line-height: 1.15;
     margin-bottom: 2rem;
 }
 
 h2,
 .heading-2 {
     font-family: var(--font-serif);
-    font-size: 1.5rem;
-    /* 24px */
+    font-size: clamp(1.875rem, 1.6rem + 0.9vw, 2.25rem);
+    /* 30px -> 36px */
     font-weight: 700;
+    line-height: 1.2;
     margin-bottom: 1rem;
 }
 
 h3,
 .heading-3 {
     font-family: var(--font-serif);
-    font-size: 1.25rem;
-    /* 20px */
+    font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+    /* 20px -> 24px */
     font-weight: 700;
+    line-height: 1.3;
     margin-bottom: 1rem;
 }
 
@@ -37,9 +50,10 @@ h3,
 p,
 .body-text {
     font-family: var(--font-sans);
-    font-size: 1rem;
-    /* 16px */
+    font-size: 1.0625rem;
+    /* 17px - generous for older readers */
     font-weight: 400;
+    line-height: 1.625;
 }
 
 small,

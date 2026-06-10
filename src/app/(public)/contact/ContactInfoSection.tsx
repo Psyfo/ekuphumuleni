@@ -111,7 +111,7 @@ export default function ContactInfoSection({ data }: ContactInfoSectionProps = {
           transition={{ duration: 0.6 }}
           className='mb-16 text-center'
         >
-          <h2 className='mb-4 !text-4xl md:!text-5xl heading-2'>
+          <h2 className='mb-4 heading-2'>
             {heading}
           </h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-20 h-1.5' />
@@ -143,7 +143,7 @@ export default function ContactInfoSection({ data }: ContactInfoSectionProps = {
                     </div>
                   </div>
                   <div className='flex-grow'>
-                    <h3 className='mb-2 !text-lg heading-3'>{detail.title}</h3>
+                    <h3 className='mb-2 heading-3'>{detail.title}</h3>
                     {detail.link ? (
                       <a
                         href={detail.link}

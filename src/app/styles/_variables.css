@@ -23,6 +23,9 @@
     /* ===== Semantic Color Tokens ===== */
     --background: var(--color-warm-beige);
     --foreground: var(--color-deep-cocoa);
+    /* Form feedback, muted toward the palette (both ~4.9:1 on white) */
+    --color-error: #B3563B;
+    --color-success: #5C7A4A;
 
     /* ===== Typography Tokens ===== */
     --font-sans: 'Nunito', Arial, Helvetica, sans-serif;

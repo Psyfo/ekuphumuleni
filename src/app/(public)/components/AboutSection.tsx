@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
 
+import SectionHeading from '@/components/SectionHeading';
+
 import { m } from 'framer-motion';
 import Image from 'next/image';
 
@@ -67,13 +69,7 @@ export default function AboutSection({ data }: AboutSectionProps = {}) {
           transition={{ duration: 0.7, ease: 'easeOut' }}
           className='mb-16 text-center'
         >
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
-            {heading}
-          </h2>
-          <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
-          <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>
-            {intro}
-          </p>
+          <SectionHeading title={heading} lede={intro} />
         </m.div>
 
         {/* Establishment */}
@@ -119,7 +115,7 @@ export default function AboutSection({ data }: AboutSectionProps = {}) {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className='order-1 md:order-2'
           >
-            <h3 className='mb-4 !text-2xl heading-3'>{establishmentHeading}</h3>
+            <h3 className='mb-4 heading-3'>{establishmentHeading}</h3>
             <div className='bg-[var(--color-muted-terracotta)] mb-4 rounded-full w-12 h-1' />
             <p className='!text-base leading-relaxed body-text'>
               {establishmentBody}
@@ -151,7 +147,7 @@ export default function AboutSection({ data }: AboutSectionProps = {}) {
                 />
               </svg>
             </div>
-            <h3 className='mb-3 !text-xl heading-3'>{missionHeading}</h3>
+            <h3 className='mb-3 heading-3'>{missionHeading}</h3>
             <p className='leading-relaxed body-text'>
               {missionBody}
             </p>
@@ -178,7 +174,7 @@ export default function AboutSection({ data }: AboutSectionProps = {}) {
                 />
               </svg>
             </div>
-            <h3 className='mb-3 !text-xl heading-3'>{visionHeading}</h3>
+            <h3 className='mb-3 heading-3'>{visionHeading}</h3>
             <p className='leading-relaxed body-text'>
               {visionBody}
             </p>
@@ -193,11 +189,11 @@ export default function AboutSection({ data }: AboutSectionProps = {}) {
           transition={{ duration: 0.7, ease: 'easeOut' }}
           className='bg-gradient-to-br from-[var(--color-soft-sand)]/50 to-[var(--color-warm-beige)]/50 p-8 lg:p-12 border border-subtle rounded-2xl'
         >
-          <h3 className='mb-6 !text-2xl text-center heading-3'>
+          <h3 className='mb-6 text-center heading-3'>
             {coreValuesHeading}
           </h3>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-8 rounded-full w-16 h-1' />
-          <ul className='gap-4 grid sm:grid-cols-2 lg:grid-cols-3 mx-auto max-w-4xl'>
+          <ul className='flex flex-wrap justify-center gap-4 mx-auto max-w-4xl'>
             {coreValues.map((value, index) => (
               <m.li
                 key={value}

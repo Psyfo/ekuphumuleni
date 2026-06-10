@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
 
+import SectionHeading from '@/components/SectionHeading';
+
 import { m, Variants } from 'framer-motion';
 import Link from 'next/link';
 import React from 'react';
@@ -70,11 +72,7 @@ export default function ContactSection({ data }: ContactSectionProps = {}) {
         viewport={{ once: true, amount: 0.3 }}
       >
         <m.div variants={item} className='mb-16 text-center'>
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>{heading}</h2>
-          <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
-          <p className='mx-auto max-w-2xl !text-lg leading-relaxed body-text'>
-            {subtitle}
-          </p>
+          <SectionHeading title={heading} lede={subtitle} />
         </m.div>
 
         <div className='gap-6 lg:gap-8 grid md:grid-cols-3 mb-12'>
@@ -85,7 +83,7 @@ export default function ContactSection({ data }: ContactSectionProps = {}) {
             <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 mb-4 rounded-lg w-12 h-12 group-hover:scale-110 transition-transform duration-300'>
               <EnvelopeIcon className='w-6 h-6 text-[var(--color-muted-terracotta)]' />
             </div>
-            <h3 className='mb-3 !text-lg heading-3'>Email</h3>
+            <h3 className='mb-3 heading-3'>Email</h3>
             <a
               href={`mailto:${email}`}
               className='font-medium !text-[var(--color-muted-terracotta)] hover:underline body-text'
@@ -101,7 +99,7 @@ export default function ContactSection({ data }: ContactSectionProps = {}) {
             <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 mb-4 rounded-lg w-12 h-12 group-hover:scale-110 transition-transform duration-300'>
               <PhoneIcon className='w-6 h-6 text-[var(--color-muted-terracotta)]' />
             </div>
-            <h3 className='mb-3 !text-lg heading-3'>Phone</h3>
+            <h3 className='mb-3 heading-3'>Phone</h3>
             <div className='space-y-1'>
               {phoneNumbers.map((number, i) => (
                 <a
@@ -122,7 +120,7 @@ export default function ContactSection({ data }: ContactSectionProps = {}) {
             <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 mb-4 rounded-lg w-12 h-12 group-hover:scale-110 transition-transform duration-300'>
               <MapPinIcon className='w-6 h-6 text-[var(--color-muted-terracotta)]' />
             </div>
-            <h3 className='mb-3 !text-lg heading-3'>Location</h3>
+            <h3 className='mb-3 heading-3'>Location</h3>
             <div className='space-y-1 body-text'>
               {locationLines.map((line, i) => (
                 <p key={i}>{line}</p>
@@ -149,7 +147,7 @@ export default function ContactSection({ data }: ContactSectionProps = {}) {
           <Link
             href='/contact'
             prefetch={false}
-            className='inline-flex items-center gap-2 bg-[var(--color-terracotta-deep)] shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 font-bold !text-white hover:!text-white focus-visible:!text-white transition-all duration-300'
+            className='btn btn-primary'
           >
             {ctaLabel}
             <svg

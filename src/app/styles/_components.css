@@ -5,50 +5,97 @@
  */
 
 /* ===== Button Components ===== */
-.btn-primary {
-    background-color: var(--color-terracotta-deep);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--radius-md);
+/* One button system for the whole site. Base + a tone variant:
+   .btn .btn-primary    - terracotta, white text (light backgrounds)
+   .btn .btn-secondary  - translucent white, cocoa text, earth border
+   .btn .btn-on-dark    - warm beige, cocoa text (Deep Cocoa sections)
+   Size modifier: .btn-sm (e.g. navigation). */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
     font-weight: 700;
-    box-shadow: 0 4px 6px -1px rgba(107, 79, 79, 0.08), 0 2px 4px -1px rgba(107, 79, 79, 0.04);
-    transition: all var(--duration-normal) ease-out;
+    text-align: center;
     border: none;
     cursor: pointer;
+    transition: all var(--duration-normal) ease-out;
 }
 
-.btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 10px 15px -3px rgba(107, 79, 79, 0.1), 0 4px 6px -2px rgba(107, 79, 79, 0.05);
+.btn:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
 }
 
-.btn-primary:active {
+.btn:active {
     transform: translateY(0);
 }
 
-.btn-primary:focus-visible {
+.btn:focus-visible {
     outline: none;
+}
+
+.btn-primary {
+    background-color: var(--color-terracotta-deep);
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(107, 79, 79, 0.1), 0 4px 6px -2px rgba(107, 79, 79, 0.05);
+}
+
+.btn-primary:hover {
+    color: white;
+    box-shadow: 0 20px 25px -5px rgba(107, 79, 79, 0.12), 0 10px 10px -5px rgba(107, 79, 79, 0.04);
+}
+
+.btn-primary:focus-visible {
     box-shadow: 0 0 0 2px white, 0 0 0 4px var(--color-terracotta-deep);
 }
 
 .btn-secondary {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
     color: var(--color-deep-cocoa);
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--radius-md);
-    font-weight: 700;
-    border: 1px solid var(--color-earth-brown);
-    transition: all var(--duration-normal) ease-out;
-    cursor: pointer;
+    border: 2px solid var(--color-earth-brown);
+    box-shadow: 0 4px 6px -1px rgba(107, 79, 79, 0.08), 0 2px 4px -1px rgba(107, 79, 79, 0.04);
 }
 
 .btn-secondary:hover {
     background-color: var(--color-warm-beige);
-    transform: translateY(-1px);
+    color: var(--color-deep-cocoa);
+    box-shadow: 0 10px 15px -3px rgba(107, 79, 79, 0.1), 0 4px 6px -2px rgba(107, 79, 79, 0.05);
 }
 
-.btn-secondary:active {
-    transform: translateY(0);
+.btn-secondary:focus-visible {
+    box-shadow: 0 0 0 2px white, 0 0 0 4px var(--color-earth-brown);
+}
+
+.btn-on-dark {
+    background-color: var(--color-warm-beige);
+    color: var(--color-deep-cocoa);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-on-dark:hover {
+    background-color: var(--color-off-white);
+    color: var(--color-deep-cocoa);
+}
+
+.btn-on-dark:focus-visible {
+    box-shadow: 0 0 0 2px var(--color-deep-cocoa), 0 0 0 4px var(--color-warm-beige);
+}
+
+.btn-sm {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+    transform: none;
 }
 
 /* ===== Card Components ===== */

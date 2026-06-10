@@ -46,7 +46,7 @@ export default function FacilitiesHeroSection({
         </nav>
 
         {/* Page Title */}
-        <h1 className='mb-6 !text-4xl md:!text-5xl lg:!text-6xl text-center heading-1 animate-rise animate-rise-delay-1'>
+        <h1 className='mb-6 text-center heading-1 animate-rise animate-rise-delay-1'>
           {title}
         </h1>
 

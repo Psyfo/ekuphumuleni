@@ -97,7 +97,7 @@ export default function SpecialMentionsSection({ data }: SpecialMentionsSectionP
           transition={{ duration: 0.6 }}
           className='mb-16 lg:mb-20 text-center'
         >
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
+          <h2 className='mb-4 heading-2'>
             {heading}
           </h2>
           <div className='bg-gradient-to-r from-transparent via-[var(--color-muted-terracotta)] to-transparent mx-auto mb-6 rounded-full w-24 h-1' />

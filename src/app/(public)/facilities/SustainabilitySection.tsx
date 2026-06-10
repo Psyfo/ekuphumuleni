@@ -1,5 +1,6 @@
 'use client';
 
+import SectionHeading from '@/components/SectionHeading';
 import { m, Variants } from 'framer-motion';
 import Image from 'next/image';
 import {
@@ -96,9 +97,7 @@ export default function SustainabilitySection({ data = {} }: SustainabilitySecti
         viewport={{ once: true, amount: 0.2 }}
       >
         <m.div variants={item} className='mb-16 text-center'>
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>{heading}</h2>
-          <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
-          <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>{subtitle}</p>
+          <SectionHeading title={heading} lede={subtitle} />
         </m.div>
 
         {/* Feature Cards */}
@@ -159,7 +158,7 @@ export default function SustainabilitySection({ data = {} }: SustainabilitySecti
         {/* Impact Statement */}
         <m.div variants={item} className='mt-16'>
           <div className='bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-warm mx-auto p-8 lg:p-12 border border-subtle rounded-2xl max-w-4xl text-center'>
-            <h3 className='mb-4 !text-2xl heading-3'>{commitmentHeading}</h3>
+            <h3 className='mb-4 heading-3'>{commitmentHeading}</h3>
             <p className='leading-relaxed body-text'>{commitmentBody}</p>
           </div>
         </m.div>

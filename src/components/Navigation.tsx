@@ -207,13 +207,8 @@ export default function Navigation() {
                 </div>
               )
             )}
-            <Link
-              href='/contact'
-              className='group relative bg-gradient-to-r from-[var(--color-terracotta-deep)] hover:from-[var(--color-terracotta-dark)] to-[var(--color-terracotta-dark)] hover:to-[var(--color-terracotta-deep)] shadow-lg hover:shadow-xl ml-4 px-5 py-2.5 rounded-lg overflow-hidden font-bold !text-white transition-all duration-300'
-            >
-              {/* Button shine effect */}
-              <div className='-top-1/2 -left-1/2 absolute bg-white/20 blur-xl w-1/2 h-[200%] skew-x-12 transition-transform group-hover:translate-x-full duration-700' />
-              <span className='z-10 relative'>Get in Touch</span>
+            <Link href='/contact' className='ml-4 btn btn-primary btn-sm'>
+              Get in Touch
             </Link>
           </div>
 
@@ -445,12 +440,10 @@ export default function Navigation() {
                   >
                     <Link
                       href='/contact'
-                      className='group relative flex justify-center items-center gap-2 bg-gradient-to-r from-[var(--color-terracotta-deep)] hover:from-[var(--color-terracotta-dark)] to-[var(--color-terracotta-dark)] hover:to-[var(--color-terracotta-deep)] shadow-lg hover:shadow-xl px-5 py-3.5 rounded-lg w-full overflow-hidden font-bold !text-white transition-all duration-300'
+                      className='w-full btn btn-primary'
                       onClick={closeMobile}
                     >
-                      {/* Button shine effect */}
-                      <div className='-top-1/2 -left-1/2 absolute bg-white/20 blur-xl w-1/2 h-[200%] skew-x-12 transition-transform group-hover:translate-x-full duration-700' />
-                      <span className='z-10 relative'>Get in Touch</span>
+                      Get in Touch
                     </Link>
                   </m.li>
                 </ul>

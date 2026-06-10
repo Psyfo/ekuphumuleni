@@ -1,5 +1,6 @@
 'use client';
 
+import SectionHeading from '@/components/SectionHeading';
 import { m, Variants } from 'framer-motion';
 import Image from 'next/image';
 import {
@@ -81,9 +82,7 @@ export default function FacilitiesShowcaseSection({ data = {} }: FacilitiesShowc
         viewport={{ once: true, amount: 0.2 }}
       >
         <m.div variants={item} className='mb-16 text-center'>
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>{heading}</h2>
-          <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
-          <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>{subtitle}</p>
+          <SectionHeading title={heading} lede={subtitle} />
         </m.div>
 
         {/* Alternating Layout for Facilities */}
@@ -125,7 +124,7 @@ export default function FacilitiesShowcaseSection({ data = {} }: FacilitiesShowc
                 variants={item}
                 className={index % 2 === 1 ? 'lg:order-1' : ''}
               >
-                <h3 className='mb-4 !text-2xl heading-3'>{facility.title}</h3>
+                <h3 className='mb-4 heading-3'>{facility.title}</h3>
                 <p className='text-[var(--color-deep-cocoa)]/90 leading-relaxed body-text'>
                   {facility.description}
                 </p>
@@ -137,7 +136,7 @@ export default function FacilitiesShowcaseSection({ data = {} }: FacilitiesShowc
         {/* Feature Grid */}
         <m.div variants={item} className='mt-20'>
           <div className='bg-gradient-to-br from-[var(--color-soft-sand)]/30 to-[var(--color-warm-beige)]/30 p-8 lg:p-12 border border-subtle rounded-2xl'>
-            <h3 className='mb-8 !text-2xl text-center heading-3'>{featureGridHeading}</h3>
+            <h3 className='mb-8 text-center heading-3'>{featureGridHeading}</h3>
             <div className='gap-6 grid sm:grid-cols-2 lg:grid-cols-4'>
               {featureGridItems.map((feature, idx) => {
                 const Icon = (feature.iconName && ICON_MAP[feature.iconName]) || HomeModernIcon;

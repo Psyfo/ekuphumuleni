@@ -79,7 +79,7 @@ export default function CoreServicesSection({ data }: CoreServicesSectionProps) 
         viewport={{ once: true, amount: 0.2 }}
       >
         <m.div variants={item} className='mb-16 text-center'>
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>
+          <h2 className='mb-4 heading-2'>
             {data.heading}
           </h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
@@ -103,7 +103,7 @@ export default function CoreServicesSection({ data }: CoreServicesSectionProps) 
                     aria-hidden='true'
                   />
                 </div>
-                <h3 className='mb-3 !text-xl heading-3'>{service.title}</h3>
+                <h3 className='mb-3 heading-3'>{service.title}</h3>
                 <p className='text-[var(--color-deep-cocoa)]/80 !text-sm leading-relaxed body-text'>
                   {service.description}
                 </p>
@@ -115,7 +115,7 @@ export default function CoreServicesSection({ data }: CoreServicesSectionProps) 
         {/* Call to Action */}
         <m.div variants={item} className='mt-16 text-center'>
           <div className='bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-warm mx-auto p-8 lg:p-12 border border-subtle rounded-2xl max-w-4xl'>
-            <h3 className='mb-4 !text-2xl heading-3'>
+            <h3 className='mb-4 heading-3'>
               {data.ctaHeading}
             </h3>
             <p className='mx-auto mb-6 max-w-2xl leading-relaxed body-text'>
@@ -124,7 +124,7 @@ export default function CoreServicesSection({ data }: CoreServicesSectionProps) 
             <Link
               href='/contact'
               prefetch={false}
-              className='inline-flex items-center gap-2 bg-[var(--color-terracotta-deep)] shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 font-bold !text-white hover:!text-white focus-visible:!text-white transition-all duration-300'
+              className='btn btn-primary'
             >
               {data.ctaButtonLabel ?? 'Get in Touch'}
               <ChevronRightIcon className='w-5 h-5' aria-hidden='true' />

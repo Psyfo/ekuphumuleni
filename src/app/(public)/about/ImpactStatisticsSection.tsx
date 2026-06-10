@@ -1,5 +1,6 @@
 'use client';
 
+import SectionHeading from '@/components/SectionHeading';
 import { m, Variants, useInView } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 
@@ -174,9 +175,7 @@ export default function ImpactStatisticsSection({ data = {} }: ImpactStatisticsS
         viewport={{ once: true, amount: 0.1 }}
       >
         <m.div variants={titleVariant} className='mb-16 text-center'>
-          <h2 className='mb-4 !text-3xl lg:!text-4xl heading-2'>{heading}</h2>
-          <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-16 h-1' />
-          <p className='mx-auto max-w-3xl !text-lg leading-relaxed body-text'>{subtitle}</p>
+          <SectionHeading title={heading} lede={subtitle} />
         </m.div>
 
         <div className='gap-6 lg:gap-8 grid sm:grid-cols-2 lg:grid-cols-4'>
