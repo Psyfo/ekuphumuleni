@@ -50,7 +50,7 @@ export default function ServicesHeroSection({
             <li>
               <Link
                 href='/'
-                className='flex items-center gap-1.5 text-[var(--color-deep-cocoa)]/70 hover:text-[var(--color-muted-terracotta)] transition-colors duration-200'
+                className='flex items-center gap-1.5 text-[var(--color-deep-cocoa)]/70 hover:text-[var(--color-terracotta-deep)] transition-colors duration-200'
               >
                 <HomeIcon className='w-4 h-4' aria-hidden='true' />
                 <span>Home</span>

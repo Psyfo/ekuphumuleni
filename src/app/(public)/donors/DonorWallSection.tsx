@@ -67,7 +67,7 @@ export default function DonorWallSection({ data, years }: DonorWallSectionProps)
                     transition={{ duration: 0.4, delay: index * 0.015 }}
                     className='group mb-3 break-inside-avoid'
                   >
-                    <p className='text-[var(--color-earth-brown)] group-hover:text-[var(--color-muted-terracotta)] leading-relaxed transition-colors duration-200'>
+                    <p className='text-[var(--color-deep-cocoa)] group-hover:text-[var(--color-terracotta-deep)] leading-relaxed transition-colors duration-200'>
                       {donor}
                     </p>
                   </m.div>

@@ -89,14 +89,14 @@ export default function HeroSection({ data }: HeroSectionProps = {}) {
         >
           <Link
             href='#services'
-            className='bg-[var(--color-muted-terracotta)] shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 w-full sm:w-auto font-bold !text-white hover:!text-white focus-visible:!text-white hover:scale-105 active:scale-95 transition-all duration-300'
+            className='bg-[var(--color-terracotta-deep)] shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 w-full sm:w-auto font-bold !text-white hover:!text-white focus-visible:!text-white hover:scale-105 active:scale-95 transition-all duration-300'
             prefetch={false}
           >
             {primaryCtaLabel}
           </Link>
           <Link
             href='#contact'
-            className='bg-white/80 hover:bg-[var(--color-warm-beige)] shadow-warm hover:shadow-warm-lg backdrop-blur-sm px-8 py-4 border-[var(--color-earth-brown)] border-2 hover:border-[var(--color-earth-brown)]/80 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-earth-brown)] focus-visible:ring-2 focus-visible:ring-offset-2 w-full sm:w-auto font-bold text-[var(--color-earth-brown)] hover:scale-105 active:scale-95 transition-all duration-300'
+            className='bg-white/80 hover:bg-[var(--color-warm-beige)] shadow-warm hover:shadow-warm-lg backdrop-blur-sm px-8 py-4 border-[var(--color-earth-brown)] border-2 hover:border-[var(--color-earth-brown)]/80 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-earth-brown)] focus-visible:ring-2 focus-visible:ring-offset-2 w-full sm:w-auto font-bold text-[var(--color-deep-cocoa)] hover:scale-105 active:scale-95 transition-all duration-300'
             prefetch={false}
           >
             {secondaryCtaLabel}

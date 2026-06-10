@@ -107,7 +107,7 @@ export default function Navigation() {
   const linkBase =
     'relative px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200';
   const linkColor =
-    'text-[var(--color-earth-brown)] hover:text-[var(--color-muted-terracotta)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-offset-2';
+    'text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-offset-2';
 
   const isActive = (href?: string): boolean =>
     !!href &&
@@ -149,7 +149,7 @@ export default function Navigation() {
               <div className='-z-10 absolute inset-0 bg-[var(--color-muted-terracotta)]/20 opacity-0 group-hover:opacity-100 blur-xl rounded-full transition-opacity duration-300' />
             </div>
             <div className='flex flex-col'>
-              <span className='font-serif font-bold text-[var(--color-earth-brown)] group-hover:text-[var(--color-muted-terracotta)] text-xl lg:text-2xl transition-colors duration-200'>
+              <span className='font-serif font-bold text-[var(--color-deep-cocoa)] group-hover:text-[var(--color-terracotta-deep)] text-xl lg:text-2xl transition-colors duration-200'>
                 Ekuphumuleni
               </span>
               <span className='hidden sm:block font-sans text-[var(--color-deep-cocoa)]/60 text-xs'>
@@ -183,7 +183,7 @@ export default function Navigation() {
                     href={item.href!}
                     className={[
                       'relative px-4 py-2.5 text-sm font-semibold transition-all duration-200 group inline-flex items-center',
-                      '!text-[var(--color-earth-brown)] hover:!text-[var(--color-muted-terracotta)]',
+                      '!text-[var(--color-deep-cocoa)] hover:!text-[var(--color-terracotta-deep)]',
                       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-offset-2',
                       isActive(item.href)
                         ? ''
@@ -209,7 +209,7 @@ export default function Navigation() {
             )}
             <Link
               href='/contact'
-              className='group relative bg-gradient-to-r from-[var(--color-muted-terracotta)] hover:from-[#b56d54] to-[#b56d54] hover:to-[var(--color-muted-terracotta)] shadow-lg hover:shadow-xl ml-4 px-5 py-2.5 rounded-lg overflow-hidden font-bold !text-white transition-all duration-300'
+              className='group relative bg-gradient-to-r from-[var(--color-terracotta-deep)] hover:from-[var(--color-terracotta-dark)] to-[var(--color-terracotta-dark)] hover:to-[var(--color-terracotta-deep)] shadow-lg hover:shadow-xl ml-4 px-5 py-2.5 rounded-lg overflow-hidden font-bold !text-white transition-all duration-300'
             >
               {/* Button shine effect */}
               <div className='-top-1/2 -left-1/2 absolute bg-white/20 blur-xl w-1/2 h-[200%] skew-x-12 transition-transform group-hover:translate-x-full duration-700' />
@@ -220,7 +220,7 @@ export default function Navigation() {
           {/* Mobile toggle */}
           <button
             type='button'
-            className='group lg:hidden relative hover:bg-[var(--color-warm-beige)]/50 p-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 text-[var(--color-earth-brown)] hover:text-[var(--color-muted-terracotta)] transition-all duration-200'
+            className='group lg:hidden relative hover:bg-[var(--color-warm-beige)]/50 p-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)] transition-all duration-200'
             aria-label='Toggle menu'
             aria-expanded={mobileOpen ? 'true' : 'false'}
             aria-controls='primary-mobile-nav'
@@ -294,7 +294,7 @@ export default function Navigation() {
                             type='button'
                             className={[
                               'relative group flex justify-between items-center px-3 py-2.5 focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 w-full font-semibold transition-all duration-200',
-                              '!text-[var(--color-earth-brown)] hover:!text-[var(--color-muted-terracotta)]',
+                              '!text-[var(--color-deep-cocoa)] hover:!text-[var(--color-terracotta-deep)]',
                               item.children?.some((child) =>
                                 isActive(child.href)
                               )
@@ -329,7 +329,7 @@ export default function Navigation() {
                               className={`h-5 w-5 transition-all duration-300 ${
                                 openDropdown === item.label
                                   ? 'rotate-180 text-[var(--color-muted-terracotta)]'
-                                  : 'group-hover:text-[var(--color-muted-terracotta)]'
+                                  : 'group-hover:text-[var(--color-terracotta-deep)]'
                               }`}
                             />
                             {/* Active indicator */}
@@ -370,7 +370,7 @@ export default function Navigation() {
                                     className={`group flex items-center gap-2 px-3 py-2 focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 text-sm transition-all duration-200 ${
                                       isActive(child.href)
                                         ? '!text-[var(--color-muted-terracotta)] font-semibold'
-                                        : 'hover:bg-white/70 !text-[var(--color-deep-cocoa)] hover:!text-[var(--color-muted-terracotta)]'
+                                        : 'hover:bg-white/70 !text-[var(--color-deep-cocoa)] hover:!text-[var(--color-terracotta-deep)]'
                                     }`}
                                     onClick={closeMobile}
                                   >
@@ -411,7 +411,7 @@ export default function Navigation() {
                             href={item.href!}
                             className={[
                               'relative group flex items-center gap-2 px-3 py-2.5 font-semibold transition-all duration-200',
-                              '!text-[var(--color-earth-brown)] hover:!text-[var(--color-muted-terracotta)]',
+                              '!text-[var(--color-deep-cocoa)] hover:!text-[var(--color-terracotta-deep)]',
                               'focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2',
                               isActive(item.href) ? '' : 'hover:bg-white/50',
                             ].join(' ')}
@@ -445,7 +445,7 @@ export default function Navigation() {
                   >
                     <Link
                       href='/contact'
-                      className='group relative flex justify-center items-center gap-2 bg-gradient-to-r from-[var(--color-muted-terracotta)] hover:from-[#b56d54] to-[#b56d54] hover:to-[var(--color-muted-terracotta)] shadow-lg hover:shadow-xl px-5 py-3.5 rounded-lg w-full overflow-hidden font-bold !text-white transition-all duration-300'
+                      className='group relative flex justify-center items-center gap-2 bg-gradient-to-r from-[var(--color-terracotta-deep)] hover:from-[var(--color-terracotta-dark)] to-[var(--color-terracotta-dark)] hover:to-[var(--color-terracotta-deep)] shadow-lg hover:shadow-xl px-5 py-3.5 rounded-lg w-full overflow-hidden font-bold !text-white transition-all duration-300'
                       onClick={closeMobile}
                     >
                       {/* Button shine effect */}
@@ -535,7 +535,7 @@ function DesktopDropdown({
         type='button'
         className={[
           'relative px-4 py-2.5 text-sm font-semibold transition-all duration-200 group inline-flex items-center gap-1.5',
-          'text-[var(--color-earth-brown)] hover:text-[var(--color-muted-terracotta)]',
+          'text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)]',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-offset-2',
           hasActiveChild ? '' : 'hover:bg-[var(--color-warm-beige)]/50',
         ].join(' ')}
@@ -578,7 +578,7 @@ function DesktopDropdown({
           className={`h-4 w-4 transition-all duration-300 ${
             open
               ? 'rotate-180 text-[var(--color-muted-terracotta)]'
-              : 'group-hover:text-[var(--color-muted-terracotta)]'
+              : 'group-hover:text-[var(--color-terracotta-deep)]'
           }`}
         />
         {/* Active indicator */}
@@ -672,7 +672,7 @@ function DesktopDropdown({
                     className={`group flex items-center gap-3 px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-muted-terracotta)] text-sm transition-all duration-200 ${
                       isActive(child.href)
                         ? 'bg-gradient-to-r from-[var(--color-warm-beige)] to-transparent text-[var(--color-muted-terracotta)] font-semibold'
-                        : 'text-[var(--color-deep-cocoa)] hover:text-[var(--color-muted-terracotta)] hover:bg-[var(--color-warm-beige)]/30'
+                        : 'text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)] hover:bg-[var(--color-warm-beige)]/30'
                     }`}
                     role='menuitem'
                   >

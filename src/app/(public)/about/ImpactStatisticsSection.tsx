@@ -106,7 +106,7 @@ function Statistic({
           duration={duration}
         />
       </div>
-      <p className='font-medium text-[var(--color-earth-brown)] !text-base body-text'>
+      <p className='font-medium text-[var(--color-deep-cocoa)] !text-base body-text'>
         {label}
       </p>
     </m.div>

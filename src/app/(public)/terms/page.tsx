@@ -58,7 +58,7 @@ export default async function TermsPage() {
   return (
     <main className='flex justify-center items-center bg-[var(--color-warm-beige)] min-h-screen'>
       <div className='mx-auto px-4 py-16 max-w-4xl text-center'>
-        <h1 className='mb-4 text-[var(--color-earth-brown)] heading-1'>
+        <h1 className='mb-4 text-[var(--color-deep-cocoa)] heading-1'>
           {settings.heading}
         </h1>
         <p className='text-[var(--color-deep-cocoa)] body-text'>{settings.body}</p>

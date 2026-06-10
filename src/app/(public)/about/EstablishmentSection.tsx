@@ -157,7 +157,7 @@ export default function EstablishmentSection({ data = {} }: EstablishmentSection
                     </svg>
                   </div>
                   <div>
-                    <h4 className='mb-2 font-semibold text-[var(--color-earth-brown)]'>
+                    <h4 className='mb-2 font-semibold text-[var(--color-deep-cocoa)]'>
                       {registrationHeading}
                     </h4>
                     <p className='!text-sm leading-relaxed body-text'>{registrationBody}</p>

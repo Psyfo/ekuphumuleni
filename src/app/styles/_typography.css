@@ -52,5 +52,5 @@ small,
 
 /* ===== Text Emphasis ===== */
 .text-accent {
-    color: var(--color-muted-terracotta);
+    color: var(--color-terracotta-deep);
 }

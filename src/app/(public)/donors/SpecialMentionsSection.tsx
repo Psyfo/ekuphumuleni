@@ -136,12 +136,12 @@ export default function SpecialMentionsSection({ data }: SpecialMentionsSectionP
                   </div>
 
                   {/* Name */}
-                  <h3 className='z-10 relative mb-4 font-serif text-[var(--color-deep-cocoa)] group-hover:text-[var(--color-muted-terracotta)] text-2xl transition-colors duration-300'>
+                  <h3 className='z-10 relative mb-4 font-serif text-[var(--color-deep-cocoa)] group-hover:text-[var(--color-terracotta-deep)] text-2xl transition-colors duration-300'>
                     {mention.name}
                   </h3>
 
                   {/* Description */}
-                  <p className='z-10 relative text-[var(--color-earth-brown)] leading-relaxed'>
+                  <p className='z-10 relative text-[var(--color-deep-cocoa)] leading-relaxed'>
                     {mention.description}
                   </p>
                 </div>
@@ -159,7 +159,7 @@ export default function SpecialMentionsSection({ data }: SpecialMentionsSectionP
           className='mt-16 lg:mt-20 text-center'
         >
           <div className='bg-white/70 shadow-warm-lg backdrop-blur-sm mx-auto p-8 lg:p-10 border border-subtle rounded-2xl max-w-3xl'>
-            <p className='font-serif text-[var(--color-earth-brown)] text-lg lg:text-xl italic leading-relaxed'>
+            <p className='font-serif text-[var(--color-deep-cocoa)] text-lg lg:text-xl italic leading-relaxed'>
               {closingMessage}
             </p>
           </div>

@@ -260,7 +260,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
             {heading}
           </h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-5 rounded-full w-16 h-1.5' />
-          <p className='text-[var(--color-earth-brown)] text-base md:text-lg'>
+          <p className='text-[var(--color-deep-cocoa)] text-base md:text-lg'>
             {subheading}
           </p>
         </div>
@@ -433,7 +433,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
               ) : (
                 <p
                   id='message-help'
-                  className='mt-2 text-[var(--color-earth-brown)]/70 text-xs'
+                  className='mt-2 text-[var(--color-deep-cocoa)]/70 text-xs'
                 >
                   {messageHelpText}
                 </p>
@@ -444,7 +444,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
           {/* Submit Button */}
           <m.button
             type='submit'
-            className='flex justify-center items-center gap-2 bg-[var(--color-muted-terracotta)] disabled:opacity-50 shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-xl focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)]/30 focus-visible:ring-4 w-full font-bold text-white hover:scale-[1.02] active:scale-[0.98] disabled:hover:scale-100 transition-all duration-200 disabled:cursor-not-allowed'
+            className='flex justify-center items-center gap-2 bg-[var(--color-terracotta-deep)] disabled:opacity-50 shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-xl focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)]/30 focus-visible:ring-4 w-full font-bold text-white hover:scale-[1.02] active:scale-[0.98] disabled:hover:scale-100 transition-all duration-200 disabled:cursor-not-allowed'
             disabled={status === 'submitting'}
             whileHover={
               { scale: 1.02 }

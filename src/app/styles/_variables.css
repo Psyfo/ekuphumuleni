@@ -13,6 +13,12 @@
     --color-soft-sand: #D9C6A5;
     --color-off-white: #EDE6E3;
     --color-muted-terracotta: #C97C5D;
+    /* Muted Terracotta fails WCAG 4.5:1 with white text — decorative use only.
+       Use the deep/dark variants for any surface that carries text. */
+    --color-terracotta-deep: #B05A3C;
+    /* 4.8:1 with white */
+    --color-terracotta-dark: #9C4F35;
+    /* hover / gradient end */
 
     /* ===== Semantic Color Tokens ===== */
     --background: var(--color-warm-beige);

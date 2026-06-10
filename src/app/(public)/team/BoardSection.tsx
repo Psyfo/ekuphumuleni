@@ -52,7 +52,7 @@ function Portrait({
         />
       ) : (
         <div className='absolute inset-0 place-items-center grid'>
-          <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-warm rounded-full w-20 h-20 text-[var(--color-earth-brown)]'>
+          <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-warm rounded-full w-20 h-20 text-[var(--color-deep-cocoa)]'>
             <UserIcon className='w-9 h-9' aria-hidden='true' />
           </div>
         </div>
@@ -132,7 +132,7 @@ export default function BoardSection({
                   <h3 className='mb-1.5 font-serif font-bold text-[var(--color-deep-cocoa)] text-lg'>
                     {member.name}
                   </h3>
-                  <p className='font-medium text-[var(--color-earth-brown)] text-sm'>
+                  <p className='font-medium text-[var(--color-deep-cocoa)] text-sm'>
                     {member.role ?? 'Trustee'}
                   </p>
                 </div>
