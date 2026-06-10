@@ -115,7 +115,7 @@ export default function ContactInfoSection({ data }: ContactInfoSectionProps = {
             {heading}
           </h2>
           <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-20 h-1.5' />
-          <p className='mx-auto max-w-2xl text-[var(--color-earth-brown)] text-lg'>
+          <p className='mx-auto max-w-2xl text-[var(--color-deep-cocoa)] text-lg'>
             {subtitle}
           </p>
         </m.div>
@@ -147,7 +147,7 @@ export default function ContactInfoSection({ data }: ContactInfoSectionProps = {
                     {detail.link ? (
                       <a
                         href={detail.link}
-                        className='block text-[var(--color-earth-brown)] hover:text-[var(--color-muted-terracotta)] transition-colors duration-200'
+                        className='block text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)] transition-colors duration-200'
                       >
                         {detail.lines.map((line, i) => (
                           <span key={i} className='block text-sm'>
@@ -156,7 +156,7 @@ export default function ContactInfoSection({ data }: ContactInfoSectionProps = {
                         ))}
                       </a>
                     ) : (
-                      <div className='text-[var(--color-earth-brown)]'>
+                      <div className='text-[var(--color-deep-cocoa)]'>
                         {detail.lines.map((line, i) => (
                           <span key={i} className='block text-sm'>
                             {line}
@@ -194,7 +194,7 @@ export default function ContactInfoSection({ data }: ContactInfoSectionProps = {
           className='mx-auto mt-16 max-w-4xl'
         >
           <div className='bg-white/60 shadow-warm backdrop-blur-sm p-8 border border-subtle rounded-2xl text-center'>
-            <p className='text-[var(--color-earth-brown)] text-lg leading-relaxed'>
+            <p className='text-[var(--color-deep-cocoa)] text-lg leading-relaxed'>
               <span className='font-semibold text-[var(--color-deep-cocoa)]'>
                 {additionalInfoHeading}
               </span>{' '}

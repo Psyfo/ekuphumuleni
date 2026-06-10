@@ -155,7 +155,7 @@ export default function StaffSection({
                     type='button'
                     aria-label='Previous photo'
                     onClick={prev}
-                    className='inline-flex top-1/2 left-4 absolute justify-center items-center bg-white/95 hover:bg-white shadow-warm-lg rounded-full focus:outline-none focus:ring-[var(--color-muted-terracotta)] focus:ring-2 focus:ring-offset-2 w-12 sm:w-14 h-12 sm:h-14 text-[var(--color-deep-cocoa)] hover:text-[var(--color-muted-terracotta)] hover:scale-110 transition-all -translate-y-1/2 duration-200'
+                    className='inline-flex top-1/2 left-4 absolute justify-center items-center bg-white/95 hover:bg-white shadow-warm-lg rounded-full focus:outline-none focus:ring-[var(--color-muted-terracotta)] focus:ring-2 focus:ring-offset-2 w-12 sm:w-14 h-12 sm:h-14 text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)] hover:scale-110 transition-all -translate-y-1/2 duration-200'
                   >
                     <ChevronLeftIcon
                       className='w-6 sm:w-7 h-6 sm:h-7'
@@ -166,7 +166,7 @@ export default function StaffSection({
                     type='button'
                     aria-label='Next photo'
                     onClick={next}
-                    className='inline-flex top-1/2 right-4 absolute justify-center items-center bg-white/95 hover:bg-white shadow-warm-lg rounded-full focus:outline-none focus:ring-[var(--color-muted-terracotta)] focus:ring-2 focus:ring-offset-2 w-12 sm:w-14 h-12 sm:h-14 text-[var(--color-deep-cocoa)] hover:text-[var(--color-muted-terracotta)] hover:scale-110 transition-all -translate-y-1/2 duration-200'
+                    className='inline-flex top-1/2 right-4 absolute justify-center items-center bg-white/95 hover:bg-white shadow-warm-lg rounded-full focus:outline-none focus:ring-[var(--color-muted-terracotta)] focus:ring-2 focus:ring-offset-2 w-12 sm:w-14 h-12 sm:h-14 text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)] hover:scale-110 transition-all -translate-y-1/2 duration-200'
                   >
                     <ChevronRightIcon
                       className='w-6 sm:w-7 h-6 sm:h-7'

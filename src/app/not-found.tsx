@@ -15,7 +15,7 @@ export default function NotFound() {
         </p>
         <Link
           href='/'
-          className='inline-block px-6 py-3 rounded font-bold bg-[var(--color-muted-terracotta)] !text-white shadow hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)]'
+          className='inline-block px-6 py-3 rounded font-bold bg-[var(--color-terracotta-deep)] !text-white shadow hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)]'
         >
           Go Home
         </Link>
