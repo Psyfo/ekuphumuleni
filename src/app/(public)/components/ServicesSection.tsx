@@ -86,7 +86,7 @@ function FadeImage({ src, alt }: { src: string; alt: string }) {
         alt={alt}
         fill
         sizes='(min-width:1024px) 320px, (min-width:768px) 50vw, 100vw'
-        className={`object-cover transition-all duration-700 group-hover:scale-110 ${
+        className={`img-warm object-cover transition-all duration-700 group-hover:scale-110 ${
           loaded ? 'opacity-100' : 'opacity-0'
         }`}
         onLoad={() => setLoaded(true)}

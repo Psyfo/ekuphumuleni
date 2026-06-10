@@ -44,25 +44,35 @@ export default function DonorsSection({ data }: DonorsSectionProps = {}) {
   return (
     <section
       id='donors'
-      className='bg-gradient-to-b from-[var(--color-soft-sand)] to-[var(--color-warm-beige)] px-4 py-20 lg:py-24'
+      className='relative bg-[var(--color-deep-cocoa)] px-4 py-20 lg:py-28 overflow-hidden'
       aria-label='Donors and Support'
     >
+      {/* Decorative warm glows, echoing the footer */}
+      <div
+        className='top-0 right-0 absolute bg-[var(--color-muted-terracotta)]/10 blur-3xl rounded-full w-96 h-96'
+        aria-hidden='true'
+      />
+      <div
+        className='bottom-0 left-10 absolute bg-[var(--color-warm-beige)]/5 blur-3xl rounded-full w-72 h-72'
+        aria-hidden='true'
+      />
+
       <m.div
-        className='mx-auto max-w-4xl text-center'
+        className='relative mx-auto max-w-4xl text-center'
         variants={container}
         initial='hidden'
         whileInView='show'
         viewport={{ once: true, amount: 0.3 }}
       >
         <m.div variants={item} className='inline-block mb-6'>
-          <div className='flex justify-center items-center bg-gradient-to-br from-[var(--color-muted-terracotta)]/10 to-[var(--color-earth-brown)]/10 shadow-warm mx-auto rounded-2xl w-20 h-20'>
+          <div className='flex justify-center items-center bg-[var(--color-warm-beige)]/10 mx-auto border border-white/10 rounded-2xl w-20 h-20'>
             <GiftIcon className='w-10 h-10 text-[var(--color-muted-terracotta)]' />
           </div>
         </m.div>
 
         <m.h2
           variants={item}
-          className='mb-4 !text-3xl lg:!text-4xl heading-2'
+          className='mb-4 !text-[var(--color-off-white)] !text-3xl lg:!text-4xl heading-2'
         >
           {heading}
         </m.h2>
@@ -73,21 +83,16 @@ export default function DonorsSection({ data }: DonorsSectionProps = {}) {
 
         <m.p
           variants={item}
-          className='mx-auto mb-10 max-w-2xl !text-lg leading-relaxed body-text'
+          className='mx-auto mb-10 max-w-2xl !text-[var(--color-off-white)]/85 !text-lg leading-relaxed body-text'
         >
           {body}
         </m.p>
 
-        <m.div
-          variants={item}
-          whileHover={{ scale: 1.03, y: -2 }}
-          whileTap={{ scale: 0.98 }}
-          className='inline-block'
-        >
+        <m.div variants={item} className='inline-block'>
           <Link
             href='/donors'
             prefetch={false}
-            className='inline-flex items-center gap-2 bg-[var(--color-terracotta-deep)] shadow-warm-lg hover:shadow-warm-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 font-bold !text-white hover:!text-white focus-visible:!text-white transition-all duration-300'
+            className='inline-flex items-center gap-2 bg-[var(--color-warm-beige)] hover:bg-[var(--color-off-white)] shadow-lg hover:shadow-xl px-8 py-4 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-warm-beige)] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-deep-cocoa)] font-bold !text-[var(--color-deep-cocoa)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300'
           >
             {ctaLabel}
             <svg

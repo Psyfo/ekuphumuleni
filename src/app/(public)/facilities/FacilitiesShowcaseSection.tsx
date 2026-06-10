@@ -107,7 +107,7 @@ export default function FacilitiesShowcaseSection({ data = {} }: FacilitiesShowc
                         alt={facility.alt ?? facility.title ?? ''}
                         fill
                         sizes='(min-width:1024px) 50vw, 100vw'
-                        className='object-cover group-hover:scale-105 transition-transform duration-500'
+                        className='img-warm object-cover group-hover:scale-105 transition-transform duration-500'
                         unoptimized
                       />
                     )}
