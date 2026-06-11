@@ -12,7 +12,9 @@ export default function PublicLayout({
   return (
     <MotionProvider>
       <Navigation />
-      {children}
+      <div id='main-content' tabIndex={-1} className='focus:outline-none'>
+        {children}
+      </div>
       <Footer />
       {process.env.NODE_ENV === 'production' &&
         process.env.NEXT_PUBLIC_GA_ID && (
