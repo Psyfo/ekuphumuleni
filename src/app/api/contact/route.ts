@@ -41,9 +41,6 @@ export async function POST(request: NextRequest) {
     const { name, email, message } = body;
 
     console.log('Contact form submission received:', {
-      name,
-      email,
-      message,
       messageLength: message?.length,
     });
 
@@ -56,7 +53,7 @@ export async function POST(request: NextRequest) {
       errors.name = 'Name must be at least 2 characters long';
     } else if (name.trim().length > 100) {
       errors.name = 'Name must be less than 100 characters';
-    } else if (!/^[a-zA-Z\s\-']+$/.test(name.trim())) {
+    } else if (!/^[\p{L}\p{M}\s\-'.]+$/u.test(name.trim())) {
       errors.name =
         'Name can only contain letters, spaces, hyphens, and apostrophes';
     }
@@ -312,10 +309,6 @@ export async function POST(request: NextRequest) {
       .filter((email) => email.length > 0) // Remove empty strings
       .map((email) => ({ email_address: { address: email } })); // Convert to ZeptoMail format
 
-    console.log('Preparing to send emails via ZeptoMail...');
-    console.log('MAIL_FROM_EMAIL:', process.env.MAIL_FROM_EMAIL);
-    console.log('MAIL_TO_EMAIL:', process.env.MAIL_TO_EMAIL);
-    console.log('Recipient emails:', recipientEmails);
 
     // Prepare email to site owner (notification of new contact)
     const ownerEmail: ZeptoMailRequest = {

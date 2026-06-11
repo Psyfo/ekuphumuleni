@@ -11,6 +11,8 @@ import {
   PaperAirplaneIcon,
 } from '@heroicons/react/24/outline';
 
+import SectionHeading from '@/components/SectionHeading';
+
 interface FormErrors {
   name?: string;
   email?: string;
@@ -70,6 +72,19 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
   const [validationErrors, setValidationErrors] = useState<FormErrors>({});
   const [touchedFields, setTouchedFields] = useState<Set<string>>(new Set());
   const formRef = useRef<HTMLFormElement>(null);
+  const statusRef = useRef<HTMLDivElement>(null);
+
+  // Runs after React has committed and the browser has painted, so the
+  // status box / field error rendered by the preceding setState exists
+  const afterPaint = (fn: () => void) =>
+    requestAnimationFrame(() => requestAnimationFrame(fn));
+
+  const focusFirstInvalid = (errors: FormErrors) => {
+    const first = (['name', 'email', 'message'] as const).find(
+      (f) => errors[f]
+    );
+    if (first) document.getElementById(first)?.focus();
+  };
 
   // Validation functions
   const validateName = (name: string): string | undefined => {
@@ -78,7 +93,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
       return 'Name must be at least 2 characters long';
     if (name.trim().length > 100)
       return 'Name must be less than 100 characters';
-    if (!/^[a-zA-Z\s\-']+$/.test(name.trim())) {
+    if (!/^[\p{L}\p{M}\s\-'.]+$/u.test(name.trim())) {
       return 'Name can only contain letters, spaces, hyphens, and apostrophes';
     }
     return undefined;
@@ -169,6 +184,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
       setValidationErrors(errors);
       setStatus('error');
       setErrorMessage('Please correct the errors below');
+      afterPaint(() => focusFirstInvalid(errors));
       return;
     }
 
@@ -184,6 +200,12 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
         setValidationErrors({});
         setTouchedFields(new Set());
         if (formRef.current) formRef.current.reset();
+        afterPaint(() =>
+          statusRef.current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+          })
+        );
       } else {
         const errorData = await response.json();
         if (errorData.validationErrors) {
@@ -193,6 +215,16 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
           errorData.error || 'Failed to send message. Please try again.'
         );
         setStatus('error');
+        afterPaint(() => {
+          if (errorData.validationErrors) {
+            focusFirstInvalid(errorData.validationErrors);
+          } else {
+            statusRef.current?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'nearest',
+            });
+          }
+        });
       }
     } catch (error: unknown) {
       console.error('Form submission error:', error);
@@ -213,6 +245,12 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
 
       setErrorMessage(errorMsg);
       setStatus('error');
+      afterPaint(() =>
+        statusRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+        })
+      );
     }
   }
 
@@ -255,15 +293,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
         noValidate
       >
         {/* Form Header */}
-        <div className='mb-10 text-center'>
-          <h2 className='mb-3 heading-2'>
-            {heading}
-          </h2>
-          <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-5 rounded-full w-16 h-1.5' />
-          <p className='text-[var(--color-deep-cocoa)] text-base md:text-lg'>
-            {subheading}
-          </p>
-        </div>
+        <SectionHeading title={heading} lede={subheading} className='mb-10' />
 
         <div className='space-y-6'>
           {/* Name Field */}
@@ -484,6 +514,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
         <AnimatePresence>
           {status === 'success' && (
             <m.div
+              ref={statusRef}
               initial={{ opacity: 0, y: -10, height: 0 }}
               animate={{ opacity: 1, y: 0, height: 'auto' }}
               exit={{ opacity: 0, y: -10, height: 0 }}
@@ -513,6 +544,7 @@ export default function ContactForm({ data }: ContactFormProps = {}) {
         <AnimatePresence>
           {status === 'error' && errorMessage && (
             <m.div
+              ref={statusRef}
               initial={{ opacity: 0, y: -10, height: 0 }}
               animate={{ opacity: 1, y: 0, height: 'auto' }}
               exit={{ opacity: 0, y: -10, height: 0 }}
