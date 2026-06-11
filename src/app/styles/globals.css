@@ -20,7 +20,9 @@
 /* ===== Design System ===== */
 @import "./_variables.css";
 @import "./_fonts.css";
-@import "./_base.css";
+/* Element defaults live in the base layer so component utilities can
+   override them without resorting to !important */
+@import "./_base.css" layer(base);
 
 /* ===== Typography ===== */
 @import "./_typography.css";
