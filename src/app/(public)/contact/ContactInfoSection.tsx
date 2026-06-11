@@ -8,6 +8,7 @@ import {
   ClockIcon,
 } from '@heroicons/react/24/outline';
 import MapEmbed from '@/components/MapEmbed';
+import SectionHeading from '@/components/SectionHeading';
 
 const ICON_MAP: Record<string, typeof MapPinIcon> = {
   'map-pin': MapPinIcon,
@@ -66,6 +67,43 @@ interface ContactInfoSectionProps {
   data?: Partial<ContactInfoSectionData>;
 }
 
+/**
+ * Render a detail line, auto-linking phone numbers and email addresses so
+ * they are tappable — many visitors reach this page specifically to call.
+ * Time ranges and street numbers don't match the phone pattern (they never
+ * have 7+ consecutive digits/spaces).
+ */
+function DetailLine({ line }: { line: string }) {
+  const linkClass =
+    'text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)] transition-colors duration-200';
+
+  const phoneMatch = line.match(/\+?\d[\d\s]{7,}\d/);
+  if (phoneMatch) {
+    return (
+      <a
+        href={`tel:${phoneMatch[0].replace(/\s+/g, '')}`}
+        className={`block py-0.5 text-sm ${linkClass}`}
+      >
+        {line}
+      </a>
+    );
+  }
+
+  const emailMatch = line.match(/\S+@\S+\.\S+/);
+  if (emailMatch) {
+    return (
+      <a
+        href={`mailto:${emailMatch[0]}`}
+        className={`block py-0.5 text-sm break-all ${linkClass}`}
+      >
+        {line}
+      </a>
+    );
+  }
+
+  return <span className='block text-sm'>{line}</span>;
+}
+
 export default function ContactInfoSection({ data }: ContactInfoSectionProps = {}) {
   const heading = data?.heading ?? 'Contact Information';
   const subtitle =
@@ -109,15 +147,9 @@ export default function ContactInfoSection({ data }: ContactInfoSectionProps = {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6 }}
-          className='mb-16 text-center'
+          className='mb-16'
         >
-          <h2 className='mb-4 heading-2'>
-            {heading}
-          </h2>
-          <div className='bg-[var(--color-muted-terracotta)] mx-auto mb-6 rounded-full w-20 h-1.5' />
-          <p className='mx-auto max-w-2xl text-[var(--color-deep-cocoa)] text-lg'>
-            {subtitle}
-          </p>
+          <SectionHeading title={heading} lede={subtitle} />
         </m.div>
 
         {/* Contact Details Cards */}
@@ -150,7 +182,7 @@ export default function ContactInfoSection({ data }: ContactInfoSectionProps = {
                         className='block text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)] transition-colors duration-200'
                       >
                         {detail.lines.map((line, i) => (
-                          <span key={i} className='block text-sm'>
+                          <span key={i} className='block text-sm break-all'>
                             {line}
                           </span>
                         ))}
@@ -158,9 +190,7 @@ export default function ContactInfoSection({ data }: ContactInfoSectionProps = {
                     ) : (
                       <div className='text-[var(--color-deep-cocoa)]'>
                         {detail.lines.map((line, i) => (
-                          <span key={i} className='block text-sm'>
-                            {line}
-                          </span>
+                          <DetailLine key={i} line={line} />
                         ))}
                       </div>
                     )}
