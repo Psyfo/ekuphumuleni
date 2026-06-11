@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { AnimatePresence, m } from 'framer-motion';
@@ -10,6 +9,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Bars3Icon,
   ChevronDownIcon,
+  PhoneIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 
@@ -43,26 +43,32 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: 'Facilities',
     children: [
-      { label: 'Facilities', href: '/facilities' },
+      { label: 'Overview', href: '/facilities' },
       { label: 'Sustainability', href: '/facilities#sustainability' },
     ],
   },
   { label: 'Donors', href: '/donors' },
 ];
 
+const PHONE = { display: '+263 292 216 877', tel: '+263292216877' };
+
+const baseOf = (href: string) => href.split('#')[0];
+
+const slugOf = (label: string) => label.replace(/\s+/g, '-').toLowerCase();
+
 export default function Navigation() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
-  const mobileRef = useRef<HTMLDivElement | null>(null);
+  const drawerRef = useRef<HTMLElement | null>(null);
+  const toggleRef = useRef<HTMLButtonElement | null>(null);
 
-  // Track scroll for navbar background enhancement
+  // Elevate the navbar once the page scrolls
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll(); // pages can load mid-scroll (anchor links, refresh)
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -92,37 +98,63 @@ export default function Navigation() {
     };
   }, []);
 
-  // Click outside to close mobile drawer
+  // While the drawer is open: lock body scroll, close on Escape,
+  // and move focus into the drawer so keyboard users land in it
   useEffect(() => {
-    function onClick(e: MouseEvent) {
-      if (!mobileRef.current) return;
-      if (!mobileRef.current.contains(e.target as Node)) {
-        setMobileOpen(false);
-      }
-    }
-    if (mobileOpen) document.addEventListener('mousedown', onClick);
-    return () => document.removeEventListener('mousedown', onClick);
-  }, [mobileOpen]);
+    if (!mobileOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    drawerRef.current?.focus();
 
-  const linkBase =
-    'relative px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200';
-  const linkColor =
-    'text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-offset-2';
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileOpen(false);
+        setOpenDropdown(null);
+        toggleRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [mobileOpen]);
 
   const isActive = (href?: string): boolean =>
     !!href &&
-    (href === '/' ? pathname === '/' : pathname.startsWith(href.split('#')[0]));
+    (href === '/' ? pathname === '/' : pathname.startsWith(baseOf(href)));
+
+  // Only the hash-less child of a section marks as current — hash links
+  // share the same pathname, so highlighting them all reads as a glitch
+  const isChildActive = (href: string): boolean =>
+    !href.includes('#') && pathname === href;
+
+  const hasActiveChild = (item: NavItem): boolean =>
+    !!item.children?.some((child) => pathname === baseOf(child.href));
+
+  const openMobile = () => {
+    // Pre-expand the section the visitor is already in
+    const activeParent = NAV_ITEMS.find((item) => hasActiveChild(item));
+    setOpenDropdown(activeParent?.label ?? null);
+    setMobileOpen(true);
+  };
 
   return (
     <header
-      className={`top-0 z-50 sticky transition-all duration-300 ${
+      className={`top-0 z-50 sticky border-b transition-[background-color,box-shadow,border-color] duration-300 ${
         scrolled
-          ? 'bg-[var(--color-off-white)] shadow-md border-b border-[var(--color-earth-brown)]/20'
-          : 'bg-[var(--color-off-white)]/95 backdrop-blur-sm border-b border-[var(--color-earth-brown)]/10'
+          ? 'bg-[var(--color-off-white)] shadow-md border-[var(--color-earth-brown)]/20'
+          : // No backdrop-blur here: a filter on the header would make it the
+            // containing block for the fixed drawer/backdrop below
+            'bg-[var(--color-off-white)]/95 border-[var(--color-earth-brown)]/10'
       }`}
     >
-      {/* Decorative gradient bar */}
-      <div className='top-0 absolute bg-gradient-to-r from-[var(--color-muted-terracotta)] via-[var(--color-earth-brown)] to-[var(--color-muted-terracotta)] opacity-0 group-hover:opacity-100 w-full h-1 transition-opacity' />
+      <a
+        href='#main-content'
+        className='sr-only focus:not-sr-only focus:top-2 focus:left-2 focus:z-[60] focus:absolute focus:bg-[var(--color-terracotta-deep)] focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold focus:text-sm focus:text-white no-underline'
+      >
+        Skip to content
+      </a>
 
       <nav
         className='mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl'
@@ -132,7 +164,7 @@ export default function Navigation() {
           {/* Brand / Logo */}
           <Link
             href='/'
-            className='group flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2'
+            className='group flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 no-underline'
             aria-label='Ekuphumuleni Home'
             onClick={closeMobile}
           >
@@ -143,9 +175,8 @@ export default function Navigation() {
                 width={40}
                 height={40}
                 priority
-                className='w-10 h-10 object-contain group-hover:scale-105 transition-transform duration-200'
+                className='w-10 h-10 object-contain'
               />
-              {/* Subtle glow effect on hover */}
               <div className='-z-10 absolute inset-0 bg-[var(--color-muted-terracotta)]/20 opacity-0 group-hover:opacity-100 blur-xl rounded-full transition-opacity duration-300' />
             </div>
             <div className='flex flex-col'>
@@ -159,72 +190,52 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop menu */}
-          <div className='hidden lg:flex items-center gap-2'>
+          <div className='hidden lg:flex items-center gap-1'>
             {NAV_ITEMS.map((item) =>
               item.children ? (
                 <DesktopDropdown
                   key={item.label}
                   item={item}
-                  linkBase={linkBase}
-                  linkColor={linkColor}
-                  isActive={isActive}
+                  active={hasActiveChild(item)}
+                  isChildActive={isChildActive}
                 />
               ) : (
-                <div
+                <Link
                   key={item.label}
+                  href={item.href!}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
                   className={[
-                    'transition-all duration-200',
+                    'relative inline-flex items-center px-3.5 py-2 rounded-lg text-sm font-semibold no-underline transition-colors duration-200',
+                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-offset-2',
                     isActive(item.href)
-                      ? 'bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-sm'
-                      : '',
+                      ? 'text-[var(--color-terracotta-deep)]'
+                      : 'text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)] hover:bg-[var(--color-warm-beige)]/60',
                   ].join(' ')}
                 >
-                  <Link
-                    href={item.href!}
-                    className={[
-                      'relative px-4 py-2.5 text-sm font-semibold transition-all duration-200 group inline-flex items-center',
-                      '!text-[var(--color-deep-cocoa)] hover:!text-[var(--color-terracotta-deep)]',
-                      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-offset-2',
-                      isActive(item.href)
-                        ? ''
-                        : 'hover:bg-[var(--color-warm-beige)]/50',
-                    ].join(' ')}
-                  >
-                    {item.label}
-                    {/* Active indicator */}
-                    {isActive(item.href) && (
-                      <m.div
-                        layoutId='activeTab'
-                        className='bottom-0 left-0 absolute bg-[var(--color-muted-terracotta)] w-full h-0.5'
-                        transition={{
-                          type: 'spring',
-                          stiffness: 380,
-                          damping: 30,
-                        }}
-                      />
-                    )}
-                  </Link>
-                </div>
+                  {item.label}
+                  {isActive(item.href) && <ActiveUnderline />}
+                </Link>
               )
             )}
-            <Link href='/contact' className='ml-4 btn btn-primary btn-sm'>
+            <Link href='/contact' className='ml-3 btn btn-primary btn-sm'>
               Get in Touch
             </Link>
           </div>
 
           {/* Mobile toggle */}
           <button
+            ref={toggleRef}
             type='button'
-            className='group lg:hidden relative hover:bg-[var(--color-warm-beige)]/50 p-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)] transition-all duration-200'
-            aria-label='Toggle menu'
+            className='lg:hidden hover:bg-[var(--color-warm-beige)]/60 p-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 focus-visible:ring-offset-2 text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)] transition-colors duration-200'
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen ? 'true' : 'false'}
             aria-controls='primary-mobile-nav'
-            onClick={() => setMobileOpen((v) => !v)}
+            onClick={() => (mobileOpen ? closeMobile() : openMobile())}
           >
             {mobileOpen ? (
-              <XMarkIcon className='w-7 h-7 group-hover:rotate-90 transition-transform duration-300' />
+              <XMarkIcon className='w-7 h-7' />
             ) : (
-              <Bars3Icon className='w-7 h-7 group-hover:scale-110 transition-transform duration-200' />
+              <Bars3Icon className='w-7 h-7' />
             )}
           </button>
         </div>
@@ -234,220 +245,160 @@ export default function Navigation() {
       <AnimatePresence>
         {mobileOpen && (
           <>
-            {/* Backdrop overlay */}
+            {/* Backdrop starts below the header so the brand and close
+                button stay visible and tappable above it */}
             <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className='lg:hidden z-40 fixed inset-0 bg-[var(--color-deep-cocoa)]/50 backdrop-blur-sm'
+              className='lg:hidden top-16 inset-x-0 bottom-0 z-40 fixed bg-[var(--color-deep-cocoa)]/40 backdrop-blur-[2px]'
               onClick={closeMobile}
               aria-hidden='true'
             />
 
-            {/* Mobile menu drawer */}
             <m.aside
-              ref={mobileRef}
+              ref={drawerRef}
               id='primary-mobile-nav'
-              initial={{ x: '100%', opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: '100%', opacity: 0 }}
+              tabIndex={-1}
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
               transition={{
                 type: 'spring',
                 stiffness: 300,
                 damping: 30,
               }}
-              className='lg:hidden top-16 lg:top-20 right-0 z-50 fixed bg-gradient-to-br from-[var(--color-off-white)] to-[var(--color-warm-beige)] shadow-2xl px-4 sm:px-6 pt-6 pb-8 border-[var(--color-earth-brown)]/20 border-l rounded-tl-3xl w-full sm:w-80 h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] overflow-y-auto'
+              className='lg:hidden top-16 right-0 bottom-0 z-50 fixed bg-[var(--color-off-white)] shadow-2xl px-4 sm:px-6 pt-4 pb-8 border-[var(--color-earth-brown)]/15 border-l w-full sm:w-80 overflow-y-auto focus:outline-none'
             >
-              {/* Decorative elements */}
-              <div className='top-0 right-0 absolute bg-[var(--color-muted-terracotta)]/10 blur-3xl rounded-full w-48 h-48 pointer-events-none' />
-              <div className='bottom-0 left-0 absolute bg-[var(--color-earth-brown)]/5 blur-3xl rounded-full w-48 h-48 pointer-events-none' />
-
-              <div className='z-10 relative'>
-                <ul className='space-y-2'>
-                  {NAV_ITEMS.map((item, index) =>
-                    item.children ? (
-                      <m.li
-                        key={item.label}
-                        initial={{
-                          opacity: 0,
-                          x: 20,
-                        }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.05, duration: 0.3 }}
-                        className='pb-3 border-[var(--color-earth-brown)]/10 border-b last:border-b-0'
-                      >
-                        <div
-                          className={[
-                            'transition-all duration-200',
-                            item.children?.some((child) => isActive(child.href))
-                              ? 'bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-sm'
-                              : '',
-                          ].join(' ')}
-                        >
-                          <button
-                            type='button'
-                            className={[
-                              'relative group flex justify-between items-center px-3 py-2.5 focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 w-full font-semibold transition-all duration-200',
-                              '!text-[var(--color-deep-cocoa)] hover:!text-[var(--color-terracotta-deep)]',
-                              item.children?.some((child) =>
-                                isActive(child.href)
-                              )
-                                ? ''
-                                : 'hover:bg-white/50',
-                            ].join(' ')}
-                            aria-expanded={
-                              openDropdown === item.label ? 'true' : 'false'
-                            }
-                            aria-controls={`mobile-submenu-${item.label
-                              .replace(/\s+/g, '-')
-                              .toLowerCase()}`}
-                            onClick={() =>
-                              setOpenDropdown((cur) =>
-                                cur === item.label ? null : item.label
-                              )
-                            }
-                          >
-                            <span className='flex items-center gap-2'>
-                              <span
-                                className={`rounded-full transition-all duration-200 ${
-                                  item.children?.some((child) =>
-                                    isActive(child.href)
-                                  )
-                                    ? 'w-1.5 h-1.5 bg-[var(--color-muted-terracotta)]'
-                                    : 'w-1.5 h-1.5 bg-[var(--color-muted-terracotta)]/20 group-hover:scale-110'
-                                }`}
-                              />
-                              {item.label}
-                            </span>
-                            <ChevronDownIcon
-                              className={`h-5 w-5 transition-all duration-300 ${
-                                openDropdown === item.label
-                                  ? 'rotate-180 text-[var(--color-muted-terracotta)]'
-                                  : 'group-hover:text-[var(--color-terracotta-deep)]'
-                              }`}
-                            />
-                            {/* Active indicator */}
-                            {item.children?.some((child) =>
-                              isActive(child.href)
-                            ) && (
-                              <div className='bottom-0 left-0 absolute bg-[var(--color-muted-terracotta)] w-full h-0.5' />
-                            )}
-                          </button>
-                        </div>
-                        <AnimatePresence initial={false}>
-                          {openDropdown === item.label && (
-                            <m.ul
-                              id={`mobile-submenu-${item.label
-                                .replace(/\s+/g, '-')
-                                .toLowerCase()}`}
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{
-                                duration: 0.3,
-                                ease: 'easeInOut',
-                              }}
-                              className='space-y-1 mt-2 ml-4 pl-4 border-[var(--color-earth-brown)]/20 border-l overflow-hidden'
-                            >
-                              {item.children.map((child) => (
-                                <m.li
-                                  key={child.href}
-                                  initial={{
-                                    opacity: 0,
-                                    x: -10,
-                                  }}
-                                  animate={{ opacity: 1, x: 0 }}
-                                  transition={{ duration: 0.2 }}
-                                >
-                                  <Link
-                                    href={child.href}
-                                    className={`group flex items-center gap-2 px-3 py-2 focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 text-sm transition-all duration-200 ${
-                                      isActive(child.href)
-                                        ? '!text-[var(--color-muted-terracotta)] font-semibold'
-                                        : 'hover:bg-white/70 !text-[var(--color-deep-cocoa)] hover:!text-[var(--color-terracotta-deep)]'
-                                    }`}
-                                    onClick={closeMobile}
-                                  >
-                                    <span
-                                      className={`rounded-full transition-all duration-200 ${
-                                        isActive(child.href)
-                                          ? 'w-1.5 h-1.5 bg-[var(--color-muted-terracotta)]'
-                                          : 'w-1 h-1 bg-[var(--color-muted-terracotta)] group-hover:w-1.5 group-hover:h-1.5'
-                                      }`}
-                                    />
-                                    {child.label}
-                                  </Link>
-                                </m.li>
-                              ))}
-                            </m.ul>
-                          )}
-                        </AnimatePresence>
-                      </m.li>
-                    ) : (
-                      <m.li
-                        key={item.label}
-                        initial={{
-                          opacity: 0,
-                          x: 20,
-                        }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.05, duration: 0.3 }}
-                      >
-                        <div
-                          className={[
-                            'transition-all duration-200',
-                            isActive(item.href)
-                              ? 'bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-sm'
-                              : '',
-                          ].join(' ')}
-                        >
-                          <Link
-                            href={item.href!}
-                            className={[
-                              'relative group flex items-center gap-2 px-3 py-2.5 font-semibold transition-all duration-200',
-                              '!text-[var(--color-deep-cocoa)] hover:!text-[var(--color-terracotta-deep)]',
-                              'focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2',
-                              isActive(item.href) ? '' : 'hover:bg-white/50',
-                            ].join(' ')}
-                            onClick={closeMobile}
-                          >
-                            <span
-                              className={`rounded-full transition-all duration-200 ${
-                                isActive(item.href)
-                                  ? 'w-1.5 h-1.5 bg-[var(--color-muted-terracotta)]'
-                                  : 'w-1 h-1 bg-[var(--color-muted-terracotta)]/20 group-hover:bg-[var(--color-muted-terracotta)] group-hover:w-1.5 group-hover:h-1.5'
-                              }`}
-                            />
-                            {item.label}
-                            {/* Active indicator */}
-                            {isActive(item.href) && (
-                              <div className='bottom-0 left-0 absolute bg-[var(--color-muted-terracotta)] w-full h-0.5' />
-                            )}
-                          </Link>
-                        </div>
-                      </m.li>
-                    )
-                  )}
-                  <m.li
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      delay: NAV_ITEMS.length * 0.05,
-                      duration: 0.3,
-                    }}
-                    className='pt-4'
-                  >
-                    <Link
-                      href='/contact'
-                      className='w-full btn btn-primary'
-                      onClick={closeMobile}
+              <ul className='space-y-1'>
+                {NAV_ITEMS.map((item, index) =>
+                  item.children ? (
+                    <m.li
+                      key={item.label}
+                      initial={{ opacity: 0, x: 12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.04, duration: 0.25 }}
                     >
-                      Get in Touch
-                    </Link>
-                  </m.li>
-                </ul>
-              </div>
+                      <button
+                        type='button'
+                        className={[
+                          'flex justify-between items-center px-3 rounded-lg w-full min-h-11 font-semibold transition-colors duration-200',
+                          'focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2',
+                          hasActiveChild(item)
+                            ? 'bg-[var(--color-warm-beige)] text-[var(--color-terracotta-deep)]'
+                            : 'text-[var(--color-deep-cocoa)] hover:bg-[var(--color-warm-beige)]/60 hover:text-[var(--color-terracotta-deep)]',
+                        ].join(' ')}
+                        aria-expanded={
+                          openDropdown === item.label ? 'true' : 'false'
+                        }
+                        aria-controls={`mobile-submenu-${slugOf(item.label)}`}
+                        onClick={() =>
+                          setOpenDropdown((cur) =>
+                            cur === item.label ? null : item.label
+                          )
+                        }
+                      >
+                        {item.label}
+                        <ChevronDownIcon
+                          className={`h-5 w-5 transition-transform duration-300 ${
+                            openDropdown === item.label
+                              ? 'rotate-180 text-[var(--color-muted-terracotta)]'
+                              : ''
+                          }`}
+                        />
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {openDropdown === item.label && (
+                          <m.ul
+                            id={`mobile-submenu-${slugOf(item.label)}`}
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: 'easeInOut' }}
+                            className='space-y-0.5 mt-1 ml-4 pl-3 border-[var(--color-earth-brown)]/20 border-l overflow-hidden'
+                          >
+                            {item.children.map((child) => (
+                              <li key={child.href}>
+                                <Link
+                                  href={child.href}
+                                  aria-current={
+                                    isChildActive(child.href)
+                                      ? 'page'
+                                      : undefined
+                                  }
+                                  className={`flex items-center gap-2.5 px-3 rounded-lg min-h-11 text-sm no-underline transition-colors duration-200 focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2 ${
+                                    isChildActive(child.href)
+                                      ? 'font-semibold text-[var(--color-terracotta-deep)]'
+                                      : 'text-[var(--color-deep-cocoa)] hover:bg-[var(--color-warm-beige)]/60 hover:text-[var(--color-terracotta-deep)]'
+                                  }`}
+                                  onClick={closeMobile}
+                                >
+                                  <span
+                                    className={`w-1.5 h-1.5 rounded-full ${
+                                      isChildActive(child.href)
+                                        ? 'bg-[var(--color-muted-terracotta)]'
+                                        : 'bg-[var(--color-earth-brown)]/30'
+                                    }`}
+                                  />
+                                  {child.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </m.ul>
+                        )}
+                      </AnimatePresence>
+                    </m.li>
+                  ) : (
+                    <m.li
+                      key={item.label}
+                      initial={{ opacity: 0, x: 12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.04, duration: 0.25 }}
+                    >
+                      <Link
+                        href={item.href!}
+                        aria-current={isActive(item.href) ? 'page' : undefined}
+                        className={[
+                          'flex items-center px-3 rounded-lg min-h-11 font-semibold no-underline transition-colors duration-200',
+                          'focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2',
+                          isActive(item.href)
+                            ? 'bg-[var(--color-warm-beige)] text-[var(--color-terracotta-deep)]'
+                            : 'text-[var(--color-deep-cocoa)] hover:bg-[var(--color-warm-beige)]/60 hover:text-[var(--color-terracotta-deep)]',
+                        ].join(' ')}
+                        onClick={closeMobile}
+                      >
+                        {item.label}
+                      </Link>
+                    </m.li>
+                  )
+                )}
+              </ul>
+
+              <m.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: NAV_ITEMS.length * 0.04,
+                  duration: 0.25,
+                }}
+                className='space-y-3 mt-6 pt-6 border-[var(--color-earth-brown)]/15 border-t'
+              >
+                <Link
+                  href='/contact'
+                  className='w-full btn btn-primary'
+                  onClick={closeMobile}
+                >
+                  Get in Touch
+                </Link>
+                <a
+                  href={`tel:${PHONE.tel}`}
+                  className='flex justify-center items-center gap-2 rounded-lg min-h-11 font-semibold text-[var(--color-terracotta-deep)] text-sm no-underline focus-visible:outline-none focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-2'
+                >
+                  <PhoneIcon className='w-5 h-5' />
+                  Call {PHONE.display}
+                </a>
+              </m.div>
             </m.aside>
           </>
         )}
@@ -456,28 +407,58 @@ export default function Navigation() {
   );
 }
 
+/** Animated underline shared across nav items via layoutId */
+function ActiveUnderline() {
+  return (
+    <m.span
+      layoutId='nav-active-underline'
+      className='right-3.5 bottom-1 left-3.5 absolute bg-[var(--color-muted-terracotta)] rounded-full h-0.5'
+      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+    />
+  );
+}
+
 function DesktopDropdown({
   item,
-  linkBase,
-  linkColor,
-  isActive,
+  active,
+  isChildActive,
 }: {
   item: NavItem;
-  linkBase: string;
-  linkColor: string;
-  isActive: (href?: string) => boolean;
+  active: boolean;
+  isChildActive: (href: string) => boolean;
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Hover-to-open only on devices that actually hover; on touch screens the
+  // emulated mouseenter would open the menu and the follow-up click would
+  // immediately toggle it shut again
+  const [canHover] = useState(
+    () =>
+      typeof window !== 'undefined' &&
+      window.matchMedia('(hover: hover) and (pointer: fine)').matches
+  );
 
-  const baseId = item.label.toLowerCase().replace(/\s+/g, '-');
+  const baseId = slugOf(item.label);
   const buttonId = `nav-dd-btn-${baseId}`;
   const menuId = `nav-dd-menu-${baseId}`;
 
-  // Check if any child is active
-  const hasActiveChild =
-    item.children?.some((child) => isActive(child.href)) || false;
+  const cancelClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = null;
+  };
+  const openNow = () => {
+    cancelClose();
+    setOpen(true);
+  };
+  // Grace period so the pointer can cross the gap to the panel
+  const scheduleClose = () => {
+    cancelClose();
+    closeTimer.current = setTimeout(() => setOpen(false), 140);
+  };
+
+  useEffect(() => cancelClose, []);
 
   useEffect(() => {
     function onClick(e: MouseEvent) {
@@ -489,21 +470,14 @@ function DesktopDropdown({
   }, [open]);
 
   function focusFirstItem() {
-    const first = menuRef.current?.querySelector<HTMLAnchorElement>(
-      'a, [role="menuitem"]'
-    );
-    first?.focus();
+    menuRef.current?.querySelector<HTMLAnchorElement>('a')?.focus();
   }
   function focusLastItem() {
-    const items = menuRef.current?.querySelectorAll<HTMLAnchorElement>(
-      'a, [role="menuitem"]'
-    );
+    const items = menuRef.current?.querySelectorAll<HTMLAnchorElement>('a');
     if (items && items.length) items[items.length - 1].focus();
   }
   function moveFocus(delta: number) {
-    const items = menuRef.current?.querySelectorAll<HTMLAnchorElement>(
-      'a, [role="menuitem"]'
-    );
+    const items = menuRef.current?.querySelectorAll<HTMLAnchorElement>('a');
     if (!items || !items.length) return;
     const arr = Array.from(items);
     const idx = arr.findIndex((el) => el === document.activeElement);
@@ -513,34 +487,34 @@ function DesktopDropdown({
 
   return (
     <div
-      className={[
-        'relative transition-all duration-200',
-        hasActiveChild
-          ? 'bg-gradient-to-br from-[var(--color-warm-beige)] to-[var(--color-soft-sand)] shadow-sm'
-          : '',
-      ].join(' ')}
+      className='relative'
       ref={ref}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onMouseEnter={canHover ? openNow : undefined}
+      onMouseLeave={canHover ? scheduleClose : undefined}
+      onBlur={(e) => {
+        const related = e.relatedTarget as Node | null;
+        if (ref.current && related && ref.current.contains(related)) return;
+        setOpen(false);
+      }}
     >
       <button
         id={buttonId}
         type='button'
         className={[
-          'relative px-4 py-2.5 text-sm font-semibold transition-all duration-200 group inline-flex items-center gap-1.5',
-          'text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)]',
+          'relative inline-flex items-center gap-1 px-3.5 py-2 rounded-lg text-sm font-semibold transition-colors duration-200',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-muted-terracotta)] focus-visible:ring-offset-2',
-          hasActiveChild ? '' : 'hover:bg-[var(--color-warm-beige)]/50',
+          active
+            ? 'text-[var(--color-terracotta-deep)]'
+            : 'text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)] hover:bg-[var(--color-warm-beige)]/60',
         ].join(' ')}
-        aria-haspopup='menu'
         aria-controls={menuId}
         aria-expanded={open ? 'true' : 'false'}
-        onClick={() => setOpen((v) => !v)}
-        onFocus={() => setOpen(true)}
-        onBlur={(e) => {
-          const related = e.relatedTarget as Node | null;
-          if (ref.current && related && ref.current.contains(related)) return;
-          setOpen(false);
+        onClick={(e) => {
+          // Mouse users open via hover, so a click on the already-open
+          // button shouldn't snap it shut; touch (canHover false) and
+          // keyboard (detail 0) clicks are deliberate toggles
+          if (!open) openNow();
+          else if (!canHover || e.detail === 0) setOpen(false);
         }}
         onKeyDown={(e) => {
           switch (e.key) {
@@ -568,24 +542,11 @@ function DesktopDropdown({
       >
         {item.label}
         <ChevronDownIcon
-          className={`h-4 w-4 transition-all duration-300 ${
-            open
-              ? 'rotate-180 text-[var(--color-muted-terracotta)]'
-              : 'group-hover:text-[var(--color-terracotta-deep)]'
+          className={`h-4 w-4 transition-transform duration-300 ${
+            open ? 'rotate-180 text-[var(--color-muted-terracotta)]' : ''
           }`}
         />
-        {/* Active indicator */}
-        {hasActiveChild && (
-          <m.div
-            layoutId='activeTab'
-            className='bottom-0 left-0 absolute bg-[var(--color-muted-terracotta)] w-full h-0.5'
-            transition={{
-              type: 'spring',
-              stiffness: 380,
-              damping: 30,
-            }}
-          />
-        )}
+        {active && <ActiveUnderline />}
       </button>
 
       <AnimatePresence>
@@ -593,27 +554,15 @@ function DesktopDropdown({
           <m.div
             ref={menuRef}
             id={menuId}
-            initial={{
-              opacity: 0,
-              y: 8,
-              scale: 0.96,
-            }}
+            initial={{ opacity: 0, y: 6, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{
-              opacity: 0,
-              y: 8,
-              scale: 0.96,
-            }}
-            transition={{
-              duration: 0.2,
-              ease: [0.16, 1, 0.3, 1], // Custom easing for smooth feel
-            }}
-            className='left-0 absolute bg-white shadow-xl mt-3 border border-[var(--color-earth-brown)]/15 w-72 overflow-hidden'
+            exit={{ opacity: 0, y: 6, scale: 0.98 }}
+            transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+            className='top-full left-0 absolute bg-white mt-2 border border-[var(--color-earth-brown)]/15 rounded-xl w-60 overflow-hidden'
             style={{
               boxShadow:
-                '0 10px 40px -10px rgba(107, 79, 79, 0.15), 0 0 0 1px rgba(166, 138, 100, 0.1)',
+                '0 20px 25px -5px rgba(107, 79, 79, 0.12), 0 10px 10px -5px rgba(107, 79, 79, 0.04)',
             }}
-            role='menu'
             aria-labelledby={buttonId}
             onKeyDown={(e) => {
               switch (e.key) {
@@ -643,42 +592,30 @@ function DesktopDropdown({
               }
             }}
           >
-            {/* Decorative gradient top */}
-            <div className='bg-gradient-to-r from-[var(--color-muted-terracotta)]/20 via-[var(--color-earth-brown)]/10 to-[var(--color-muted-terracotta)]/20 w-full h-1' />
+            <div className='bg-gradient-to-r from-[var(--color-muted-terracotta)]/30 via-[var(--color-earth-brown)]/15 to-[var(--color-muted-terracotta)]/30 w-full h-0.5' />
 
-            <ul>
-              {item.children!.map((child, index) => (
-                <m.li
-                  key={child.href}
-                  initial={{
-                    opacity: 0,
-                    x: -10,
-                  }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{
-                    delay: index * 0.05,
-                    duration: 0.2,
-                  }}
-                >
+            <ul className='py-1.5'>
+              {item.children!.map((child) => (
+                <li key={child.href}>
                   <Link
                     href={child.href}
-                    className={`group flex items-center gap-3 px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-muted-terracotta)] text-sm transition-all duration-200 ${
-                      isActive(child.href)
-                        ? 'bg-gradient-to-r from-[var(--color-warm-beige)] to-transparent text-[var(--color-muted-terracotta)] font-semibold'
-                        : 'text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)] hover:bg-[var(--color-warm-beige)]/30'
+                    aria-current={isChildActive(child.href) ? 'page' : undefined}
+                    className={`flex items-center gap-2.5 px-4 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-muted-terracotta)] text-sm no-underline transition-colors duration-200 ${
+                      isChildActive(child.href)
+                        ? 'font-semibold text-[var(--color-terracotta-deep)]'
+                        : 'text-[var(--color-deep-cocoa)] hover:text-[var(--color-terracotta-deep)] hover:bg-[var(--color-warm-beige)]/40'
                     }`}
-                    role='menuitem'
                   >
                     <span
-                      className={`rounded-full transition-all duration-200 ${
-                        isActive(child.href)
-                          ? 'w-1.5 h-1.5 bg-[var(--color-muted-terracotta)]'
-                          : 'w-1 h-1 bg-[var(--color-earth-brown)]/30 group-hover:bg-[var(--color-muted-terracotta)] group-hover:w-1.5 group-hover:h-1.5'
+                      className={`w-1.5 h-1.5 rounded-full ${
+                        isChildActive(child.href)
+                          ? 'bg-[var(--color-muted-terracotta)]'
+                          : 'bg-[var(--color-earth-brown)]/30'
                       }`}
                     />
                     {child.label}
                   </Link>
-                </m.li>
+                </li>
               ))}
             </ul>
           </m.div>
