@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 import SectionHeading from '@/components/SectionHeading';
@@ -58,7 +57,10 @@ export default function AboutSection({ data }: AboutSectionProps = {}) {
   return (
     <section
       id='about'
-      className='bg-[var(--color-off-white)] px-4 py-20 lg:py-24'
+      // overflow-x-clip: the x-offset entrance animations below hang 24px
+      // outside the grid until whileInView fires, which otherwise adds a
+      // horizontal scrollbar to the whole page
+      className='bg-[var(--color-off-white)] px-4 py-20 lg:py-24 overflow-x-clip'
       aria-label='About Ekuphumuleni'
     >
       <div className='mx-auto max-w-7xl'>
