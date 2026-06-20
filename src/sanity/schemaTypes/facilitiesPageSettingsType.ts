@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { SunIcon } from '@sanity/icons';
 
 // ─── Icon options ─────────────────────────────────────────────────────────────
 // These map to Heroicons used in the feature grid and sustainability cards.
@@ -17,6 +18,7 @@ export const facilitiesPageSettingsType = defineType({
   name: 'facilitiesPageSettings',
   title: 'Facilities Page Settings',
   type: 'document',
+  icon: SunIcon,
   // Treated as a singleton — only one document of this type should ever exist.
   // The structureTool configuration in sanity.config.ts enforces this.
   groups: [
@@ -203,7 +205,11 @@ export const facilitiesPageSettingsType = defineType({
   ],
   preview: {
     prepare() {
-      return { title: 'Facilities Page Settings' };
+      return {
+        title: 'Facilities Page',
+        subtitle: 'Showcase highlights & sustainability',
+        media: SunIcon,
+      };
     },
   },
 });

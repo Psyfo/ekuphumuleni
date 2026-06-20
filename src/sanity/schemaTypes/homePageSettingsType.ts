@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { HomeIcon } from '@sanity/icons';
 
 export const HOME_ICON_OPTIONS = [
   { title: 'Heart', value: 'heart' },
@@ -11,6 +12,7 @@ export const homePageSettingsType = defineType({
   name: 'homePageSettings',
   title: 'Home Page Settings',
   type: 'document',
+  icon: HomeIcon,
   groups: [
     { name: 'hero', title: 'Hero' },
     { name: 'about', title: 'About Section' },
@@ -196,7 +198,11 @@ export const homePageSettingsType = defineType({
   ],
   preview: {
     prepare() {
-      return { title: 'Home Page Settings' };
+      return {
+        title: 'Home Page',
+        subtitle: 'Hero, about, services, donors & contact sections',
+        media: HomeIcon,
+      };
     },
   },
 });

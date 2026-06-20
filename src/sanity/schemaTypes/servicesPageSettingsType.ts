@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { CaseIcon } from '@sanity/icons';
 
 // ─── Icon options shared across sections ─────────────────────────────────────
 // These map to Heroicons used in the service card and feature card components.
@@ -19,6 +20,7 @@ export const servicesPageSettingsType = defineType({
   name: 'servicesPageSettings',
   title: 'Services Page Settings',
   type: 'document',
+  icon: CaseIcon,
   // Treated as a singleton — only one document of this type should ever exist.
   // The structureTool configuration in sanity.config.ts enforces this.
   groups: [
@@ -420,7 +422,11 @@ export const servicesPageSettingsType = defineType({
   ],
   preview: {
     prepare() {
-      return { title: 'Services Page Settings' };
+      return {
+        title: 'Services Page',
+        subtitle: 'Core services, nursing & rehabilitation',
+        media: CaseIcon,
+      };
     },
   },
 });
