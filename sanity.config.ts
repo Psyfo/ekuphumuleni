@@ -4,7 +4,13 @@ import { visionTool } from '@sanity/vision';
 
 import { schemaTypes } from './src/sanity/schemaTypes';
 import { apiVersion, dataset, projectId } from './src/sanity/env';
+import { ekuphumuleniTheme } from './src/sanity/lib/theme';
+import { structure } from './src/sanity/structure';
+import { StudioLogo } from './src/sanity/components/StudioLogo';
 
+// Page-settings documents that should only ever have a single instance. The
+// structure (src/sanity/structure.ts) opens each one directly; this set also
+// keeps them out of the global "＋ Create" menu so editors can't spawn duplicates.
 const SINGLETON_TYPES = new Set([
   'teamPageSettings',
   'servicesPageSettings',
@@ -22,103 +28,27 @@ export default defineConfig({
   projectId: projectId || 'mgvrdxr1',
   dataset: dataset || 'production',
   title: 'Ekuphumuleni',
+  theme: ekuphumuleniTheme,
+  studio: {
+    components: {
+      logo: StudioLogo,
+    },
+  },
   plugins: [
-    structureTool({
-      structure: (S) =>
-        S.list()
-          .title('Content')
-          .items([
-            // Singleton: Team Page Settings
-            S.listItem()
-              .title('Team Page Settings')
-              .id('teamPageSettings')
-              .child(
-                S.document()
-                  .schemaType('teamPageSettings')
-                  .documentId('teamPageSettings'),
-              ),
-            // Singleton: Services Page Settings
-            S.listItem()
-              .title('Services Page Settings')
-              .id('servicesPageSettings')
-              .child(
-                S.document()
-                  .schemaType('servicesPageSettings')
-                  .documentId('servicesPageSettings'),
-              ),
-            // Singleton: About Page Settings
-            S.listItem()
-              .title('About Page Settings')
-              .id('aboutPageSettings')
-              .child(
-                S.document()
-                  .schemaType('aboutPageSettings')
-                  .documentId('aboutPageSettings'),
-              ),
-            // Singleton: Facilities Page Settings
-            S.listItem()
-              .title('Facilities Page Settings')
-              .id('facilitiesPageSettings')
-              .child(
-                S.document()
-                  .schemaType('facilitiesPageSettings')
-                  .documentId('facilitiesPageSettings'),
-              ),
-            // Singleton: Contact Page Settings
-            S.listItem()
-              .title('Contact Page Settings')
-              .id('contactPageSettings')
-              .child(
-                S.document()
-                  .schemaType('contactPageSettings')
-                  .documentId('contactPageSettings'),
-              ),
-            // Singleton: Home Page Settings
-            S.listItem()
-              .title('Home Page Settings')
-              .id('homePageSettings')
-              .child(
-                S.document()
-                  .schemaType('homePageSettings')
-                  .documentId('homePageSettings'),
-              ),
-            // Singleton: Donors Page Settings
-            S.listItem()
-              .title('Donors Page Settings')
-              .id('donorsPageSettings')
-              .child(
-                S.document()
-                  .schemaType('donorsPageSettings')
-                  .documentId('donorsPageSettings'),
-              ),
-            // Singleton: Privacy Page Settings
-            S.listItem()
-              .title('Privacy Page Settings')
-              .id('privacyPageSettings')
-              .child(
-                S.document()
-                  .schemaType('privacyPageSettings')
-                  .documentId('privacyPageSettings'),
-              ),
-            // Singleton: Terms Page Settings
-            S.listItem()
-              .title('Terms Page Settings')
-              .id('termsPageSettings')
-              .child(
-                S.document()
-                  .schemaType('termsPageSettings')
-                  .documentId('termsPageSettings'),
-              ),
-            S.divider(),
-            // All other document types (excluding singletons)
-            ...S.documentTypeListItems().filter(
-              (item) => !SINGLETON_TYPES.has(item.getId() ?? ''),
-            ),
-          ]),
-    }),
+    structureTool({ structure }),
     visionTool({ defaultApiVersion: apiVersion }),
   ],
   schema: {
     types: schemaTypes,
+  },
+  document: {
+    // Hide singletons from the global create menu (the navbar "＋" button); they
+    // are reached through the structure instead. Collections stay creatable.
+    newDocumentOptions: (prev, { creationContext }) => {
+      if (creationContext.type === 'global') {
+        return prev.filter((template) => !SINGLETON_TYPES.has(template.templateId));
+      }
+      return prev;
+    },
   },
 });
