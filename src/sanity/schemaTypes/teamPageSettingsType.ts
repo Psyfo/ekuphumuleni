@@ -1,9 +1,11 @@
 import { defineField, defineType } from 'sanity';
+import { UsersIcon } from '@sanity/icons';
 
 export const teamPageSettingsType = defineType({
   name: 'teamPageSettings',
   title: 'Team Page Settings',
   type: 'document',
+  icon: UsersIcon,
   // Treated as a singleton — only one document of this type should ever exist.
   // The structureTool configuration in sanity.config.ts enforces this.
   groups: [
@@ -129,7 +131,11 @@ export const teamPageSettingsType = defineType({
   ],
   preview: {
     prepare() {
-      return { title: 'Team Page Settings' };
+      return {
+        title: 'Team Page',
+        subtitle: 'Section intros for board, admin & staff',
+        media: UsersIcon,
+      };
     },
   },
 });

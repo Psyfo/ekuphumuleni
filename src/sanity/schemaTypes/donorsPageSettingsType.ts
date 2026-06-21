@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { HeartIcon } from '@sanity/icons';
 
 export const DONOR_MENTION_ICON_OPTIONS = [
   { title: 'Building Library', value: 'building-library' },
@@ -10,6 +11,7 @@ export const donorsPageSettingsType = defineType({
   name: 'donorsPageSettings',
   title: 'Donors Page Settings',
   type: 'document',
+  icon: HeartIcon,
   groups: [
     { name: 'hero', title: 'Hero' },
     { name: 'donorWall', title: 'Donor Wall Section' },
@@ -104,7 +106,11 @@ export const donorsPageSettingsType = defineType({
   ],
   preview: {
     prepare() {
-      return { title: 'Donors Page Settings' };
+      return {
+        title: 'Donors Page',
+        subtitle: 'Donor wall & special mentions',
+        media: HeartIcon,
+      };
     },
   },
 });
