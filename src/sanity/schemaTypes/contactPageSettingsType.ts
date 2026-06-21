@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { EnvelopeIcon } from '@sanity/icons';
 
 export const CONTACT_ICON_OPTIONS = [
   { title: 'Map Pin', value: 'map-pin' },
@@ -11,6 +12,7 @@ export const contactPageSettingsType = defineType({
   name: 'contactPageSettings',
   title: 'Contact Page Settings',
   type: 'document',
+  icon: EnvelopeIcon,
   groups: [
     { name: 'hero', title: 'Hero' },
     { name: 'formSection', title: 'Form Section' },
@@ -132,7 +134,11 @@ export const contactPageSettingsType = defineType({
   ],
   preview: {
     prepare() {
-      return { title: 'Contact Page Settings' };
+      return {
+        title: 'Contact Page',
+        subtitle: 'Form, contact details & map',
+        media: EnvelopeIcon,
+      };
     },
   },
 });

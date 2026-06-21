@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { InfoOutlineIcon } from '@sanity/icons';
 
 // ─── Icon options shared across sections ─────────────────────────────────────
 // These map to Heroicons used in the "Why Families Choose Us" cards and the
@@ -17,6 +18,7 @@ export const aboutPageSettingsType = defineType({
   name: 'aboutPageSettings',
   title: 'About Page Settings',
   type: 'document',
+  icon: InfoOutlineIcon,
   // Treated as a singleton — only one document of this type should ever exist.
   // The structureTool configuration in sanity.config.ts enforces this.
   groups: [
@@ -226,7 +228,11 @@ export const aboutPageSettingsType = defineType({
   ],
   preview: {
     prepare() {
-      return { title: 'About Page Settings' };
+      return {
+        title: 'About Page',
+        subtitle: 'Founder story, mission, vision & impact',
+        media: InfoOutlineIcon,
+      };
     },
   },
 });

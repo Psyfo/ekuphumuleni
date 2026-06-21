@@ -1,9 +1,11 @@
 import { defineField, defineType } from 'sanity';
+import { DocumentIcon } from '@sanity/icons';
 
 export const termsPageSettingsType = defineType({
   name: 'termsPageSettings',
   title: 'Terms Page Settings',
   type: 'document',
+  icon: DocumentIcon,
   groups: [
     { name: 'content', title: 'Content' },
     { name: 'seo', title: 'SEO' },
@@ -37,7 +39,11 @@ export const termsPageSettingsType = defineType({
   preview: {
     select: { title: 'heading' },
     prepare({ title }) {
-      return { title: title ?? 'Terms Page Settings' };
+      return {
+        title: title ?? 'Terms of Service',
+        subtitle: 'Legal · Terms of service page',
+        media: DocumentIcon,
+      };
     },
   },
 });
