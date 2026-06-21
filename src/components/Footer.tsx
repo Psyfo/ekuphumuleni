@@ -12,6 +12,8 @@ import {
   HeartIcon,
 } from '@heroicons/react/24/outline';
 
+import DonateButton from './DonateButton';
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -69,6 +71,7 @@ export default function Footer() {
                 <HeartIcon className='w-4 h-4' aria-hidden='true' />
                 <span>Serving the elderly since 1983</span>
               </div>
+              <DonateButton variant='on-dark' className='mt-2' />
             </div>
           </m.div>
 

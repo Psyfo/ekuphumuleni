@@ -13,6 +13,8 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 
+import DonateButton from './DonateButton';
+
 type NavItem = {
   label: string;
   href?: string;
@@ -217,9 +219,12 @@ export default function Navigation() {
                 </Link>
               )
             )}
-            <Link href='/contact' className='ml-3 btn btn-primary btn-sm'>
-              Get in Touch
-            </Link>
+            <div className='flex items-center gap-2 ml-3'>
+              <Link href='/contact' className='btn btn-secondary btn-sm'>
+                Get in Touch
+              </Link>
+              <DonateButton variant='primary' small />
+            </div>
           </div>
 
           {/* Mobile toggle */}
@@ -384,9 +389,14 @@ export default function Navigation() {
                 }}
                 className='space-y-3 mt-6 pt-6 border-[var(--color-earth-brown)]/15 border-t'
               >
+                <DonateButton
+                  variant='primary'
+                  fullWidth
+                  onBeforeOpen={closeMobile}
+                />
                 <Link
                   href='/contact'
-                  className='w-full btn btn-primary'
+                  className='w-full btn btn-secondary'
                   onClick={closeMobile}
                 >
                   Get in Touch
