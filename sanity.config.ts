@@ -7,6 +7,8 @@ import { apiVersion, dataset, projectId } from './src/sanity/env';
 import { ekuphumuleniTheme } from './src/sanity/lib/theme';
 import { structure } from './src/sanity/structure';
 import { StudioLogo } from './src/sanity/components/StudioLogo';
+import { StudioNavbar } from './src/sanity/components/StudioNavbar';
+import { StudioLayout } from './src/sanity/components/StudioLayout';
 
 // Page-settings documents that should only ever have a single instance. The
 // structure (src/sanity/structure.ts) opens each one directly; this set also
@@ -32,6 +34,8 @@ export default defineConfig({
   studio: {
     components: {
       logo: StudioLogo,
+      navbar: StudioNavbar,
+      layout: StudioLayout,
     },
   },
   plugins: [
