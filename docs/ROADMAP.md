@@ -51,17 +51,22 @@ payments added once a provider is chosen.
 - **Avoid:** a floating action button (FAB). For a care brand it reads as ad-like and overlaps
   content; the header + footer pairing is more trustworthy and just as present.
 
-**Phase 1 — button + informational dialog (no payments yet):**
+**Phase 1 — 🟡 built and on staging (board review).** Decisions locked in and shipped:
 
-- Clicking Donate opens an accessible modal (focus trap, `Esc` to close, `aria-modal`, returns
-  focus to the trigger) — the same warmth as the site.
-- Dialog shows: a short "online giving is coming soon" note, **and the ways to give today**
-  (bank transfer details, EcoCash, and an "email us to arrange a gift" button). This delivers
-  value immediately while payments are pending.
-- **CMS-driven** via a new `donateSettings` singleton (heading, intro, "coming soon" note,
-  payment methods list, bank/EcoCash details, contact email) so staff edit it without a deploy.
-  Follow the singleton pattern; add it to the Studio structure under "Pages" with an icon + guide.
-- A reference mockup of this dialog was shared with the board for sign-off.
+- **Two-rail dialog with a segmented toggle, diaspora-first:** **Diaspora** (primary, card,
+  `GlobeEuropeAfricaIcon` atlas globe, USD/GBP/ZAR amount presets) and **In Zimbabwe** (EcoCash
+  plus a collapsible bank-transfer panel). The toggle keeps the dialog compact and removes any
+  "which one is mine?" ambiguity. Local can grow to add InnBucks/OneMoney without a redesign.
+- Accessible modal: portal, focus trap, `Esc` to close, `aria-modal`, scroll lock, focus restore.
+- Persistent placement built: header primary (with "Get in Touch" demoted to secondary), the
+  mobile drawer, and an on-dark footer button.
+- Copy says "registered non-profit" (not NGO) and avoids em dashes.
+- **CMS-driven** via the `donateSettings` singleton (listed in the Studio as "Donate"), with a
+  typed fallback so the dialog never renders blanks. Until a provider is wired, the "Donate by
+  card" button arranges a gift by email.
+
+Code: `src/components/{DonateButton,DonateDialog}.tsx`, `donate-content.ts`, and
+`src/sanity/schemaTypes/donateSettingsType.ts`. Staging only until the board signs off.
 
 **Phase 2 — real payments (provider decision needed):**
 
@@ -69,7 +74,7 @@ payments added once a provider is chosen.
   EcoCash, OneMoney, and Visa/Mastercard. Bank transfer + EcoCash merchant code remain as
   manual options.
 - **Diaspora / international:** Stripe is not available to Zimbabwean entities; evaluate a
-  hosted platform (e.g. Donorbox/Gom or a fiscal-host/diaspora service) for card giving from
+  hosted platform (e.g. Donorbox or a fiscal-host/diaspora service) for card giving from
   abroad. Decide whether to self-host a form or embed a hosted widget.
 - Add: amount presets + custom amount, one-off vs monthly, a thank-you/receipt step, and basic
   reporting. Keep PCI scope minimal by using the provider's hosted/redirect flow — never handle
