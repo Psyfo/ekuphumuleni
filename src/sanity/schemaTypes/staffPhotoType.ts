@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity';
 import { ImagesIcon } from '@sanity/icons';
+import { ImageTipInput } from '../components/ImageTipInput';
 
 export const staffPhotoType = defineType({
   name: 'staffPhoto',
@@ -12,6 +13,7 @@ export const staffPhotoType = defineType({
       title: 'Photo',
       type: 'image',
       options: { hotspot: true },
+      components: { input: ImageTipInput },
       validation: (Rule) => Rule.required(),
     }),
     defineField({

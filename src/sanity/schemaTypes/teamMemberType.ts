@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity';
 import { UserIcon } from '@sanity/icons';
+import { ImageTipInput } from '../components/ImageTipInput';
 
 export const teamMemberType = defineType({
   name: 'teamMember',
@@ -56,6 +57,7 @@ export const teamMemberType = defineType({
       type: 'image',
       fieldset: 'profile',
       options: { hotspot: true },
+      components: { input: ImageTipInput },
     }),
     defineField({
       name: 'bio',
