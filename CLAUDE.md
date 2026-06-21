@@ -5,14 +5,20 @@ nursing home NGO in Bulawayo, Zimbabwe. Sanity CMS powers editable content so no
 staff can update pages without code deploys.
 
 ## Branching (required)
-- `master` and `staging` are protected — **never commit or push directly to either**.
-- Before making any change, create a branch off `master` first:
+- **`master` is the only protected branch** — never commit or push directly to it. It ships
+  to production. `staging` is the shared integration/preview branch and is intentionally
+  **not** protected; it deploys to `ekuphumuleni.vercel.app` for testing.
+- Before making any change, create a branch off `master` (never off `staging` or another
+  feature branch):
   - `feat/<short-name>` for new features
   - `fix/<short-name>` for bug fixes
   - `chore/<short-name>` for maintenance/deps/tooling
-- Open a PR into `master` for review; CI (`.github/workflows/ci.yml`) runs a build check on
-  every PR. Merging to `master` auto-deploys to production via
-  `.github/workflows/deploy.yml` (rsync + PM2 restart over SSH to the VPS).
+- Workflow: feature branch → merge into `staging` → verify on the Vercel preview → open a PR
+  into `master`. `staging` is periodically reset to `master`, so treat anything that only
+  lives there as disposable.
+- CI (`.github/workflows/ci.yml`) runs a build check on every PR into `master`. Merging to
+  `master` auto-deploys to production via `.github/workflows/deploy.yml` (rsync + PM2 restart
+  over SSH to the VPS).
 
 ## Commit messages
 Follow Conventional Commits, matching existing history:
