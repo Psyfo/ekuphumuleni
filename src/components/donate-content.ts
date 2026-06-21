@@ -61,3 +61,55 @@ export const DONATE_CONTENT: DonateContent = {
   footerNote:
     'Ekuphumuleni is a registered non-profit. Every gift goes to care, meals and facilities.',
 };
+
+/** Loose shape of the `donateSettings` query result (fields may be missing/null). */
+type DeepPartial<T> = { [K in keyof T]?: DeepPartial<T[K]> | null } | null | undefined;
+export type DonateSettingsInput = DeepPartial<DonateContent>;
+
+const str = (value: unknown, fallback: string): string =>
+  typeof value === 'string' && value.trim() ? value : fallback;
+
+/**
+ * Merge a (possibly partial) CMS document over the fallback so the dialog never
+ * renders blanks. Empty strings fall back too; genuinely optional values
+ * (merchant code, account number, branch) pass through as-is.
+ */
+export function resolveDonateContent(input: DonateSettingsInput): DonateContent {
+  const f = DONATE_CONTENT;
+  if (!input) return f;
+  const d = input.diaspora ?? {};
+  const l = input.local ?? {};
+  const ecocash = l.ecocash ?? {};
+  const bank = l.bank ?? {};
+  return {
+    buttonLabel: str(input.buttonLabel, f.buttonLabel),
+    heading: str(input.heading, f.heading),
+    subtitle: str(input.subtitle, f.subtitle),
+    diaspora: {
+      label: str(d.label, f.diaspora.label),
+      helper: str(d.helper, f.diaspora.helper),
+      currencies: str(d.currencies, f.diaspora.currencies),
+      amounts:
+        Array.isArray(d.amounts) && d.amounts.length
+          ? d.amounts.filter((a): a is string => typeof a === 'string')
+          : f.diaspora.amounts,
+      ctaLabel: str(d.ctaLabel, f.diaspora.ctaLabel),
+      note: str(d.note, f.diaspora.note),
+      contactEmail: str(d.contactEmail, f.diaspora.contactEmail),
+    },
+    local: {
+      label: str(l.label, f.local.label),
+      ecocash: {
+        merchantCode: str(ecocash.merchantCode, f.local.ecocash.merchantCode),
+        dialString: str(ecocash.dialString, f.local.ecocash.dialString),
+      },
+      bank: {
+        name: str(bank.name, f.local.bank.name),
+        accountName: str(bank.accountName, f.local.bank.accountName),
+        accountNumber: str(bank.accountNumber, f.local.bank.accountNumber),
+        branch: str(bank.branch, f.local.bank.branch),
+      },
+    },
+    footerNote: str(input.footerNote, f.footerNote),
+  };
+}

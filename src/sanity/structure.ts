@@ -14,6 +14,7 @@ import {
   ImagesIcon,
   CalendarIcon,
   SparklesIcon,
+  CreditCardIcon,
 } from '@sanity/icons';
 import { WelcomePane } from './components/WelcomePane';
 import { PageGuide } from './components/PageGuide';
@@ -80,6 +81,9 @@ export const structure: StructureResolver = (S) =>
       pageSingleton(S, 'teamPageSettings', 'Team Page', UsersIcon),
       pageSingleton(S, 'donorsPageSettings', 'Donors Page', HeartIcon),
       pageSingleton(S, 'contactPageSettings', 'Contact Page', EnvelopeIcon),
+
+      // Site-wide Donate button + dialog content.
+      singleton(S, 'donateSettings', 'Donate', CreditCardIcon),
 
       S.divider(),
 

@@ -10,6 +10,7 @@ import { donorsPageSettingsType } from './donorsPageSettingsType';
 import { donorYearType } from './donorYearType';
 import { privacyPageSettingsType } from './privacyPageSettingsType';
 import { termsPageSettingsType } from './termsPageSettingsType';
+import { donateSettingsType } from './donateSettingsType';
 
 export const schemaTypes = [
   teamMemberType,
@@ -24,4 +25,5 @@ export const schemaTypes = [
   donorYearType,
   privacyPageSettingsType,
   termsPageSettingsType,
+  donateSettingsType,
 ];

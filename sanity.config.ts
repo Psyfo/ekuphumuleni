@@ -23,6 +23,7 @@ const SINGLETON_TYPES = new Set([
   'donorsPageSettings',
   'privacyPageSettings',
   'termsPageSettings',
+  'donateSettings',
 ]);
 
 export default defineConfig({

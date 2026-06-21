@@ -1,5 +1,20 @@
 import { defineQuery } from 'next-sanity';
 
+export const DONATE_SETTINGS_QUERY = defineQuery(
+  `*[_type == "donateSettings" && _id == "donateSettings"][0] {
+    buttonLabel,
+    heading,
+    subtitle,
+    footerNote,
+    diaspora { label, helper, currencies, amounts, ctaLabel, note, contactEmail },
+    local {
+      label,
+      ecocash { merchantCode, dialString },
+      bank { name, accountName, accountNumber, branch },
+    },
+  }`,
+);
+
 export const SERVICES_PAGE_SETTINGS_QUERY = defineQuery(
   `*[_type == "servicesPageSettings" && _id == "servicesPageSettings"][0] {
     heroTitle,

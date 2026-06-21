@@ -13,8 +13,13 @@ import {
 } from '@heroicons/react/24/outline';
 
 import DonateButton from './DonateButton';
+import { DONATE_CONTENT, type DonateContent } from './donate-content';
 
-export default function Footer() {
+export default function Footer({
+  donate = DONATE_CONTENT,
+}: {
+  donate?: DonateContent;
+}) {
   const year = new Date().getFullYear();
 
   const container: Variants = {
@@ -71,7 +76,7 @@ export default function Footer() {
                 <HeartIcon className='w-4 h-4' aria-hidden='true' />
                 <span>Serving the elderly since 1983</span>
               </div>
-              <DonateButton variant='on-dark' className='mt-2' />
+              <DonateButton variant='on-dark' className='mt-2' content={donate} />
             </div>
           </m.div>
 

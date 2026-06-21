@@ -14,6 +14,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 import DonateButton from './DonateButton';
+import { DONATE_CONTENT, type DonateContent } from './donate-content';
 
 type NavItem = {
   label: string;
@@ -58,7 +59,11 @@ const baseOf = (href: string) => href.split('#')[0];
 
 const slugOf = (label: string) => label.replace(/\s+/g, '-').toLowerCase();
 
-export default function Navigation() {
+export default function Navigation({
+  donate = DONATE_CONTENT,
+}: {
+  donate?: DonateContent;
+}) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -223,7 +228,7 @@ export default function Navigation() {
               <Link href='/contact' className='btn btn-secondary btn-sm'>
                 Get in Touch
               </Link>
-              <DonateButton variant='primary' small />
+              <DonateButton variant='primary' small content={donate} />
             </div>
           </div>
 
@@ -393,6 +398,7 @@ export default function Navigation() {
                   variant='primary'
                   fullWidth
                   onBeforeOpen={closeMobile}
+                  content={donate}
                 />
                 <Link
                   href='/contact'
