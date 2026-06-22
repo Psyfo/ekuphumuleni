@@ -53,7 +53,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: '/images/brand/ekuphumuleni-og.png',
           width: 1200,
           height: 630,
-          alt: "Ekuphumuleni Geriatric Nursing Home, caring for Bulawayo's elders since 1980",
+          alt: "Ekuphumuleni Geriatric Nursing Home, caring for Bulawayo's elders since 1983",
         },
       ],
     },

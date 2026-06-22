@@ -8,7 +8,7 @@ const OG_IMAGE = {
   url: '/images/brand/ekuphumuleni-og.png',
   width: 1200,
   height: 630,
-  alt: "Ekuphumuleni Geriatric Nursing Home, caring for Bulawayo's elders since 1980",
+  alt: "Ekuphumuleni Geriatric Nursing Home, caring for Bulawayo's elders since 1983",
 };
 
 export const metadata: Metadata = {
@@ -111,7 +111,7 @@ export default function RootLayout({
               logo: 'https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo-seo.png',
               description:
                 'Non-profit organization providing geriatric nursing care and elderly support services in Bulawayo, Zimbabwe.',
-              foundingDate: '1980',
+              foundingDate: '1983',
               address: {
                 '@type': 'PostalAddress',
                 streetAddress: 'VHCG+86V, Old Falls Rd',
