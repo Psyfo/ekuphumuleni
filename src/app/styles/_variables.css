@@ -20,6 +20,12 @@
     --color-terracotta-dark: #9C4F35;
     /* hover / gradient end */
 
+    /* Sage — the single cool accent. Complements terracotta and nods to the
+       gardens; use sparingly for life/fresh/donate-success moments, never as a
+       dominant colour. Sage-deep is the text-safe variant (≈4.6:1 on white). */
+    --color-sage: #8A9A6B;
+    --color-sage-deep: #5C7A4A;
+
     /* ===== Semantic Color Tokens ===== */
     --background: var(--color-warm-beige);
     --foreground: var(--color-deep-cocoa);
