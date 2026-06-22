@@ -98,6 +98,30 @@
     transform: none;
 }
 
+/* Donate dialog step transitions: a light fade-and-rise replayed on each step
+   change (the panel is keyed by step). Kept subtle so the modal feels calm. */
+@keyframes donate-step-in {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.donate-step {
+    animation: donate-step-in 200ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .donate-step {
+        animation: none;
+    }
+}
+
 /* ===== Card Components ===== */
 .card,
 .surface {
