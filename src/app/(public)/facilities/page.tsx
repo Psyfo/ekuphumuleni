@@ -47,10 +47,10 @@ export async function generateMetadata(): Promise<Metadata> {
       url: 'https://ekuphumuleni.ngo/facilities',
       images: [
         {
-          url: 'https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo-seo.png',
-          width: 512,
-          height: 512,
-          alt: 'Ekuphumuleni Geriatric Nursing Home Logo',
+          url: '/images/brand/ekuphumuleni-og.png',
+          width: 1200,
+          height: 630,
+          alt: "Ekuphumuleni Geriatric Nursing Home, caring for Bulawayo's elders since 1980",
         },
       ],
     },

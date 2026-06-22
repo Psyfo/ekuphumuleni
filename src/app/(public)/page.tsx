@@ -46,13 +46,13 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         'Over 40 years of excellence in geriatric care. Professional nursing, rehabilitation, and elderly care in Bulawayo, Zimbabwe.',
       type: 'website',
-      url: 'https://ekuphumuleni.ngo',
+      url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://ekuphumuleni.ngo',
       images: [
         {
-          url: 'https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo-seo.png',
-          width: 512,
-          height: 512,
-          alt: 'Ekuphumuleni Geriatric Nursing Home Logo',
+          url: '/images/brand/ekuphumuleni-og.png',
+          width: 1200,
+          height: 630,
+          alt: "Ekuphumuleni Geriatric Nursing Home, caring for Bulawayo's elders since 1980",
         },
       ],
     },

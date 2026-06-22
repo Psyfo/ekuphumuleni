@@ -1,8 +1,18 @@
 import type { Metadata } from 'next';
 import './styles/globals.css';
 
+/** Resolves per environment (ngo in production, vercel.app on staging) so the
+ *  OG/Twitter image URLs are absolute and correct on whichever site is shared. */
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://ekuphumuleni.ngo';
+const OG_IMAGE = {
+  url: '/images/brand/ekuphumuleni-og.png',
+  width: 1200,
+  height: 630,
+  alt: "Ekuphumuleni Geriatric Nursing Home, caring for Bulawayo's elders since 1980",
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ekuphumuleni.ngo'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Ekuphumuleni Geriatric Nursing Home | Bulawayo',
     template: '%s | Ekuphumuleni',
@@ -41,28 +51,21 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://ekuphumuleni.ngo',
+    url: SITE_URL,
     siteName: 'Ekuphumuleni Geriatric Nursing Home',
     title:
       'Ekuphumuleni Geriatric Nursing Home | Elderly Nursing Care in Bulawayo, Zimbabwe',
     description:
       'Over 40 years of excellence in geriatric care. Professional nursing, rehabilitation, and elderly care in Bulawayo, Zimbabwe.',
-    images: [
-      {
-        url: 'https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo-seo.png',
-        width: 512,
-        height: 512,
-        alt: 'Ekuphumuleni Geriatric Nursing Home Logo',
-      },
-    ],
+    images: [OG_IMAGE],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title:
       'Ekuphumuleni Geriatric Nursing Home | Elderly Nursing Care in Bulawayo, Zimbabwe',
     description:
       'Over 40 years of excellence in geriatric care. Professional nursing, rehabilitation, and elderly care in Bulawayo, Zimbabwe.',
-    images: ['https://ekuphumuleni.ngo/images/brand/ekuphumuleni_logo-seo.png'],
+    images: [OG_IMAGE.url],
   },
   robots: {
     index: true,
