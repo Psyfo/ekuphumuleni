@@ -49,32 +49,37 @@ export async function POST(request: Request) {
     process.env.NEXT_PUBLIC_SITE_URL ??
     'https://ekuphumuleni.ngo';
   const unitAmount = Math.round(amount * 100);
+  const isMonthly = frequency === 'monthly';
+  const productId = isMonthly
+    ? process.env.STRIPE_PRODUCT_MONTHLY
+    : process.env.STRIPE_PRODUCT_ONCE;
+
+  // Reuse a fixed product (clean reporting) when its id is configured; otherwise
+  // fall back to an inline product so checkout still works without it.
+  const priceData: Stripe.Checkout.SessionCreateParams.LineItem.PriceData = {
+    currency,
+    unit_amount: unitAmount,
+    ...(isMonthly ? { recurring: { interval: 'month' as const } } : {}),
+    ...(productId
+      ? { product: productId }
+      : {
+          product_data: {
+            name: isMonthly
+              ? 'Monthly donation to Ekuphumuleni'
+              : 'Donation to Ekuphumuleni',
+          },
+        }),
+  };
+
   const stripe = new Stripe(secretKey);
 
   try {
     const session = await stripe.checkout.sessions.create({
-      mode: frequency === 'monthly' ? 'subscription' : 'payment',
-      ...(frequency === 'monthly' ? {} : { submit_type: 'donate' as const }),
-      line_items: [
-        {
-          quantity: 1,
-          price_data: {
-            currency,
-            unit_amount: unitAmount,
-            product_data: {
-              name:
-                frequency === 'monthly'
-                  ? 'Monthly donation to Ekuphumuleni'
-                  : 'Donation to Ekuphumuleni',
-            },
-            ...(frequency === 'monthly'
-              ? { recurring: { interval: 'month' as const } }
-              : {}),
-          },
-        },
-      ],
-      success_url: `${origin}/donate/thank-you?status=success`,
-      cancel_url: `${origin}/?donate=cancelled`,
+      mode: isMonthly ? 'subscription' : 'payment',
+      ...(isMonthly ? {} : { submit_type: 'donate' as const }),
+      line_items: [{ quantity: 1, price_data: priceData }],
+      success_url: `${origin}/donate/thank-you?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/donate/thank-you?cancelled=1`,
       metadata: { source: 'donate-dialog', frequency },
     });
 
