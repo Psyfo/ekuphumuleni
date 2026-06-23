@@ -36,10 +36,10 @@ const isOtherLabel = (label: string) => !/\d/.test(label);
  * Two-rail donate dialog (Diaspora / In Zimbabwe). Mounted only while open (by
  * the parent), so it starts on the primary rail each time with no reset effect.
  *
- * The diaspora rail is a small, complete mock checkout flow:
- * select an amount (including a custom "Other" value) → review → a branded
- * hand-off screen that explains where the secure payment provider takes over.
- * No real charge happens; this is the staging preview of the donation UX.
+ * The diaspora rail is a real checkout flow: select an amount (presets or a
+ * custom "Other" value) and frequency → review → Stripe Checkout (redirect).
+ * If checkout isn't configured in this environment, it falls back to the
+ * hand-off screen with an "arrange by email" option.
  *
  * Accessible: portal, focus trap, Escape to close, scroll lock, focus restore.
  */
@@ -70,6 +70,8 @@ export default function DonateDialog({
   const [amountIndex, setAmountIndex] = useState(defaultIndex);
   const [customAmount, setCustomAmount] = useState('');
   const [frequency, setFrequency] = useState<Frequency>('once');
+  const [submitting, setSubmitting] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -83,6 +85,8 @@ export default function DonateDialog({
   const amountLabel = isOther ? `${symbol}${customAmount}` : selectedPreset ?? '';
   const canContinue = isOther ? customValid : Boolean(selectedPreset);
   const freqSuffix = frequency === 'monthly' ? 'monthly' : 'one-time';
+  /** Numeric value sent to Stripe (strips the currency symbol from presets). */
+  const amountValue = isOther ? customNumber : Number((selectedPreset ?? '').replace(/[^\d.]/g, ''));
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setShown(true));
@@ -184,6 +188,34 @@ export default function DonateDialog({
       {label}
     </button>
   );
+
+  /** Create a Stripe Checkout Session and redirect there. If checkout isn't
+   *  configured in this environment (503), fall back to the hand-off screen. */
+  const startCheckout = async () => {
+    setSubmitting(true);
+    setCheckoutError(null);
+    try {
+      const res = await fetch('/api/donate/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: amountValue, currency: 'usd', frequency }),
+      });
+      if (res.status === 503) {
+        setStep('handoff');
+        return;
+      }
+      const data = (await res.json().catch(() => ({}))) as { url?: string };
+      if (res.ok && data.url) {
+        window.location.href = data.url;
+        return;
+      }
+      setCheckoutError('We could not start secure checkout. Please try again, or email us.');
+    } catch {
+      setCheckoutError('Something went wrong. Please try again, or email us.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return createPortal(
     <div
@@ -418,12 +450,25 @@ export default function DonateDialog({
 
               <button
                 type='button'
-                onClick={() => setStep('handoff')}
+                onClick={startCheckout}
+                disabled={submitting}
                 className='gap-2 w-full btn btn-primary'
               >
                 <LockClosedIcon className='w-5 h-5' aria-hidden='true' />
-                Proceed to secure payment
+                {submitting ? 'Redirecting to secure checkout…' : 'Proceed to secure payment'}
               </button>
+              {checkoutError && (
+                <p
+                  className='mt-2 text-center'
+                  style={{ color: 'var(--color-error)', fontSize: '0.8125rem' }}
+                >
+                  {checkoutError}{' '}
+                  <a href={mailHref} style={{ color: TERRACOTTA, fontWeight: 600 }}>
+                    Email us
+                  </a>
+                  .
+                </p>
+              )}
             </div>
           )}
 
