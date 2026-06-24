@@ -43,6 +43,11 @@ hard-coded fallbacks, and the 2026 aesthetic overhaul (six phases) has landed:
 6. **Docs sync** — [docs/BRAND.md](docs/BRAND.md) is the single source of truth for the
    design system and matches the implementation.
 
+Beyond the public site, the **Sanity Studio is fully brand-themed** — warm theme, Deep Cocoa
+navbar, custom logo, per-type icons, a welcome pane, per-page "Guide" tabs, and photo-upload
+tips (`src/sanity/`). What's next (donate button, news/blog, newsletter) is tracked in
+[docs/ROADMAP.md](docs/ROADMAP.md).
+
 **Content freshness:** every public page uses ISR (`revalidate = 300`), so Sanity Studio
 edits reach production within ~5 minutes — no redeploy needed.
 
@@ -116,9 +121,12 @@ codebase uses it intentionally.
 
 ## Branching & Deployment
 
-- `master` and `staging` are **protected** — never commit or push to either directly.
-- Branch from fresh `master` using `feat/<name>`, `fix/<name>`, or `chore/<name>`, and
-  open a PR into `master`. CI (`.github/workflows/ci.yml`) runs a build check on every PR.
+- **`master` is the only protected branch** — never commit or push to it directly. `staging`
+  is the unprotected integration/preview branch (deploys to `ekuphumuleni.vercel.app`) and is
+  periodically reset to `master`.
+- Branch from fresh `master` using `feat/<name>`, `fix/<name>`, or `chore/<name>`. Workflow:
+  feature branch → merge into `staging` to preview → open a PR into `master`. CI
+  (`.github/workflows/ci.yml`) runs a build check on every PR.
 - Merging to `master` auto-deploys to production via
   `.github/workflows/deploy-production.yml`: Doppler-injected build on CI, rsync to the
   VPS, PM2 reload. The workflow clears Next's persisted fetch cache before each build so
