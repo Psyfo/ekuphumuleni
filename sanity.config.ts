@@ -6,7 +6,7 @@ import { schemaTypes } from './src/sanity/schemaTypes';
 import { apiVersion, dataset, projectId } from './src/sanity/env';
 import { ekuphumuleniTheme } from './src/sanity/lib/theme';
 import { structure } from './src/sanity/structure';
-import { StudioLogo } from './src/sanity/components/StudioLogo';
+import { StudioIcon } from './src/sanity/components/StudioIcon';
 import { StudioNavbar } from './src/sanity/components/StudioNavbar';
 import { StudioLayout } from './src/sanity/components/StudioLayout';
 
@@ -30,10 +30,12 @@ export default defineConfig({
   projectId: projectId || 'mgvrdxr1',
   dataset: dataset || 'production',
   title: 'Ekuphumuleni',
+  // Brand mark for the navbar home button. The deprecated `studio.components.logo`
+  // slot is no longer rendered by the modern navbar, so branding lives here.
+  icon: StudioIcon,
   theme: ekuphumuleniTheme,
   studio: {
     components: {
-      logo: StudioLogo,
       navbar: StudioNavbar,
       layout: StudioLayout,
     },
