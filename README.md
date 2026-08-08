@@ -69,6 +69,15 @@ NEXT_PUBLIC_SANITY_API_VERSION=2026-05-28
 Without Sanity credentials the site still runs — every page falls back to the static
 content in its `fallback-data.ts`.
 
+Analytics is optional and off by default. The public pages send a page-view beacon to
+the self-hosted [Umami](https://umami.is) instance only when the site id is present in
+the build environment, so local dev, CI, and previews stay uninstrumented:
+
+```bash
+NEXT_PUBLIC_UMAMI_WEBSITE_ID=...  # site id (public, not a secret); set in the production build env
+NEXT_PUBLIC_UMAMI_SRC=...         # optional; defaults to https://analytics.lab.mahlangu.dev/script.js
+```
+
 ### Useful scripts
 
 ```bash

@@ -3,6 +3,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import Footer from '@/components/Footer';
 import MotionProvider from '@/components/MotionProvider';
 import Navigation from '@/components/Navigation';
+import UmamiAnalytics from '@/components/UmamiAnalytics';
 
 export default function PublicLayout({
   children,
@@ -20,6 +21,7 @@ export default function PublicLayout({
         process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
+      <UmamiAnalytics />
     </MotionProvider>
   );
 }
