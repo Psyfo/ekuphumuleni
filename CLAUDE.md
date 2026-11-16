@@ -17,8 +17,8 @@ staff can update pages without code deploys.
   into `master`. `staging` is periodically reset to `master`, so treat anything that only
   lives there as disposable.
 - CI (`.github/workflows/ci.yml`) runs a build check on every PR into `master`. Merging to
-  `master` auto-deploys to production via `.github/workflows/deploy.yml` (rsync + PM2 restart
-  over SSH to the VPS).
+  `master` auto-deploys to production on Coolify, which builds the repo's `Dockerfile`
+  (Next standalone output; secrets are runtime-only env vars, never build args).
 
 ## Commit messages
 Follow Conventional Commits, matching existing history:
