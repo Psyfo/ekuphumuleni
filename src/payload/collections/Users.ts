@@ -1,6 +1,8 @@
 import { APIError, type CollectionConfig, type PayloadRequest } from 'payload';
 
 import { isOwner, ownerField } from '../access';
+import { resetEmailHTML } from '../account-emails';
+import { inviteEndpoint } from '../invite';
 
 /**
  * Refuses to leave the site with nobody who can manage accounts. Demoting or
@@ -30,15 +32,28 @@ export const Users: CollectionConfig = {
     lockTime: 10 * 60 * 1000,
     // A signed-in session lasts a working day.
     tokenExpiration: 60 * 60 * 8,
+    forgotPassword: {
+      generateEmailSubject: () => 'Choose a new password for the Ekuphumuleni website',
+      generateEmailHTML: (args) => resetEmailHTML(args!.req!, args!.token!),
+    },
   },
   admin: {
     useAsTitle: 'email',
     group: 'Settings',
-    description: 'Who can sign in. Owners manage accounts; editors change content.',
+    description:
+      'Who can sign in. Owners manage accounts; editors change content. To add someone, use "Invite someone" above.',
     defaultColumns: ['email', 'name', 'role', 'updatedAt'],
+    components: {
+      beforeList: ['@/payload/components/InvitePanel#InvitePanel'],
+    },
   },
+  endpoints: [inviteEndpoint],
   access: {
-    create: ({ req }) => isOwner(req.user),
+    // People join by invitation (the panel above the list, which calls
+    // /api/users/invite), so they choose their own password. Turning off
+    // plain "create" removes the admin form that made the owner type one.
+    // Scripts on the server (npm run cms:owner) still work.
+    create: () => false,
     delete: ({ req }) => isOwner(req.user),
     // Editors can see and update their own record, so they can change their
     // own name or password without help.
