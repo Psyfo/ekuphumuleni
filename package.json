@@ -18,7 +18,10 @@
         "migrate:production": "doppler run -p ekuphumuleni -c prd -- node scripts/with-external-db.mjs payload migrate",
         "cms:import": "doppler run -p ekuphumuleni -c dev -- payload run scripts/payload/import-from-sanity.ts",
         "cms:import:staging": "doppler run -p ekuphumuleni -c stg -- node scripts/with-external-db.mjs payload run scripts/payload/import-from-sanity.ts",
-        "cms:import:production": "doppler run -p ekuphumuleni -c prd -- node scripts/with-external-db.mjs payload run scripts/payload/import-from-sanity.ts"
+        "cms:import:production": "doppler run -p ekuphumuleni -c prd -- node scripts/with-external-db.mjs payload run scripts/payload/import-from-sanity.ts",
+        "cms:owner": "doppler run -p ekuphumuleni -c dev -- payload run scripts/payload/create-owner.ts",
+        "cms:owner:staging": "doppler run -p ekuphumuleni -c stg -- node scripts/with-external-db.mjs payload run scripts/payload/create-owner.ts",
+        "cms:owner:production": "doppler run -p ekuphumuleni -c prd -- node scripts/with-external-db.mjs payload run scripts/payload/create-owner.ts"
     },
     "dependencies": {
         "@heroicons/react": "^2.2.0",
