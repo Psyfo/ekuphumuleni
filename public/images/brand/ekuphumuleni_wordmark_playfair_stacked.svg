@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="120">
-    <text x="0" y="40" font-family="Playfair" font-size="40" fill="#A68A64">Ekuphumuleni</text>
-    <text x="0" y="80" font-family="Nunito" font-size="28" fill="#6B4F4F">Geriatric Nursing Home</text>
-    </svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="120"><text x="0" y="40" fill="#A68A64" font-family="Playfair" font-size="40">Ekuphumuleni</text><text x="0" y="80" fill="#6B4F4F" font-family="Nunito" font-size="28">Geriatric Nursing Home</text></svg>
