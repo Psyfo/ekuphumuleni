@@ -247,7 +247,7 @@ export interface DonorYear {
   createdAt: string;
 }
 /**
- * Who can sign in. Owners manage accounts; editors change content.
+ * Who can sign in. Owners manage accounts; editors change content. To add someone, use "Invite someone" above.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".

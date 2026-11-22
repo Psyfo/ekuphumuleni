@@ -246,9 +246,20 @@ export default function Footer({
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
         >
-          <div className='flex sm:flex-row flex-col items-start sm:items-center gap-2 sm:gap-4'>
+          <div className='flex sm:flex-row flex-col sm:justify-between items-start sm:items-center gap-2 sm:gap-4'>
             <p className='font-sans text-[var(--color-off-white)]/80 text-sm'>
               © {year} Ekuphumuleni. All rights reserved.
+            </p>
+            <p className='font-sans text-[var(--color-off-white)]/60 text-xs'>
+              Website by{' '}
+              <a
+                href='https://afrogenitor.com'
+                target='_blank'
+                rel='noopener'
+                className='text-[var(--color-off-white)]/80 underline-offset-4 hover:underline hover:text-[var(--color-off-white)] focus-visible:underline transition-colors'
+              >
+                Afrogenitor
+              </a>
             </p>
           </div>
         </m.div>

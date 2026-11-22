@@ -1,3 +1,4 @@
+import { InvitePanel as InvitePanel_f87a0adb6fe358cdb68af96106a371fb } from '@/payload/components/InvitePanel'
 import { PageGuide as PageGuide_b6e37d3858464b90f3e461fca87d91f6 } from '@/payload/components/PageGuide'
 import { RowLabel as RowLabel_330bd7521fe9b72cd9d2defbdaf80bf1 } from '@/payload/components/RowLabel'
 import { Icon as Icon_91bbc66a9b3ed1dae52e0caef1a54af7 } from '@/payload/components/Logo'
@@ -8,6 +9,7 @@ import { S3ClientUploadHandler as S3ClientUploadHandler_f97aa6c64367fa259c5bc056
 
 /** @type import('payload').ImportMap */
 export const importMap = {
+  "@/payload/components/InvitePanel#InvitePanel": InvitePanel_f87a0adb6fe358cdb68af96106a371fb,
   "@/payload/components/PageGuide#PageGuide": PageGuide_b6e37d3858464b90f3e461fca87d91f6,
   "@/payload/components/RowLabel#RowLabel": RowLabel_330bd7521fe9b72cd9d2defbdaf80bf1,
   "@/payload/components/Logo#Icon": Icon_91bbc66a9b3ed1dae52e0caef1a54af7,
