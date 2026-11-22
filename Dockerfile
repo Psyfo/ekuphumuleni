@@ -7,12 +7,15 @@
 # Coolify keeps old images until its cleanup runs, which is how the server's
 # disk filled on 2026-11-15.
 #
-# Secrets (ZEPTOMAIL_TOKEN and friends) are runtime-only env vars in Coolify
-# and are read by the contact API route at request time. The build needs none
-# of them (Sanity content is read from a public dataset), so none are declared
-# here; anything declared as an ARG ends up readable in `docker history`.
+# Secrets (DATABASE_URL, PAYLOAD_SECRET, the S3_* bucket key, ZEPTOMAIL_TOKEN
+# and friends) are runtime-only env vars in Coolify. The build needs none of
+# them: pages read the CMS when a visitor arrives, and Payload applies its
+# database migrations when the server starts. So none are declared here;
+# anything declared as an ARG ends up readable in `docker history`.
+#
+# Node 24: Payload 3.94 needs ^22.23.5 or ^24.22.3, and 24 is the current LTS.
 
-FROM node:22-slim AS deps
+FROM node:24-slim AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
 # The VPS has intermittent DNS failures reaching the npm registry
@@ -25,7 +28,7 @@ RUN set -eu; \
     done; \
     exit 1
 
-FROM node:22-slim AS build
+FROM node:24-slim AS build
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -34,16 +37,10 @@ COPY . .
 # the page), which is why they are safe as build args.
 ARG NEXT_PUBLIC_SITE_URL
 ARG NEXT_PUBLIC_GA_ID
-ARG NEXT_PUBLIC_SANITY_PROJECT_ID
-ARG NEXT_PUBLIC_SANITY_DATASET
-ARG NEXT_PUBLIC_SANITY_API_VERSION
 ARG NEXT_PUBLIC_UMAMI_WEBSITE_ID
 ARG NEXT_PUBLIC_UMAMI_SRC
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 ENV NEXT_PUBLIC_GA_ID=$NEXT_PUBLIC_GA_ID
-ENV NEXT_PUBLIC_SANITY_PROJECT_ID=$NEXT_PUBLIC_SANITY_PROJECT_ID
-ENV NEXT_PUBLIC_SANITY_DATASET=$NEXT_PUBLIC_SANITY_DATASET
-ENV NEXT_PUBLIC_SANITY_API_VERSION=$NEXT_PUBLIC_SANITY_API_VERSION
 ENV NEXT_PUBLIC_UMAMI_WEBSITE_ID=$NEXT_PUBLIC_UMAMI_WEBSITE_ID
 ENV NEXT_PUBLIC_UMAMI_SRC=$NEXT_PUBLIC_UMAMI_SRC
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -57,7 +54,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN for v in $(env | sed -n 's/^\(NEXT_PUBLIC_[A-Z0-9_]*\)=$/\1/p'); do unset "$v"; done; \
     npm run build
 
-FROM node:22-slim AS runtime
+FROM node:24-slim AS runtime
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -65,6 +62,7 @@ COPY --from=build /app/.next/standalone ./
 COPY --from=build /app/.next/static ./.next/static
 COPY --from=build /app/public ./public
 # Fail the image build, not production, if tracing missed sharp's libvips.
+# Both next/image and Payload's upload resizing depend on it.
 RUN node -e " \
   const sharp = require('sharp'); \
   sharp({ create: { width: 1, height: 1, channels: 3, background: '#000' } }) \

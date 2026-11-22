@@ -1,0 +1,4 @@
+# Doppler project for this repo: `doppler setup` reads this.
+setup:
+  - project: ekuphumuleni
+    config: dev

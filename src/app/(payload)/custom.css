@@ -1,0 +1,226 @@
+/*
+ * Ekuphumuleni branding for the Payload admin.
+ *
+ * Payload draws its whole interface from a grey "elevation" scale plus a few
+ * fonts. Swapping that scale for a warm paper-to-espresso one, and the fonts
+ * for the site's Nunito and Playfair, makes the admin read as part of the same
+ * brand without restyling individual components. Payload's own styles live in
+ * a CSS layer, so these unlayered rules win.
+ */
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('/fonts/PlayfairDisplay-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root,
+html[data-theme='light'] {
+  --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+
+  /* Paper (#FAF7F2) to espresso (#2C211E), the site's lightest and darkest tones. */
+  --theme-elevation-0: #faf7f2;
+  --theme-elevation-50: #f2ebe1;
+  --theme-elevation-100: #e8dfd2;
+  --theme-elevation-150: #ddd2c3;
+  --theme-elevation-200: #d0c3b2;
+  --theme-elevation-250: #c3b5a3;
+  --theme-elevation-300: #b6a794;
+  --theme-elevation-350: #a99985;
+  --theme-elevation-400: #9c8b77;
+  --theme-elevation-450: #8f7d6a;
+  --theme-elevation-500: #82705e;
+  --theme-elevation-550: #766353;
+  --theme-elevation-600: #6b574a;
+  --theme-elevation-650: #604c41;
+  --theme-elevation-700: #564238;
+  --theme-elevation-750: #4c3a31;
+  --theme-elevation-800: #6b4f4f; /* Deep Cocoa: primary buttons and active states */
+  --theme-elevation-850: #4a3532;
+  --theme-elevation-900: #3a2b27;
+  --theme-elevation-950: #332622;
+  --theme-elevation-1000: #2c211e;
+
+  --theme-bg: #faf7f2;
+  --theme-input-bg: #ffffff;
+  --theme-text: #2c211e;
+
+  --theme-success-500: #5c7a4a;
+  --theme-error-500: #b3563b;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+/* Headings in the brand serif. */
+.doc-header__title,
+.list-header h1,
+.dashboard h2,
+.eku-welcome h1,
+.eku-welcome h3,
+.render-title {
+  font-family: var(--font-serif);
+  color: #6b4f4f;
+}
+
+/* Links and focus in terracotta, the site's call-to-action colour. */
+a {
+  color: #b05a3c;
+}
+*:focus-visible {
+  outline-color: #b05a3c;
+}
+
+/* The navigation rail on a soft sand ground, like the site's secondary sections. */
+.nav {
+  background: #f2e8cf;
+}
+
+/* ── Sign-in screen ──────────────────────────────────────────────────────── */
+.template-minimal {
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(201, 124, 93, 0.16), transparent 60%),
+    #f2e8cf;
+}
+.eku-login-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+.eku-login-logo__name {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #6b4f4f;
+  line-height: 1.1;
+}
+.eku-login-logo__sub {
+  font-size: 0.9rem;
+  color: #a68a64;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── Dashboard welcome ───────────────────────────────────────────────────── */
+.eku-welcome {
+  background: #ede6e3;
+  border: 1px solid rgba(166, 138, 100, 0.25);
+  border-radius: 16px;
+  padding: 1.75rem 1.75rem 1.25rem;
+  margin-bottom: 2rem;
+}
+.eku-welcome h1 {
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem;
+}
+.eku-welcome__lede {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 46rem;
+  margin: 0 0 1.25rem;
+}
+.eku-welcome__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.eku-welcome__card {
+  background: #faf7f2;
+  border: 1px solid rgba(166, 138, 100, 0.25);
+  border-top: 4px solid #c97c5d;
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+}
+.eku-welcome__card h3 {
+  font-size: 1.05rem;
+  margin: 0 0 0.35rem;
+}
+.eku-welcome__card p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.eku-welcome__notes {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.eku-welcome__notes li + li {
+  margin-top: 0.35rem;
+}
+.eku-welcome__motto {
+  margin: 1rem 0 0;
+  font-size: 0.85rem;
+  color: #a68a64;
+  font-style: italic;
+}
+
+/* ── Page guide ──────────────────────────────────────────────────────────── */
+.eku-guide {
+  background: rgba(176, 90, 60, 0.07);
+  border: 1px solid rgba(166, 138, 100, 0.3);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+}
+.eku-guide summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+  color: #2c211e;
+}
+.eku-guide__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: #b05a3c;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.eku-guide__more {
+  color: #b05a3c;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.eku-guide__body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+.eku-guide__body h4 {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-serif);
+  color: #6b4f4f;
+}
+.eku-guide__body ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
