@@ -10,7 +10,7 @@
         "lint": "eslint .",
         "typecheck": "tsc --noEmit",
         "payload": "doppler run -p ekuphumuleni -c dev -- payload",
-        "generate:types": "payload generate:types",
+        "generate:types": "doppler run -p ekuphumuleni -c dev -- payload generate:types",
         "generate:importmap": "payload generate:importmap",
         "migrate:create": "doppler run -p ekuphumuleni -c dev -- payload migrate:create",
         "migrate": "doppler run -p ekuphumuleni -c dev -- payload migrate",
