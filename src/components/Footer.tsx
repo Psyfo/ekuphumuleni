@@ -67,7 +67,6 @@ export default function Footer({
                 width={80}
                 height={80}
                 className='drop-shadow-lg w-20 h-20 object-contain'
-                unoptimized
               />
               <h2 className='font-serif font-bold text-[var(--color-warm-beige)] !text-2xl'>
                 Ekuphumuleni

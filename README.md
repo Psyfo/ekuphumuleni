@@ -5,7 +5,7 @@ Bulawayo, Zimbabwe, serving the elderly since 1983. *Ekuphumuleni* means **"a pl
 rest"** — the site exists to build trust with families of residents, reach donors, and
 let the home's own staff keep content current without code deploys.
 
-- **Production:** https://ekuphumuleni.ngo (VPS, deployed automatically from `master`)
+- **Production:** https://ekuphumuleni.ngo (self-hosted Coolify, deployed automatically from `master`)
 - **Staging:** https://ekuphumuleni.vercel.app (Vercel, from `staging`)
 
 ## Tech Stack
@@ -18,7 +18,7 @@ let the home's own staff keep content current without code deploys.
 | CMS | Sanity (embedded Studio at `/studio`) |
 | Language | TypeScript |
 | Secrets | Doppler |
-| Hosting | VPS (rsync + PM2) for production, Vercel for staging |
+| Hosting | Coolify (Docker, see `Dockerfile`) for production, Vercel for staging |
 
 ## State of the Application
 
@@ -68,6 +68,15 @@ NEXT_PUBLIC_SANITY_API_VERSION=2026-05-28
 
 Without Sanity credentials the site still runs — every page falls back to the static
 content in its `fallback-data.ts`.
+
+Analytics is optional and off by default. The public pages send a page-view beacon to
+the self-hosted [Umami](https://umami.is) instance only when the site id is present in
+the build environment, so local dev, CI, and previews stay uninstrumented:
+
+```bash
+NEXT_PUBLIC_UMAMI_WEBSITE_ID=...  # site id (public, not a secret); set in the production build env
+NEXT_PUBLIC_UMAMI_SRC=...         # optional; defaults to https://analytics.lab.mahlangu.dev/script.js
+```
 
 ### Useful scripts
 
@@ -119,14 +128,17 @@ codebase uses it intentionally.
 - `master` and `staging` are **protected** — never commit or push to either directly.
 - Branch from fresh `master` using `feat/<name>`, `fix/<name>`, or `chore/<name>`, and
   open a PR into `master`. CI (`.github/workflows/ci.yml`) runs a build check on every PR.
-- Merging to `master` auto-deploys to production via
-  `.github/workflows/deploy-production.yml`: Doppler-injected build on CI, rsync to the
-  VPS, PM2 reload. The workflow clears Next's persisted fetch cache before each build so
-  prerendered pages never bake stale CMS content.
+- Merging to `master` auto-deploys to production on Coolify, which builds the repo's
+  `Dockerfile`: Next's standalone output only, so the image stays around 500 MB instead
+  of the 2.5 GB the old Nixpacks build produced. Every build starts from a clean tree, so
+  no persisted fetch cache can bake stale CMS content into prerendered pages. (The
+  earlier GitHub Actions rsync + PM2 pipeline to a separate VPS has been retired.)
 - Commit messages follow Conventional Commits (`type(scope): description`).
 
 ## Secrets
 
-Builds and deploys inject secrets via Doppler (`DOPPLER_TOKEN_EKU_PROD`). Never hardcode
-or commit secrets; `.env.local` / `.env.staging` / `.env.production` are local-only and
+Production secrets (the ZeptoMail token and mail addresses) are Coolify environment
+variables marked runtime-only, so they never enter the image; the build needs only the
+public `NEXT_PUBLIC_*` values. Doppler (`DOPPLER_TOKEN_EKU_PROD`) still feeds the CI build
+check. Never hardcode or commit secrets; `.env.local` / `.env.staging` / `.env.production` are local-only and
 gitignored.
