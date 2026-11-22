@@ -49,10 +49,17 @@ export const Users: CollectionConfig = {
     beforeChange: [
       async ({ data, operation, originalDoc, req }) => {
         // The very first account is always an owner, or no one could ever
-        // promote anyone.
+        // promote anyone. It can only be made from the server (a script using
+        // the Local API), never through the website: otherwise whoever opened
+        // /admin first on a fresh install could make themselves the owner.
         if (operation === 'create') {
           const { totalDocs } = await req.payload.count({ collection: 'users', req });
-          if (totalDocs === 0) data.role = 'owner';
+          if (totalDocs === 0) {
+            if (req.payloadAPI !== 'local') {
+              throw new APIError('Accounts on this site are set up by its owner.', 403);
+            }
+            data.role = 'owner';
+          }
         }
         if (operation === 'update' && originalDoc?.role === 'owner' && data.role === 'editor') {
           await requireAnotherOwner(req, originalDoc.id);
