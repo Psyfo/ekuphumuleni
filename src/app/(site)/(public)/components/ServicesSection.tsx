@@ -93,7 +93,6 @@ function FadeImage({ src, alt }: { src: string; alt: string }) {
         }`}
         onLoad={() => setLoaded(true)}
         priority={false}
-        unoptimized
       />
       {/* Overlay gradient on hover */}
       <div className='absolute inset-0 bg-gradient-to-t from-[var(--color-deep-cocoa)]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />

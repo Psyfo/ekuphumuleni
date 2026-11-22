@@ -82,7 +82,6 @@ export default function RehabilitationSection({ data }: RehabilitationSectionPro
                   fill
                   sizes='(min-width:1024px) 50vw, 100vw'
                   className='img-warm object-cover'
-                  unoptimized
                 />
               </div>
             </div>
@@ -136,7 +135,6 @@ export default function RehabilitationSection({ data }: RehabilitationSectionPro
                     fill
                     sizes='(min-width:640px) 33vw, 100vw'
                     className='img-warm object-cover group-hover:scale-105 transition-transform duration-500'
-                    unoptimized
                   />
                 </div>
               </m.div>

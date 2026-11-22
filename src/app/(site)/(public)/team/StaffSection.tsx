@@ -125,7 +125,6 @@ export default function StaffSection({
                         sizes='100vw'
                         className='img-warm object-cover'
                         priority={index === 0}
-                        unoptimized
                       />
                     ) : null}
                   </m.div>

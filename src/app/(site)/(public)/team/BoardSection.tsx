@@ -70,7 +70,6 @@ function Portrait({
           onLoad={() => setLoaded(true)}
           onError={() => setFailed(true)}
           priority={priority}
-          unoptimized
         />
       ) : null}
     </div>

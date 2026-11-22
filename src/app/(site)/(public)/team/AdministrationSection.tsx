@@ -62,7 +62,6 @@ function Portrait({ src, alt }: { src?: string | null; alt: string }) {
           onLoad={() => setLoaded(true)}
           onError={() => setFailed(true)}
           loading='lazy'
-          unoptimized
         />
       ) : null}
     </div>
