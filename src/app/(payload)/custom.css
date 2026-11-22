@@ -224,3 +224,91 @@ a {
   font-size: 0.9rem;
   line-height: 1.55;
 }
+
+/* ── Invite someone (above "People with access") ─────────────────────────── */
+.eku-invite {
+  background: #ede6e3;
+  border: 1px solid rgba(166, 138, 100, 0.25);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  /* The list's own content sits inside Payload's page gutter; match it. */
+  margin: 1.5rem var(--gutter-h, 3rem) 0;
+}
+.eku-invite h2 {
+  font-family: var(--font-serif);
+  color: #6b4f4f;
+  font-size: 1.35rem;
+  margin: 0 0 0.25rem;
+}
+.eku-invite__lede,
+.eku-invite__note {
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.eku-invite__note {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  color: #766353;
+}
+.eku-invite__form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 0.75rem 1rem;
+  align-items: end;
+}
+.eku-invite__form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.eku-invite__form em {
+  font-weight: 400;
+  color: #766353;
+}
+.eku-invite__form input,
+.eku-invite__form select {
+  font: inherit;
+  font-weight: 400;
+  font-size: 0.95rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid #d0c3b2;
+  border-radius: 8px;
+  background: #fff;
+  color: #2c211e;
+}
+.eku-invite__form input:focus-visible,
+.eku-invite__form select:focus-visible {
+  outline: 2px solid #b05a3c;
+  outline-offset: 1px;
+}
+.eku-invite__button {
+  font: inherit;
+  font-weight: 700;
+  padding: 0.6rem 1.2rem;
+  border: 0;
+  border-radius: 999px;
+  background: #6b4f4f;
+  color: #fff;
+  cursor: pointer;
+}
+.eku-invite__button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.eku-invite__status {
+  margin: 0.75rem 0 0;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.92rem;
+}
+.eku-invite__status--ok {
+  background: rgba(92, 122, 74, 0.12);
+  color: #3f5633;
+}
+.eku-invite__status--error {
+  background: rgba(179, 86, 59, 0.12);
+  color: #8a3f2a;
+}
