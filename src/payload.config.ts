@@ -27,7 +27,10 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000').replace(/\/+$/, '');
 
 export default buildConfig({
-  serverURL: siteUrl,
+  // On staging and production the server address pins where sign-in cookies
+  // are accepted from. Local dev leaves it open, so the admin works on
+  // whichever port the dev server lands on.
+  serverURL: process.env.NODE_ENV === 'production' ? siteUrl : undefined,
   secret: process.env.PAYLOAD_SECRET ?? '',
 
   admin: {
