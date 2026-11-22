@@ -180,6 +180,8 @@ export interface Media {
    * What the photo shows, for people who cannot see it and for search engines. For example: “Residents enjoying the garden in the afternoon sun.”
    */
   alt: string;
+  prefix?: string | null;
+  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -407,6 +409,8 @@ export interface DonorYearsSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  prefix?: T;
+  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
