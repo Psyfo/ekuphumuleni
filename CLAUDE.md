@@ -51,7 +51,8 @@ Always use the npm scripts, which run through Doppler with the right config:
 `npm run migrate` / `migrate:staging` / `migrate:production`, and the one-off Sanity import
 `cms:import` / `cms:import:staging` / `cms:import:production` (refuses to overwrite existing
 content unless `CMS_IMPORT_REPLACE=yes`). After importing into a running server, restart it
-so its cache is cleared.
+so its cache is cleared. `cms:owner` / `cms:owner:staging` / `cms:owner:production -- <email>`
+gives someone an owner account (the only way to make the first one).
 
 ## Secrets & environments
 Doppler project `ekuphumuleni` (configs `dev` / `stg` / `prd`) is the source of truth; the

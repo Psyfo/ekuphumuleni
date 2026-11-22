@@ -96,6 +96,7 @@ npm run migrate               # apply migrations to the dev database
 npm run migrate:staging       # ...to staging (production applies its own at start-up)
 npm run generate:types        # regenerate src/payload-types.ts
 npm run cms:import            # one-off Sanity import (also :staging / :production)
+npm run cms:owner -- <email>  # give someone an owner account (also :staging / :production)
 ```
 
 ## Content Editing (Payload)
@@ -104,6 +105,11 @@ Non-technical staff edit everything at `/admin`: a branded editor with a welcome
 a plain-language guide at the top of each page, and the last 10 saves of every page kept
 under **Versions** so mistakes can be undone. Owners manage who has access; editors change
 content. Password resets are emailed through ZeptoMail.
+
+The website never lets anyone create the first account, so a fresh database gets its first
+owner from `npm run cms:owner -- <email>` (or `:staging` / `:production`). The account has
+a random password nobody knows; the owner sets their own with **Forgot password?** on the
+sign-in page. Owners then add everyone else from **People with access** in the admin.
 
 Each page is a **global** (`src/payload/globals/`); team members, staff photos and donor
 years are **collections** (`src/payload/collections/`). The pattern for adding editable
