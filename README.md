@@ -109,7 +109,10 @@ content. Password resets are emailed through ZeptoMail.
 The website never lets anyone create the first account, so a fresh database gets its first
 owner from `npm run cms:owner -- <email>` (or `:staging` / `:production`). The account has
 a random password nobody knows; the owner sets their own with **Forgot password?** on the
-sign-in page. Owners then add everyone else from **People with access** in the admin.
+sign-in page. Owners then add everyone else with **Invite someone** at the top of **People
+with access**: the person gets a branded email (`src/payload/account-emails.ts`) with a link,
+valid for 7 days, to choose their own password. There is deliberately no form where an owner
+types someone else's password.
 
 Each page is a **global** (`src/payload/globals/`); team members, staff photos and donor
 years are **collections** (`src/payload/collections/`). The pattern for adding editable
