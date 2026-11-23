@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 
+import LegalDocument from '@/components/LegalDocument';
 import { getPage } from '@/lib/cms';
 
 import { FALLBACK_PRIVACY_PAGE_SETTINGS } from './fallback-data';
@@ -17,25 +18,13 @@ export async function generateMetadata(): Promise<Metadata> {
     // Fall through to defaults
   }
 
-  const title = seo?.metaTitle ?? 'Privacy Policy';
-  const description =
-    seo?.metaDescription ??
-    'Privacy Policy for Ekuphumuleni Geriatric Nursing Home. Learn how we protect and handle personal information, resident data, and maintain confidentiality in accordance with Zimbabwe privacy laws.';
-
   return {
-    title,
-    description,
-    keywords: [
-      'privacy policy',
-      'data protection',
-      'patient confidentiality',
-      'nursing home privacy',
-      'Zimbabwe privacy laws',
-    ],
+    title: seo?.metaTitle ?? FALLBACK_PRIVACY_PAGE_SETTINGS.seo.metaTitle,
+    description: seo?.metaDescription ?? FALLBACK_PRIVACY_PAGE_SETTINGS.seo.metaDescription,
+    keywords: ["privacy policy","data protection","cookies","Cyber and Data Protection Act","Ekuphumuleni"],
     openGraph: {
       title: 'Privacy Policy | Ekuphumuleni',
-      description:
-        'Learn how we protect and handle personal information and maintain confidentiality.',
+      description: 'How we collect and use personal information through this website, and your rights.',
       type: 'website',
       url: 'https://ekuphumuleni.ngo/privacy',
     },
@@ -59,13 +48,11 @@ export default async function PrivacyPage() {
   const settings = pageSettings ?? FALLBACK_PRIVACY_PAGE_SETTINGS;
 
   return (
-    <main className='flex justify-center items-center bg-[var(--color-warm-beige)] min-h-screen'>
-      <div className='mx-auto px-4 py-16 max-w-4xl text-center'>
-        <h1 className='mb-4 text-[var(--color-deep-cocoa)] heading-1'>
-          {settings.heading}
-        </h1>
-        <p className='text-[var(--color-deep-cocoa)] body-text'>{settings.body}</p>
-      </div>
+    <main className='bg-[var(--color-warm-beige)] min-h-screen'>
+      <article className='mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-20 max-w-3xl'>
+        <h1 className='mb-3 text-[var(--color-deep-cocoa)] heading-1'>{settings.heading}</h1>
+        <LegalDocument body={settings.body} />
+      </article>
     </main>
   );
 }
