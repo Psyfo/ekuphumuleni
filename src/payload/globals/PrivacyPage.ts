@@ -24,6 +24,11 @@ export const PrivacyPage: GlobalConfig = pageGlobal({
               label: 'Body',
               required: true,
               type: 'textarea',
+              admin: {
+                rows: 24,
+                description:
+                  'Leave a blank line between paragraphs. Start a line with "## " for a section heading, or "- " for a bullet point. Email and web addresses become links automatically; [Privacy Policy](/privacy) makes a link with your own words. Update the "Last updated" date at the top when you change it.',
+              },
             },
           ],
         },
