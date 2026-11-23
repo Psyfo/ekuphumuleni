@@ -54,8 +54,18 @@ content unless `CMS_IMPORT_REPLACE=yes`). After importing into a running server,
 so its cache is cleared. `cms:owner` / `cms:owner:staging` / `cms:owner:production -- <email>`
 gives someone an owner account (the only way to make the first one).
 
+## Emails
+Every email the site sends (account invites and resets, contact-form notification and
+confirmation) is built with `brandedEmail()` and its blocks in `src/lib/email/layout.ts`, so
+they share one look. New emails use it too: inline styles only, escape all user input with
+`escapeHtml`, and point people at the home's real contact details, never the no-reply sender.
+Mail goes through ZeptoMail (agent `ekuphumuleni_agent`), which only accepts sends from
+allow-listed server IPs; a new server address must be added there or every email fails.
+
 ## Secrets & environments
 Doppler project `ekuphumuleni` (configs `dev` / `stg` / `prd`) is the source of truth; the
 folder has no default, so scripts pass `-p ekuphumuleni -c <cfg>` explicitly. Coolify holds
-the runtime copies for staging and production. Don't hardcode or commit secrets.
+the runtime copies for staging and production, and nothing syncs them: when a value changes
+in Doppler, update the Coolify copy, restart the app, and check it works on the live site.
+Don't hardcode or commit secrets.
 `.env.local` / `.env.staging` / `.env.production` are local-only and gitignored.
