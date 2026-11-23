@@ -8,7 +8,7 @@ powers editable content so non-technical staff can update pages without code dep
 - **`master` is the only protected branch**: never commit or push directly to it. It ships
   to production. `staging` is the shared integration branch and is intentionally **not**
   protected; it deploys to `https://ekuphumuleni.lab.mahlangu.dev` (Coolify) for testing.
-  `ekuphumuleni.vercel.app` only redirects there (see `vercel.json`).
+  Nothing runs on Vercel any more.
 - Before making any change, create a branch off `master` (never off `staging` or another
   feature branch):
   - `feat/<short-name>` for new features
