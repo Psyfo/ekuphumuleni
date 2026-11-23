@@ -1,5 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import { FALLBACK_CONTACT_PAGE_SETTINGS } from '@/app/(site)/(public)/contact/fallback-data';
+import { getPage } from '@/lib/cms';
+import {
+  confirmationEmail as buildConfirmationEmail,
+  homeContactFrom,
+  notificationEmail as buildNotificationEmail,
+  type HomeContact,
+} from '@/lib/email/contact-emails';
+
 interface ContactFormData {
   name: string;
   email: string;
@@ -102,179 +111,24 @@ export async function POST(request: NextRequest) {
 
     console.log('Preparing to send emails via ZeptoMail...');
 
-    // Email template styles matching brand aesthetics
-    const emailStyles = `
-      <style>
-        body {
-          font-family: 'Nunito', Arial, sans-serif;
-          background-color: #F2E8CF;
-          color: #6B4F4F;
-          margin: 0;
-          padding: 20px;
-          line-height: 1.6;
-        }
-        .container {
-          max-width: 600px;
-          margin: 0 auto;
-          background: #EDE6E3;
-          border-radius: 12px;
-          overflow: hidden;
-          box-shadow: 0 4px 6px rgba(107, 79, 79, 0.1);
-        }
-        .header {
-          background: #A68A64;
-          color: white;
-          padding: 30px 20px;
-          text-align: center;
-        }
-        .header h1 {
-          font-family: 'Playfair Display', serif;
-          font-size: 28px;
-          margin: 0;
-          font-weight: 700;
-        }
-        .content {
-          padding: 30px 20px;
-        }
-        .content h2 {
-          font-family: 'Playfair Display', serif;
-          color: #A68A64;
-          font-size: 24px;
-          margin-bottom: 20px;
-          font-weight: 700;
-        }
-        .content h3 {
-          font-family: 'Playfair Display', serif;
-          color: #A68A64;
-          font-size: 20px;
-          margin-bottom: 15px;
-          font-weight: 700;
-        }
-        .message-box {
-          background: #F2E8CF;
-          border-left: 4px solid #C97C5D;
-          padding: 20px;
-          margin: 20px 0;
-          border-radius: 0 8px 8px 0;
-        }
-        .footer {
-          background: #6B4F4F;
-          color: white;
-          padding: 20px;
-          text-align: center;
-          font-size: 14px;
-        }
-        .accent {
-          color: #C97C5D;
-          font-weight: 600;
-        }
-        .contact-info {
-          background: #D9C6A5;
-          padding: 15px;
-          border-radius: 8px;
-          margin: 15px 0;
-        }
-        .contact-info strong {
-          color: #A68A64;
-        }
-      </style>
-    `;
+    // The home's own email and phone numbers, as staff keep them on the Contact
+    // page, so the confirmation never points people at the no-reply sender.
+    let home: HomeContact;
+    try {
+      const page = (await getPage('contact-page')) as { infoSection?: { details?: unknown } };
+      home = homeContactFrom(page?.infoSection?.details);
+    } catch (err) {
+      console.error('[contact] CMS read failed, using fallback contact details:', err);
+      home = homeContactFrom(FALLBACK_CONTACT_PAGE_SETTINGS.infoSection.details);
+    }
+    if (!home.email && !home.phones.length) {
+      home = homeContactFrom(FALLBACK_CONTACT_PAGE_SETTINGS.infoSection.details);
+    }
 
-    // Sanitize message content for HTML
-    const sanitizedMessage = message
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;')
-      .replace(/\n/g, '<br>');
-
-    // Email to site owner (notification of new contact)
-    const ownerEmailHtml = `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <title>New Contact Form Submission - Ekuphumuleni</title>
-          ${emailStyles}
-        </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <h1>Ekuphumuleni</h1>
-            </div>
-            <div class="content">
-              <h2>New Contact Form Submission</h2>
-              <p>You have received a new message through your website contact form.</p>
-              
-              <div class="contact-info">
-                <h3>Contact Details:</h3>
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Email:</strong> <span class="accent">${email}</span></p>
-              </div>
-
-              <div class="message-box">
-                <h3>Message:</h3>
-                <p>${sanitizedMessage}</p>
-              </div>
-
-              <p><em>You can reply directly to this email to respond to ${name}.</em></p>
-            </div>
-            <div class="footer">
-              <p>This message was sent through your website contact form.</p>
-            </div>
-          </div>
-        </body>
-      </html>
-    `;
-
-    // Email to person who submitted the form (confirmation)
-    const confirmationEmailHtml = `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <title>Thank You for Contacting Ekuphumuleni</title>
-          ${emailStyles}
-        </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <h1>Ekuphumuleni</h1>
-            </div>
-            <div class="content">
-              <h2>Thank You for Your Message</h2>
-              <p>Dear <span class="accent">${name}</span>,</p>
-              
-              <p>Thank you for reaching out to us. We have received your message and appreciate you taking the time to contact us.</p>
-
-              <div class="message-box">
-                <h3>Your Message:</h3>
-                <p>${sanitizedMessage}</p>
-              </div>
-
-              <p>We will review your message and respond within <strong>24-48 hours</strong>.</p>
-
-              <div class="contact-info">
-                <h3>Need Immediate Assistance?</h3>
-                <p>If your matter is urgent, please contact us directly at:</p>
-                <p><strong>Email:</strong> <span class="accent">${process.env.MAIL_FROM_EMAIL}</span></p>
-              </div>
-
-              <p style="margin-top: 30px;">
-                <em>Thank you,</em><br>
-                <strong class="accent">The Ekuphumuleni Team</strong>
-              </p>
-            </div>
-            <div class="footer">
-              <p>Thank you for contacting us.</p>
-            </div>
-          </div>
-        </body>
-      </html>
-    `;
+    const origin = (process.env.NEXT_PUBLIC_SITE_URL || request.nextUrl.origin).replace(/\/+$/, '');
+    const submitted = { name: name.trim(), email: email.trim(), message: message.trim() };
+    const notification = buildNotificationEmail(origin, submitted);
+    const confirmation = buildConfirmationEmail(origin, submitted, home);
 
     // Helper function to send email via ZeptoMail REST API
     const sendZeptoMail = async (mailData: ZeptoMailRequest) => {
@@ -323,9 +177,9 @@ export async function POST(request: NextRequest) {
           name: name,
         },
       ],
-      subject: `New Contact Form Submission from ${name}`,
-      htmlbody: ownerEmailHtml,
-      textbody: `New contact form submission from ${name} (${email}):\n\n${message}`,
+      subject: notification.subject,
+      htmlbody: notification.html,
+      textbody: notification.text,
     };
 
     // Prepare confirmation email to the person who submitted the form
@@ -342,9 +196,9 @@ export async function POST(request: NextRequest) {
           },
         },
       ],
-      subject: 'Thank you for contacting Ekuphumuleni',
-      htmlbody: confirmationEmailHtml,
-      textbody: `Dear ${name},\n\nThank you for contacting us. We have received your message and will respond within 24-48 hours.\n\nYour message:\n${message}\n\nThank you,\nThe Ekuphumuleni Team`,
+      subject: confirmation.subject,
+      htmlbody: confirmation.html,
+      textbody: confirmation.text,
     };
 
     // Send both emails with Promise.all for better performance
