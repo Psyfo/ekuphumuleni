@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import '../styles/globals.css';
 
-/** Resolves per environment (ngo in production, vercel.app on staging) so the
+/** Resolves per environment (ngo in production, lab.mahlangu.dev on staging) so the
  *  OG/Twitter image URLs are absolute and correct on whichever site is shared. */
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://ekuphumuleni.ngo';
 const OG_IMAGE = {

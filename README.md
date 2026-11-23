@@ -6,8 +6,7 @@ rest"**. The site exists to build trust with families of residents, reach donors
 let the home's own staff keep content current without code deploys.
 
 - **Production:** https://ekuphumuleni.ngo (self-hosted Coolify, deployed automatically from `master`)
-- **Staging:** https://ekuphumuleni.lab.mahlangu.dev (Coolify, deployed automatically from `staging`).
-  The old `ekuphumuleni.vercel.app` address redirects there.
+- **Staging:** https://ekuphumuleni.lab.mahlangu.dev (Coolify, deployed automatically from `staging`)
 - **Editor:** `/admin` on either site (Payload CMS)
 
 ## Tech Stack
