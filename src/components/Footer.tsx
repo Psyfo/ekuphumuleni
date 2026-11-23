@@ -239,9 +239,25 @@ export default function Footer() {
           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
         >
           <div className='flex sm:flex-row flex-col sm:justify-between items-start sm:items-center gap-2 sm:gap-4'>
-            <p className='font-sans text-[var(--color-off-white)]/80 text-sm'>
-              © {year} Ekuphumuleni. All rights reserved.
-            </p>
+            <div className='flex flex-wrap items-center gap-x-4 gap-y-1'>
+              <p className='font-sans text-[var(--color-off-white)]/80 text-sm'>
+                © {year} Ekuphumuleni. All rights reserved.
+              </p>
+              <nav aria-label='Legal' className='flex gap-4 font-sans text-sm'>
+                <Link
+                  href='/privacy'
+                  className='text-[var(--color-off-white)]/80 underline-offset-4 hover:underline hover:text-[var(--color-off-white)] focus-visible:underline transition-colors'
+                >
+                  Privacy
+                </Link>
+                <Link
+                  href='/terms'
+                  className='text-[var(--color-off-white)]/80 underline-offset-4 hover:underline hover:text-[var(--color-off-white)] focus-visible:underline transition-colors'
+                >
+                  Terms
+                </Link>
+              </nav>
+            </div>
             <p className='font-sans text-[var(--color-off-white)]/60 text-xs'>
               Website by{' '}
               <a
