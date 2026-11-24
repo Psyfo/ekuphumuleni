@@ -79,9 +79,12 @@ export default async function DonorsPage() {
       <DonorsHeroSection
         title={settings.heroTitle}
         subtitle={settings.heroSubtitle}
+      />
+      <DonorWallSection
+        data={settings.donorWallSection}
+        years={years}
         quote={settings.heroQuote}
       />
-      <DonorWallSection data={settings.donorWallSection} years={years} />
       <SpecialMentionsSection data={settings.specialMentionsSection} />
     </main>
   );
