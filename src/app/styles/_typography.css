@@ -6,6 +6,24 @@
  * Note: Colors are NOT set here - use Tailwind color utilities for flexibility.
  */
 
+/* ===== Line breaking ===== */
+/* Headings break into lines of similar length instead of leaving one short
+   word (or half a hyphenated one) on its own line, and paragraphs avoid ending
+   on a single stranded word. Browsers that do not support this ignore it. */
+h1,
+h2,
+h3,
+.heading-display,
+.heading-1,
+.heading-2,
+.heading-3 {
+    text-wrap: balance;
+}
+
+p {
+    text-wrap: pretty;
+}
+
 /* ===== Heading Utilities ===== */
 /* Display: reserved for the home hero title */
 .heading-display {
