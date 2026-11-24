@@ -4,19 +4,19 @@ import { HomeIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 interface DonorsHeroSectionProps {
   title?: string;
   subtitle?: string;
-  quote?: string;
 }
 
+/* The page's quote is not shown here: it is the inscription at the top of the
+   wall of names (DonorWallSection). */
 export default function DonorsHeroSection({
   title = 'Our Donors & Well-Wishers',
   subtitle = 'Honoring the individuals, organizations, and community members whose support helps us maintain residential nursing care and services for older adults',
-  quote = 'Every act of generosity creates ripples of hope and healing',
 }: DonorsHeroSectionProps = {}) {
 
   return (
     <section
       aria-label='Donors Page Header'
-      className='relative bg-gradient-to-br from-[var(--color-warm-beige)] via-[var(--color-soft-sand)] to-[var(--color-off-white)] px-4 py-16 lg:py-20'
+      className='relative bg-gradient-to-br from-[var(--color-warm-beige)] via-[var(--color-soft-sand)] to-[var(--color-off-white)] px-4 py-14 lg:py-16'
     >
       <div className='mx-auto max-w-5xl'>
         {/* Breadcrumb */}
@@ -57,15 +57,6 @@ export default function DonorsHeroSection({
         <p className='mx-auto max-w-3xl !text-lg lg:!text-xl text-center leading-relaxed body-text animate-rise animate-rise-delay-3'>
           {subtitle}
         </p>
-
-        {/* Decorative Quote */}
-        <div className='mx-auto mt-12 max-w-2xl animate-rise animate-rise-delay-4'>
-          <div className='bg-white/70 shadow-warm-lg backdrop-blur-sm p-8 lg:p-10 border border-subtle rounded-2xl'>
-            <p className='font-serif !text-[var(--color-deep-cocoa)] text-lg lg:text-xl text-center italic leading-relaxed'>
-              &ldquo;{quote}&rdquo;
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );
