@@ -29,6 +29,7 @@
 
 /* ===== Components ===== */
 @import "./_components.css";
+@import "./_donor-wall.css";
 
 /* ===== Utilities ===== */
 @import "./_utilities.css";
