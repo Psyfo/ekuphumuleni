@@ -30,19 +30,15 @@ We do not sell your information, and we do not share it with anyone for marketin
 ## Who handles it for us
 
 - Messages from the contact form are delivered to our staff by email, through ZeptoMail, an email delivery service run by Zoho.
-- The website runs on a private server managed by our web developer.
-- Google Analytics, run by Google, helps us understand how the website is used.
+- The website, including our visitor statistics, runs on a private server managed by our web developer.
 
 These providers handle your information only to provide their service to us.
 
 ## Analytics and cookies
 
-We use two tools to understand how the website is used.
+We use Umami, which runs on our own server, to count visits and see which pages are read. It does not use cookies, does not identify you, and its information is not shared with anyone else.
 
-- Umami, which we run on our own server, counts visits without using cookies and without identifying you.
-- Google Analytics uses cookies to tell visits apart. It does not tell us who you are, but Google receives information such as your IP address and browser details.
-
-You can block cookies in your browser's settings, or turn off Google Analytics with Google's opt-out add-on at https://tools.google.com/dlpage/gaoptout.
+The public website does not set any cookies. The only cookie we use keeps our own staff signed in while they edit the website.
 
 ## How long we keep it
 
@@ -75,6 +71,6 @@ export const FALLBACK_PRIVACY_PAGE_SETTINGS = {
   seo: {
     metaTitle: 'Privacy Policy',
     metaDescription:
-      "How Ekuphumuleni Geriatric Nursing Home collects and uses personal information through this website, the cookies it uses, and your rights under Zimbabwe's Cyber and Data Protection Act.",
+      "How Ekuphumuleni Geriatric Nursing Home collects and uses personal information through this website, how it counts visits without cookies, and your rights under Zimbabwe's Cyber and Data Protection Act.",
   },
 };

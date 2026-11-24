@@ -36,11 +36,9 @@ COPY . .
 # they must reach `next build`. They are public by definition (they ship in
 # the page), which is why they are safe as build args.
 ARG NEXT_PUBLIC_SITE_URL
-ARG NEXT_PUBLIC_GA_ID
 ARG NEXT_PUBLIC_UMAMI_WEBSITE_ID
 ARG NEXT_PUBLIC_UMAMI_SRC
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
-ENV NEXT_PUBLIC_GA_ID=$NEXT_PUBLIC_GA_ID
 ENV NEXT_PUBLIC_UMAMI_WEBSITE_ID=$NEXT_PUBLIC_UMAMI_WEBSITE_ID
 ENV NEXT_PUBLIC_UMAMI_SRC=$NEXT_PUBLIC_UMAMI_SRC
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -49,8 +47,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # fire for "" (only for undefined). That silently dropped the Umami script
 # (NEXT_PUBLIC_UMAMI_SRC is not set in Coolify) in the first test build. Unset
 # every empty NEXT_PUBLIC_* so an unset value behaves as unset, as it did
-# under Nixpacks. The build also runs the postbuild next-sitemap step, which
-# writes into public/.
+# under Nixpacks.
 RUN for v in $(env | sed -n 's/^\(NEXT_PUBLIC_[A-Z0-9_]*\)=$/\1/p'); do unset "$v"; done; \
     npm run build
 
