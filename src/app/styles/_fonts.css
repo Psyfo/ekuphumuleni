@@ -3,6 +3,8 @@
  * 
  * Defines @font-face declarations for custom fonts.
  * Uses font-display: swap for better performance.
+ * The italics are the 400 weight cut from the official variable fonts
+ * (github.com/google/fonts, SIL Open Font License), same versions as the uprights.
  */
 
 /* ===== Nunito (Sans-Serif) ===== */
@@ -22,6 +24,16 @@
     font-display: swap;
 }
 
+/* Real italic cuts, so slanted text is drawn by the type designer rather than
+   the browser tilting the upright letters. Only fetched on pages that use them. */
+@font-face {
+    font-family: 'Nunito';
+    src: url('/fonts/Nunito-Italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
 /* ===== Playfair Display (Serif) ===== */
 @font-face {
     font-family: 'Playfair Display';
@@ -36,5 +48,13 @@
     src: url('/fonts/PlayfairDisplay-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/fonts/PlayfairDisplay-Italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
     font-display: swap;
 }
